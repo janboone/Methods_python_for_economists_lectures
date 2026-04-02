@@ -54,7 +54,7 @@ The structure of each lecture is the same:
 - explain the python code that creates the app
 - have some review questions
 
-Our advice is to have this website open to read the information and next to it have your =marimo= notebook to make notes and program the interactive elements for the app. Most apps below are programed with =streamlit= which is very similar to =marimo=.
+Our advice is to have this website open to read the information and next to it have your [[https://marimo.io/][marimo]] notebook to make notes and program the interactive elements for the app. Most apps below are programed with [[https://streamlit.io/][streamlit]] which is very similar to =marimo=.
 
 
 
@@ -632,8 +632,6 @@ Each question gives you some code and context. For each:
 1. *Explain* what the code does (think before you look at the hint).
 2. *Complete* the code in your own notebook.
 
-Expand the hints for guidance!
-
 -----
 
 *** Question 1: Predicting the Future Value
@@ -650,9 +648,12 @@ for m in range(months):
     # update balance here
 #+end_src
 
-*a.* Without running the code, explain how the balance will grow over time.  
-*b.* Write code to print the balance every year (not every month).  
-*c.* How would you modify the code to allow for a one-time bonus deposit in month 24?
+- a. Without running the code, explain how the balance will grow over time.  
+- b. Write code to print the balance every year (not every month).
+- c. How would you modify the code to allow for a one-time bonus deposit in month 24?
+
+
+For this question you need to use an ~if~ statement. Google "if statements in python" or get help from an LLM to solve this.
 
 #+BEGIN_EXPORT html
 <details>
@@ -683,14 +684,14 @@ p_fired = 0.05
 p_hired = 0.10
 longest_streak = 0
 current_streak = 0
-for month in range(120):
+for month in range(months):
     # update employed and unemployed here
     if unemployed > 5:
         # update streaks here
 #+end_src
 
-*a.* Explain how you would update ~employed~ and ~unemployed~ each month.  
-*b.* Complete the code to track the longest streak of high unemployment.
+- a. Explain how you would update ~employed~ and ~unemployed~ each month.  
+- b. Complete the code to track the longest streak of high unemployment.
 
 #+BEGIN_EXPORT html
 <details>
@@ -711,18 +712,18 @@ for month in range(120):
 
 *** Question 3: Parameter Sweep Analysis
 
-You want to analyze how the average unemployment rate changes as you sweep the probability of finding a job.
+You want to analyze how the average unemployment rate (not steady state unemployment) changes as you sweep the probability of being fired.
 Suppose you run a simulation for each value and store the results in a list called ~avg_unemp~.
 
-*a.* How would you plot the results so that the x-axis shows the probability of finding a job and the y-axis shows the average unemployment rate?  
-*b.* Suppose the analytic solution does not match the simulation for very high or very low probabilities. List two possible reasons why.
+- a. How would you plot the results so that the x-axis shows the probability of being fired and the y-axis shows the average unemployment rate?  
+- b. Suppose the analytic solution does not match the simulation for very high or very low probabilities. List two possible reasons why.
 
 #+BEGIN_EXPORT html
 <details>
 <summary><strong>Hint / Solution</strong></summary>
 #+END_EXPORT
 
-- Use ~plt.plot(p_hired_values, avg_unemp)~ where ~p_hired_values~ is the list of probabilities you swept.
+- Use ~plt.plot(p_fired_values, avg_unemp)~ where ~p_fired_values~ is the list of probabilities you swept.
 - Possible reasons for mismatch:
   1. The simulation is too short to reach steady state for extreme probabilities.
   2. Random fluctuations are large in small populations, so the analytic solution (which assumes infinite population) is less accurate.
@@ -730,3 +731,4 @@ Suppose you run a simulation for each value and store the results in a list call
 #+BEGIN_EXPORT html
 </details>
 #+END_EXPORT
+-----------

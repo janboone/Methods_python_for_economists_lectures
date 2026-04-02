@@ -89,27 +89,27 @@ org_html_manager.setup();  // activate after the parameters are set
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents" role="doc-toc">
 <ul>
-<li><a href="#org05c7a27">Introduction</a></li>
-<li><a href="#org4a43dd2">1. Lecture 1: The Power of Compounded Interest and Employment Dynamics</a>
+<li><a href="#org5621fe9">Introduction</a></li>
+<li><a href="#org46cbf06">1. Lecture 1: The Power of Compounded Interest and Employment Dynamics</a>
 <ul>
-<li><a href="#org6dd4a06">1.1. Apps</a>
+<li><a href="#org8475734">1.1. Apps</a>
 <ul>
-<li><a href="#orge3fe82e">Compounded interest</a></li>
-<li><a href="#orgafb13ca">Employment dynamics</a></li>
+<li><a href="#org6cbe956">Compounded interest</a></li>
+<li><a href="#org17f5e2f">Employment dynamics</a></li>
 </ul>
 </li>
-<li><a href="#orgd2d07fd">1.2. Python Model Explanations</a>
+<li><a href="#orge2054c3">1.2. Python Model Explanations</a>
 <ul>
-<li><a href="#org0acee6f">Compounded Interest Model</a></li>
-<li><a href="#org54e33de">Employment Dynamics Model</a></li>
-<li><a href="#org3ef859d">Parameter Sweep: Long-run Unemployment Rate</a></li>
+<li><a href="#org8121457">Compounded Interest Model</a></li>
+<li><a href="#org9d2325e">Employment Dynamics Model</a></li>
+<li><a href="#org5fc18f4">Parameter Sweep: Long-run Unemployment Rate</a></li>
 </ul>
 </li>
-<li><a href="#orgc560c8d">1.3. Review Questions</a>
+<li><a href="#orgd98cf00">1.3. Review Questions</a>
 <ul>
-<li><a href="#org75bf5e7">Question 1: Predicting the Future Value</a></li>
-<li><a href="#org0bdd974">Question 2: Unemployment Fluctuations</a></li>
-<li><a href="#org82eb6ad">Question 3: Parameter Sweep Analysis</a></li>
+<li><a href="#orgced64a1">Question 1: Predicting the Future Value</a></li>
+<li><a href="#org2240d5e">Question 2: Unemployment Fluctuations</a></li>
+<li><a href="#org2356d3c">Question 3: Parameter Sweep Analysis</a></li>
 </ul>
 </li>
 </ul>
@@ -118,9 +118,9 @@ org_html_manager.setup();  // activate after the parameters are set
 </div>
 </div>
 <main>
-<div id="outline-container-org05c7a27" class="outline-2">
-<h2 id="org05c7a27">Introduction</h2>
-<div class="outline-text-2" id="text-org05c7a27">
+<div id="outline-container-org5621fe9" class="outline-2">
+<h2 id="org5621fe9">Introduction</h2>
+<div class="outline-text-2" id="text-org5621fe9">
 <p>
 The idea of these lectures is to combine Python programing with economics. The overall goal is for you to acquire the skills to transfer information/knowledge to others (say, future colleagues) using more instruments than just written text.
 </p>
@@ -144,12 +144,12 @@ The structure of each lecture is the same:
 </ul>
 
 <p>
-Our advice is to have this website open to read the information and next to it have your <code>marimo</code> notebook to make notes and program the interactive elements for the app. Most apps below are programed with <code>streamlit</code> which is very similar to <code>marimo</code>.
+Our advice is to have this website open to read the information and next to it have your <a href="https://marimo.io/">marimo</a> notebook to make notes and program the interactive elements for the app. Most apps below are programed with <a href="https://streamlit.io/">streamlit</a> which is very similar to <code>marimo</code>.
 </p>
 </div>
 </div>
-<div id="outline-container-org4a43dd2" class="outline-2 section">
-<h2 id="org4a43dd2"><span class="section-number-2">1.</span> Lecture 1: The Power of Compounded Interest and Employment Dynamics</h2>
+<div id="outline-container-org46cbf06" class="outline-2 section">
+<h2 id="org46cbf06"><span class="section-number-2">1.</span> Lecture 1: The Power of Compounded Interest and Employment Dynamics</h2>
 <div class="outline-text-2" id="text-1">
 <p>
 In this lecture we program two simple apps. First, we model compounded interest and then we model employment dynamics in a labor market. Along the way you learn the following Python concepts:
@@ -163,8 +163,8 @@ In this lecture we program two simple apps. First, we model compounded interest 
 <li>parameter sweep</li>
 </ul>
 </div>
-<div id="outline-container-org6dd4a06" class="outline-3">
-<h3 id="org6dd4a06"><span class="section-number-3">1.1.</span> Apps</h3>
+<div id="outline-container-org8475734" class="outline-3">
+<h3 id="org8475734"><span class="section-number-3">1.1.</span> Apps</h3>
 <div class="outline-text-3" id="text-1-1">
 <p>
 This lecture introduces Python through two economic models:
@@ -179,9 +179,9 @@ This lecture introduces Python through two economic models:
 You can experiment with both models in the interactive demos below.
 </p>
 </div>
-<div id="outline-container-orge3fe82e" class="outline-4 section">
-<h4 id="orge3fe82e">Compounded interest</h4>
-<div class="outline-text-4" id="text-orge3fe82e">
+<div id="outline-container-org6cbe956" class="outline-4 section">
+<h4 id="org6cbe956">Compounded interest</h4>
+<div class="outline-text-4" id="text-org6cbe956">
 <p>
 The following app illustrates how a lower monthly deposit can be &ldquo;compensated&rdquo; by a higher interest rate and lead to a higher final balance then a high monthly deposit with lower interest rate. Adjust the sliders by setting a relatively high deposit and low interest rate in scenario 1 and low deposit with high interest rate in scenario 2. Click the &rsquo;Calculate&rsquo; button to see how the balance develops over time in each scenario.
 </p>
@@ -201,9 +201,9 @@ The following app illustrates how a lower monthly deposit can be &ldquo;compensa
 </div>
 </div>
 </div>
-<div id="outline-container-orgafb13ca" class="outline-4 section">
-<h4 id="orgafb13ca">Employment dynamics</h4>
-<div class="outline-text-4" id="text-orgafb13ca">
+<div id="outline-container-org17f5e2f" class="outline-4 section">
+<h4 id="org17f5e2f">Employment dynamics</h4>
+<div class="outline-text-4" id="text-org17f5e2f">
 <p>
 The following app illustrates how employment/unemployment evolves in a small town with 20 inhabitants. We start with full employment. With the sliders you can set the probability that an employee is fired (say, because her firm goes bankrupt) and the probability that an unemployed person is hired. Select the number of periods for which you want to run the simulation and click the &rsquo;Run Simulation&rsquo; button.
 </p>
@@ -229,16 +229,16 @@ The second app illustrates a parameter sweep. This shows how sensitive an outcom
 </div>
 </div>
 </div>
-<div id="outline-container-orgd2d07fd" class="outline-3">
-<h3 id="orgd2d07fd"><span class="section-number-3">1.2.</span> Python Model Explanations</h3>
+<div id="outline-container-orge2054c3" class="outline-3">
+<h3 id="orge2054c3"><span class="section-number-3">1.2.</span> Python Model Explanations</h3>
 <div class="outline-text-3" id="text-1-2">
 <p>
 In this section we explain the Python code for the model itself, not yet for the interactive elements. In a next lecture we explain how to create sliders for parameters.
 </p>
 </div>
-<div id="outline-container-org0acee6f" class="outline-4">
-<h4 id="org0acee6f">Compounded Interest Model</h4>
-<div class="outline-text-4" id="text-org0acee6f">
+<div id="outline-container-org8121457" class="outline-4">
+<h4 id="org8121457">Compounded Interest Model</h4>
+<div class="outline-text-4" id="text-org8121457">
 <p>
 Let&rsquo;s see how you can model the growth of a bank account with regular deposits and compounded interest in Python.
 </p>
@@ -248,8 +248,8 @@ If you want to learn to program in Python, our advice is that you type the code 
 </p>
 </div>
 <ul class="org-ul">
-<li><a id="org69fb7bc"></a>1. Set the parameters<br />
-<div class="outline-text-5" id="text-org69fb7bc">
+<li><a id="orgefbf61b"></a>1. Set the parameters<br />
+<div class="outline-text-5" id="text-orgefbf61b">
 <p>
 We start by defining the monthly deposit, the monthly interest rate, and the number of months. Here, we use euros as the currency.
 </p>
@@ -266,8 +266,8 @@ We do this by defining variables, like <code>deposit</code>, and give these a va
 </div>
 </div>
 </li>
-<li><a id="orgcba5f63"></a>2. Initialize the balance and create an empty list<br />
-<div class="outline-text-5" id="text-orgcba5f63">
+<li><a id="orgcea38db"></a>2. Initialize the balance and create an empty list<br />
+<div class="outline-text-5" id="text-orgcea38db">
 <p>
 We start with a balance of zero. We also create an empty <code>list</code> called <code>balances</code> to store the account balance at each month.
 </p>
@@ -284,8 +284,8 @@ We use a list here so we can keep track of the balance after each month, which i
 </div>
 </div>
 </li>
-<li><a id="org6f95b38"></a>3. Simulate the account growth with a for loop<br />
-<div class="outline-text-5" id="text-org6f95b38">
+<li><a id="orge3c1223"></a>3. Simulate the account growth with a for loop<br />
+<div class="outline-text-5" id="text-orge3c1223">
 <p>
 We use a <code>for</code> loop to repeat the same calculation for each month.
 In each iteration, we first store the current balance in the list, then update the balance by adding the deposit and applying the interest.
@@ -306,8 +306,8 @@ This adds the current balance to the end of the <code>balances</code> list.</li>
 </div>
 </div>
 </li>
-<li><a id="orga114dee"></a>4. Plot the results<br />
-<div class="outline-text-5" id="text-orga114dee">
+<li><a id="orgb61e9d5"></a>4. Plot the results<br />
+<div class="outline-text-5" id="text-orgb61e9d5">
 <p>
 We use <code>matplotlib</code> to visualize the growth of the account over time.
 </p>
@@ -336,7 +336,7 @@ plt.title(<span style="color: #3548cf;">"Compounded Interest Over Time"</span>);
 </div>
 
 
-<div id="org04cc559" class="figure">
+<div id="orge0ed7c0" class="figure">
 <p><img src="./figures/compounded_interest.png" alt="compounded_interest.png" />
 </p>
 </div>
@@ -357,16 +357,16 @@ Use an LLM to figure out what the following Python code does:
 </li>
 </ul>
 </div>
-<div id="outline-container-org54e33de" class="outline-4">
-<h4 id="org54e33de">Employment Dynamics Model</h4>
-<div class="outline-text-4" id="text-org54e33de">
+<div id="outline-container-org9d2325e" class="outline-4">
+<h4 id="org9d2325e">Employment Dynamics Model</h4>
+<div class="outline-text-4" id="text-org9d2325e">
 <p>
 Let&rsquo;s break down the Python code for simulating employment and unemployment in a small village.
 </p>
 </div>
 <ul class="org-ul">
-<li><a id="org8eb9c39"></a>1. Set the parameters<br />
-<div class="outline-text-5" id="text-org8eb9c39">
+<li><a id="org7c4c5cb"></a>1. Set the parameters<br />
+<div class="outline-text-5" id="text-org7c4c5cb">
 <p>
 We define the number of people, the probabilities, and the number of time steps. Copy this into your <code>marimo</code> notebook and see what happens if you change the value of the variable <code>n_people</code> to, say, 1000.
 </p>
@@ -380,8 +380,8 @@ We define the number of people, the probabilities, and the number of time steps.
 </div>
 </div>
 </li>
-<li><a id="org961a76d"></a>2. Initialize the state<br />
-<div class="outline-text-5" id="text-org961a76d">
+<li><a id="org926a169"></a>2. Initialize the state<br />
+<div class="outline-text-5" id="text-org926a169">
 <p>
 We start with everyone employed.
 We create lists to store the number of employed and unemployed people at each time step.
@@ -396,8 +396,8 @@ We create lists to store the number of employed and unemployed people at each ti
 </div>
 </div>
 </li>
-<li><a id="orgc593004"></a>3. Simulate the process with a for loop<br />
-<div class="outline-text-5" id="text-orgc593004">
+<li><a id="org857d12c"></a>3. Simulate the process with a for loop<br />
+<div class="outline-text-5" id="text-org857d12c">
 <p>
 For each time step:
 </p>
@@ -431,8 +431,8 @@ Above we have already seen the use of <code>append</code> to &ldquo;add&rdquo; a
 </div>
 </div>
 </li>
-<li><a id="orge25a4d6"></a>4. Plot the results<br />
-<div class="outline-text-5" id="text-orge25a4d6">
+<li><a id="org9ad7bdf"></a>4. Plot the results<br />
+<div class="outline-text-5" id="text-org9ad7bdf">
 <p>
 We use <code>matplotlib</code> to plot the number of employed and unemployed people over time.
 </p>
@@ -454,14 +454,14 @@ plt.grid(<span style="color: #0000b0;">True</span>)
 </div>
 
 
-<div id="org2bbcf46" class="figure">
+<div id="org102b3f1" class="figure">
 <p><img src="./figures/employed_unemployed.png" alt="employed_unemployed.png" />
 </p>
 </div>
 </div>
 <ul class="org-ul">
-<li><a id="orgb0035a2"></a>Summary of what the code does<br />
-<div class="outline-text-6" id="text-orgb0035a2">
+<li><a id="org246ffb3"></a>Summary of what the code does<br />
+<div class="outline-text-6" id="text-org246ffb3">
 <ul class="org-ul">
 <li><b>Step 1:</b> Set the parameters for the simulation.</li>
 <li><b>Step 2:</b> Initialize the state and lists to store the results.</li>
@@ -480,9 +480,9 @@ This model demonstrates how randomness and probabilities can be used to simulate
 </li>
 </ul>
 </div>
-<div id="outline-container-org3ef859d" class="outline-4">
-<h4 id="org3ef859d">Parameter Sweep: Long-run Unemployment Rate</h4>
-<div class="outline-text-4" id="text-org3ef859d">
+<div id="outline-container-org5fc18f4" class="outline-4">
+<h4 id="org5fc18f4">Parameter Sweep: Long-run Unemployment Rate</h4>
+<div class="outline-text-4" id="text-org5fc18f4">
 <p>
 A question when doing simulations is: how sensitive are the simulation results to the parameter values chosen. One way to get an idea of this sensitivity is to run the simulations for a sweep of parameter values. We illustrate this by analyzing long run or steady state unemployment. In the simulations we program long run unemployment as follows:
 </p>
@@ -504,8 +504,8 @@ As the model is quite simple, we can actually derive the steady state unemployme
 </div>
 </div>
 <ul class="org-ul">
-<li><a id="orgd6df6ce"></a>5. Sweep code<br />
-<div class="outline-text-5" id="text-orgd6df6ce">
+<li><a id="org92ab116"></a>5. Sweep code<br />
+<div class="outline-text-5" id="text-org92ab116">
 <p>
 Two points on the code:
 </p>
@@ -541,8 +541,8 @@ Two points on the code:
 </div>
 </div>
 </li>
-<li><a id="org0542e84"></a>6. Plotting the sweep results<br />
-<div class="outline-text-5" id="text-org0542e84">
+<li><a id="org9644e6f"></a>6. Plotting the sweep results<br />
+<div class="outline-text-5" id="text-org9644e6f">
 <div class="org-src-container">
 <pre class="src src-jupyter-python">plt.plot(sweep_p_hired, avg_unemp, label=<span style="color: #3548cf;">"Simulated (last 50 steps)"</span>)
 plt.plot(sweep_p_hired, analytic_unemp, <span style="color: #3548cf;">'--'</span>, label=<span style="color: #3548cf;">"Analytic steady-state"</span>)
@@ -556,14 +556,14 @@ plt.show()
 </div>
 
 
-<div id="org45a493f" class="figure">
+<div id="org0399246" class="figure">
 <p><img src="./figures/steady_state_unemployment.png" alt="steady_state_unemployment.png" />
 </p>
 </div>
 </div>
 <ul class="org-ul">
-<li><a id="org3e51e95"></a>Summary of what the code does<br />
-<div class="outline-text-6" id="text-org3e51e95">
+<li><a id="orgfae383a"></a>Summary of what the code does<br />
+<div class="outline-text-6" id="text-orgfae383a">
 <ul class="org-ul">
 <li><b>Step 1-4:</b> Simulate the employment dynamics as before.</li>
 <li><b>Step 5:</b> For a range of probabilities of finding a job, run the simulation and compute the average unemployment rate in the long run. Also compute the analytic steady-state unemployment rate:</li>
@@ -589,8 +589,8 @@ Sweeping parameters is a powerful way to explore how a model behaves as you chan
 </ul>
 </div>
 </div>
-<div id="outline-container-orgc560c8d" class="outline-3">
-<h3 id="orgc560c8d"><span class="section-number-3">1.3.</span> Review Questions</h3>
+<div id="outline-container-orgd98cf00" class="outline-3">
+<h3 id="orgd98cf00"><span class="section-number-3">1.3.</span> Review Questions</h3>
 <div class="outline-text-3" id="text-1-3">
 <p>
 Test your understanding of the Python concepts and models from this lecture.
@@ -602,15 +602,11 @@ Each question gives you some code and context. For each:
 <li><b>Complete</b> the code in your own notebook.</li>
 </ol>
 
-<p>
-Expand the hints for guidance!
-</p>
-
 <hr />
 </div>
-<div id="outline-container-org75bf5e7" class="outline-4">
-<h4 id="org75bf5e7">Question 1: Predicting the Future Value</h4>
-<div class="outline-text-4" id="text-org75bf5e7">
+<div id="outline-container-orgced64a1" class="outline-4">
+<h4 id="orgced64a1">Question 1: Predicting the Future Value</h4>
+<div class="outline-text-4" id="text-orgced64a1">
 <p>
 You want to predict the future value of a savings account after 10 years, but you only know the monthly deposit and the interest rate.
 You are given the following code fragment:
@@ -626,10 +622,15 @@ You are given the following code fragment:
 </pre>
 </div>
 
+<ul class="org-ul">
+<li>a. Without running the code, explain how the balance will grow over time.</li>
+<li>b. Write code to print the balance every year (not every month).</li>
+<li>c. How would you modify the code to allow for a one-time bonus deposit in month 24?</li>
+</ul>
+
+
 <p>
-<b>a.</b> Without running the code, explain how the balance will grow over time.  
-<b>b.</b> Write code to print the balance every year (not every month).  
-<b>c.</b> How would you modify the code to allow for a one-time bonus deposit in month 24?
+For this question you need to use an <code>if</code> statement. Google &ldquo;if statements in python&rdquo; or get help from an LLM to solve this.
 </p>
 
 <details>
@@ -648,9 +649,9 @@ You are given the following code fragment:
 <hr />
 </div>
 </div>
-<div id="outline-container-org0bdd974" class="outline-4">
-<h4 id="org0bdd974">Question 2: Unemployment Fluctuations</h4>
-<div class="outline-text-4" id="text-org0bdd974">
+<div id="outline-container-org2240d5e" class="outline-4">
+<h4 id="org2240d5e">Question 2: Unemployment Fluctuations</h4>
+<div class="outline-text-4" id="text-org2240d5e">
 <p>
 Suppose you want to simulate unemployment in a village, but you want to track the longest streak of consecutive months where unemployment is above 5 people.
 </p>
@@ -663,17 +664,17 @@ Suppose you want to simulate unemployment in a village, but you want to track th
 <span style="color: #005e8b;">p_hired</span> = 0.10
 <span style="color: #005e8b;">longest_streak</span> = 0
 <span style="color: #005e8b;">current_streak</span> = 0
-<span style="color: #531ab6;">for</span> month <span style="color: #531ab6;">in</span> <span style="color: #8f0075;">range</span>(120):
+<span style="color: #531ab6;">for</span> month <span style="color: #531ab6;">in</span> <span style="color: #8f0075;">range</span>(months):
     <span style="color: #7f0000;"># </span><span style="color: #7f0000;">update employed and unemployed here
 </span>    <span style="color: #531ab6;">if</span> unemployed &gt; 5:
         <span style="color: #7f0000;"># </span><span style="color: #7f0000;">update streaks here</span>
 </pre>
 </div>
 
-<p>
-<b>a.</b> Explain how you would update <code>employed</code> and <code>unemployed</code> each month.  
-<b>b.</b> Complete the code to track the longest streak of high unemployment.
-</p>
+<ul class="org-ul">
+<li>a. Explain how you would update <code>employed</code> and <code>unemployed</code> each month.</li>
+<li>b. Complete the code to track the longest streak of high unemployment.</li>
+</ul>
 
 <details>
 <summary><strong>Hint / Solution</strong></summary>
@@ -693,24 +694,24 @@ Suppose you want to simulate unemployment in a village, but you want to track th
 <hr />
 </div>
 </div>
-<div id="outline-container-org82eb6ad" class="outline-4">
-<h4 id="org82eb6ad">Question 3: Parameter Sweep Analysis</h4>
-<div class="outline-text-4" id="text-org82eb6ad">
+<div id="outline-container-org2356d3c" class="outline-4">
+<h4 id="org2356d3c">Question 3: Parameter Sweep Analysis</h4>
+<div class="outline-text-4" id="text-org2356d3c">
 <p>
-You want to analyze how the average unemployment rate changes as you sweep the probability of finding a job.
+You want to analyze how the average unemployment rate (not steady state unemployment) changes as you sweep the probability of being fired.
 Suppose you run a simulation for each value and store the results in a list called <code>avg_unemp</code>.
 </p>
 
-<p>
-<b>a.</b> How would you plot the results so that the x-axis shows the probability of finding a job and the y-axis shows the average unemployment rate?  
-<b>b.</b> Suppose the analytic solution does not match the simulation for very high or very low probabilities. List two possible reasons why.
-</p>
+<ul class="org-ul">
+<li>a. How would you plot the results so that the x-axis shows the probability of being fired and the y-axis shows the average unemployment rate?</li>
+<li>b. Suppose the analytic solution does not match the simulation for very high or very low probabilities. List two possible reasons why.</li>
+</ul>
 
 <details>
 <summary><strong>Hint / Solution</strong></summary>
 
 <ul class="org-ul">
-<li>Use <code>plt.plot(p_hired_values, avg_unemp)</code> where <code>p_hired_values</code> is the list of probabilities you swept.</li>
+<li>Use <code>plt.plot(p_fired_values, avg_unemp)</code> where <code>p_fired_values</code> is the list of probabilities you swept.</li>
 <li>Possible reasons for mismatch:
 <ol class="org-ol">
 <li>The simulation is too short to reach steady state for extreme probabilities.</li>
@@ -719,6 +720,7 @@ Suppose you run a simulation for each value and store the results in a list call
 </ul>
 
 </details>
+<hr />
 </div>
 </div>
 </div>
