@@ -1,0 +1,732 @@
+#+SETUPFILE: ./org-html-themes/org/theme-readtheorg.setup
+#+TITLE: Lectures Methods: Python programming for economists
+#+AUTHOR: Jan Boone
+#+property: header-args  :session lectures :kernel python3 :async yes
+#+OPTIONS: toc:nil num:nil html-style:nil
+#+auto_tangle: t
+
+#+LANGUAGE: en
+#+INFOJS_OPT: view:showall toc:t ltoc:t mouse:underline path:http://orgmode.org/org-info.js
+#+LaTeX_CLASS: article-12
+#+LATEX_HEADER: \renewcommand{\floatpagefraction}{.8} %% avoids figures getting their own page
+#+latex_header: \input{author.tex}
+#+latex_engraved_theme: t
+#+EXPORT_SELECT_TAGS: export
+#+EXPORT_EXCLUDE_TAGS: noexport
+#+OPTIONS: toc:nil timestamp:nil num:2 ':t \n:nil @:t ::t |:t ^:{} _:{} *:t TeX:t LaTeX:t
+#+HTML_HEAD: <link rel="stylesheet" href="./css/Latex.css">
+#+HTML_HEAD: <link rel="stylesheet" href="https://latex.now.sh/prism/prism.css">
+#+HTML_HEAD: <script src="https://cdn.jsdelivr.net/npm/prismjs/prism.min.js"></script>
+
+
+
+#+HTML_HEAD: <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+#+HTML_HEAD: <style>
+#+HTML_HEAD: body { font-family: Arial, sans-serif; margin: 0; background-color: #f5f7fa; line-height: 1.6; }
+#+HTML_HEAD: header { background-color: #1f3c88; color: white; padding: 25px; text-align: center; }
+#+HTML_HEAD: main { max-width: 1100px; margin: 40px auto; padding: 25px; background: white; border-radius: 10px; box-shadow: 0 3px 12px rgba(0,0,0,0.1); }
+#+HTML_HEAD: h1, h2 { margin-top: 0; }
+#+HTML_HEAD: iframe { width: 100%; height: 1000px; border: none; border-radius: 8px; }
+#+HTML_HEAD: .fallback { margin-top: 15px; text-align: center; }
+#+HTML_HEAD: .fallback a { color: #1f3c88; text-decoration: none; font-weight: bold; }
+#+HTML_HEAD: .fallback a:hover { text-decoration: underline; }
+#+HTML_HEAD: .section { margin-bottom: 25px; }
+#+HTML_HEAD: </style>
+
+#+BEGIN_EXPORT html
+<main>
+#+END_EXPORT
+
+* Introduction
+:PROPERTIES:
+:UNNUMBERED: t
+:END:
+
+The idea of these lectures is to combine Python programing with economics. The overall goal is for you to acquire the skills to transfer information/knowledge to others (say, future colleagues) using more instruments than just written text.
+
+Hence, we teach you how to use Python (learn the syntax) to solve economic models and then to create interactive apps to explain the intuition of these models. To explain how you can use these skills, we present all Python concepts in an economic context and show you how interactive elements can help the reader/user to gain the underlying economic intuition.
+
+We start simple in lecture 1 with compound interest. Later you will learn how to solve for the equilibrium of models and do simulations. At the end you can solve differential equations.
+
+The structure of each lecture is the same:
+- explain the economic context
+- show the intuition using an interactive notebook/app
+- explain the python code that creates the app
+- have some review questions
+
+Our advice is to have this website open to read the information and next to it have your =marimo= notebook to make notes and program the interactive elements for the app. Most apps below are programed with =streamlit= which is very similar to =marimo=.
+
+
+
+* Lecture 1: The Power of Compounded Interest and Employment Dynamics
+:PROPERTIES:
+:HTML_CONTAINER_CLASS: section
+:END:
+
+In this lecture we program two simple apps. First, we model compounded interest and then we model employment dynamics in a labor market. Along the way you learn the following Python concepts:
+- variables
+- lists and how to append lists
+- for-loop
+- =numpy= and =numpy= arrays, generating random numbers (e.g. from a binomial distribution)
+- =matplotlib= to create figures
+- parameter sweep 
+
+** Apps
+
+This lecture introduces Python through two economic models:
+
+1. The Power of Compounded Interest: We model the growth of a bank account with regular deposits and compounded interest. This is analogous to the "falling coin" example in physics, but here we use an economic scenario.
+2. Modeling Employment and Unemployment: We model the employment status of 20 people in a village. Each person can be either employed or unemployed. At each time step, an employed person can lose their job (become unemployed) with a certain probability, and an unemployed person can find a job (become employed) with another probability.
+
+You can experiment with both models in the interactive demos below.
+
+*** Compounded interest
+:PROPERTIES:
+:HTML_CONTAINER_CLASS: section
+:END:
+
+The following app illustrates how a lower monthly deposit can be "compensated" by a higher interest rate and lead to a higher final balance then a high monthly deposit with lower interest rate. Adjust the sliders by setting a relatively high deposit and low interest rate in scenario 1 and low deposit with high interest rate in scenario 2. Click the 'Calculate' button to see how the balance develops over time in each scenario.
+
+#+BEGIN_EXPORT html
+<iframe
+  src="https://lecture1compoundinterest.streamlit.app/?embed=true"
+  allow="fullscreen">
+</iframe>
+
+<div class="fallback">
+  <p>
+    If the app does not load,
+    <a href="https://lecture1compoundinterest.streamlit.app/?embed=true" target="_blank">
+      open it in a new tab
+    </a>.
+  </p>
+</div>
+#+END_EXPORT
+
+*** Employment dynamics
+:PROPERTIES:
+:HTML_CONTAINER_CLASS: section
+:END:
+
+The following app illustrates how employment/unemployment evolves in a small town with 20 inhabitants. We start with full employment. With the sliders you can set the probability that an employee is fired (say, because her firm goes bankrupt) and the probability that an unemployed person is hired. Select the number of periods for which you want to run the simulation and click the 'Run Simulation' button.
+
+The second app illustrates a parameter sweep. This shows how sensitive an outcome is to the parameter value. In this case, we want to analyze the sensitivity of the long run unemployment level to the probability of finding a job. As this is a simple simulation model, we can actually derive the long run unemployment level analytically. The figure compares the simulated long run unemployment level with the analytic solution. For the probability of being fired chosen in the first app, clicking 'Sweep Parameter' shows long run unemployment for different values of $p_{hired}$.
+
+
+#+BEGIN_EXPORT html
+<iframe
+  src="https://lecture1employmentdynamics.streamlit.app/?embed=true"
+  allow="fullscreen">
+</iframe>
+
+<div class="fallback">
+  <p>
+    If the app does not load,
+    <a href="https://lecture1employmentdynamics.streamlit.app/?embed=true" target="_blank">
+      open it in a new tab
+    </a>.
+  </p>
+</div>
+#+END_EXPORT
+
+
+** Python Model Explanations
+
+In this section we explain the Python code for the model itself, not yet for the interactive elements. In a next lecture we explain how to create sliders for parameters.
+
+
+*** Compounded Interest Model
+
+Let's see how you can model the growth of a bank account with regular deposits and compounded interest in Python.
+
+If you want to learn to program in Python, our advice is that you type the code below in your =marimo= notebook and run it. Then start to "play with it": change things, experiment with the code. You cannot break anything and (mis)typing code, getting errors, using google or an LLM to understand the errors and change the code: this is how you learn to program. Just glancing over the code below and thinking you "understand things" is a waste of your time. 
+
+**** 1. Set the parameters
+
+We start by defining the monthly deposit, the monthly interest rate, and the number of months. Here, we use euros as the currency.
+
+We do this by defining variables, like ~deposit~, and give these a value:
+
+#+begin_src jupyter-python
+deposit = 500      # euros per month
+rate = 0.003        # monthly interest rate (0.3%)
+months = 20 * 12    # 20 years
+#+end_src
+
+#+RESULTS:
+
+**** 2. Initialize the balance and create an empty list
+
+We start with a balance of zero. We also create an empty =list= called ~balances~ to store the account balance at each month.
+
+In Python, a =list= is a data structure that can hold an ordered collection of items. In Python a list is denoted by brackets ~[]~. "Ordered" in the sense that the first element refers to the start balance, the second element to the balance one month after that etc.
+We use a list here so we can keep track of the balance after each month, which is useful for plotting the results later.
+
+#+begin_src jupyter-python
+balance = 0
+balances = []
+#+end_src
+
+#+RESULTS:
+
+**** 3. Simulate the account growth with a for loop
+
+We use a =for= loop to repeat the same calculation for each month.
+In each iteration, we first store the current balance in the list, then update the balance by adding the deposit and applying the interest.
+
+- ~for m in range(months + 1):~
+  This loop runs once for each month, including month 0.
+- ~balances.append(balance)~
+  This adds the current balance to the end of the ~balances~ list.
+
+#+begin_src jupyter-python
+for m in range(months + 1):
+    balances.append(balance)
+    balance = balance * (1 + rate) + deposit
+#+end_src
+
+#+RESULTS:
+
+**** 4. Plot the results
+
+We use =matplotlib= to visualize the growth of the account over time.
+
+- for the code cell below we need to import two libraries =matplotlib,numpy= that we use in the code. Staments like ~import numpy as np~ mean that we can access =numpy= functions like ~arange~ by writing ~np.arange~
+- the ~np.arange~ function takes three arguments: begin point, end point and step size; the end point is not included. In your =marimo= notebook: try different arguments in this function and see what the outcome is.
+- ~years = np.arange(months + 1) / 12~
+  This creates a list of time points in years, matching the number of balances.
+- ~plt.plot(years, balances)~
+  The ~plot~ function takes two lists or arrays of equal length:
+  the first for the x-axis, years, and the second for the y-axis, balances in euros.
+- By looking at the figure, you can probably infer what the functions ~plt.xlabel, plt.ylabel, plt.title~ do.
+
+#+begin_src jupyter-python :file ./figures/compounded_interest.png
+import matplotlib.pyplot as plt
+import numpy as np
+
+years = np.arange(months + 1) / 12
+plt.plot(years, balances)
+plt.xlabel("Years")
+plt.ylabel("Account Balance (€)")
+plt.title("Compounded Interest Over Time");
+#+end_src
+
+#+RESULTS:
+[[file:./figures/compounded_interest.png]]
+
+Use an LLM to figure out what the following Python code does:
+
+#+begin_src jupyter-python
+periods = months + 1
+factors = np.power(1 + rate, np.arange(periods))
+balances = deposit * np.cumsum(factors)
+#+end_src
+
+#+RESULTS:
+
+
+-----
+
+*** Employment Dynamics Model
+
+Let's break down the Python code for simulating employment and unemployment in a small village.
+
+**** 1. Set the parameters
+
+We define the number of people, the probabilities, and the number of time steps. Copy this into your =marimo= notebook and see what happens if you change the value of the variable ~n_people~ to, say, 1000.
+
+#+begin_src jupyter-python
+n_people = 20
+p_fired = 0.05   # probability an employed person is fired each step
+p_hired = 0.10   # probability an unemployed person finds a job each step
+n_steps = 100
+#+end_src
+
+#+RESULTS:
+
+**** 2. Initialize the state
+
+We start with everyone employed.
+We create lists to store the number of employed and unemployed people at each time step.
+
+#+begin_src jupyter-python
+employed = n_people
+unemployed = 0
+employed_hist = [employed]
+unemployed_hist = [unemployed]
+#+end_src
+
+#+RESULTS:
+
+**** 3. Simulate the process with a for loop
+
+For each time step:
+- For each employed person, we draw from a Bernoulli distribution to see whether they are fired. A Bernoulli distribution is equivalent to a binomial distribution with $n=1$.
+- For each unemployed person, we draw from a Bernoulli distribution to see whether they are hired.
+- We update the counts and store them in the lists.
+
+We use ~np.random.binomial(n, p)~ to draw the number of successes, fired or hired, out of ~n~ people, each with probability ~p~.
+
+~employed = employed - fired + hired~ means that the new value of ~employed~ (left hand side) equals the previous value of this variable minus the people that are fired plus the hires this period.
+
+Above we have already seen the use of ~append~ to "add" a value to a list or an array.
+
+#+begin_src jupyter-python
+for t in range(n_steps):
+    fired = np.random.binomial(employed, p_fired)
+    hired = np.random.binomial(unemployed, p_hired)
+    employed = employed - fired + hired
+    unemployed = n_people - employed
+    employed_hist.append(employed)
+    unemployed_hist.append(unemployed)
+#+end_src
+
+#+RESULTS:
+
+
+**** 4. Plot the results
+
+We use =matplotlib= to plot the number of employed and unemployed people over time.
+
+When you add a label to a ~plt.plot~ or ~plt.scatter~ command with ~label="Employed"~, you need to specify ~plt.legend()~ to add the legend to the figure. With the latter function you can also determine where the legend will be added in the figure. Google or use an LLM to find out how that works. If you do not specify a position, =matplotlib= will try to find the best placement itself.
+
+#+begin_src jupyter-python :file ./figures/employed_unemployed.png
+steps = np.arange(n_steps + 1)
+plt.plot(steps, employed_hist, label="Employed")
+plt.plot(steps, unemployed_hist, label="Unemployed")
+plt.xlabel("Time step")
+plt.ylabel("Number of people")
+plt.title("Employment and Unemployment Over Time")
+plt.legend()
+plt.grid(True)
+#+end_src
+
+#+RESULTS:
+[[file:./figures/employed_unemployed.png]]
+
+***** Summary of what the code does
+
+- *Step 1:* Set the parameters for the simulation.
+- *Step 2:* Initialize the state and lists to store the results.
+- *Step 3:* Use a for loop to simulate each time step, updating the state using random draws from the binomial distribution.
+- *Step 4:* Plot the results to visualize how employment and unemployment evolve over time.
+
+This model demonstrates how randomness and probabilities can be used to simulate real-world economic processes in =Python=.
+
+-----
+
+*** Parameter Sweep: Long-run Unemployment Rate
+
+A question when doing simulations is: how sensitive are the simulation results to the parameter values chosen. One way to get an idea of this sensitivity is to run the simulations for a sweep of parameter values. We illustrate this by analyzing long run or steady state unemployment. In the simulations we program long run unemployment as follows:
+- we run the simulations for 200 periods; this ensures that the effect of the initial unemployment level disappears
+- then we consider only the final 50 periods (that is period 150-200)
+- and we take the average unemployment level over these 50 periods; because hiring and firing are stochastic processes, the outcome in one particular period is random. By taking the average over 50 periods, we average out these per period stochastic outcomes.
+
+
+As the model is quite simple, we can actually derive the steady state unemployment level analytically. If you do not quite see how we got this expression, you can watch the following derivation:
+
+#+BEGIN_EXPORT html
+<div style="text-align:center;">
+  <video style="width:600px;" controls>
+    <source src="./manim/media/videos/steady_state_unemployment/2160p60/DerivationScene.mp4" type="video/mp4">
+  </video>
+</div>
+#+END_EXPORT
+
+
+**** 5. Sweep code
+
+Two points on the code:
+- here we use ~np.linspace~ instead of ~np.arange~. Both functions achieve the same result with slightly different syntax. Google "numpy linspace" for details.
+- in a later lecture we will look into indexing of lists and arrays. For now: ~unemployment_hist[-50:]~ refers to the final 50 entries in list/array ~unemployment_hist~.
+
+#+begin_src jupyter-python
+n_people = 20
+n_steps = 200
+p_fired = 0.05  # fixed probability of being fired
+sweep_p_hired = np.linspace(0.1, 0.9, 30)
+avg_unemp = []
+analytic_unemp = []
+
+for p_h in sweep_p_hired:
+    employed = n_people
+    unemployed = 0
+    unemployed_hist = [unemployed]
+    for t in range(n_steps):
+        fired = np.random.binomial(employed, p_fired)
+        hired = np.random.binomial(unemployed, p_h)
+        employed = employed - fired + hired
+        unemployed = n_people - employed
+        unemployed_hist.append(unemployed)
+    # Average unemployment rate over last 50 steps
+    avg_unemp.append(np.mean(unemployed_hist[-50:]) / n_people)
+    # Analytic steady-state
+    u_analytic = p_fired / (p_fired + p_h)
+    analytic_unemp.append(u_analytic)
+#+end_src
+
+#+RESULTS:
+
+**** 6. Plotting the sweep results
+
+#+begin_src jupyter-python :file ./figures/steady_state_unemployment.png
+plt.plot(sweep_p_hired, avg_unemp, label="Simulated (last 50 steps)")
+plt.plot(sweep_p_hired, analytic_unemp, '--', label="Analytic steady-state")
+plt.xlabel("Probability of finding a job")
+plt.ylabel("Unemployment rate")
+plt.title("Long-run Unemployment Rate vs. Probability of Finding a Job")
+plt.legend()
+plt.grid(True)
+plt.show()
+#+end_src
+
+#+RESULTS:
+[[file:./figures/steady_state_unemployment.png]]
+
+***** Summary of what the code does
+
+- *Step 1-4:* Simulate the employment dynamics as before.
+- *Step 5:* For a range of probabilities of finding a job, run the simulation and compute the average unemployment rate in the long run. Also compute the analytic steady-state unemployment rate:
+
+$$
+u = \frac{p_{\text{fired}}}{p_{\text{fired}} + p_{\text{hired}}}
+$$
+
+- *Step 6:* Plot both the simulated and analytic results to compare.
+
+Sweeping parameters is a powerful way to explore how a model behaves as you change its assumptions.
+
+
+
+
+
+*** streamlit :noexport:
+
+#+begin_src python :tangle ./lecture1/app1/app.py
+import streamlit as st
+import numpy as np
+import matplotlib.pyplot as plt
+
+st.set_page_config(page_title="Lecture 1", layout="wide")
+
+st.title("Compounded Interest")
+
+st.header("Interactive: Compounded Interest Scenarios")
+st.markdown("#### Scenario 1: High deposit, lower interest rate")
+deposit1 = st.slider("Monthly deposit (Scenario 1)", min_value=50, max_value=2000, value=500, step=50, key="deposit1")
+rate1 = st.slider("Monthly interest rate (%) (Scenario 1)", min_value=0.0, max_value=2.0, value=0.3, step=0.01, key="rate1") / 100
+
+st.markdown("#### Scenario 2: Low deposit, higher interest rate")
+deposit2 = st.slider("Monthly deposit (Scenario 2)", min_value=10, max_value=1000, value=100, step=10, key="deposit2")
+rate2 = st.slider("Monthly interest rate (%) (Scenario 2)", min_value=0.0, max_value=2.0, value=1.0, step=0.01, key="rate2") / 100
+
+calculate = st.button("Calculate", key="calculate_button")
+
+if calculate: 
+    months = 20 * 12  # 20 years
+    balances1 = []
+    balances2 = []
+    b1 = 0
+    b2 = 0
+    for m in range(months + 1):
+        balances1.append(b1)
+        balances2.append(b2)
+        b1 = b1 * (1 + rate1) + deposit1
+        b2 = b2 * (1 + rate2) + deposit2
+
+    years = np.arange(months + 1) / 12
+
+    fig, ax = plt.subplots()
+    ax.plot(years, balances1, label=f"Scenario 1: €{deposit1}/mo, {rate1*100:.2f}%/mo")
+    ax.plot(years, balances2, label=f"Scenario 2: €{deposit2}/mo, {rate2*100:.2f}%/mo")
+    ax.set_xlabel("Years")
+    ax.set_ylabel("Account Balance (€)")
+    ax.set_title("Compounded Interest: Two Scenarios")
+    ax.legend()
+    ax.grid(True)
+    st.pyplot(fig)
+
+    st.markdown("""
+**Try adjusting the sliders above and press "Calculate"!**  
+Notice how even a small increase in the interest rate can have a dramatic effect on the final balance, especially over long periods. This is the "power of compounded interest."
+""")
+else:
+    st.info('Adjust the sliders and press "Calculate" to see the results.')
+#+end_src
+
+
+#+begin_src python :tangle ./lecture1/app2/app.py
+import streamlit as st
+import numpy as np
+import matplotlib.pyplot as plt
+
+st.set_page_config(page_title="Lecture 1", layout="wide")
+
+st.header("Interactive: Employment Dynamics Simulation")
+st.markdown("Set the probabilities and run the simulation:")
+
+p_fired = st.slider("Probability of being fired (per employed person, per step)", min_value=0.0, max_value=0.5, value=0.05, step=0.01)
+p_hired = st.slider("Probability of finding a job (per unemployed person, per step)", min_value=0.0, max_value=0.5, value=0.10, step=0.01)
+n_people = 20
+n_steps = st.slider("Number of time steps", min_value=20, max_value=200, value=100, step=10)
+
+run_sim = st.button("Run Simulation", key="run_employment_sim")
+
+if run_sim:
+    employed = n_people
+    unemployed = 0
+    employed_hist = [employed]
+    unemployed_hist = [unemployed]
+
+    for t in range(n_steps):
+        fired = np.random.binomial(employed, p_fired)
+        hired = np.random.binomial(unemployed, p_hired)
+        employed = employed - fired + hired
+        unemployed = n_people - employed
+        employed_hist.append(employed)
+        unemployed_hist.append(unemployed)
+
+    steps = np.arange(n_steps + 1)
+
+    fig, ax = plt.subplots()
+    ax.plot(steps, employed_hist, label="Employed")
+    ax.plot(steps, unemployed_hist, label="Unemployed")
+    ax.set_xlabel("Time step")
+    ax.set_ylabel("Number of people")
+    ax.set_title("Employment and Unemployment Over Time")
+    ax.legend()
+    ax.grid(True)
+    st.pyplot(fig)
+
+    st.markdown("""
+**Try changing the probabilities and rerun the simulation!**  
+Notice how the number of employed and unemployed people fluctuates over time, depending on the probabilities.
+""")
+else:
+    st.info('Set the probabilities and press "Run Simulation" to see the results.')
+
+st.divider()
+
+st.header("Parameter Sweep: Long-run Unemployment Rate")
+st.markdown(
+        """
+Explore how the long-run unemployment rate depends on the probability of finding a job.
+
+- The probability of being fired is set by the slider above.
+- The probability of finding a job is swept from 0.1 to 0.9.
+- For each value, we simulate the process and compute the average unemployment rate in the long run (last 50 steps).
+- The analytic steady-state unemployment rate $u$ solves:  
+  $$
+  p_{\\text{fired}} \\cdot (1-u) = p_{\\text{hired}} \\cdot u
+  $$
+  so
+  $$
+  u = \\frac{p_{\\text{fired}}}{p_{\\text{fired}} + p_{\\text{hired}}}
+  $$
+"""
+    )
+
+sweep_btn = st.button("Sweep Parameter", key="sweep_button")
+if sweep_btn:
+    n_people = 20
+    n_steps = 200
+    sweep_p_hired = np.linspace(0.1, 0.9, 30)
+    avg_unemp = []
+    analytic_unemp = []
+    for p_h in sweep_p_hired:
+        employed = n_people
+        unemployed = 0
+        unemployed_hist = [unemployed]
+        for t in range(n_steps):
+            fired = np.random.binomial(employed, p_fired)
+            hired = np.random.binomial(unemployed, p_h)
+            employed = employed - fired + hired
+            unemployed = n_people - employed
+            unemployed_hist.append(unemployed)
+        # Average unemployment rate over last 50 steps
+        avg_unemp.append(np.mean(unemployed_hist[-50:]) / n_people)
+        # Analytic steady-state
+        u_analytic = p_fired / (p_fired + p_h)
+        analytic_unemp.append(u_analytic)
+
+    fig, ax = plt.subplots()
+    ax.plot(sweep_p_hired, avg_unemp, label="Simulated (last 50 steps)")
+    ax.plot(sweep_p_hired, analytic_unemp, '--', label="Analytic steady-state")
+    ax.set_xlabel("Probability of finding a job")
+    ax.set_ylabel("Unemployment rate")
+    ax.set_title("Long-run Unemployment Rate vs. Probability of Finding a Job")
+    ax.legend()
+    ax.grid(True)
+    st.pyplot(fig)
+
+    st.markdown(
+            """
+The plot shows the average unemployment rate (from simulation) and the analytic steady-state value as a function of the probability of finding a job.
+
+- The analytic solution matches the simulation well, especially for larger populations and longer runs.
+- Try changing the probability of being fired and rerun the sweep!
+"""
+        )
+else:
+    st.info('Press "Sweep Parameter" to run the parameter sweep and see the results.')
+#+end_src
+
+
+#+BEGIN_EXPORT html
+</main>
+#+END_EXPORT
+
+*** manim :noexport:
+
+In the terminal run =manim -pqk steady_state_unemployment.py DerivationScene=:
+- in the folder ./manim
+- after =conda activate manim_env=
+
+#+begin_src jupyter-python  :tangle ./manim/steady_state_unemployment.py
+from manim import *
+from manim_voiceover import VoiceoverScene
+from manim_voiceover.services.gtts import GTTSService
+
+class DerivationScene(VoiceoverScene):
+    def construct(self):
+        self.set_speech_service(GTTSService(lang="en", tld="com"))
+        font_size = 20
+        # 1. Define Equations
+        eq1 = MathTex(r'employed_{t+1} &= employed_{t} + hired_{t} - fired_{t}\\ hired_t &= p_{hired} \cdot unemployed_t \\ fired_t &= p_{fired} \cdot employed_t', font_size=font_size)
+        eq2 = MathTex(r"employed_t + unemployed_t = 1", font_size=font_size)
+        eq3 = MathTex(
+            r"employed &= employed + p_{hired}(1 - employed)\\ &- p_{fired}employed",
+            font_size=font_size)
+        eq4 = MathTex(
+            r"employed = \frac{p_{hired}}{p_{hired} + p_{fired}}",
+            font_size=font_size)
+        eq5 = MathTex(
+            r"unemployed &= 1 - \frac{p_{hired}}{p_{hired} + p_{fired}}\\ &= \frac{p_{fired}}{p_{hired} + p_{fired}}",
+            font_size=font_size)
+        # 2. Animate
+        with self.voiceover(text="We know the following three equations from our model"):
+            self.play(Write(eq1))
+            self.wait(2)
+        # Transform eq1 into eq2 smoothly
+        with self.voiceover(text="And we know that people are either employed or unemployed"):
+            self.play(ReplacementTransform(eq1, eq2))
+            self.wait(1)
+
+        with self.voiceover(text="Combining these equations and noting that in steady state time t does not matter, we can write the following"):
+            self.play(ReplacementTransform(eq2, eq3))
+            self.wait(1)
+        with self.voiceover(text="Finally, we solve this equation for employed which equals"):
+            self.play(ReplacementTransform(eq3, eq4))
+            self.wait(1)
+        with self.voiceover(text="Or equivalently, steady state unemployment equals the following expression"):
+            self.play(ReplacementTransform(eq4, eq5))
+            self.wait(1)
+#+end_src
+
+
+** Review Questions
+
+Test your understanding of the Python concepts and models from this lecture.
+Each question gives you some code and context. For each:
+
+1. *Explain* what the code does (think before you look at the hint).
+2. *Complete* the code in your own notebook.
+
+Expand the hints for guidance!
+
+-----
+
+*** Question 1: Predicting the Future Value
+
+You want to predict the future value of a savings account after 10 years, but you only know the monthly deposit and the interest rate.
+You are given the following code fragment:
+
+#+begin_src jupyter-python
+deposit = 100
+rate = 0.004
+months = 10 * 12
+balance = 0
+for m in range(months):
+    # update balance here
+#+end_src
+
+*a.* Without running the code, explain how the balance will grow over time.  
+*b.* Write code to print the balance every year (not every month).  
+*c.* How would you modify the code to allow for a one-time bonus deposit in month 24?
+
+#+BEGIN_EXPORT html
+<details>
+<summary><strong>Hint / Solution</strong></summary>
+#+END_EXPORT
+
+- The balance grows faster and faster due to compounding: each month, interest is earned on the previous balance.
+- To print the balance every year, use an ~if~ statement inside the loop:  
+  ~if m % 12 == 0: print(m//12, balance)~
+- To add a bonus in month 24:  
+  ~if m == 24: balance += bonus~
+
+#+BEGIN_EXPORT html
+</details>
+#+END_EXPORT
+
+-----
+
+*** Question 2: Unemployment Fluctuations
+
+Suppose you want to simulate unemployment in a village, but you want to track the longest streak of consecutive months where unemployment is above 5 people.
+
+#+begin_src jupyter-python
+n_people = 20
+employed = n_people
+unemployed = 0
+p_fired = 0.05
+p_hired = 0.10
+longest_streak = 0
+current_streak = 0
+for month in range(120):
+    # update employed and unemployed here
+    if unemployed > 5:
+        # update streaks here
+#+end_src
+
+*a.* Explain how you would update ~employed~ and ~unemployed~ each month.  
+*b.* Complete the code to track the longest streak of high unemployment.
+
+#+BEGIN_EXPORT html
+<details>
+<summary><strong>Hint / Solution</strong></summary>
+#+END_EXPORT
+
+- Use random draws as before to update employment status.
+- For streaks:
+  - If ~unemployed > 5~, increment ~current_streak~.
+  - If not, reset ~current_streak~ to 0.
+  - If ~current_streak > longest_streak~, update ~longest_streak~.
+
+#+BEGIN_EXPORT html
+</details>
+#+END_EXPORT
+
+-----
+
+*** Question 3: Parameter Sweep Analysis
+
+You want to analyze how the average unemployment rate changes as you sweep the probability of finding a job.
+Suppose you run a simulation for each value and store the results in a list called ~avg_unemp~.
+
+*a.* How would you plot the results so that the x-axis shows the probability of finding a job and the y-axis shows the average unemployment rate?  
+*b.* Suppose the analytic solution does not match the simulation for very high or very low probabilities. List two possible reasons why.
+
+#+BEGIN_EXPORT html
+<details>
+<summary><strong>Hint / Solution</strong></summary>
+#+END_EXPORT
+
+- Use ~plt.plot(p_hired_values, avg_unemp)~ where ~p_hired_values~ is the list of probabilities you swept.
+- Possible reasons for mismatch:
+  1. The simulation is too short to reach steady state for extreme probabilities.
+  2. Random fluctuations are large in small populations, so the analytic solution (which assumes infinite population) is less accurate.
+
+#+BEGIN_EXPORT html
+</details>
+#+END_EXPORT

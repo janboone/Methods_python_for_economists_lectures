@@ -1,0 +1,28 @@
+1
+00:00:00,000 --> 00:00:03,548
+We know the following three equations from our model
+
+2
+00:00:04,000 --> 00:00:07,740
+And we know that people are either employed or unemployed
+
+3
+00:00:07,833 --> 00:00:12,099
+Combining these equations and noting that in steady state time
+
+4
+00:00:12,199 --> 00:00:15,269
+t does not matter, we can write the following
+
+5
+00:00:15,366 --> 00:00:19,826
+Finally, we solve this equation for employed which equals
+
+6
+00:00:19,916 --> 00:00:22,951
+Or equivalently, steady state unemployment
+
+7
+00:00:23,051 --> 00:00:25,264
+equals the following expression
+

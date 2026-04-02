@@ -1,0 +1,47 @@
+[
+  {
+    "input_text": "We know the following three equations from our model",
+    "input_data": {
+      "input_text": "We know the following three equations from our model",
+      "service": "gtts"
+    },
+    "original_audio": "we-know-the-following-three-equations-from-our-aa442e32.mp3",
+    "final_audio": "we-know-the-following-three-equations-from-our-aa442e32.mp3"
+  },
+  {
+    "input_text": "And we know that people are either employed or unemployed",
+    "input_data": {
+      "input_text": "And we know that people are either employed or unemployed",
+      "service": "gtts"
+    },
+    "original_audio": "and-we-know-that-people-are-either-employed-or-e7781740.mp3",
+    "final_audio": "and-we-know-that-people-are-either-employed-or-e7781740.mp3"
+  },
+  {
+    "input_text": "Combining these equations and noting that in steady state time t does not matter, we can write the following",
+    "input_data": {
+      "input_text": "Combining these equations and noting that in steady state time t does not matter, we can write the following",
+      "service": "gtts"
+    },
+    "original_audio": "combining-these-equations-and-noting-that-in-abb949fc.mp3",
+    "final_audio": "combining-these-equations-and-noting-that-in-abb949fc.mp3"
+  },
+  {
+    "input_text": "Finally, we solve this equation for employed which equals",
+    "input_data": {
+      "input_text": "Finally, we solve this equation for employed which equals",
+      "service": "gtts"
+    },
+    "original_audio": "finally-we-solve-this-equation-for-employed-which-2f4eeedc.mp3",
+    "final_audio": "finally-we-solve-this-equation-for-employed-which-2f4eeedc.mp3"
+  },
+  {
+    "input_text": "Or equivalently, steady state unemployment equals the following expression",
+    "input_data": {
+      "input_text": "Or equivalently, steady state unemployment equals the following expression",
+      "service": "gtts"
+    },
+    "original_audio": "or-equivalently-steady-state-unemployment-equals-a3b5962d.mp3",
+    "final_audio": "or-equivalently-steady-state-unemployment-equals-a3b5962d.mp3"
+  }
+]
