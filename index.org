@@ -130,7 +130,7 @@ The second app illustrates a parameter sweep. This shows how sensitive an outcom
 #+END_EXPORT
 
 
-** Python Model Explanations
+** Python Code Explanation
 
 In this section we explain the Python code for the model itself, not yet for the interactive elements. In a next lecture we explain how to create sliders for parameters.
 
@@ -732,3 +732,667 @@ Suppose you run a simulation for each value and store the results in a list call
 </details>
 #+END_EXPORT
 -----------
+
+* Lecture 2: Healthcare expenditure
+:PROPERTIES:
+:HTML_CONTAINER_CLASS: section
+:END:
+
+** App: Healthcare expenditure
+:PROPERTIES:
+:HTML_CONTAINER_CLASS: section
+:END:
+
+
+
+#+BEGIN_EXPORT html
+<iframe
+  src="https://lecture2healthcare.streamlit.app/?embed=true"
+  allow="fullscreen">
+</iframe>
+
+<div class="fallback">
+  <p>
+    If the app does not load,
+    <a href="https://lecture2healthcare.streamlit.app/?embed=true" target="_blank">
+      open it in a new tab
+    </a>.
+  </p>
+</div>
+#+END_EXPORT
+
+
+*** streamlit :noexport:
+
+#+begin_src jupyter-python :tangle ./lecture2/app.py
+import streamlit as st
+import numpy as np
+import matplotlib.pyplot as plt
+import pandas as pd
+from scipy.optimize import minimize
+from scipy.optimize import fsolve
+
+st.set_page_config(page_title="Lecture 2", layout="wide")
+
+st.title("Healthcare")
+st.header("Interactive: Healthcare Expenditure Modeling")
+
+# Load data
+df = pd.read_csv('./data/gdp_healthcare_nl.csv')
+
+st.markdown("#### Healthcare Expenditure per Head in the Netherlands")
+st.line_chart(
+    df.set_index("Year")["CHE_per_head"],
+    use_container_width=True,
+    height=350
+)
+
+st.markdown("""
+Adjust the sliders below to fit a linear trend to the healthcare expenditure data.  
+You can also see the effect of changing the intercept and slope on the fit and the residuals.
+""")
+
+# Default values: fit first and last point
+intercept_default = float(df.CHE_per_head.iloc[0])
+slope_default = (df.CHE_per_head.iloc[-1] - df.CHE_per_head.iloc[0]) / (df.Year.iloc[-1] - df.Year.iloc[0])
+
+intercept = st.slider(
+    "Intercept (CHE per head at first year)", 
+    min_value=intercept_default-1000, 
+    max_value=intercept_default+1000, 
+    value=float(np.round(intercept_default, 2)), 
+    step=10.0
+)
+slope = st.slider(
+    "Slope (change per year)", 
+    min_value=-100.0, 
+    max_value=200.0, 
+    value=float(np.round(slope_default, 2)), 
+    step=1.0
+)
+
+calc = st.button("Calculate Linear Fit", key="health_linear_fit")
+
+def linear_trend(years, intercept, slope):
+    return intercept + slope * (years - years.iloc[0])
+
+
+if calc:
+    years = df.Year
+    che = df.CHE_per_head
+    trend = linear_trend(years, intercept, slope)
+
+    fig, ax = plt.subplots(figsize=(8,5))
+    ax.plot(years, che, marker='o', label='Data', color='tab:orange')
+    ax.plot(years, trend, label='Linear Trend (slider)', color='tab:blue')
+    for x, y, yhat in zip(years, che, trend):
+        ax.vlines(x, min(y, yhat), max(y, yhat), color='gray', linestyle=':', alpha=0.7)
+    ax.set_xlabel('Year')
+    ax.set_ylabel('Healthcare Expenditure per head (Euros)')
+    ax.set_title('Data, Linear Trend, and Residuals')
+    ax.legend()
+    ax.grid(True)
+    st.pyplot(fig)
+    st.markdown("""
+The blue line is your linear trend (from sliders). The gray vertical lines show the difference (residual) between the data and your trend for each year.
+""")
+
+    # OLS fit and visualization
+    def rss(params, years, y):
+        intercept, slope = params
+        yhat = intercept + slope * (years - years.iloc[0])
+        return np.sum((y - yhat) ** 2)
+
+    res = minimize(rss, x0=[che.iloc[0], 0], args=(years, che))
+    opt_intercept, opt_slope = res.x
+    opt_trend = linear_trend(years, opt_intercept, opt_slope)
+
+    fig2, ax2 = plt.subplots(figsize=(8,5))
+    ax2.plot(years, che, marker='o', label='Data', color='tab:orange')
+    ax2.plot(years, opt_trend, label='OLS Linear Fit', color='tab:green')
+    for x, y, yhat in zip(years, che, opt_trend):
+        ax2.vlines(x, min(y, yhat), max(y, yhat), color='gray', linestyle=':', alpha=0.7)
+    ax2.set_xlabel('Year')
+    ax2.set_ylabel('Healthcare Expenditure per head (Euros)')
+    ax2.set_title('OLS Linear Fit and Residuals')
+    ax2.legend()
+    ax2.grid(True)
+    st.pyplot(fig2)
+    st.markdown(f"""
+,**OLS Linear Fit (green line):**  
+Intercept: {opt_intercept:.2f}  
+Slope: {opt_slope:.2f}  
+
+The green line shows the optimal linear fit (using OLS). The gray vertical lines show the residuals for each year.
+""")
+
+    # 1. Extrapolation to 2050
+    future_years = np.arange(df.Year.min(), 2051)
+    future_years_df = pd.Series(future_years)
+    future_trend = linear_trend(future_years_df, opt_intercept, opt_slope)
+
+    fig3, ax3 = plt.subplots(figsize=(10,5))
+    ax3.plot(df.Year, df.CHE_per_head, marker='o', label='Observed Data', color='tab:orange')
+    ax3.plot(future_years, future_trend, label='OLS Linear Extrapolation (to 2050)', color='tab:blue')
+    ax3.set_xlabel('Year')
+    ax3.set_ylabel('Healthcare Expenditure per head (Euros)')
+    ax3.set_title('OLS Linear Extrapolation of Healthcare Expenditure per Head (to 2050)')
+    ax3.legend()
+    ax3.grid(True)
+    st.pyplot(fig3)
+    st.markdown("""
+,**Extrapolation to 2050:**  
+The blue line shows the OLS linear trend extrapolated to 2050.  
+Notice that this extrapolation does not look realistic for such a long time period!
+""")
+
+    # 2. Multi-variable regression (GDP, OOP)
+    def rss_multi(params, years, gdp, oop, y):
+        intercept, slope_year, slope_gdp, slope_oop = params
+        year_base = years - years.iloc[0]
+        yhat = intercept + slope_year * year_base + slope_gdp * gdp + slope_oop * oop
+        return np.sum((y - yhat) ** 2)
+ 
+    init_params = [che.iloc[0], 0, 0, 0]
+    res_multi = minimize(
+        rss_multi,
+        x0=init_params,
+        args=(df.Year, df.GDP_per_head, df.oop, df.CHE_per_head)
+    )
+    opt_intercept_m, opt_slope_year, opt_slope_gdp, opt_slope_oop = res_multi.x
+ 
+    year_base = df.Year - df.Year.iloc[0]
+    che_hat_multi = (
+        opt_intercept_m
+        + opt_slope_year * year_base
+        + opt_slope_gdp * df.GDP_per_head
+        + opt_slope_oop * df.oop
+    )
+ 
+    fig4, ax4 = plt.subplots(figsize=(10,5))
+    ax4.plot(df.Year, df.CHE_per_head, marker='o', label='Observed Data', color='tab:orange')
+    ax4.plot(df.Year, che_hat_multi, marker='s', label='Multi-variable Prediction', color='tab:green')
+    ax4.plot(df.Year, opt_trend, marker='x', label='OLS Linear Fit', color='tab:blue', linestyle='--')
+    ax4.set_xlabel('Year')
+    ax4.set_ylabel('Healthcare Expenditure per head (Euros)')
+    ax4.set_title('Observed vs Multi-variable Model Prediction')
+    ax4.legend()
+    ax4.grid(True)
+    st.pyplot(fig4)
+    st.markdown("""
+,**Multi-variable regression:**  
+The green squares show the prediction from a model using year, GDP per head, and out-of-pocket (OOP) as covariates.  
+This model fits the data much better than the simple OLS linear trend (blue crosses).
+""")
+
+    # 3. Use fsolve to find required OOP to hold CHE fixed at 2014 level
+
+    che_2014 = df.loc[df.Year == 2014, 'CHE_per_head'].values[0]
+    years_proj = np.arange(2015, 2025)
+    idx_proj = df.Year.isin(years_proj)
+    gdp_proj = df.loc[idx_proj, 'GDP_per_head'].values
+    year_base_proj = df.loc[idx_proj, 'Year'].values - df.Year.iloc[0]
+
+    def oop_to_hold_che(oop_guess, idx):
+        yhat = (
+            opt_intercept_m
+            + opt_slope_year * year_base_proj[idx]
+            + opt_slope_gdp * gdp_proj[idx]
+            + opt_slope_oop * oop_guess
+        )
+        return yhat - che_2014
+
+    oop_needed = []
+    for i in range(len(years_proj)):
+        oop_init = df.loc[df.Year == years_proj[i], 'oop'].values[0]
+        required_oop = fsolve(oop_to_hold_che, oop_init, args=(i,))
+        oop_needed.append(required_oop[0])
+
+    oop_data = df.loc[idx_proj, 'oop'].values
+
+    fig5, ax5 = plt.subplots(figsize=(8,5))
+    ax5.plot(years_proj, oop_data, marker='o', label='Actual OOP')
+    ax5.plot(years_proj, oop_needed, marker='s', label='Required OOP to hold CHE fixed\n(at 2014 level)')
+    ax5.set_xlabel('Year')
+    ax5.set_ylabel('Out-of-pocket (% of CHE)')
+    ax5.set_title('OOP Levels Needed to Hold Healthcare Expenditure per Head Constant (2015-2024)')
+    ax5.legend()
+    ax5.grid(True)
+    st.pyplot(fig5)
+    st.markdown("""
+,**Required OOP to hold CHE fixed:**  
+The green squares show the level of out-of-pocket payments (OOP) needed in each year to keep healthcare expenditure per head at the 2014 level, according to the multi-variable model.  
+The actual OOP values are shown as orange circles.
+
+A numerical solver (`fsolve`) is used to find the required OOP for each year.  
+This demonstrates how you can use numerical methods to solve for policy variables in a model.
+""")
+else:
+    st.info("Set the intercept and slope, then press 'Calculate Linear Fit'.")
+#+end_src
+
+
+** Python Code Explanation
+:PROPERTIES:
+:HTML_CONTAINER_CLASS: section
+:END:
+#+OPTIONS: toc:nil num:nil
+
+
+*** 1. Reading the data
+
+We use =pandas= to read the csv file with healthcare expenditure data for the Netherlands over the years 2000-2024. Here we just use the ~pd.read_csv=~ function, but with =pandas= you can also manipulate, clean data and merge dataframes. In the function call we specify the path where the csv file can be found: ~'./data/gdp_healthcare_nl.csv'~.
+
+#+BEGIN_SRC jupyter-python
+import pandas as pd
+
+df = pd.read_csv('./data/gdp_healthcare_nl.csv')
+df.head()
+#+END_SRC
+
+#+RESULTS:
+#+begin_export html
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Year</th>
+      <th>GDP_per_head</th>
+      <th>CHE_per_head</th>
+      <th>oop</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>2000</td>
+      <td>48561.827540</td>
+      <td>3660.652613</td>
+      <td>11.031692</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>2001</td>
+      <td>50301.690772</td>
+      <td>3879.911114</td>
+      <td>10.466823</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>2002</td>
+      <td>53515.311837</td>
+      <td>4137.932375</td>
+      <td>9.812201</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>2003</td>
+      <td>55703.272834</td>
+      <td>4311.324170</td>
+      <td>9.605323</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>2004</td>
+      <td>55797.445718</td>
+      <td>4405.689931</td>
+      <td>9.960184</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+#+end_export
+
+The columns/variables in this dataframe ~df~ are the year of observation, GDP per head, healthcare expenditure per head and the percentage of healthcare expenditure that people pay out-of-pocket (~oop~).
+
+
+*** 2. Plotting the data
+
+We use matplotlib to plot healthcare expenditure per head over time. Use google or an LLM to find out what ~plt.grid, plt.tight_layout~ do.
+
+#+BEGIN_SRC jupyter-python :file ./figures/healthcare_expenditure.png
+import matplotlib.pyplot as plt
+
+plt.figure(figsize=(8,5))
+plt.plot(df.Year, df.CHE_per_head, marker='o', color='orange')
+plt.xlabel('Year')
+plt.ylabel('Healthcare Expenditure per head (Euros)')
+plt.title('Healthcare Expenditure per head in the Netherlands')
+plt.grid(True)
+plt.tight_layout()
+#+END_SRC
+
+#+RESULTS:
+[[file:./figures/healthcare_expenditure.png]]
+
+*** 3. Defining a linear trend function
+
+Now we define our first function in Python. A function is a reusable block of code. Here, we define a function to compute a linear trend. We start with the keyword ~def~ specify the name of the function (which you are free to choose yourself but there are some restrictions on the name you choose) and then between parentheses '()' you specify the arguments of the function. That is, the variables that the function needs to calculate its results.
+
+Here, the function has three arguments: ~years, intercept~ and ~slope~. The function returns ~intercept + slope * (years - years.iloc[0])~. Although this is not clear from the function definition, ~intercept~ and ~slope~ will be scalars and ~years~ is a vector (actually a =pandas= series). The syntax ~iloc[0]~ chooses the first element of this series. With ~df.Year~ as loaded from our data above, ~df.Year.iloc[0]~ equals 2000. The intercept equals ~linear_trend~ in the year 2000 and the trend ~slope~ applies to ~years~ $> 2000$.
+
+#+BEGIN_SRC jupyter-python
+def linear_trend(years, intercept, slope):
+    return intercept + slope * (years - years.iloc[0])
+#+END_SRC
+
+#+RESULTS:
+
+If you want to practice with defining (simpler) functions, do something like the following in your =marimo= notebook. Note that ~x**2~ is Python syntax for $x^2$.
+
+#+begin_src jupyter-python :file ./figures/quadratic_function.png
+def f(x):
+    return x**2
+
+range_x = np.linspace(-1,1,50)
+plt.plot(range_x,f(range_x));
+#+end_src
+
+#+RESULTS:
+[[file:./figures/quadratic_function.png]]
+
+*** 4. Fitting and visualizing the trend
+
+We plot the data, the linear trend, and the residuals (shown as vertical differences). Since the variable ~years~ is a vector, the function ~linear_trend~ returns a vector as well (a value for each year in ~years~).
+
+The Python syntax ~zip(years,che,trend)~ creates the combinations of the variables ~years,che,trend~. After running the code block below in your =marimo= notebook (to make sure the variables are defined) you can evaluate ~for x, y, yhat in zip(years, che, trend): print(x, y, yhat)~ to see what ~zip~ does.
+
+Finally, there is a new =matplotlib= command: ~plt.vlines~: you give it three arguments: the $x$ coordinate, the low value for $y$ and high value for $y$ between which a vertical line is drawn. ~linestyle=':'~ creates a dotted line.
+
+#+BEGIN_SRC jupyter-python :file ./figures/healthcare_expenditure_linear_trend.png
+years = df.Year
+che = df.CHE_per_head
+intercept = 3660.0
+slope = 126.0
+trend = linear_trend(years, intercept, slope)
+
+plt.figure(figsize=(8,5))
+plt.plot(years, che, marker='o', label='Data', color='orange')
+plt.plot(years, trend, label='Linear Trend', color='blue')
+for x, y, yhat in zip(years, che, trend):
+    plt.vlines(x, min(y, yhat), max(y, yhat), color='gray', linestyle=':', alpha=0.7)
+plt.xlabel('Year')
+plt.ylabel('Healthcare Expenditure per head (Euros)')
+plt.title('Data, Linear Trend, and Residuals: OLS explanation')
+plt.legend()
+plt.grid(True)
+plt.tight_layout()
+#+END_SRC
+
+#+RESULTS:
+[[file:./figures/healthcare_expenditure_linear_trend.png]]
+
+*** 5. Using optimization to find the best fit
+
+Above we just chose some values for ~intercept~ and ~slope~. Now we will try to find the values that give the best fit. We follow OLS in defining "best" as minimizing the sum of squared residuals.
+
+We use ~scipy.optimize.minimize~ to find the intercept and slope that minimize the sum of squared residuals. We define the function ~rss~ which has as arguments the parameters (intercept and slope), the years (independent variable) and healthcare expenditure ~che~ as dependent variable. By specifying ~y = che~ (or ~years=years~) in the function definition of ~rss~ we give the function default values: if we do not specify ~y~ (or ~years~) in our function call, Python will work with the specified default values for these variable.
+
+Within the function definition of ~rss~ we call the function ~linear_trend~ that we defined above. The function ~np.sum~ sums the vector in its argument. To see how this works, run the code ~np.sum(np.arange(4))~ in your =marimo= notebook.
+
+The function ~minimize~ from =scipy= expects (at least) two arguments: the function that needs to be minimized (~rss~ in this case) and an initial guess for the parameters, ~x0~. We specify our initial guess as ~intercept = slope = 0~ via ~x0 = [0,0]~.
+
+The outcome of the minimization routine is captured in the variable ~res~. After running the following code block in your notebook, you can evaluate ~res~. This variable ~res~ has the Python type =dictionary= and one of the keys is ~x~: the ~x~ value where the function ~rss~ is minimized. It contains the optimal intercept and optimal slope.
+
+#+BEGIN_SRC jupyter-python
+from scipy.optimize import minimize
+import numpy as np
+
+def rss(params, years=years, y=che):
+    intercept, slope = params
+    yhat = linear_trend(years, intercept, slope)
+    return np.sum((y - yhat) ** 2)
+
+res = minimize(rss, x0=[0, 0])
+opt_intercept, opt_slope = res.x
+print(res.x)
+#+END_SRC
+
+#+RESULTS:
+: [4038.28659643   95.0425062 ]
+
+*** 6. Visualizing the optimal fit
+
+Now we can plot our data with the time trend that gives the best fit. To find the OLS regression line, we call our function ~linear_trend~ with the years variable and the optimal values ~opt_intercept, opt_slope~.
+
+#+BEGIN_SRC jupyter-python :file ./figures/health_expenditure_OLS.png
+opt_trend = linear_trend(years, opt_intercept, opt_slope)
+
+plt.figure(figsize=(8,5))
+plt.plot(years, che, marker='o', label='Data', color='tab:orange')
+plt.plot(years, opt_trend, label='OLS Linear Fit', color='tab:blue')
+for x, y, yhat in zip(years, che, opt_trend):
+    plt.vlines(x, min(y, yhat), max(y, yhat), color='gray', linestyle=':', alpha=0.7)
+plt.xlabel('Year')
+plt.ylabel('Healthcare Expenditure per head (Euros)')
+plt.title('OLS fit: Linear Trend and Residuals')
+plt.legend()
+plt.grid(True)
+plt.tight_layout()
+plt.show()
+#+END_SRC
+
+#+RESULTS:
+[[file:./figures/health_expenditure_OLS.png]]
+
+*** 7. Extending the model
+
+The fit of the OLS estimation is not bad. But we only used time (~years~) as explanatory variable. As healthcare is most likely a normal good, one would expect citizens to spend more on healthcare if they have higher incomes. On the macro level we can capture this with GDP per capita. Next to income, price is usually a determinant of expenditure on a good. Because the Netherlands has health insurance, people do not pay the full price of healthcare. But the deductible (part of healthcare expenditure that a patient pays her/himself) tends to reduce expenditure. Here we capture demand-side cost-sharing with the percentage that patients pay out-of-pocket (~oop~) for healthcare.
+
+Below we will add these variables to our OLS regression to improve the fit.
+
+*** 8. Extrapolating the OLS Linear Trend to 2050
+
+We can use the optimal OLS parameters to extrapolate the linear trend far into the future, for example to the year 2050. With the current information/data that we have, how much do we expect Dutch citizens to spend on healthcare (per capita) in 2050?
+
+In order to predict (extrapolate) healthcare expenditure in 2050, we use our OLS regression line and substitute years till 2050 in the regression.
+
+We define a new variable ~future_years~ starting from the first year (selecting using ~[]~ and index 0) and up till (but not including) 2051. Python starts counting at 0 and when specifying a range with ~range~ or ~np.arange~ the end point is not included.
+
+Because we used the method ~iloc~ in our definition of ~linear_trend~, we need to transform ~future_years~ into a =pandas= series.
+
+#+BEGIN_SRC jupyter-python :file ./figures/healthcare_expenditure_extrapolation.png
+future_years = np.arange(df.Year[0], 2051)
+future_years_df = pd.Series(future_years)
+future_trend = linear_trend(future_years_df, opt_intercept, opt_slope)
+
+plt.figure(figsize=(10,5))
+plt.plot(df.Year, df.CHE_per_head, marker='o', label='Observed Data', color='orange')
+plt.plot(future_years, future_trend, label='OLS Linear Extrapolation (to 2050)', color='blue')
+plt.xlabel('Year')
+plt.ylabel('Healthcare Expenditure per head (Euros)')
+plt.title('OLS Linear Extrapolation of Healthcare Expenditure per Head (to 2050)')
+plt.legend()
+plt.grid(True)
+plt.tight_layout();
+#+END_SRC
+
+#+RESULTS:
+[[file:./figures/healthcare_expenditure_extrapolation.png]]
+
+The model predicts that healthcare expenditure will be almost 9000 euros per capita in 2050. This is not necessarily a convincing prediction. First, it is not obvious that the trend should be linear. Perhaps the relation over time is concave (like $\ln(x)$) and grows more slowly than a linear function would suggest. If the relation is convex (like exponential growth) the situation will be (far) worse in 2050 in terms of public financing.
+
+Second, the linear trend predicts healthcare expenditure growth that (most likely) exceeds GDP growth. This cannot be sustained by an economy and the government is likely to adopt measures to slowdown the growth in healthcare expenditure. One option is to increase demand-side cost-sharing. As people have to pay more out-of-pocket for healthcare treatments, they will tend to consume less.
+
+
+*** 9. Multi-variable Regression: Adding GDP and OOP
+
+We can improve the fit of the model by including additional covariates: GDP per head and the percentage of healthcare expenditure paid out-of-pocket (oop).
+
+#+BEGIN_SRC jupyter-python :file ./figures/healthcare_expenditure_multivariate.png
+def rss_multi(params, years=df.Year, gdp=df.GDP_per_head, oop=df.oop, y=df.CHE_per_head):
+    intercept, slope_year, slope_gdp, slope_oop = params
+    year_base = years - years.iloc[0]
+    yhat = intercept + slope_year * year_base + slope_gdp * gdp + slope_oop * oop
+    return np.sum((y - yhat) ** 2)
+
+init_params = [0, 0, 0, 0]
+res_multi = minimize(
+    rss_multi,
+    x0=init_params
+)
+opt_intercept_m, opt_slope_year, opt_slope_gdp, opt_slope_oop = res_multi.x
+
+year_base = df.Year - df.Year.iloc[0]
+che_hat_multi = (
+    opt_intercept_m
+    + opt_slope_year * year_base
+    + opt_slope_gdp * df.GDP_per_head
+    + opt_slope_oop * df.oop
+)
+
+plt.figure(figsize=(10,5))
+plt.plot(df.Year, df.CHE_per_head, marker='o', label='Observed Data', color='orange')
+plt.plot(df.Year, che_hat_multi, marker='s', label='Multi-variable Prediction', color='green')
+plt.plot(df.Year, opt_trend, marker='x', label='OLS Linear Fit', color='blue', linestyle='--')
+plt.xlabel('Year')
+plt.ylabel('Healthcare Expenditure per head (Euros)')
+plt.title('Observed vs Multi-variable Model Prediction')
+plt.legend()
+plt.grid(True)
+plt.tight_layout();
+#+END_SRC
+
+#+RESULTS:
+[[file:./figures/healthcare_expenditure_multivariate.png]]
+
+The fit is indeed better than the simple OLS linear trend.
+
+*** 10. Using a Numerical Solver (~fsolve~) to Find Required OOP Levels
+
+Suppose the government wants to keep healthcare expenditure constant. How can we find, for each year 2015–2024, the level of oop needed to keep healthcare expenditure per head at the 2014 level.
+
+We use ~scipy.optimize.fsolve~ to solve for oop numerically.
+
+First, we define the years ~years_proj~ over which we need to derive oop to keep expenditure constant at the 2014 level ~che_2014~. Then we select ~gdp_proj~ for these years. In =pandas= you can make a selection with the ~[]~ notation, e.g. ~df[df.Year==2014]~. When testing whether a variables is equal to a value we use '=='; in Python '=' is used for variables assignment (~x=5~ sets the variable ~x~ equal to 5). When there is a range of values, we use the ~.isin~ method: select all years in the range ~years_proj~.
+
+As above, we choose the base year as the first year in our series (that is how we estimated our OLS regression).
+
+We define a function ~oop_to_hold_che~ which returns the difference between our prediction of healthcare expenditure ~yhat~ and the expenditure level in 2014. We will try to find the oop level that sets this function equal to zero: the predicted expenditure equals the 2014 expenditure. ~oop_to_hold_che~ has two arguments: the oop level that we try to find and the year ~y~ for which we want to find the oop level.
+
+Finally, the function ~fsolve~ needs as inputs: the function ~oop_to_hold_che~ that we want to set equal to zero and an initial guess for the solution. The function ~oop_to_hold_che~ has two arguments: ~oop~ and the year ~y~ that we are considering. We are not trying to choose ~y~ to set the function equal to zero. Hence, we need to tell Python explicitly that it should think of ~oop_to_hold_che~ as a function of oop only (for each year ~y~).
+
+One way to do this would be to have different function names for ~oop_to_hold_che~ for each year, like ~oop_to_hold_che_2017~. But this would be tedious. A better way is to use Python's "anonymous" functions. These are functions without a name. You can define an anonymous function using the ~lambda~ keyword. As a silly example you can evaluate ~(lambda x: x + 5)(8)~ to get an idea what a lambda function does.
+
+We set ~oop_to_hold_che~ equal to zero for the years 2015-2024 and add these values of oop to the list ~oop_needed~. Then we plot this list together with the observed values of oop in our data.
+
+#+BEGIN_SRC jupyter-python :file ./figures/oop_keep_expenditure_constant.png
+from scipy.optimize import fsolve
+
+che_2014 = df[df.Year == 2014]['CHE_per_head']
+years_proj = np.arange(2015, 2025)
+gdp_proj = df[df.Year.isin(years_proj)]['GDP_per_head'].values
+year_base_proj = years_proj - df.Year.iloc[0]
+
+def oop_to_hold_che(oop_guess,y):
+    yhat = (
+        opt_intercept_m
+        + opt_slope_year * year_base_proj[y]
+        + opt_slope_gdp * gdp_proj[y]
+        + opt_slope_oop * oop_guess
+    )
+    return yhat - che_2014
+
+oop_needed = []
+for y in range(len(years_proj)):
+    oop_init = df.oop[0]
+    required_oop = fsolve(lambda x: oop_to_hold_che(x,y), oop_init)
+    oop_needed.append(required_oop[0])
+
+oop_data = df[df.Year.isin(years_proj)]['oop'].values
+
+plt.figure(figsize=(8,5))
+plt.plot(years_proj, oop_data, marker='o', label='Actual OOP')
+plt.plot(years_proj, oop_needed, marker='s', label='Required OOP to hold CHE fixed\n(at 2014 level)')
+plt.xlabel('Year')
+plt.ylabel('Out-of-pocket (% of CHE)')
+plt.title('OOP Levels Needed to Hold Healthcare Expenditure per Head Constant (2015-2024)')
+plt.legend()
+plt.grid(True)
+plt.tight_layout();
+#+END_SRC
+
+#+RESULTS:
+[[file:./figures/oop_keep_expenditure_constant.png]]
+
+
+*** Summary of what the code does
+1. Reading the data: Load the healthcare expenditure, GDP per head, and out-of-pocket (oop) data into a =pandas= dataframe.
+2. Plotting the data: Visualize healthcare expenditure per head over time using =matplotlib=.
+3. Defining a linear trend function: Create a Python function that computes a linear trend given years, intercept, and slope.
+4. Fitting and visualizing the trend: Plot the data, an example linear trend, and show residuals (vertical differences between data and trend).
+5. Using optimization to find the best fit: Use ~scipy.optimize.minimize~ to find the intercept and slope that minimize the sum of squared residuals (OLS fit).
+6. Visualizing the optimal fit: Plot the data and the resulting OLS regression line with residuals.
+7. Extending the model: Discuss that only using time is limited and that other variables like income (GDP per head) and patient payments (oop) may matter.
+8. Extrapolating the OLS Linear Trend to 2050: Use the OLS results to predict future healthcare expenditure up to 2050 and plot the (possibly unrealistic) extrapolation.
+9. Multi-variable Regression: Improve the fit by adding GDP per head and oop as covariates in a multi-variable regression, and compare the fitted values to the data and simple trend.
+10. Using a Numerical Solver (~fsolve~): For each future year, use ~fsolve~ to determine the oop needed to keep expenditure constant at 2014 levels, plot the required vs. actual oop, and discuss the relevance for policy.
+
+
+** Review questions
+:PROPERTIES:
+:HTML_CONTAINER_CLASS: section
+:END:
+
+*** Question 1: Create Your Own Multi-variable Regression
+
+Fit a new regression model that predicts healthcare expenditure per head using /only/ GDP per head (not year or oop). Plot the predicted values versus the actual data. How does the fit compare to the simple linear trend?
+
+#+BEGIN_EXPORT html
+<details>
+<summary><strong>Hint / Solution</strong></summary>
+#+END_EXPORT
+
+- Define a function like: 
+  #+begin_src 
+  def rss_gdp(params, gdp=df.GDP_per_head, y=df.CHE_per_head):
+      intercept, slope_gdp = params
+      yhat = intercept + slope_gdp * gdp
+      return np.sum((y - yhat) ** 2)
+  #+end_src
+- Use =minimize()= to find the optimal coefficients.
+- Plot observed data and predicted values from this GDP-only model.
+- Compare visually to the linear time trend fit.
+  
+#+BEGIN_EXPORT html
+</details>
+#+END_EXPORT
+
+---
+
+*** Question 2: Use fsolve to Find the GDP Needed to Keep Expenditure Constant
+
+Suppose you want to know, for a certain year (e.g., 2024), what value of GDP per head would keep healthcare expenditure fixed at its 2014 level, holding all else constant. Write a function and use =fsolve= to solve for this GDP value using your multi-variable model.
+
+#+BEGIN_EXPORT html
+<details>
+<summary><strong>Hint / Solution</strong></summary>
+#+END_EXPORT
+
+- Use your multi-variable coefficients from the previous regression (e.g., with GDP, OOP and year).
+- For the selected year, plug in all other variables (year and oop) as they are in the data; solve for the value of GDP that sets the model prediction equal to the 2014 expenditure level.
+- Your function for =fsolve= should look like:  
+  #+begin_src 
+  def gdp_to_hold_che(gdp_guess):
+      yhat = intercept + slope_year * (year - base_year) + slope_gdp * gdp_guess + slope_oop * oop
+      return yhat - che_2014
+  #+end_src
+- Try different initial guesses and run =fsolve(gdp_to_hold_che, gdp_init)=.
+
+#+BEGIN_EXPORT html
+</details>
+#+END_EXPORT

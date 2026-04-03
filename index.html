@@ -89,27 +89,53 @@ org_html_manager.setup();  // activate after the parameters are set
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents" role="doc-toc">
 <ul>
-<li><a href="#org5621fe9">Introduction</a></li>
-<li><a href="#org46cbf06">1. Lecture 1: The Power of Compounded Interest and Employment Dynamics</a>
+<li><a href="#org6a10673">Introduction</a></li>
+<li><a href="#org64b9b3a">Lecture 1: The Power of Compounded Interest and Employment Dynamics</a>
 <ul>
-<li><a href="#org8475734">1.1. Apps</a>
+<li><a href="#orgbb027e4">Apps</a>
 <ul>
-<li><a href="#org6cbe956">Compounded interest</a></li>
-<li><a href="#org17f5e2f">Employment dynamics</a></li>
+<li><a href="#org103d4d7">Compounded interest</a></li>
+<li><a href="#orgf4f7fa8">Employment dynamics</a></li>
 </ul>
 </li>
-<li><a href="#orge2054c3">1.2. Python Model Explanations</a>
+<li><a href="#org7f37acc">Python Code Explanation</a>
 <ul>
-<li><a href="#org8121457">Compounded Interest Model</a></li>
-<li><a href="#org9d2325e">Employment Dynamics Model</a></li>
-<li><a href="#org5fc18f4">Parameter Sweep: Long-run Unemployment Rate</a></li>
+<li><a href="#orgcbb5d4c">Compounded Interest Model</a></li>
+<li><a href="#orgcbcad93">Employment Dynamics Model</a></li>
+<li><a href="#org3660005">Parameter Sweep: Long-run Unemployment Rate</a></li>
 </ul>
 </li>
-<li><a href="#orgd98cf00">1.3. Review Questions</a>
+<li><a href="#org94ca245">Review Questions</a>
 <ul>
-<li><a href="#orgced64a1">Question 1: Predicting the Future Value</a></li>
-<li><a href="#org2240d5e">Question 2: Unemployment Fluctuations</a></li>
-<li><a href="#org2356d3c">Question 3: Parameter Sweep Analysis</a></li>
+<li><a href="#org4056ca2">Question 1: Predicting the Future Value</a></li>
+<li><a href="#orge670879">Question 2: Unemployment Fluctuations</a></li>
+<li><a href="#org1fe3980">Question 3: Parameter Sweep Analysis</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#orgd820aba">Lecture 2: Healthcare expenditure</a>
+<ul>
+<li><a href="#org9b5891d">App: Healthcare expenditure</a></li>
+<li><a href="#orgca2c5f5">Python Code Explanation</a>
+<ul>
+<li><a href="#orge94b226">1. Reading the data</a></li>
+<li><a href="#orgff2188b">2. Plotting the data</a></li>
+<li><a href="#orge247a9b">3. Defining a linear trend function</a></li>
+<li><a href="#orgd53d119">4. Fitting and visualizing the trend</a></li>
+<li><a href="#org3e872af">5. Using optimization to find the best fit</a></li>
+<li><a href="#org330c43d">6. Visualizing the optimal fit</a></li>
+<li><a href="#orgde2acd6">7. Extending the model</a></li>
+<li><a href="#orgb8c338f">8. Extrapolating the OLS Linear Trend to 2050</a></li>
+<li><a href="#org747ec92">9. Multi-variable Regression: Adding GDP and OOP</a></li>
+<li><a href="#orgcaae095">10. Using a Numerical Solver (<code>fsolve</code>) to Find Required OOP Levels</a></li>
+<li><a href="#orgeb6338d">Summary of what the code does</a></li>
+</ul>
+</li>
+<li><a href="#orgb6bb839">Review questions</a>
+<ul>
+<li><a href="#org44a0566">Question 1: Create Your Own Multi-variable Regression</a></li>
+<li><a href="#orgf119327">Question 2: Use fsolve to Find the GDP Needed to Keep Expenditure Constant</a></li>
 </ul>
 </li>
 </ul>
@@ -118,9 +144,9 @@ org_html_manager.setup();  // activate after the parameters are set
 </div>
 </div>
 <main>
-<div id="outline-container-org5621fe9" class="outline-2">
-<h2 id="org5621fe9">Introduction</h2>
-<div class="outline-text-2" id="text-org5621fe9">
+<div id="outline-container-org6a10673" class="outline-2">
+<h2 id="org6a10673">Introduction</h2>
+<div class="outline-text-2" id="text-org6a10673">
 <p>
 The idea of these lectures is to combine Python programing with economics. The overall goal is for you to acquire the skills to transfer information/knowledge to others (say, future colleagues) using more instruments than just written text.
 </p>
@@ -148,9 +174,9 @@ Our advice is to have this website open to read the information and next to it h
 </p>
 </div>
 </div>
-<div id="outline-container-org46cbf06" class="outline-2 section">
-<h2 id="org46cbf06"><span class="section-number-2">1.</span> Lecture 1: The Power of Compounded Interest and Employment Dynamics</h2>
-<div class="outline-text-2" id="text-1">
+<div id="outline-container-org64b9b3a" class="outline-2 section">
+<h2 id="org64b9b3a">Lecture 1: The Power of Compounded Interest and Employment Dynamics</h2>
+<div class="outline-text-2" id="text-org64b9b3a">
 <p>
 In this lecture we program two simple apps. First, we model compounded interest and then we model employment dynamics in a labor market. Along the way you learn the following Python concepts:
 </p>
@@ -163,9 +189,9 @@ In this lecture we program two simple apps. First, we model compounded interest 
 <li>parameter sweep</li>
 </ul>
 </div>
-<div id="outline-container-org8475734" class="outline-3">
-<h3 id="org8475734"><span class="section-number-3">1.1.</span> Apps</h3>
-<div class="outline-text-3" id="text-1-1">
+<div id="outline-container-orgbb027e4" class="outline-3">
+<h3 id="orgbb027e4">Apps</h3>
+<div class="outline-text-3" id="text-orgbb027e4">
 <p>
 This lecture introduces Python through two economic models:
 </p>
@@ -179,9 +205,9 @@ This lecture introduces Python through two economic models:
 You can experiment with both models in the interactive demos below.
 </p>
 </div>
-<div id="outline-container-org6cbe956" class="outline-4 section">
-<h4 id="org6cbe956">Compounded interest</h4>
-<div class="outline-text-4" id="text-org6cbe956">
+<div id="outline-container-org103d4d7" class="outline-4 section">
+<h4 id="org103d4d7">Compounded interest</h4>
+<div class="outline-text-4" id="text-org103d4d7">
 <p>
 The following app illustrates how a lower monthly deposit can be &ldquo;compensated&rdquo; by a higher interest rate and lead to a higher final balance then a high monthly deposit with lower interest rate. Adjust the sliders by setting a relatively high deposit and low interest rate in scenario 1 and low deposit with high interest rate in scenario 2. Click the &rsquo;Calculate&rsquo; button to see how the balance develops over time in each scenario.
 </p>
@@ -201,9 +227,9 @@ The following app illustrates how a lower monthly deposit can be &ldquo;compensa
 </div>
 </div>
 </div>
-<div id="outline-container-org17f5e2f" class="outline-4 section">
-<h4 id="org17f5e2f">Employment dynamics</h4>
-<div class="outline-text-4" id="text-org17f5e2f">
+<div id="outline-container-orgf4f7fa8" class="outline-4 section">
+<h4 id="orgf4f7fa8">Employment dynamics</h4>
+<div class="outline-text-4" id="text-orgf4f7fa8">
 <p>
 The following app illustrates how employment/unemployment evolves in a small town with 20 inhabitants. We start with full employment. With the sliders you can set the probability that an employee is fired (say, because her firm goes bankrupt) and the probability that an unemployed person is hired. Select the number of periods for which you want to run the simulation and click the &rsquo;Run Simulation&rsquo; button.
 </p>
@@ -229,16 +255,16 @@ The second app illustrates a parameter sweep. This shows how sensitive an outcom
 </div>
 </div>
 </div>
-<div id="outline-container-orge2054c3" class="outline-3">
-<h3 id="orge2054c3"><span class="section-number-3">1.2.</span> Python Model Explanations</h3>
-<div class="outline-text-3" id="text-1-2">
+<div id="outline-container-org7f37acc" class="outline-3">
+<h3 id="org7f37acc">Python Code Explanation</h3>
+<div class="outline-text-3" id="text-org7f37acc">
 <p>
 In this section we explain the Python code for the model itself, not yet for the interactive elements. In a next lecture we explain how to create sliders for parameters.
 </p>
 </div>
-<div id="outline-container-org8121457" class="outline-4">
-<h4 id="org8121457">Compounded Interest Model</h4>
-<div class="outline-text-4" id="text-org8121457">
+<div id="outline-container-orgcbb5d4c" class="outline-4">
+<h4 id="orgcbb5d4c">Compounded Interest Model</h4>
+<div class="outline-text-4" id="text-orgcbb5d4c">
 <p>
 Let&rsquo;s see how you can model the growth of a bank account with regular deposits and compounded interest in Python.
 </p>
@@ -248,8 +274,8 @@ If you want to learn to program in Python, our advice is that you type the code 
 </p>
 </div>
 <ul class="org-ul">
-<li><a id="orgefbf61b"></a>1. Set the parameters<br />
-<div class="outline-text-5" id="text-orgefbf61b">
+<li><a id="org844fb66"></a>1. Set the parameters<br />
+<div class="outline-text-5" id="text-org844fb66">
 <p>
 We start by defining the monthly deposit, the monthly interest rate, and the number of months. Here, we use euros as the currency.
 </p>
@@ -266,8 +292,8 @@ We do this by defining variables, like <code>deposit</code>, and give these a va
 </div>
 </div>
 </li>
-<li><a id="orgcea38db"></a>2. Initialize the balance and create an empty list<br />
-<div class="outline-text-5" id="text-orgcea38db">
+<li><a id="org67c98aa"></a>2. Initialize the balance and create an empty list<br />
+<div class="outline-text-5" id="text-org67c98aa">
 <p>
 We start with a balance of zero. We also create an empty <code>list</code> called <code>balances</code> to store the account balance at each month.
 </p>
@@ -284,8 +310,8 @@ We use a list here so we can keep track of the balance after each month, which i
 </div>
 </div>
 </li>
-<li><a id="orge3c1223"></a>3. Simulate the account growth with a for loop<br />
-<div class="outline-text-5" id="text-orge3c1223">
+<li><a id="org6bac148"></a>3. Simulate the account growth with a for loop<br />
+<div class="outline-text-5" id="text-org6bac148">
 <p>
 We use a <code>for</code> loop to repeat the same calculation for each month.
 In each iteration, we first store the current balance in the list, then update the balance by adding the deposit and applying the interest.
@@ -306,8 +332,8 @@ This adds the current balance to the end of the <code>balances</code> list.</li>
 </div>
 </div>
 </li>
-<li><a id="orgb61e9d5"></a>4. Plot the results<br />
-<div class="outline-text-5" id="text-orgb61e9d5">
+<li><a id="org28d1523"></a>4. Plot the results<br />
+<div class="outline-text-5" id="text-org28d1523">
 <p>
 We use <code>matplotlib</code> to visualize the growth of the account over time.
 </p>
@@ -336,7 +362,7 @@ plt.title(<span style="color: #3548cf;">"Compounded Interest Over Time"</span>);
 </div>
 
 
-<div id="orge0ed7c0" class="figure">
+<div id="orgc3ede52" class="figure">
 <p><img src="./figures/compounded_interest.png" alt="compounded_interest.png" />
 </p>
 </div>
@@ -357,16 +383,16 @@ Use an LLM to figure out what the following Python code does:
 </li>
 </ul>
 </div>
-<div id="outline-container-org9d2325e" class="outline-4">
-<h4 id="org9d2325e">Employment Dynamics Model</h4>
-<div class="outline-text-4" id="text-org9d2325e">
+<div id="outline-container-orgcbcad93" class="outline-4">
+<h4 id="orgcbcad93">Employment Dynamics Model</h4>
+<div class="outline-text-4" id="text-orgcbcad93">
 <p>
 Let&rsquo;s break down the Python code for simulating employment and unemployment in a small village.
 </p>
 </div>
 <ul class="org-ul">
-<li><a id="org7c4c5cb"></a>1. Set the parameters<br />
-<div class="outline-text-5" id="text-org7c4c5cb">
+<li><a id="org65bc6e5"></a>1. Set the parameters<br />
+<div class="outline-text-5" id="text-org65bc6e5">
 <p>
 We define the number of people, the probabilities, and the number of time steps. Copy this into your <code>marimo</code> notebook and see what happens if you change the value of the variable <code>n_people</code> to, say, 1000.
 </p>
@@ -380,8 +406,8 @@ We define the number of people, the probabilities, and the number of time steps.
 </div>
 </div>
 </li>
-<li><a id="org926a169"></a>2. Initialize the state<br />
-<div class="outline-text-5" id="text-org926a169">
+<li><a id="org633c6f0"></a>2. Initialize the state<br />
+<div class="outline-text-5" id="text-org633c6f0">
 <p>
 We start with everyone employed.
 We create lists to store the number of employed and unemployed people at each time step.
@@ -396,8 +422,8 @@ We create lists to store the number of employed and unemployed people at each ti
 </div>
 </div>
 </li>
-<li><a id="org857d12c"></a>3. Simulate the process with a for loop<br />
-<div class="outline-text-5" id="text-org857d12c">
+<li><a id="orgad1edd0"></a>3. Simulate the process with a for loop<br />
+<div class="outline-text-5" id="text-orgad1edd0">
 <p>
 For each time step:
 </p>
@@ -431,8 +457,8 @@ Above we have already seen the use of <code>append</code> to &ldquo;add&rdquo; a
 </div>
 </div>
 </li>
-<li><a id="org9ad7bdf"></a>4. Plot the results<br />
-<div class="outline-text-5" id="text-org9ad7bdf">
+<li><a id="orgaf4894c"></a>4. Plot the results<br />
+<div class="outline-text-5" id="text-orgaf4894c">
 <p>
 We use <code>matplotlib</code> to plot the number of employed and unemployed people over time.
 </p>
@@ -454,14 +480,14 @@ plt.grid(<span style="color: #0000b0;">True</span>)
 </div>
 
 
-<div id="org102b3f1" class="figure">
+<div id="org8ae5ecf" class="figure">
 <p><img src="./figures/employed_unemployed.png" alt="employed_unemployed.png" />
 </p>
 </div>
 </div>
 <ul class="org-ul">
-<li><a id="org246ffb3"></a>Summary of what the code does<br />
-<div class="outline-text-6" id="text-org246ffb3">
+<li><a id="orgc7d961c"></a>Summary of what the code does<br />
+<div class="outline-text-6" id="text-orgc7d961c">
 <ul class="org-ul">
 <li><b>Step 1:</b> Set the parameters for the simulation.</li>
 <li><b>Step 2:</b> Initialize the state and lists to store the results.</li>
@@ -480,9 +506,9 @@ This model demonstrates how randomness and probabilities can be used to simulate
 </li>
 </ul>
 </div>
-<div id="outline-container-org5fc18f4" class="outline-4">
-<h4 id="org5fc18f4">Parameter Sweep: Long-run Unemployment Rate</h4>
-<div class="outline-text-4" id="text-org5fc18f4">
+<div id="outline-container-org3660005" class="outline-4">
+<h4 id="org3660005">Parameter Sweep: Long-run Unemployment Rate</h4>
+<div class="outline-text-4" id="text-org3660005">
 <p>
 A question when doing simulations is: how sensitive are the simulation results to the parameter values chosen. One way to get an idea of this sensitivity is to run the simulations for a sweep of parameter values. We illustrate this by analyzing long run or steady state unemployment. In the simulations we program long run unemployment as follows:
 </p>
@@ -504,8 +530,8 @@ As the model is quite simple, we can actually derive the steady state unemployme
 </div>
 </div>
 <ul class="org-ul">
-<li><a id="org92ab116"></a>5. Sweep code<br />
-<div class="outline-text-5" id="text-org92ab116">
+<li><a id="org2afe41c"></a>5. Sweep code<br />
+<div class="outline-text-5" id="text-org2afe41c">
 <p>
 Two points on the code:
 </p>
@@ -541,8 +567,8 @@ Two points on the code:
 </div>
 </div>
 </li>
-<li><a id="org9644e6f"></a>6. Plotting the sweep results<br />
-<div class="outline-text-5" id="text-org9644e6f">
+<li><a id="orgc174dd0"></a>6. Plotting the sweep results<br />
+<div class="outline-text-5" id="text-orgc174dd0">
 <div class="org-src-container">
 <pre class="src src-jupyter-python">plt.plot(sweep_p_hired, avg_unemp, label=<span style="color: #3548cf;">"Simulated (last 50 steps)"</span>)
 plt.plot(sweep_p_hired, analytic_unemp, <span style="color: #3548cf;">'--'</span>, label=<span style="color: #3548cf;">"Analytic steady-state"</span>)
@@ -556,14 +582,14 @@ plt.show()
 </div>
 
 
-<div id="org0399246" class="figure">
+<div id="orga633284" class="figure">
 <p><img src="./figures/steady_state_unemployment.png" alt="steady_state_unemployment.png" />
 </p>
 </div>
 </div>
 <ul class="org-ul">
-<li><a id="orgfae383a"></a>Summary of what the code does<br />
-<div class="outline-text-6" id="text-orgfae383a">
+<li><a id="org727ffd2"></a>Summary of what the code does<br />
+<div class="outline-text-6" id="text-org727ffd2">
 <ul class="org-ul">
 <li><b>Step 1-4:</b> Simulate the employment dynamics as before.</li>
 <li><b>Step 5:</b> For a range of probabilities of finding a job, run the simulation and compute the average unemployment rate in the long run. Also compute the analytic steady-state unemployment rate:</li>
@@ -589,9 +615,9 @@ Sweeping parameters is a powerful way to explore how a model behaves as you chan
 </ul>
 </div>
 </div>
-<div id="outline-container-orgd98cf00" class="outline-3">
-<h3 id="orgd98cf00"><span class="section-number-3">1.3.</span> Review Questions</h3>
-<div class="outline-text-3" id="text-1-3">
+<div id="outline-container-org94ca245" class="outline-3">
+<h3 id="org94ca245">Review Questions</h3>
+<div class="outline-text-3" id="text-org94ca245">
 <p>
 Test your understanding of the Python concepts and models from this lecture.
 Each question gives you some code and context. For each:
@@ -604,9 +630,9 @@ Each question gives you some code and context. For each:
 
 <hr />
 </div>
-<div id="outline-container-orgced64a1" class="outline-4">
-<h4 id="orgced64a1">Question 1: Predicting the Future Value</h4>
-<div class="outline-text-4" id="text-orgced64a1">
+<div id="outline-container-org4056ca2" class="outline-4">
+<h4 id="org4056ca2">Question 1: Predicting the Future Value</h4>
+<div class="outline-text-4" id="text-org4056ca2">
 <p>
 You want to predict the future value of a savings account after 10 years, but you only know the monthly deposit and the interest rate.
 You are given the following code fragment:
@@ -649,9 +675,9 @@ For this question you need to use an <code>if</code> statement. Google &ldquo;if
 <hr />
 </div>
 </div>
-<div id="outline-container-org2240d5e" class="outline-4">
-<h4 id="org2240d5e">Question 2: Unemployment Fluctuations</h4>
-<div class="outline-text-4" id="text-org2240d5e">
+<div id="outline-container-orge670879" class="outline-4">
+<h4 id="orge670879">Question 2: Unemployment Fluctuations</h4>
+<div class="outline-text-4" id="text-orge670879">
 <p>
 Suppose you want to simulate unemployment in a village, but you want to track the longest streak of consecutive months where unemployment is above 5 people.
 </p>
@@ -694,9 +720,9 @@ Suppose you want to simulate unemployment in a village, but you want to track th
 <hr />
 </div>
 </div>
-<div id="outline-container-org2356d3c" class="outline-4">
-<h4 id="org2356d3c">Question 3: Parameter Sweep Analysis</h4>
-<div class="outline-text-4" id="text-org2356d3c">
+<div id="outline-container-org1fe3980" class="outline-4">
+<h4 id="org1fe3980">Question 3: Parameter Sweep Analysis</h4>
+<div class="outline-text-4" id="text-org1fe3980">
 <p>
 You want to analyze how the average unemployment rate (not steady state unemployment) changes as you sweep the probability of being fired.
 Suppose you run a simulation for each value and store the results in a list called <code>avg_unemp</code>.
@@ -721,6 +747,578 @@ Suppose you run a simulation for each value and store the results in a list call
 
 </details>
 <hr />
+</div>
+</div>
+</div>
+</div>
+<div id="outline-container-orgd820aba" class="outline-2 section">
+<h2 id="orgd820aba">Lecture 2: Healthcare expenditure</h2>
+<div class="outline-text-2" id="text-orgd820aba">
+</div>
+<div id="outline-container-org9b5891d" class="outline-3 section">
+<h3 id="org9b5891d">App: Healthcare expenditure</h3>
+<div class="outline-text-3" id="text-org9b5891d">
+<iframe
+  src="https://lecture2healthcare.streamlit.app/?embed=true"
+  allow="fullscreen">
+</iframe>
+
+<div class="fallback">
+  <p>
+    If the app does not load,
+    <a href="https://lecture2healthcare.streamlit.app/?embed=true" target="_blank">
+      open it in a new tab
+    </a>.
+  </p>
+</div>
+</div>
+</div>
+<div id="outline-container-orgca2c5f5" class="outline-3 section">
+<h3 id="orgca2c5f5">Python Code Explanation</h3>
+<div class="outline-text-3" id="text-orgca2c5f5">
+</div>
+<div id="outline-container-orge94b226" class="outline-4">
+<h4 id="orge94b226">1. Reading the data</h4>
+<div class="outline-text-4" id="text-orge94b226">
+<p>
+We use <code>pandas</code> to read the csv file with healthcare expenditure data for the Netherlands over the years 2000-2024. Here we just use the <code>pd.read_csv=</code> function, but with <code>pandas</code> you can also manipulate, clean data and merge dataframes. In the function call we specify the path where the csv file can be found: <code>'./data/gdp_healthcare_nl.csv'</code>.
+</p>
+
+<div class="org-src-container">
+<pre class="src src-jupyter-python"><span style="color: #531ab6;">import</span> pandas <span style="color: #531ab6;">as</span> pd
+
+<span style="color: #005e8b;">df</span> = pd.read_csv(<span style="color: #3548cf;">'./data/gdp_healthcare_nl.csv'</span>)
+df.head()
+</pre>
+</div>
+
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Year</th>
+      <th>GDP_per_head</th>
+      <th>CHE_per_head</th>
+      <th>oop</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>2000</td>
+      <td>48561.827540</td>
+      <td>3660.652613</td>
+      <td>11.031692</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>2001</td>
+      <td>50301.690772</td>
+      <td>3879.911114</td>
+      <td>10.466823</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>2002</td>
+      <td>53515.311837</td>
+      <td>4137.932375</td>
+      <td>9.812201</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>2003</td>
+      <td>55703.272834</td>
+      <td>4311.324170</td>
+      <td>9.605323</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>2004</td>
+      <td>55797.445718</td>
+      <td>4405.689931</td>
+      <td>9.960184</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+<p>
+The columns/variables in this dataframe <code>df</code> are the year of observation, GDP per head, healthcare expenditure per head and the percentage of healthcare expenditure that people pay out-of-pocket (<code>oop</code>).
+</p>
+</div>
+</div>
+<div id="outline-container-orgff2188b" class="outline-4">
+<h4 id="orgff2188b">2. Plotting the data</h4>
+<div class="outline-text-4" id="text-orgff2188b">
+<p>
+We use matplotlib to plot healthcare expenditure per head over time. Use google or an LLM to find out what <code>plt.grid, plt.tight_layout</code> do.
+</p>
+
+<div class="org-src-container">
+<pre class="src src-jupyter-python"><span style="color: #531ab6;">import</span> matplotlib.pyplot <span style="color: #531ab6;">as</span> plt
+
+plt.figure(figsize=(8,5))
+plt.plot(df.Year, df.CHE_per_head, marker=<span style="color: #3548cf;">'o'</span>, color=<span style="color: #3548cf;">'orange'</span>)
+plt.xlabel(<span style="color: #3548cf;">'Year'</span>)
+plt.ylabel(<span style="color: #3548cf;">'Healthcare Expenditure per head (Euros)'</span>)
+plt.title(<span style="color: #3548cf;">'Healthcare Expenditure per head in the Netherlands'</span>)
+plt.grid(<span style="color: #0000b0;">True</span>)
+plt.tight_layout()
+</pre>
+</div>
+
+
+<div id="org998d03e" class="figure">
+<p><img src="./figures/healthcare_expenditure.png" alt="healthcare_expenditure.png" />
+</p>
+</div>
+</div>
+</div>
+<div id="outline-container-orge247a9b" class="outline-4">
+<h4 id="orge247a9b">3. Defining a linear trend function</h4>
+<div class="outline-text-4" id="text-orge247a9b">
+<p>
+Now we define our first function in Python. A function is a reusable block of code. Here, we define a function to compute a linear trend. We start with the keyword <code>def</code> specify the name of the function (which you are free to choose yourself but there are some restrictions on the name you choose) and then between parentheses &rsquo;()&rsquo; you specify the arguments of the function. That is, the variables that the function needs to calculate its results.
+</p>
+
+<p>
+Here, the function has three arguments: <code>years, intercept</code> and <code>slope</code>. The function returns <code>intercept + slope * (years - years.iloc[0])</code>. Although this is not clear from the function definition, <code>intercept</code> and <code>slope</code> will be scalars and <code>years</code> is a vector (actually a <code>pandas</code> series). The syntax <code>iloc[0]</code> chooses the first element of this series. With <code>df.Year</code> as loaded from our data above, <code>df.Year.iloc[0]</code> equals 2000. The intercept equals <code>linear_trend</code> in the year 2000 and the trend <code>slope</code> applies to <code>years</code> \(> 2000\).
+</p>
+
+<div class="org-src-container">
+<pre class="src src-jupyter-python"><span style="color: #531ab6;">def</span> <span style="color: #721045;">linear_trend</span>(years, intercept, slope):
+    <span style="color: #531ab6;">return</span> intercept + slope * (years - years.iloc[0])
+</pre>
+</div>
+
+<p>
+If you want to practice with defining (simpler) functions, do something like the following in your <code>marimo</code> notebook. Note that <code>x**2</code> is Python syntax for \(x^2\).
+</p>
+
+<div class="org-src-container">
+<pre class="src src-jupyter-python"><span style="color: #531ab6;">def</span> <span style="color: #721045;">f</span>(x):
+    <span style="color: #531ab6;">return</span> x**2
+
+<span style="color: #005e8b;">range_x</span> = np.linspace(-1,1,50)
+plt.plot(range_x,f(range_x));
+</pre>
+</div>
+
+
+<div id="orge3cdc2d" class="figure">
+<p><img src="./figures/quadratic_function.png" alt="quadratic_function.png" />
+</p>
+</div>
+</div>
+</div>
+<div id="outline-container-orgd53d119" class="outline-4">
+<h4 id="orgd53d119">4. Fitting and visualizing the trend</h4>
+<div class="outline-text-4" id="text-orgd53d119">
+<p>
+We plot the data, the linear trend, and the residuals (shown as vertical differences). Since the variable <code>years</code> is a vector, the function <code>linear_trend</code> returns a vector as well (a value for each year in <code>years</code>).
+</p>
+
+<p>
+The Python syntax <code>zip(years,che,trend)</code> creates the combinations of the variables <code>years,che,trend</code>. After running the code block below in your <code>marimo</code> notebook (to make sure the variables are defined) you can evaluate <code>for x, y, yhat in zip(years, che, trend): print(x, y, yhat)</code> to see what <code>zip</code> does.
+</p>
+
+<p>
+Finally, there is a new <code>matplotlib</code> command: <code>plt.vlines</code>: you give it three arguments: the \(x\) coordinate, the low value for \(y\) and high value for \(y\) between which a vertical line is drawn. <code>linestyle=':'</code> creates a dotted line.
+</p>
+
+<div class="org-src-container">
+<pre class="src src-jupyter-python"><span style="color: #005e8b;">years</span> = df.Year
+<span style="color: #005e8b;">che</span> = df.CHE_per_head
+<span style="color: #005e8b;">intercept</span> = 3660.0
+<span style="color: #005e8b;">slope</span> = 126.0
+<span style="color: #005e8b;">trend</span> = linear_trend(years, intercept, slope)
+
+plt.figure(figsize=(8,5))
+plt.plot(years, che, marker=<span style="color: #3548cf;">'o'</span>, label=<span style="color: #3548cf;">'Data'</span>, color=<span style="color: #3548cf;">'orange'</span>)
+plt.plot(years, trend, label=<span style="color: #3548cf;">'Linear Trend'</span>, color=<span style="color: #3548cf;">'blue'</span>)
+<span style="color: #531ab6;">for</span> x, y, yhat <span style="color: #531ab6;">in</span> <span style="color: #8f0075;">zip</span>(years, che, trend):
+    plt.vlines(x, <span style="color: #8f0075;">min</span>(y, yhat), <span style="color: #8f0075;">max</span>(y, yhat), color=<span style="color: #3548cf;">'gray'</span>, linestyle=<span style="color: #3548cf;">':'</span>, alpha=0.7)
+plt.xlabel(<span style="color: #3548cf;">'Year'</span>)
+plt.ylabel(<span style="color: #3548cf;">'Healthcare Expenditure per head (Euros)'</span>)
+plt.title(<span style="color: #3548cf;">'Data, Linear Trend, and Residuals: OLS explanation'</span>)
+plt.legend()
+plt.grid(<span style="color: #0000b0;">True</span>)
+plt.tight_layout()
+</pre>
+</div>
+
+
+<div id="org84050ce" class="figure">
+<p><img src="./figures/healthcare_expenditure_linear_trend.png" alt="healthcare_expenditure_linear_trend.png" />
+</p>
+</div>
+</div>
+</div>
+<div id="outline-container-org3e872af" class="outline-4">
+<h4 id="org3e872af">5. Using optimization to find the best fit</h4>
+<div class="outline-text-4" id="text-org3e872af">
+<p>
+Above we just chose some values for <code>intercept</code> and <code>slope</code>. Now we will try to find the values that give the best fit. We follow OLS in defining &ldquo;best&rdquo; as minimizing the sum of squared residuals.
+</p>
+
+<p>
+We use <code>scipy.optimize.minimize</code> to find the intercept and slope that minimize the sum of squared residuals. We define the function <code>rss</code> which has as arguments the parameters (intercept and slope), the years (independent variable) and healthcare expenditure <code>che</code> as dependent variable. By specifying <code>y = che</code> (or <code>years=years</code>) in the function definition of <code>rss</code> we give the function default values: if we do not specify <code>y</code> (or <code>years</code>) in our function call, Python will work with the specified default values for these variable.
+</p>
+
+<p>
+Within the function definition of <code>rss</code> we call the function <code>linear_trend</code> that we defined above. The function <code>np.sum</code> sums the vector in its argument. To see how this works, run the code <code>np.sum(np.arange(4))</code> in your <code>marimo</code> notebook.
+</p>
+
+<p>
+The function <code>minimize</code> from <code>scipy</code> expects (at least) two arguments: the function that needs to be minimized (<code>rss</code> in this case) and an initial guess for the parameters, <code>x0</code>. We specify our initial guess as <code>intercept = slope = 0</code> via <code>x0 = [0,0]</code>.
+</p>
+
+<p>
+The outcome of the minimization routine is captured in the variable <code>res</code>. After running the following code block in your notebook, you can evaluate <code>res</code>. This variable <code>res</code> has the Python type <code>dictionary</code> and one of the keys is <code>x</code>: the <code>x</code> value where the function <code>rss</code> is minimized. It contains the optimal intercept and optimal slope.
+</p>
+
+<div class="org-src-container">
+<pre class="src src-jupyter-python"><span style="color: #531ab6;">from</span> scipy.optimize <span style="color: #531ab6;">import</span> minimize
+<span style="color: #531ab6;">import</span> numpy <span style="color: #531ab6;">as</span> np
+
+<span style="color: #531ab6;">def</span> <span style="color: #721045;">rss</span>(params, years=years, y=che):
+    <span style="color: #005e8b;">intercept</span>, <span style="color: #005e8b;">slope</span> = params
+    <span style="color: #005e8b;">yhat</span> = linear_trend(years, intercept, slope)
+    <span style="color: #531ab6;">return</span> np.<span style="color: #8f0075;">sum</span>((y - yhat) ** 2)
+
+<span style="color: #005e8b;">res</span> = minimize(rss, x0=[0, 0])
+<span style="color: #005e8b;">opt_intercept</span>, <span style="color: #005e8b;">opt_slope</span> = res.x
+<span style="color: #8f0075;">print</span>(res.x)
+</pre>
+</div>
+
+<pre class="example">
+[4038.28659643   95.0425062 ]
+</pre>
+</div>
+</div>
+<div id="outline-container-org330c43d" class="outline-4">
+<h4 id="org330c43d">6. Visualizing the optimal fit</h4>
+<div class="outline-text-4" id="text-org330c43d">
+<p>
+Now we can plot our data with the time trend that gives the best fit. To find the OLS regression line, we call our function <code>linear_trend</code> with the years variable and the optimal values <code>opt_intercept, opt_slope</code>.
+</p>
+
+<div class="org-src-container">
+<pre class="src src-jupyter-python"><span style="color: #005e8b;">opt_trend</span> = linear_trend(years, opt_intercept, opt_slope)
+
+plt.figure(figsize=(8,5))
+plt.plot(years, che, marker=<span style="color: #3548cf;">'o'</span>, label=<span style="color: #3548cf;">'Data'</span>, color=<span style="color: #3548cf;">'tab:orange'</span>)
+plt.plot(years, opt_trend, label=<span style="color: #3548cf;">'OLS Linear Fit'</span>, color=<span style="color: #3548cf;">'tab:blue'</span>)
+<span style="color: #531ab6;">for</span> x, y, yhat <span style="color: #531ab6;">in</span> <span style="color: #8f0075;">zip</span>(years, che, opt_trend):
+    plt.vlines(x, <span style="color: #8f0075;">min</span>(y, yhat), <span style="color: #8f0075;">max</span>(y, yhat), color=<span style="color: #3548cf;">'gray'</span>, linestyle=<span style="color: #3548cf;">':'</span>, alpha=0.7)
+plt.xlabel(<span style="color: #3548cf;">'Year'</span>)
+plt.ylabel(<span style="color: #3548cf;">'Healthcare Expenditure per head (Euros)'</span>)
+plt.title(<span style="color: #3548cf;">'OLS fit: Linear Trend and Residuals'</span>)
+plt.legend()
+plt.grid(<span style="color: #0000b0;">True</span>)
+plt.tight_layout()
+plt.show()
+</pre>
+</div>
+
+
+<div id="org0a07958" class="figure">
+<p><img src="./figures/health_expenditure_OLS.png" alt="health_expenditure_OLS.png" />
+</p>
+</div>
+</div>
+</div>
+<div id="outline-container-orgde2acd6" class="outline-4">
+<h4 id="orgde2acd6">7. Extending the model</h4>
+<div class="outline-text-4" id="text-orgde2acd6">
+<p>
+The fit of the OLS estimation is not bad. But we only used time (<code>years</code>) as explanatory variable. As healthcare is most likely a normal good, one would expect citizens to spend more on healthcare if they have higher incomes. On the macro level we can capture this with GDP per capita. Next to income, price is usually a determinant of expenditure on a good. Because the Netherlands has health insurance, people do not pay the full price of healthcare. But the deductible (part of healthcare expenditure that a patient pays her/himself) tends to reduce expenditure. Here we capture demand-side cost-sharing with the percentage that patients pay out-of-pocket (<code>oop</code>) for healthcare.
+</p>
+
+<p>
+Below we will add these variables to our OLS regression to improve the fit.
+</p>
+</div>
+</div>
+<div id="outline-container-orgb8c338f" class="outline-4">
+<h4 id="orgb8c338f">8. Extrapolating the OLS Linear Trend to 2050</h4>
+<div class="outline-text-4" id="text-orgb8c338f">
+<p>
+We can use the optimal OLS parameters to extrapolate the linear trend far into the future, for example to the year 2050. With the current information/data that we have, how much do we expect Dutch citizens to spend on healthcare (per capita) in 2050?
+</p>
+
+<p>
+In order to predict (extrapolate) healthcare expenditure in 2050, we use our OLS regression line and substitute years till 2050 in the regression.
+</p>
+
+<p>
+We define a new variable <code>future_years</code> starting from the first year (selecting using <code>[]</code> and index 0) and up till (but not including) 2051. Python starts counting at 0 and when specifying a range with <code>range</code> or <code>np.arange</code> the end point is not included.
+</p>
+
+<p>
+Because we used the method <code>iloc</code> in our definition of <code>linear_trend</code>, we need to transform <code>future_years</code> into a <code>pandas</code> series.
+</p>
+
+<div class="org-src-container">
+<pre class="src src-jupyter-python"><span style="color: #005e8b;">future_years</span> = np.arange(df.Year[0], 2051)
+<span style="color: #005e8b;">future_years_df</span> = pd.Series(future_years)
+<span style="color: #005e8b;">future_trend</span> = linear_trend(future_years_df, opt_intercept, opt_slope)
+
+plt.figure(figsize=(10,5))
+plt.plot(df.Year, df.CHE_per_head, marker=<span style="color: #3548cf;">'o'</span>, label=<span style="color: #3548cf;">'Observed Data'</span>, color=<span style="color: #3548cf;">'orange'</span>)
+plt.plot(future_years, future_trend, label=<span style="color: #3548cf;">'OLS Linear Extrapolation (to 2050)'</span>, color=<span style="color: #3548cf;">'blue'</span>)
+plt.xlabel(<span style="color: #3548cf;">'Year'</span>)
+plt.ylabel(<span style="color: #3548cf;">'Healthcare Expenditure per head (Euros)'</span>)
+plt.title(<span style="color: #3548cf;">'OLS Linear Extrapolation of Healthcare Expenditure per Head (to 2050)'</span>)
+plt.legend()
+plt.grid(<span style="color: #0000b0;">True</span>)
+plt.tight_layout();
+</pre>
+</div>
+
+
+<div id="orgebe558b" class="figure">
+<p><img src="./figures/healthcare_expenditure_extrapolation.png" alt="healthcare_expenditure_extrapolation.png" />
+</p>
+</div>
+
+<p>
+The model predicts that healthcare expenditure will be almost 9000 euros per capita in 2050. This is not necessarily a convincing prediction. First, it is not obvious that the trend should be linear. Perhaps the relation over time is concave (like \(\ln(x)\)) and grows more slowly than a linear function would suggest. If the relation is convex (like exponential growth) the situation will be (far) worse in 2050 in terms of public financing.
+</p>
+
+<p>
+Second, the linear trend predicts healthcare expenditure growth that (most likely) exceeds GDP growth. This cannot be sustained by an economy and the government is likely to adopt measures to slowdown the growth in healthcare expenditure. One option is to increase demand-side cost-sharing. As people have to pay more out-of-pocket for healthcare treatments, they will tend to consume less.
+</p>
+</div>
+</div>
+<div id="outline-container-org747ec92" class="outline-4">
+<h4 id="org747ec92">9. Multi-variable Regression: Adding GDP and OOP</h4>
+<div class="outline-text-4" id="text-org747ec92">
+<p>
+We can improve the fit of the model by including additional covariates: GDP per head and the percentage of healthcare expenditure paid out-of-pocket (oop).
+</p>
+
+<div class="org-src-container">
+<pre class="src src-jupyter-python"><span style="color: #531ab6;">def</span> <span style="color: #721045;">rss_multi</span>(params, years=df.Year, gdp=df.GDP_per_head, oop=df.oop, y=df.CHE_per_head):
+    <span style="color: #005e8b;">intercept</span>, <span style="color: #005e8b;">slope_year</span>, <span style="color: #005e8b;">slope_gdp</span>, <span style="color: #005e8b;">slope_oop</span> = params
+    <span style="color: #005e8b;">year_base</span> = years - years.iloc[0]
+    <span style="color: #005e8b;">yhat</span> = intercept + slope_year * year_base + slope_gdp * gdp + slope_oop * oop
+    <span style="color: #531ab6;">return</span> np.<span style="color: #8f0075;">sum</span>((y - yhat) ** 2)
+
+<span style="color: #005e8b;">init_params</span> = [0, 0, 0, 0]
+<span style="color: #005e8b;">res_multi</span> = minimize(
+    rss_multi,
+    x0=init_params
+)
+<span style="color: #005e8b;">opt_intercept_m</span>, <span style="color: #005e8b;">opt_slope_year</span>, <span style="color: #005e8b;">opt_slope_gdp</span>, <span style="color: #005e8b;">opt_slope_oop</span> = res_multi.x
+
+<span style="color: #005e8b;">year_base</span> = df.Year - df.Year.iloc[0]
+<span style="color: #005e8b;">che_hat_multi</span> = (
+    opt_intercept_m
+    + opt_slope_year * year_base
+    + opt_slope_gdp * df.GDP_per_head
+    + opt_slope_oop * df.oop
+)
+
+plt.figure(figsize=(10,5))
+plt.plot(df.Year, df.CHE_per_head, marker=<span style="color: #3548cf;">'o'</span>, label=<span style="color: #3548cf;">'Observed Data'</span>, color=<span style="color: #3548cf;">'orange'</span>)
+plt.plot(df.Year, che_hat_multi, marker=<span style="color: #3548cf;">'s'</span>, label=<span style="color: #3548cf;">'Multi-variable Prediction'</span>, color=<span style="color: #3548cf;">'green'</span>)
+plt.plot(df.Year, opt_trend, marker=<span style="color: #3548cf;">'x'</span>, label=<span style="color: #3548cf;">'OLS Linear Fit'</span>, color=<span style="color: #3548cf;">'blue'</span>, linestyle=<span style="color: #3548cf;">'--'</span>)
+plt.xlabel(<span style="color: #3548cf;">'Year'</span>)
+plt.ylabel(<span style="color: #3548cf;">'Healthcare Expenditure per head (Euros)'</span>)
+plt.title(<span style="color: #3548cf;">'Observed vs Multi-variable Model Prediction'</span>)
+plt.legend()
+plt.grid(<span style="color: #0000b0;">True</span>)
+plt.tight_layout();
+</pre>
+</div>
+
+
+<div id="org5d4e3f7" class="figure">
+<p><img src="./figures/healthcare_expenditure_multivariate.png" alt="healthcare_expenditure_multivariate.png" />
+</p>
+</div>
+
+<p>
+The fit is indeed better than the simple OLS linear trend.
+</p>
+</div>
+</div>
+<div id="outline-container-orgcaae095" class="outline-4">
+<h4 id="orgcaae095">10. Using a Numerical Solver (<code>fsolve</code>) to Find Required OOP Levels</h4>
+<div class="outline-text-4" id="text-orgcaae095">
+<p>
+Suppose the government wants to keep healthcare expenditure constant. How can we find, for each year 2015–2024, the level of oop needed to keep healthcare expenditure per head at the 2014 level.
+</p>
+
+<p>
+We use <code>scipy.optimize.fsolve</code> to solve for oop numerically.
+</p>
+
+<p>
+First, we define the years <code>years_proj</code> over which we need to derive oop to keep expenditure constant at the 2014 level <code>che_2014</code>. Then we select <code>gdp_proj</code> for these years. In <code>pandas</code> you can make a selection with the <code>[]</code> notation, e.g. <code>df[df.Year==2014]</code>. When testing whether a variables is equal to a value we use &rsquo;<code>='; in Python '</code>&rsquo; is used for variables assignment (<code>x=5</code> sets the variable <code>x</code> equal to 5). When there is a range of values, we use the <code>.isin</code> method: select all years in the range <code>years_proj</code>.
+</p>
+
+<p>
+As above, we choose the base year as the first year in our series (that is how we estimated our OLS regression).
+</p>
+
+<p>
+We define a function <code>oop_to_hold_che</code> which returns the difference between our prediction of healthcare expenditure <code>yhat</code> and the expenditure level in 2014. We will try to find the oop level that sets this function equal to zero: the predicted expenditure equals the 2014 expenditure. <code>oop_to_hold_che</code> has two arguments: the oop level that we try to find and the year <code>y</code> for which we want to find the oop level.
+</p>
+
+<p>
+Finally, the function <code>fsolve</code> needs as inputs: the function <code>oop_to_hold_che</code> that we want to set equal to zero and an initial guess for the solution. The function <code>oop_to_hold_che</code> has two arguments: <code>oop</code> and the year <code>y</code> that we are considering. We are not trying to choose <code>y</code> to set the function equal to zero. Hence, we need to tell Python explicitly that it should think of <code>oop_to_hold_che</code> as a function of oop only (for each year <code>y</code>).
+</p>
+
+<p>
+One way to do this would be to have different function names for <code>oop_to_hold_che</code> for each year, like <code>oop_to_hold_che_2017</code>. But this would be tedious. A better way is to use Python&rsquo;s &ldquo;anonymous&rdquo; functions. These are functions without a name. You can define an anonymous function using the <code>lambda</code> keyword. As a silly example you can evaluate <code>(lambda x: x + 5)(8)</code> to get an idea what a lambda function does.
+</p>
+
+<p>
+We set <code>oop_to_hold_che</code> equal to zero for the years 2015-2024 and add these values of oop to the list <code>oop_needed</code>. Then we plot this list together with the observed values of oop in our data.
+</p>
+
+<div class="org-src-container">
+<pre class="src src-jupyter-python"><span style="color: #531ab6;">from</span> scipy.optimize <span style="color: #531ab6;">import</span> fsolve
+
+<span style="color: #005e8b;">che_2014</span> = df[df.Year == 2014][<span style="color: #3548cf;">'CHE_per_head'</span>]
+<span style="color: #005e8b;">years_proj</span> = np.arange(2015, 2025)
+<span style="color: #005e8b;">gdp_proj</span> = df[df.Year.isin(years_proj)][<span style="color: #3548cf;">'GDP_per_head'</span>].values
+<span style="color: #005e8b;">year_base_proj</span> = years_proj - df.Year.iloc[0]
+
+<span style="color: #531ab6;">def</span> <span style="color: #721045;">oop_to_hold_che</span>(oop_guess,y):
+    <span style="color: #005e8b;">yhat</span> = (
+        opt_intercept_m
+        + opt_slope_year * year_base_proj[y]
+        + opt_slope_gdp * gdp_proj[y]
+        + opt_slope_oop * oop_guess
+    )
+    <span style="color: #531ab6;">return</span> yhat - che_2014
+
+<span style="color: #005e8b;">oop_needed</span> = []
+<span style="color: #531ab6;">for</span> y <span style="color: #531ab6;">in</span> <span style="color: #8f0075;">range</span>(<span style="color: #8f0075;">len</span>(years_proj)):
+    <span style="color: #005e8b;">oop_init</span> = df.oop[0]
+    <span style="color: #005e8b;">required_oop</span> = fsolve(<span style="color: #531ab6;">lambda</span> x: oop_to_hold_che(x,y), oop_init)
+    oop_needed.append(required_oop[0])
+
+<span style="color: #005e8b;">oop_data</span> = df[df.Year.isin(years_proj)][<span style="color: #3548cf;">'oop'</span>].values
+
+plt.figure(figsize=(8,5))
+plt.plot(years_proj, oop_data, marker=<span style="color: #3548cf;">'o'</span>, label=<span style="color: #3548cf;">'Actual OOP'</span>)
+plt.plot(years_proj, oop_needed, marker=<span style="color: #3548cf;">'s'</span>, label=<span style="color: #3548cf;">'Required OOP to hold CHE fixed</span><span style="color: #0000b0;">\n</span><span style="color: #3548cf;">(at 2014 level)'</span>)
+plt.xlabel(<span style="color: #3548cf;">'Year'</span>)
+plt.ylabel(<span style="color: #3548cf;">'Out-of-pocket (% of CHE)'</span>)
+plt.title(<span style="color: #3548cf;">'OOP Levels Needed to Hold Healthcare Expenditure per Head Constant (2015-2024)'</span>)
+plt.legend()
+plt.grid(<span style="color: #0000b0;">True</span>)
+plt.tight_layout();
+</pre>
+</div>
+
+
+<div id="org253b91d" class="figure">
+<p><img src="./figures/oop_keep_expenditure_constant.png" alt="oop_keep_expenditure_constant.png" />
+</p>
+</div>
+</div>
+</div>
+<div id="outline-container-orgeb6338d" class="outline-4">
+<h4 id="orgeb6338d">Summary of what the code does</h4>
+<div class="outline-text-4" id="text-orgeb6338d">
+<ol class="org-ol">
+<li>Reading the data: Load the healthcare expenditure, GDP per head, and out-of-pocket (oop) data into a <code>pandas</code> dataframe.</li>
+<li>Plotting the data: Visualize healthcare expenditure per head over time using <code>matplotlib</code>.</li>
+<li>Defining a linear trend function: Create a Python function that computes a linear trend given years, intercept, and slope.</li>
+<li>Fitting and visualizing the trend: Plot the data, an example linear trend, and show residuals (vertical differences between data and trend).</li>
+<li>Using optimization to find the best fit: Use <code>scipy.optimize.minimize</code> to find the intercept and slope that minimize the sum of squared residuals (OLS fit).</li>
+<li>Visualizing the optimal fit: Plot the data and the resulting OLS regression line with residuals.</li>
+<li>Extending the model: Discuss that only using time is limited and that other variables like income (GDP per head) and patient payments (oop) may matter.</li>
+<li>Extrapolating the OLS Linear Trend to 2050: Use the OLS results to predict future healthcare expenditure up to 2050 and plot the (possibly unrealistic) extrapolation.</li>
+<li>Multi-variable Regression: Improve the fit by adding GDP per head and oop as covariates in a multi-variable regression, and compare the fitted values to the data and simple trend.</li>
+<li>Using a Numerical Solver (<code>fsolve</code>): For each future year, use <code>fsolve</code> to determine the oop needed to keep expenditure constant at 2014 levels, plot the required vs. actual oop, and discuss the relevance for policy.</li>
+</ol>
+</div>
+</div>
+</div>
+<div id="outline-container-orgb6bb839" class="outline-3 section">
+<h3 id="orgb6bb839">Review questions</h3>
+<div class="outline-text-3" id="text-orgb6bb839">
+</div>
+<div id="outline-container-org44a0566" class="outline-4">
+<h4 id="org44a0566">Question 1: Create Your Own Multi-variable Regression</h4>
+<div class="outline-text-4" id="text-org44a0566">
+<p>
+Fit a new regression model that predicts healthcare expenditure per head using <i>only</i> GDP per head (not year or oop). Plot the predicted values versus the actual data. How does the fit compare to the simple linear trend?
+</p>
+
+<details>
+<summary><strong>Hint / Solution</strong></summary>
+
+<ul class="org-ul">
+<li><p>
+Define a function like: 
+</p>
+<div class="org-src-container">
+<pre class="src src-nil">  def rss_gdp(params, gdp=df.GDP_per_head, y=df.CHE_per_head):
+      intercept, slope_gdp = params
+      yhat = intercept + slope_gdp * gdp
+      return np.sum((y - yhat) ** 2)
+</pre>
+</div></li>
+<li>Use <code>minimize()</code> to find the optimal coefficients.</li>
+<li>Plot observed data and predicted values from this GDP-only model.</li>
+<li>Compare visually to the linear time trend fit.</li>
+</ul>
+
+</details>
+
+<p>
+&#x2014;
+</p>
+</div>
+</div>
+<div id="outline-container-orgf119327" class="outline-4">
+<h4 id="orgf119327">Question 2: Use fsolve to Find the GDP Needed to Keep Expenditure Constant</h4>
+<div class="outline-text-4" id="text-orgf119327">
+<p>
+Suppose you want to know, for a certain year (e.g., 2024), what value of GDP per head would keep healthcare expenditure fixed at its 2014 level, holding all else constant. Write a function and use <code>fsolve</code> to solve for this GDP value using your multi-variable model.
+</p>
+
+<details>
+<summary><strong>Hint / Solution</strong></summary>
+
+<ul class="org-ul">
+<li>Use your multi-variable coefficients from the previous regression (e.g., with GDP, OOP and year).</li>
+<li>For the selected year, plug in all other variables (year and oop) as they are in the data; solve for the value of GDP that sets the model prediction equal to the 2014 expenditure level.</li>
+<li><p>
+Your function for <code>fsolve</code> should look like:  
+</p>
+<div class="org-src-container">
+<pre class="src src-nil">  def gdp_to_hold_che(gdp_guess):
+      yhat = intercept + slope_year * (year - base_year) + slope_gdp * gdp_guess + slope_oop * oop
+      return yhat - che_2014
+</pre>
+</div></li>
+<li>Try different initial guesses and run <code>fsolve(gdp_to_hold_che, gdp_init)</code>.</li>
+</ul>
+
+</details>
 </div>
 </div>
 </div>
