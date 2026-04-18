@@ -1396,3 +1396,1204 @@ Suppose you want to know, for a certain year (e.g., 2024), what value of GDP per
 #+BEGIN_EXPORT html
 </details>
 #+END_EXPORT
+
+
+
+*** Question 3: analyze the following three functions
+For each of the following functions, do the following:
+- plot the function on $x \in [-10,10]$,
+- find the zeros of the function (that is, the values of $x$ where $f(x)=0$),
+- find the extrema (minimum, maximum) of the functions.
+
+The functions are: $f(x) = x^3 - 3x + 1$, $g(x) = \sin(2x)$ and $h(x) = x^2 - 6 \sin(x)$.
+
+Use google or an LLM to find the relevant Python functions for this. Python has only functions to minimize, how do you maximize a function? Most routines require you to specify a starting point of the algorithm. How does the starting point affect the outcome?
+
+
+
+* Lecture 3: Modeling Iteration
+
+In this lecture you will learn:
+- how to make interactive apps with Python in =marimo=,
+- how to define sliders for parameters values and then use these parameters values to make plots,
+- to program with ~if, elif~ and ~else~ clauses
+- use ~for~ loops to model iteration, e.g. to solve a model over time
+- define a system of difference equations and work with it through matrix notation.
+
+
+
+** Apps
+
+In terms of economics, we consider three models:
+- an adverse selection model and how the market can unravel with asymmetric information,
+- a duopoly Cournot model and how best-response iterations lead to the Nash equilibrium,
+- a dynamic labor market model with three states: unemployed, low wage jobs, high wage jobs.
+
+
+*** Adverse selection dynamics
+
+The following app models an adverse selection market. Well known examples of such markets are the second-hand car markets (with "lemons") and (health) insurance markets. In each of these markets there is asymmetric information. The seller of the car has used the car herself. She knows how (aggressively) she has driven the car, taken care of the car, investments in car maintenance etc. For the buyer this is not so clear. In the health insurance market, the insurer offers contracts to insure healthcare costs. The consumer has more information on his own health than the insurer does. Does he have a (chronic) disease? Does he have a healthy diet, exercise regularly etc.
+
+The equilibrium in these markets tend to be inefficient: there is less trade than would be optimal from a welfare point of view. With the next app you can see how this inefficiency is affected by parameter values.
+
+One interpretation of the iteration in the app is that agents react to what they saw in the previous period. In a health insurance context this would be: an insurer sells a health insurance contract, some consumers buy the contract and the price of the contract in the next period is the average costs of the contract in this period. If this price is rather high, some healthy people will decide not to buy health insurance because it is too expensive. This increases the average cost of the contract for the insurer (conditional on buying the contract, the customers have lower health and higher healthcare expenditure). So in period 3 the insurance premium increases again, perhaps inducing some of the healthier customers to forego insurance etc.
+
+This process is called the unraveling of the market or a death spiral.
+
+The context of the app is more like the second-hand car market: sellers value their car at $q$ and are willing to sell to any buyer who pays a price above $q$. Each car is worth more to the buyer than to the seller but the buyer cannot observe $q$. If people are only willing to sell their car if $q<p$, the buyer's expectation of quality is given by $E(q|q<p)$. By assumption the car has more value for the buyer than the seller, hence the buyer is willing to pay a markup over $E(q|q<p)$ to buy the car. Which share of cars are going to be traded in the market?
+
+#+BEGIN_EXPORT html
+<iframe
+  src="https://lecture3adverseselection.streamlit.app/?embed=true"
+  allow="fullscreen">
+</iframe>
+
+<div class="fallback">
+  <p>
+    If the app does not load,
+    <a href="https://lecture3adverseselection.streamlit.appembed=true" target="_blank">
+      open it in a new tab
+    </a>.
+  </p>
+</div>
+#+END_EXPORT
+
+*** Cournot best response dynamics
+
+This app considers a Cournot market with two firms producing a homogenous good at constant marginal cost $c$. Demand is of the form $p = p(q_1+q_2)$. Hence, firm $i$ maximizes profits
+\begin{equation}
+\pi_i = \max_q p(q+q_j)q - c q
+\end{equation}
+with $j \neq i \in \{1,2\}$ taking the output of the other firm as given.
+
+Assume that demand is linear: $p(q_1+q_2)=1-q_1-q_2$. Take the first order condition, say for firm 1, and show that this can be written as $1-2q_1-q_2-c=0$ and derive the optimal reaction function $r_1(q_1)$ shown in the app.
+
+One way to derive the Nash equilibium is to use iterated best responses: start with an initial guess for $q_1$ denoted by $q_1^0$. Calculate firm 2's optimal reaction: $q_2^1=r_2(q_1^0)$. Then find 1's optimal reaction to this: $q_1^2 = r_1(q_2^1)$ etc. The figure shows you this process. In this case, these iterations converge to the Nash equilibrium.
+
+
+#+BEGIN_EXPORT html
+<iframe
+  src="https://lecture3cournot.streamlit.app/?embed=true"
+  allow="fullscreen">
+</iframe>
+
+<div class="fallback">
+  <p>
+    If the app does not load,
+    <a href="https://lecture3cournot.streamlit.app/?embed=true" target="_blank">
+      open it in a new tab
+    </a>.
+  </p>
+</div>
+#+END_EXPORT
+
+
+*** Unemployment dynamics
+
+Suppose we have an inelastic labor supply normalized to a mass of 1. Labor can be in one of three states: unemployed, employed in a low wage job and employed in a high wage job.???continue here???
+
+#+BEGIN_EXPORT html
+<iframe
+  src="https://lecture3employment.streamlit.app/?embed=true"
+  allow="fullscreen">
+</iframe>
+
+<div class="fallback">
+  <p>
+    If the app does not load,
+    <a href="https://lecture3employment.streamlit.app/?embed=true" target="_blank">
+      open it in a new tab
+    </a>.
+  </p>
+</div>
+#+END_EXPORT
+
+
+#+BEGIN_EXPORT html
+<details>
+<summary><strong>Click here if you need a matrix multiplication refresher</strong></summary>
+#+END_EXPORT
+
+Matrix notation is nothing more than that: notation. However, it turns out to be very powerful. You have (probably) seen matrices before. The following clips give a short refresher.
+
+First we give a simple example of matrix multiplication with numbers so you can check the calculations easily.
+
+#+BEGIN_EXPORT html
+<div style="text-align:center;">
+  <video style="width:600px;" controls>
+    <source src="./manim/media/videos/matrix/480p15/MatrixMultiplicationIntro.mp4" type="video/mp4">
+  </video>
+</div>
+#+END_EXPORT
+
+Using the same visuals as the clip above we show the equivalence of the transition equations in the app above.
+
+#+BEGIN_EXPORT html
+<div style="text-align:center;">
+  <video style="width:600px;" controls>
+    <source src="./manim/media/videos/matrix/480p15/DynamicSystemMatrixForm.mp4" type="video/mp4">
+  </video>
+</div>
+#+END_EXPORT
+
+
+#+BEGIN_EXPORT html
+</details>
+#+END_EXPORT
+
+
+
+
+
+
+
+** Streamlit :noexport:
+
+#+begin_src jupyter-python :tangle ./lecture3/app1.py
+import streamlit as st
+import numpy as np
+import matplotlib.pyplot as plt
+import pandas as pd
+
+st.set_page_config(page_title="Lecture 3", layout="wide")
+st.title("Modeling Iteration")
+st.header("Interactive: Adverse Selection Dynamics")
+
+st.markdown(
+    """
+    This interactive demo illustrates the *adverse selection* equilibrium in a market where quality is unobservable.
+
+    - Quality $q$ is uniformly distributed on $[v_0, v_1]$.
+    - Sellers only offer goods if the market price exceeds quality (their valuation of the good) $p > q$.
+    - Buyers value quality at a *mark-up* over quality: $\\text{markup} \\times q$.
+    - Buyers know only goods with $q < p$ are offered, so their expected quality equals $E(q|q < p)$.
+    - The market moves towards equilibrium where $p = \\text{markup} \\times E(q|q < p)$.
+    - If the equilibrium price falls to $v_0$, the market unravels (no trade).
+    """
+)
+
+st.subheader("Set Model Parameters")
+
+col1, col2, col3 = st.columns(3)
+with col1:
+    v0 = st.slider("Lowest quality $v_0$", min_value=0.0, max_value=100.0, value=50.0, step=1.0)
+with col2:
+    v1 = st.slider("Highest quality $v_1$", min_value=1.0, max_value=200.0, value=100.0, step=1.0)
+with col3:
+    markup = st.slider("Consumer mark-up", min_value=1.01, max_value=2.0, value=1.2, step=0.01)
+
+if v1 <= v0:
+    st.error("Highest quality $v_1$ must be greater than lowest quality $v_0$.")
+else:
+    def expected_q_given_p_uniform(p, a, b):
+        # For q ~ Uniform(a, b), and only qualities q < p are offered
+        if p < a:
+            # Price below support, no goods offered
+            return None
+        elif p >= b:
+            # All qualities are offered, expectation is mean
+            return (a + b) / 2
+        else:
+            # Conditional mean on [a, p]
+            return (a + p) / 2
+
+    def update_price_uniform(p, a, b, markup):
+        expected_q = expected_q_given_p_uniform(p, a, b)
+        if expected_q is None:
+            return 0
+        return markup * expected_q
+
+    p_history = []
+    p = markup * v1  # Start from above the highest possible buyer willingness
+
+    for step in range(50):
+        p_history.append(p)
+        new_p = update_price_uniform(p, v0, v1, markup)
+        if abs(new_p - p) < 1e-6:
+            break
+        p = new_p
+
+    # Determine if there is trade
+    if p <= v0 + 1e-6:
+        st.warning(
+            f"**Market disappears (death spiral):** Equilibrium price is at the lowest quality (${v0:.2f}$). No trade occurs."
+        )
+    else:
+        st.success(
+            f"**Market equilibrium:** Price converges to $p^* = {p:.2f}$ after {step+1} steps."
+        )
+
+    # Compute fraction of products traded at each step
+    fraction_traded = [(max(0, min(1, (p_i - v0) / (v1 - v0))) if v1 > v0 else 0) for p_i in p_history]
+    df_plot = pd.DataFrame({
+        "Price": p_history,
+        "Fraction traded": fraction_traded
+    })
+
+    # --- Stack the two figures in a row using Streamlit columns ---
+    col_fig1, col_fig2 = st.columns(2)
+
+    # --- Shared y-axis for both figures, y-axis starts at 0 ---
+    y_max = max(max(p_history), v1) * 1.05 if len(p_history) > 0 else v1 * 1.05
+
+    with col_fig1:
+        st.write("**Price convergence history and fraction of products traded:**")
+        fig, ax1 = plt.subplots()
+        color1 = "tab:blue"
+        ax1.set_xlabel("Step")
+        ax1.set_ylabel("Price", color=color1)
+        ax1.plot(df_plot.index, df_plot["Price"], color=color1, label="Price")
+        ax1.tick_params(axis="y", labelcolor=color1)
+        ax1.set_ylim(0, y_max)
+
+        ax2 = ax1.twinx()
+        color2 = "tab:green"
+        ax2.set_ylabel("Fraction traded", color=color2)
+        ax2.plot(df_plot.index, df_plot["Fraction traded"], color=color2, linestyle="--", label="Fraction traded")
+        ax2.tick_params(axis="y", labelcolor=color2)
+        ax2.set_ylim(-0.05, 1.05)
+
+        fig.tight_layout()
+        st.pyplot(fig)
+
+    with col_fig2:
+        st.write("**Equilibrium as intersection of price update and 45-degree line:**")
+        q_max_values = np.linspace(v0, v1, 300)
+        price_update_curve = []
+        for q_max in q_max_values:
+            eq = expected_q_given_p_uniform(q_max, v0, v1)
+            price_update_curve.append(markup * eq if eq is not None else np.nan)
+        fig2, ax = plt.subplots()
+        ax.plot(q_max_values, price_update_curve, label=r"$p = \mathrm{markup} \times E(q|q<p)$", color="tab:blue")
+        ax.plot(q_max_values, q_max_values, label="45-degree line ($p = q_{max}$)", color="tab:orange", linestyle="--")
+        ax.set_xlabel(r"Max quality traded $q_{max}$")
+        ax.set_ylabel("Price")
+        # Removed the title for better alignment
+        ax.set_ylim(0, y_max)
+        ax.legend()
+        st.pyplot(fig2)
+
+    st.markdown(
+        """
+        **How to use this demo:**
+        - Adjust the sliders for $v_0$, $v_1$, and the mark-up.
+        - Observe how the equilibrium price changes.
+        - For some parameter values, the market unravels (no trade).
+        - For others, trade occurs at a positive equilibrium price.
+        - The second figure shows the intersection of the price update curve and the 45-degree line, which is the equilibrium.
+        - Because of the markup it is efficient that all qualities are traded (buyer values the good more than the seller)
+        - Using the sliders find an efficient equilibrium: which factors are important here?
+        - Also find an equilibrium where the market unravels: which factors determine this outcome?
+        
+        **How does the interation work?**
+        - We start with a high price $p_0$
+        - We calculate which qualities will be on the market at this price $p_0$
+        - Then we derive the expected quality given that $q < p_0$
+        - We apply the mark-up to $E(q|q<p_0)$ and see whether this equals $p_0$
+          - if it is equal: $p_0$ is the equilibrium price
+          - if not: go through the steps above again with $p_1 =  \mathrm{markup} \\times E(q|q<p_0)$
+        """
+    )
+
+#+end_src
+
+
+
+#+begin_src jupyter-python :tangle ./lecture3/app2.py
+import streamlit as st
+import numpy as np
+import matplotlib.pyplot as plt
+import pandas as pd
+
+st.set_page_config(page_title="Lecture 3", layout="wide")
+st.title("Modeling Iteration")
+st.header("Cournot Reaction Function Dynamics")
+
+st.markdown(
+    """
+    This interactive demo illustrates the *Cournot duopoly* equilibrium using iterative best-response dynamics.
+
+    - Two firms choose quantities $q_1$ and $q_2$.
+    - Market price: $p(q_1, q_2) = 1 - q_1 - q_2$
+    - Marginal cost: $c < 1$
+    - Firm 1's reaction: $r_1(q_2) = \\frac{1 - q_2 - c}{2}$
+    - Firm 2's reaction: $r_2(q_1) = \\frac{1 - q_1 - c}{2}$
+
+    The process:
+    1. Start at an initial $q_1$.
+    2. Alternate best responses: $q_2=r_2(q_1)$ reacts to $q_1$, then $q_1=r_1(q_2)$ reacts to $q_2$, etc.
+    3. Observe the path to equilibrium in $(q_1, q_2)$ space.
+    """
+)
+
+st.subheader("Set Cournot Model Parameters")
+colA, colB, colC = st.columns(3)
+with colA:
+    c_cournot = st.slider("Marginal cost $c$", min_value=0.0, max_value=0.99, value=0.2, step=0.01)
+with colB:
+    q1_init = st.slider("Initial $q_1$", min_value=0.0, max_value=0.99, value=0.45, step=0.01)
+with colC:
+    n_iter = st.slider("Number of iterations", min_value=2, max_value=30, value=14, step=1)
+
+def reaction1(q2, c):
+    return (1 - q2 - c) / 2
+
+def reaction2(q1, c):
+    return (1 - q1 - c) / 2
+
+q1 = q1_init
+points = []
+for i in range(n_iter):
+    if i % 2 == 0:
+        q2 = reaction2(q1, c_cournot)
+        points.append((q1, q2))
+    else:
+        q1 = reaction1(q2, c_cournot)
+        points.append((q1, q2))
+
+qs = np.linspace(0, 0.6, 200)
+rf1 = [reaction1(q2, c_cournot) for q2 in qs]
+rf2 = [reaction2(q1, c_cournot) for q1 in qs]
+
+fig_cournot, ax = plt.subplots(figsize=(5, 5))
+ax.plot(qs, rf1, label="Firm 1's reaction ($q_1=r_1(q_2)$)", color='blue')
+ax.plot(rf2, qs, label="Firm 2's reaction ($q_2=r_2(q_1)$)", color='red')
+points_arr = np.array(points)
+ax.plot(points_arr[:,0], points_arr[:,1], 'ko-', label='Iterative path', markersize=7)
+# Removed iteration numbering for clarity
+ax.set_xlabel('$q_1$')
+ax.set_ylabel('$q_2$')
+ax.set_title('Nash Equilibrium Path for Cournot via Alternating Best Response')
+ax.legend()
+ax.grid(True)
+ax.set_xlim(0, 0.6)
+ax.set_ylim(0, 0.6)
+plt.tight_layout()
+st.pyplot(fig_cournot)
+
+st.markdown(
+    """
+    **How to use this demo:**
+    - Adjust the marginal cost $c$, initial $q_1$, and number of iterations.
+    - The plot shows the reaction functions and the iterative path to equilibrium.
+    - The Nash equilibrium $(q_1^*,q_2^*)$ is where the two reaction functions cross:
+      - firm 1 plays its optimal reaction to firm 2: $q_1^* = r_1(q_2^*)$
+      - and firm 2 plays its optimal reaction to firm 1: $q_2^* = r_2(q_1^*)$.
+    """
+)
+#+end_src
+
+
+
+#+begin_src jupyter-python :tangle ./lecture3/app3.py
+import streamlit as st
+import numpy as np
+import matplotlib.pyplot as plt
+import pandas as pd
+
+st.set_page_config(page_title="Lecture 3", layout="wide")
+st.title("Modeling Iteration")
+st.header("Labour Market Dynamics")
+
+st.markdown(
+    r"""
+    This interactive demo simulates a labor market with three states:
+    - Unemployed ($u$)
+    - Low wage job ($l$)
+    - High wage job ($h$)
+
+    **Transitions:**
+    - $\mu$: probability an unemployed finds a low wage job
+    - $\lambda$: probability a low wage worker becomes high wage
+    - $\delta_l$: probability a low wage worker loses job
+    - $\delta_h$: probability a high wage worker loses job
+
+    The model uses difference equations to update the shares in each state over time.
+
+    **Transition equations:**
+    $$
+    \begin{align*}
+    u_{t+1} &= u_t + \delta_l l_t + \delta_h h_t - \mu u_t \\
+    l_{t+1} &= l_t + \mu u_t - \lambda l_t - \delta_l l_t \\
+    h_{t+1} &= h_t + \lambda l_t - \delta_h h_t
+    \end{align*}
+    $$
+
+    **Matrix notation:**
+    $$
+    \begin{bmatrix}
+    u_{t+1} \\
+    l_{t+1} \\
+    h_{t+1}
+    \end{bmatrix}
+    =
+    \begin{bmatrix}
+    1 - \mu & \delta_l & \delta_h \\
+    \mu & 1 - \lambda - \delta_l & 0 \\
+    0 & \lambda & 1 - \delta_h
+    \end{bmatrix}
+    \begin{bmatrix}
+    u_t \\
+    l_t \\
+    h_t
+    \end{bmatrix}
+    $$
+    """
+)
+
+st.subheader("Set Labour Market Parameters")
+col1, col2, col3, col4, col5 = st.columns(5)
+with col1:
+    mu = st.slider(r"Job finding rate $\mu$", min_value=0.01, max_value=0.5, value=0.1, step=0.01)
+with col2:
+    lambda_ = st.slider(r"Learning rate $\lambda$", min_value=0.01, max_value=0.5, value=0.15, step=0.01)
+with col3:
+    delta_l = st.slider(r"Low wage sep. $\delta_l$", min_value=0.01, max_value=0.5, value=0.05, step=0.01)
+with col4:
+    delta_h = st.slider(r"High wage sep. $\delta_h$", min_value=0.01, max_value=0.5, value=0.02, step=0.01)
+with col5:
+    u0 = st.slider(r"Initial unemployment $u_0$", min_value=0.0, max_value=1.0, value=1.0, step=0.01)
+
+T = 60
+u_hist, l_hist, h_hist = [], [], []
+u, l, h = u0, 1-u0, 0.0
+
+for t in range(T):
+    u_hist.append(u)
+    l_hist.append(l)
+    h_hist.append(h)
+    new_l = mu * u
+    l_to_h = lambda_ * l
+    l_to_u = delta_l * l
+    h_to_u = delta_h * h
+
+    next_u = u + l_to_u + h_to_u - new_l
+    next_l = l + new_l - l_to_h - l_to_u
+    next_h = h + l_to_h - h_to_u
+
+    total = next_u + next_l + next_h
+    next_u, next_l, next_h = next_u/total, next_l/total, next_h/total
+
+    u, l, h = next_u, next_l, next_h
+
+fig_labour, ax = plt.subplots(figsize=(7, 4))
+ax.plot(u_hist, label="Unemployed $u$")
+ax.plot(l_hist, label="Low wage $l$")
+ax.plot(h_hist, label="High wage $h$")
+ax.axhline(y=u_hist[-1], color='gray', linestyle='--', label="Steady state $u^*$")
+ax.set_title("Labor Market Markov Process Dynamics")
+ax.set_xlabel("Time step")
+ax.set_ylabel("Share of workers")
+ax.legend()
+ax.grid(True)
+plt.tight_layout()
+st.pyplot(fig_labour)
+
+st.markdown(
+    r"""
+    **How to use this demo:**
+    - Adjust the transition rates and initial unemployment.
+    - The plot shows the evolution of unemployment, low wage, and high wage shares.
+    - The dashed line shows the steady state unemployment.
+    - Which sliders affect the evolution but not the steady state level of unemployment?
+    """
+)
+#+end_src
+
+** manim :noexport:
+
+In the terminal: =manim -pql matrix.py MatrixMultiplicationIntro= and =manim -pql matrix.py DynamicSystemMatrixForm=
+- in the folder ./manim
+- after =conda activate manim_env=
+
+
+
+
+
+#+begin_src jupyter-python :tangle ./manim/matrix.py
+from manim import *
+from manim_voiceover import VoiceoverScene
+from manim_voiceover.services.gtts import GTTSService
+
+class MatrixMultiplicationIntro(VoiceoverScene):
+    def construct(self):
+        self.set_speech_service(GTTSService(lang="en"))
+
+        title = Text("Matrix–Vector Multiplication", font_size=28)
+        with self.voiceover(text="Let's see how matrix vector multiplication works."):
+            self.play(Write(title))
+            self.wait(1)
+        self.remove(title)
+
+        A = Matrix([
+            [1, 2, 3],
+            [0, 1, 4],
+            [2, 0, 1]
+        ])
+
+        x = Matrix([
+            [11],
+            [12],
+            [13]
+        ])
+
+        matrices = VGroup(A, x).arrange(RIGHT, buff=0.4)
+        matrices.scale(0.5)
+
+        with self.voiceover(text="We start with a three by three matrix and a three dimensional vector."):
+            self.play(Create(matrices))
+            self.wait(1)
+
+        # Highlight column of x
+        col_rect = SurroundingRectangle(x.get_columns()[0], color=BLUE)
+        with self.voiceover(text="To compute the product, we take a row of the matrix and multiply it with the vector."):
+            self.play(Create(col_rect))
+
+        # ----- Row 1 -----
+        row_rect = SurroundingRectangle(A.get_rows()[0], color=YELLOW)
+        expr1 = MathTex(r"1 \cdot 11 + 2 \cdot 12 + 3 \cdot 13 = 74")
+        expr1.scale(0.6)
+        expr1.next_to(matrices, DOWN)
+
+        with self.voiceover(text="For the first row we multiply each entry with the corresponding element of the vector and add them up."):
+            self.play(Create(row_rect))
+            self.play(Write(expr1))
+            self.wait(1)
+
+        # ----- Row 2 -----
+        row2_rect = SurroundingRectangle(A.get_rows()[1], color=YELLOW)
+        expr2 = MathTex(r"0 \cdot 11 + 1 \cdot 12 + 4 \cdot 13 = 64")
+        expr2.scale(0.6)
+        expr2.next_to(matrices, DOWN)
+
+        with self.voiceover(text="We repeat the same procedure for the second row."):
+            self.play(ReplacementTransform(row_rect, row2_rect), ReplacementTransform(expr1, expr2))
+            self.wait(1)
+
+        # ----- Row 3 -----
+        row3_rect = SurroundingRectangle(A.get_rows()[2], color=YELLOW)
+        expr3 = MathTex(r"2 \cdot 11 + 0 \cdot 12 + 1 \cdot 13 = 35")
+        expr3.scale(0.6)
+        expr3.next_to(matrices, DOWN)
+
+        with self.voiceover(text="And again for the third row."):
+            self.play(ReplacementTransform(row2_rect, row3_rect), ReplacementTransform(expr2, expr3))
+            self.wait(1)
+
+        # Final result Ax = b
+        equals = MathTex("=")
+        b = Matrix([
+            [74],
+            [64],
+            [35]
+        ])
+        b.scale(0.5)
+
+        # Remove explanation but keep matrices, then shift left
+        self.play(FadeOut(expr3), FadeOut(row3_rect), FadeOut(col_rect))
+        self.play(matrices.animate.shift(LEFT*0.8))
+
+        equals.next_to(x, RIGHT, buff=0.2)
+        b.next_to(equals, RIGHT, buff=0.2)
+
+        self.play(Write(equals), Create(b))
+
+        self.wait(2)
+
+
+class DynamicSystemMatrixForm(Scene):
+    def construct(self):
+        title = Text("Dynamic System\n as Matrix Multiplication", font_size=28)
+        self.play(Write(title))
+        self.wait(1)
+        self.remove(title)
+
+
+        # Transition equations
+        eq1 = MathTex(r"u_{t+1} = u_t + \delta_l l_t + \delta_h h_t - \mu u_t")
+        eq2 = MathTex(r"l_{t+1} = l_t + \mu u_t - \lambda l_t - \delta_l l_t")
+        eq3 = MathTex(r"h_{t+1} = h_t + \lambda l_t - \delta_h h_t")
+
+        equations = VGroup(eq1, eq2, eq3).arrange(DOWN, aligned_edge=LEFT, buff=0.4)
+        equations.scale(0.6)
+        equations.to_edge(LEFT)
+
+        # Arrange equations but do not show them yet
+        equations.set_opacity(0)
+
+        # Matrix representation
+        A = Matrix([
+            ["1-\\mu", "\\delta_l", "\\delta_h"],
+            ["\\mu", "1-\\lambda-\\delta_l", "0"],
+            ["0", "\\lambda", "1-\\delta_h"]
+        ], h_buff=2.0, v_buff=1.0, element_alignment_corner=ORIGIN)
+
+        x = Matrix([
+            ["u_t"],
+            ["l_t"],
+            ["h_t"]
+        ])
+
+        y = Matrix([
+            ["u_{t+1}"],
+            ["l_{t+1}"],
+            ["h_{t+1}"]
+        ])
+
+        equals = MathTex("=")
+
+        system = VGroup(y, equals, A, x).arrange(buff=0.4)
+        system.scale(0.3)
+        system.to_edge(LEFT)
+        
+
+        self.play(Create(system))
+        self.wait(1)
+
+        # Highlight row of A and column of x
+        row_box = SurroundingRectangle(A.get_rows()[0], color=YELLOW)
+        col_box = SurroundingRectangle(x.get_columns()[0], color=BLUE)
+        self.play(Create(row_box), Create(col_box))
+        self.wait(1)
+        equations.set_opacity(1)
+        eq1.next_to(system, DOWN)
+        self.play(Write(eq1))
+        # Fade out the blue column highlight at the end
+        self.play(FadeOut(row_box))
+        self.wait(1)
+        self.play(FadeOut(eq1))
+
+        # equation 2
+        
+        row_box = SurroundingRectangle(A.get_rows()[1], color=YELLOW)
+        self.play(Create(row_box))
+        self.wait(1)
+        eq2.next_to(system, DOWN)
+        self.play(Write(eq2))
+        # Fade out the blue column highlight at the end
+        self.play(FadeOut(row_box))
+        self.wait(1)
+        self.play(FadeOut(eq2))
+
+        # equation 3
+        
+        row_box = SurroundingRectangle(A.get_rows()[2], color=YELLOW)
+        self.play(Create(row_box))
+        self.wait(1)
+        eq3.next_to(system, DOWN)
+        self.play(Write(eq3))
+        # Fade out the blue column highlight at the end
+        # self.play(FadeOut(row_box))
+        self.wait(1)
+        self.play(FadeOut(eq3))
+
+        # Fade out matrix system
+        self.play(FadeOut(system), FadeOut(row_box), FadeOut(col_box))
+
+        # Show full system of equations
+        equations.scale(0.9)
+        equations.move_to(UP)
+        # equations.move_to(ORIGIN)
+        self.play(Write(eq1))
+        eq2.next_to(eq1,DOWN)
+        self.play(Write(eq2))
+        eq3.next_to(eq2,DOWN)
+        self.play(Write(eq3))
+
+
+        self.wait(2)
+
+#+end_src
+
+** Python Code Explanation
+*** Adverse Selection Model
+
+In the adverse selection model, sellers have goods of quality $q$ uniformly distributed on $[v_0, v_1]$. Sellers only offer goods if the market price $p \geq q$. Buyers value quality at a mark-up:
+
+$$
+p = \mathrm{markup} \times E(q \mid q < p)
+$$
+
+The equilibrium is found by iterating this price update until convergence.
+
+*Python code in Marimo:*
+
+#+BEGIN_SRC python
+import marimo as mo
+import numpy as np
+import matplotlib.pyplot as plt
+
+v0 = mo.ui.slider(0, 100, value=50, label="Lowest quality $v_0$")
+v1 = mo.ui.slider(1, 200, value=100, label="Highest quality $v_1$")
+markup = mo.ui.slider(1.01, 2.0, value=1.2, step=0.01, label="Consumer mark-up")
+
+mo.hstack([v0,v1,markup])
+#+END_SRC
+
+#+BEGIN_SRC python
+def expected_q_given_p_uniform(p, a, b):
+    if p < a:
+        return None
+    elif p >= b:
+        return (a + b) / 2
+    else:
+        return (a + p) / 2
+
+def update_price_uniform(p, a, b, markup):
+    expected_q = expected_q_given_p_uniform(p, a, b)
+    if expected_q is None:
+        return 0
+    return markup * expected_q
+
+p = markup.value * v1.value
+history = []
+for _ in range(50):
+    history.append(p)
+    new_p = update_price_uniform(p, v0.value, v1.value, markup.value)
+    if abs(new_p - p) < 1e-6:
+        break
+    p = new_p
+plt.plot(history)
+
+#+END_SRC
+
+The code above uses Marimo sliders for the parameters. The function ~expected_q_given_p_uniform~ computes the expected quality conditional on $q < p$. The price update is iterated until convergence.
+
+*** Cournot Duopoly Model
+
+In the Cournot model, two firms choose quantities $q_1$ and $q_2$. The market price is
+
+$$
+p = 1 - q_1 - q_2
+$$
+
+and each firm has marginal cost $c$. The best response functions are:
+
+$$
+q_1 = \frac{1 - q_2 - c}{2}, \qquad q_2 = \frac{1 - q_1 - c}{2}
+$$
+
+The Nash equilibrium is found by iteratively updating each firm's quantity.
+
+*Python code in Marimo:*
+
+#+BEGIN_SRC python
+import marimo as mo
+import numpy as np
+import matplotlib.pyplot as plt
+
+c = mo.ui.slider(0, 0.99, value=0.2, step=0.01, label="Marginal cost $c$")
+q1_init = mo.ui.slider(0, 0.99, value=0.45, step=0.01, label="Initial $q_1$")
+n_iter = mo.ui.slider(2, 30, value=14, step=1, label="Number of iterations")
+mo.hstack([c,q1_init,n_iter])
+#+END_SRC
+
+#+begin_src python
+def reaction1(q2, c):
+    return (1 - q2 - c) / 2
+
+def reaction2(q1, c):
+    return (1 - q1 - c) / 2
+
+q1 = q1_init.value
+points = []
+for i in range(n_iter.value):
+    if i % 2 == 0:
+        q2 = reaction2(q1, c.value)
+        points.append((q1, q2))
+    else:
+        q1 = reaction1(q2, c.value)
+        points.append((q1, q2))
+plt.plot(np.array(points)[:,0],np.array(points)[:,1])
+plt.scatter(*points[0],label="initial $q_1$")
+plt.legend()
+plt.xlabel('$q_1$')
+plt.ylabel('$q_2$')
+#+end_src
+
+The code above shows how the Cournot best responses are iterated, starting from an initial $q_1$.
+
+From =scipy.optimize= use the [[https://docs.scipy.org/doc/scipy/reference/generated/scipy.optimize.root.html][root]] function to calculate the Cournot equilibrium. You can use an LLM to help you with this.
+
+#+BEGIN_EXPORT html
+<details>
+<summary><strong>Hint</strong></summary>
+#+END_EXPORT
+
+- Define a function like: 
+#+begin_src python
+def fixed_point(x,c):
+    q1, q2 = x
+    return  [
+        # q1 minus firm 1's optimal response,
+        # q2 minus firm 2's optimal response
+    ]
+#+end_src
+
+The call =scipy.optimize.root= with the function and a starting point for the algorithm.
+  
+#+BEGIN_EXPORT html
+</details>
+#+END_EXPORT
+
+
+*** Labour Market Markov Model
+
+The labor market model has three states: unemployed ($u$), low wage ($l$), and high wage ($h$). The transitions are:
+
+- $\mu$: probability an unemployed worker finds a low wage job
+- $\lambda$: probability a low wage worker becomes high wage
+- $\delta_l$: probability a low wage worker loses their job
+- $\delta_h$: probability a high wage worker loses their job
+
+The difference equations are:
+
+\begin{align*}
+u_{t+1} &= u_t + \delta_l l_t + \delta_h h_t - \mu u_t \\
+l_{t+1} &= l_t + \mu u_t - \lambda l_t - \delta_l l_t \\
+h_{t+1} &= h_t + \lambda l_t - \delta_h h_t
+\end{align*}
+
+*Python code in Marimo:*
+
+#+BEGIN_SRC python
+import marimo as mo
+import numpy as np
+import matplotlib.pyplot as plt
+
+mu = mo.ui.slider(0.01, 0.5, value=0.1, step=0.01, label="Job finding rate $\mu$")
+lambda_ = mo.ui.slider(0.01, 0.5, value=0.15, step=0.01, label="Learning rate $\lambda$")
+delta_l = mo.ui.slider(0.01, 0.5, value=0.05, step=0.01, label="Low wage sep. $\delta_l$")
+delta_h = mo.ui.slider(0.01, 0.5, value=0.02, step=0.01, label="High wage sep. $\delta_h$")
+u0 = mo.ui.slider(0.0, 1.0, value=1.0, step=0.01, label="Initial unemployment $u_0$")
+
+mo.hstack([mu,lambda_,delta_l,delta_h,u0])
+#+END_SRC
+
+#+BEGIN_SRC python
+T = 60
+u_hist, l_hist, h_hist = [], [], []
+u, l, h = u0.value, 1 - u0.value, 0.0
+
+for t in range(T):
+    u_hist.append(u)
+    l_hist.append(l)
+    h_hist.append(h)
+    new_l = mu.value * u
+    l_to_h = lambda_.value * l
+    l_to_u = delta_l.value * l
+    h_to_u = delta_h.value * h
+
+    next_u = u + l_to_u + h_to_u - new_l
+    next_l = l + new_l - l_to_h - l_to_u
+    next_h = h + l_to_h - h_to_u
+
+    total = next_u + next_l + next_h
+    next_u, next_l, next_h = next_u / total, next_l / total, next_h / total
+
+    u, l, h = next_u, next_l, next_h
+
+plt.plot(u_hist,label="unemployment")
+plt.plot(l_hist,label="low wage employment")
+plt.plot(h_hist,label="high wage employment")
+plt.legend()
+plt.xlabel("time")
+plt.ylabel("fraction employed/unemployed")
+#+END_SRC
+
+This code simulates the labor market Markov process using Marimo sliders for all parameters. 
+
+
+
+We can also derive the labor market dynamics using matrix notation in Python. We can rewrite the above difference equations as follows:
+
+\begin{equation}
+\begin{bmatrix}
+u_{t+1} \\
+l_{t+1} \\
+h_{t+1}
+\end{bmatrix}
+=
+\begin{bmatrix}
+1 - \mu & \delta_l & \delta_h \\
+\mu & 1 - \lambda - \delta_l & 0 \\
+0 & \lambda & 1 - \delta_h
+\end{bmatrix}
+\begin{bmatrix}
+u_t \\
+l_t \\
+h_t
+\end{bmatrix}
+\end{equation}
+
+**** TODO
+- use manim to explain matrix multiplication
+
+
+
+We can define the transition matrix as follows:
+#+begin_src python
+A = np.array([
+    [1-mu.value, delta_l.value, delta_h.value],
+    [mu.value, 1-lambda_.value-delta_l.value,0],
+    [0, lambda_.value,1-delta_h.value]
+])
+
+#+end_src
+
+And then derive the employment dynamics in the following way. Although this may look less intuitive at the start, note how much shorter the code is when we use matrix notation. Matrix multiplication is done by the =np.dot()= statement.
+
+#+begin_src python
+S = np.array([u0.value, 1 - u0.value, 0.0]).reshape(3, 1)
+for _ in range(T):
+    S = np.hstack((S,np.dot(A,S[:,-1].reshape(3,1))))
+
+plt.plot(S[0],label="unemployment")
+plt.plot(S[1],label="low wage employment")
+plt.plot(S[2],label="high wage employment")
+plt.legend()
+plt.xlabel("time")
+plt.ylabel("fraction employed/unemployed")
+#+end_src
+
+
+
+** Review questions
+
+*** 1. Adverse Selection: Does Increasing Mark-Up Always Restore Trade?
+Consider the adverse selection model with $v_0=30$ and $v_1=90$. Write Marimo code to:
+- Plot the equilibrium price and fraction traded as the mark-up varies from 1.01 to 2.0.
+- Is there always trade (fraction traded > 0) for any mark-up $>1$?
+
+#+BEGIN_EXPORT html
+<details>
+<summary><strong>Hint / Solution</strong></summary>
+#+END_EXPORT
+
+#+begin_src python
+import numpy as np
+import matplotlib.pyplot as plt
+
+v0, v1 = 30, 90
+markups = np.linspace(1.01, 2.0, 100)
+eq_prices = []
+fractions = []
+
+def expected_q_given_p_uniform(p, a, b):
+    if p < a:
+        return None
+    elif p >= b:
+        return (a + b) / 2
+    else:
+        return (a + p) / 2
+
+for m in markups:
+    p = m*v1  # start at high price
+    for _ in range(30):
+        expected_q = expected_q_given_p_uniform(p, v0, v1)
+        if expected_q is None:
+            break
+        new_p = m * expected_q
+        if abs(new_p - p) < 1e-6:
+            break
+        p = new_p
+    eq_prices.append(p)
+    frac = max(0, min(1, (p-v0)/(v1-v0)))
+    fractions.append(frac)
+
+plt.plot(markups, eq_prices, label="Equilibrium price")
+plt.plot(markups, fractions, label="Fraction traded")
+plt.xlabel("Markup")
+plt.legend()
+#+end_src
+
+#+BEGIN_EXPORT html
+</details>
+#+END_EXPORT
+
+---
+
+*** 2. Cournot Duopoly: Add a Third Firm
+Modify the Cournot duopoly Python code so there are three firms, each with marginal cost $c$, facing demand of the form $p = 1 - q_1 - q_2 - q_3$.  
+- Define best-response functions for each firm.
+- Write a for loop to iterate best responses starting with initial quantities $q_1=0.3, q_2=0.3, q_3=0.3$.
+- Write a function =fixed_point= and use this function to solve for the equilibrium.
+
+#+BEGIN_EXPORT html
+<details>
+<summary><strong>Hint / Solution</strong></summary>
+#+END_EXPORT
+
+#+begin_src python
+# Reaction for each: maximize (1 - sum(qs) - c)*q_i
+def r1(q2, q3, c): return (1 - q2 - q3 - c)/2
+def r2(q1, q3, c): return (1 - q1 - q3 - c)/2
+def r3(q1, q2, c): return (1 - q1 - q2 - c)/2
+c = 0.2
+qs = [0.3, 0.3, 0.3]
+history = [qs.copy()]
+for i in range(15):
+    qs[0] = r1(qs[1], qs[2], c)
+    history.append(qs.copy())
+    qs[1] = r2(qs[0], qs[2], c)
+    history.append(qs.copy())
+    qs[2] = r3(qs[0], qs[1], c)
+    history.append(qs.copy())
+plt.plot([row[0] for row in history], label='$q_1$')
+plt.plot([row[1] for row in history], label='$q_2$')
+plt.plot([row[2] for row in history], label='$q_3$')
+plt.legend()
+plt.xlabel("Step")
+#+end_src
+
+#+BEGIN_EXPORT html
+</details>
+#+END_EXPORT
+
+---
+
+*** 3. Labor Market: Steady State Without Iteration
+Derive and plot the steady-state unemployment $u^*$ as a function of the job-finding rate $\mu$ (other parameters fixed at $\lambda=0.1$, $\delta_l=0.05$, $\delta_h=0.03$).  
+- Use the fact that in steady state, all variables don’t change over time.
+
+#+BEGIN_EXPORT html
+<details>
+<summary><strong>Hint / Solution</strong></summary>
+#+END_EXPORT
+
+Use google or an LLM to figure out what 'broyden1' means. Why do we use =x[0]= below and not just =x=?
+
+#+begin_src jupyter-python 
+import numpy as np
+from scipy import optimize
+import matplotlib.pyplot as plt
+
+lambda_, delta_l, delta_h = 0.1, 0.05, 0.03
+mus = np.linspace(0.01, 0.5, 100)
+def matrix_A(mu):
+ return np.array([
+    [1-mu, delta_l, delta_h],
+    [mu, 1-lambda_-delta_l,0],
+    [0, lambda_,1-delta_h]
+    ])
+
+def fixed_point(x,mu):
+    x = (x/np.sum(x)).reshape(3,1)
+    return x - np.dot(matrix_A(mu),x)
+
+u_star = []
+for mu in mus:
+    x = optimize.root(lambda x: fixed_point(x,mu), [1/3.0, 1/3.0, 1/3.0], method='broyden1', tol=1e-14).x
+    u_star.append(x[0])
+plt.plot(mus,u_star)
+plt.xlabel(r'$\mu$ (job finding rate)')
+plt.ylabel('Steady state $u^*$')
+#+end_src
+
+
+#+BEGIN_EXPORT html
+</details>
+#+END_EXPORT
+
+---
+
+*** 4. Matrix Notation: Simulation With Numpy Only
+In the labor market model, implement the time path simulation *using only Numpy arrays and matrix multiplication* (not manually updating variables).  
+- Set up the transition matrix for $\mu=0.12$, $\lambda=0.09$, $\delta_l=0.04$, $\delta_h=0.03$, $u_0=0.8$.
+- Plot the evolution of all three states.
+
+#+BEGIN_EXPORT html
+<details>
+<summary><strong>Hint / Solution</strong></summary>
+#+END_EXPORT
+
+#+begin_src python
+mu, lmbd, dl, dh = 0.12, 0.09, 0.04, 0.03
+A = np.array([
+    [1 - mu, dl, dh],
+    [mu, 1 - lmbd - dl, 0],
+    [0, lmbd, 1 - dh]
+])
+S = np.array([0.8, 0.2, 0]).reshape(3,1)
+history = [S.flatten()]
+for _ in range(60):
+    S = np.dot(A, S)
+    S = S / np.sum(S)   # (optional: renormalize so they sum to 1)
+    history.append(S.flatten())
+history = np.array(history)
+plt.plot(history[:,0], label="Unemployed")
+plt.plot(history[:,1], label="Low wage")
+plt.plot(history[:,2], label="High wage")
+plt.legend()
+plt.show()
+#+end_src
+
+#+BEGIN_EXPORT html
+</details>
+#+END_EXPORT
+
+---
+
+*** 5. Extending the Labor Model: Add a Direct High Wage Offer Channel
+Suppose a fraction $\alpha$ of unemployed directly get a high wage job each period. The equations become:
+\begin{align*}
+u_{t+1} &= u_t + \delta_l l_t + \delta_h h_t - \mu u_t - \alpha u_t \\
+l_{t+1} &= l_t + \mu u_t - \lambda l_t - \delta_l l_t \\
+h_{t+1} &= h_t + \lambda l_t + \alpha u_t - \delta_h h_t
+\end{align*}
+- Write Marimo code to simulate the process, using sliders for $\mu, \lambda, \delta_l, \delta_h, u_0, \alpha$.
+- Plot over time.
+- What happens as $\alpha$ increases?
+
+#+BEGIN_EXPORT html
+<details>
+<summary><strong>Hint / Solution</strong></summary>
+#+END_EXPORT
+
+#+begin_src python
+mu = mo.ui.slider(0.01, 0.5, value=0.1, label="Job finding rate")
+lambda_ = mo.ui.slider(0.01, 0.5, value=0.15, label="Learning rate")
+delta_l = mo.ui.slider(0.01, 0.5, value=0.05, label="Low wage sep.")
+delta_h = mo.ui.slider(0.01, 0.5, value=0.02, label="High wage sep.")
+alpha = mo.ui.slider(0.0, 0.2, value=0.0, step=0.01, label="Direct high wage $\alpha$")
+u0 = mo.ui.slider(0.0, 1.0, value=1.0, step=0.01, label="Initial unemployment")
+mo.hstack([mu,lambda_,delta_l,delta_h,alpha,u0])
+#+end_src
+
+#+begin_src python
+
+T = 60
+u_hist, l_hist, h_hist = [], [], []
+u, l, h = u0.value, 1-u0.value, 0.0
+
+for t in range(T):
+    u_hist.append(u)
+    l_hist.append(l)
+    h_hist.append(h)
+    to_l = mu.value * u
+    to_h = alpha.value * u
+    l_to_h = lambda_.value * l
+    l_to_u = delta_l.value * l
+    h_to_u = delta_h.value * h
+
+    next_u = u + l_to_u + h_to_u - to_l - to_h
+    next_l = l + to_l - l_to_h - l_to_u
+    next_h = h + l_to_h + to_h - h_to_u
+
+    total = next_u + next_l + next_h
+    next_u, next_l, next_h = next_u/total, next_l/total, next_h/total
+
+    u, l, h = next_u, next_l, next_h
+
+plt.plot(u_hist,label="unemployment")
+plt.plot(l_hist,label="low wage")
+plt.plot(h_hist,label="high wage")
+plt.legend()
+#+end_src
+
+As $\alpha$ increases, the fraction in high wage employment rises and steady-state unemployment falls.
+
+#+BEGIN_EXPORT html
+</details>
+#+END_EXPORT
+
