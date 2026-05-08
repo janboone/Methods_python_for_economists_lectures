@@ -28,7 +28,7 @@ iframe { width: 100%; height: 1000px; border: none; border-radius: 8px; }
 .fallback a { color: #1f3c88; text-decoration: none; font-weight: bold; }
 .fallback a:hover { text-decoration: underline; }
 .section { margin-bottom: 25px; }
-</style>
+</style><style>.csl-entry{text-indent: -1.5em; margin-left: 1.5em;}</style>
 
 <script src="http://orgmode.org/org-info.js">
 // @license magnet:?xt=urn:btih:1f739d935676111cfff4b4693e3816e664797050&amp;dn=gpl-3.0.txt GPL-v3-or-Later
@@ -89,92 +89,159 @@ org_html_manager.setup();  // activate after the parameters are set
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents" role="doc-toc">
 <ul>
-<li><a href="#org38f1b99">Introduction</a></li>
-<li><a href="#orga2bb8fe">Lecture 1: The Power of Compounded Interest and Employment Dynamics</a>
+<li><a href="#org49a5fee">Introduction</a></li>
+<li><a href="#orga8776ad">Lecture 1: The Power of Compounded Interest and Employment Dynamics</a>
 <ul>
-<li><a href="#org0b36870">Apps</a>
+<li><a href="#org68f6767">Apps</a>
 <ul>
-<li><a href="#orgbcc63c4">Compounded interest</a></li>
-<li><a href="#org6769efb">Employment dynamics</a></li>
+<li><a href="#orgda37bae">Compounded interest</a></li>
+<li><a href="#orgcb7dce9">Employment dynamics</a></li>
 </ul>
 </li>
-<li><a href="#org6eb2e8f">Python Code Explanation</a>
+<li><a href="#org9bd6cec">Python Code Explanation</a>
 <ul>
-<li><a href="#orga37463e">Compounded Interest Model</a></li>
-<li><a href="#org2672edd">Employment Dynamics Model</a></li>
-<li><a href="#org6036c0c">Parameter Sweep: Long-run Unemployment Rate</a></li>
+<li><a href="#org41d331f">Compounded Interest Model</a></li>
+<li><a href="#orgce09667">Employment Dynamics Model</a></li>
+<li><a href="#org2b5987c">Parameter Sweep: Long-run Unemployment Rate</a></li>
 </ul>
 </li>
-<li><a href="#org28eae35">Review Questions</a>
+<li><a href="#orgfb05fff">Review Questions</a>
 <ul>
-<li><a href="#org4c9cac6">Question 1: Predicting the Future Value</a></li>
-<li><a href="#org0bd93e6">Question 2: Unemployment Fluctuations</a></li>
-<li><a href="#org372a211">Question 3: Parameter Sweep Analysis</a></li>
-</ul>
-</li>
-</ul>
-</li>
-<li><a href="#org0e12224">Lecture 2: Healthcare expenditure</a>
-<ul>
-<li><a href="#orgfc1278e">App: Healthcare expenditure</a></li>
-<li><a href="#org9d38d96">Python Code Explanation</a>
-<ul>
-<li><a href="#orgbad7743">1. Reading the data</a></li>
-<li><a href="#org8e7e2f0">2. Plotting the data</a></li>
-<li><a href="#org8df6238">3. Defining a linear trend function</a></li>
-<li><a href="#orgd99e6c1">4. Fitting and visualizing the trend</a></li>
-<li><a href="#org326b778">5. Using optimization to find the best fit</a></li>
-<li><a href="#orgc4ac486">6. Visualizing the optimal fit</a></li>
-<li><a href="#orgff07252">7. Extending the model</a></li>
-<li><a href="#orga09ce80">8. Extrapolating the OLS Linear Trend to 2050</a></li>
-<li><a href="#org9e8c6c0">9. Multi-variable Regression: Adding GDP and OOP</a></li>
-<li><a href="#org44ae8bb">10. Using a Numerical Solver (<code>fsolve</code>) to Find Required OOP Levels</a></li>
-<li><a href="#org93f61f1">Summary of what the code does</a></li>
-</ul>
-</li>
-<li><a href="#org7e94808">Review questions</a>
-<ul>
-<li><a href="#orge049205">Question 1: Create Your Own Multi-variable Regression</a></li>
-<li><a href="#org139f6ba">Question 2: Use fsolve to Find the GDP Needed to Keep Expenditure Constant</a></li>
-<li><a href="#org00e5d54">Question 3: analyze the following three functions</a></li>
+<li><a href="#org90ba8b9">Question 1: Predicting the Future Value</a></li>
+<li><a href="#orgb51a413">Question 2: Unemployment Fluctuations</a></li>
+<li><a href="#org955086d">Question 3: Parameter Sweep Analysis</a></li>
 </ul>
 </li>
 </ul>
 </li>
-<li><a href="#org22816ed">Lecture 3: Modeling Iteration</a>
+<li><a href="#org9ff03ad">Lecture 2: Healthcare expenditure</a>
 <ul>
-<li><a href="#orge790312">Apps</a>
+<li><a href="#org93816ac">App: Healthcare expenditure</a></li>
+<li><a href="#org9edad5a">Python Code Explanation</a>
 <ul>
-<li><a href="#org014b438">Adverse selection dynamics</a></li>
-<li><a href="#org86e6a42">Cournot best response dynamics</a></li>
-<li><a href="#org54608e3">Unemployment dynamics</a></li>
+<li><a href="#orga3c0898">1. Reading the data</a></li>
+<li><a href="#orgf787512">2. Plotting the data</a></li>
+<li><a href="#org29eb390">3. Defining a linear trend function</a></li>
+<li><a href="#orgbce88d0">4. Fitting and visualizing the trend</a></li>
+<li><a href="#org4c133db">5. Using optimization to find the best fit</a></li>
+<li><a href="#orgf7e51d6">6. Visualizing the optimal fit</a></li>
+<li><a href="#org887edaa">7. Extending the model</a></li>
+<li><a href="#org7a339a6">8. Extrapolating the OLS Linear Trend to 2050</a></li>
+<li><a href="#org24a5a0c">9. Multi-variable Regression: Adding GDP and OOP</a></li>
+<li><a href="#org4112774">10. Using a Numerical Solver (<code>fsolve</code>) to Find Required OOP Levels</a></li>
+<li><a href="#org33f4a3f">Summary of what the code does</a></li>
 </ul>
 </li>
-<li><a href="#org1fa35eb">Python Code Explanation</a>
+<li><a href="#org68b614b">Review questions</a>
 <ul>
-<li><a href="#org47b01dc">Adverse Selection Model</a></li>
-<li><a href="#org7f62a64">Cournot Duopoly Model</a></li>
-<li><a href="#org462e713">Labour Market Markov Model</a></li>
+<li><a href="#org1c1f0e1">Question 1: Create Your Own Multi-variable Regression</a></li>
+<li><a href="#orgc6c9fb9">Question 2: Use fsolve to Find the GDP Needed to Keep Expenditure Constant</a></li>
+<li><a href="#org56e2a1b">Question 3: analyze the following three functions</a></li>
 </ul>
 </li>
-<li><a href="#orgdc3ad22">Review questions</a>
+</ul>
+</li>
+<li><a href="#orgd009709">Lecture 3: Modeling Iteration</a>
 <ul>
-<li><a href="#org5f7adff">1. Adverse Selection: Does Increasing Mark-Up Always Restore Trade?</a></li>
-<li><a href="#org9fff4b9">2. Cournot Duopoly: Add a Third Firm</a></li>
-<li><a href="#org8787993">3. Labor Market: Steady State Without Iteration</a></li>
-<li><a href="#org13cd2e8">4. Matrix Notation: Simulation With Numpy Only</a></li>
-<li><a href="#org610f6ec">5. Extending the Labor Model: Add a Direct High Wage Offer Channel</a></li>
+<li><a href="#orgc666364">Apps</a>
+<ul>
+<li><a href="#orgb51eab2">Adverse selection dynamics</a></li>
+<li><a href="#orga882816">Cournot best response dynamics</a></li>
+<li><a href="#org4304a9f">Unemployment dynamics</a></li>
+</ul>
+</li>
+<li><a href="#orgc0704b3">Python Code Explanation</a>
+<ul>
+<li><a href="#orgb82b588">Adverse Selection Model</a></li>
+<li><a href="#org0512ac8">Cournot Duopoly Model</a></li>
+<li><a href="#orgb9842c8">Labour Market Markov Model</a></li>
+</ul>
+</li>
+<li><a href="#org0e759b3">Review questions</a>
+<ul>
+<li><a href="#org3169c2d">1. Adverse Selection: Does Increasing Mark-Up Always Restore Trade?</a></li>
+<li><a href="#org8cc1b6f">2. Cournot Duopoly: Add a Third Firm</a></li>
+<li><a href="#org9bbc970">3. Labor Market: Steady State Without Iteration</a></li>
+<li><a href="#org2f274ee">4. Matrix Notation: Simulation With Numpy Only</a></li>
+<li><a href="#org6fe043e">5. Extending the Labor Model: Add a Direct High Wage Offer Channel</a></li>
 </ul>
 </li>
 </ul>
 </li>
+<li><a href="#lecture_search_matching">Lecture 4: Search and Matching in the Labor Market</a>
+<ul>
+<li><a href="#org95788cb">App</a>
+<ul>
+<li><a href="#org86c16d8">Model structure</a></li>
+<li><a href="#org814f623">Wage determination</a></li>
+<li><a href="#org6e0457b">Data</a></li>
+<li><a href="#orgb45bedc">Immigration shock</a></li>
+<li><a href="#orga2449a6">Short-run effect</a></li>
+<li><a href="#orgdc3f328">Long-run adjustment</a></li>
+<li><a href="#org5b9003e">Effect of immigration</a></li>
+</ul>
+</li>
+<li><a href="#orgbe65985">Python Code Explanation</a>
+<ul>
+<li><a href="#orgf33a315">1. Import libraries</a></li>
+<li><a href="#orgea01d26">2. Load the data</a></li>
+<li><a href="#org002bab3">3. Model parameters from the literature</a></li>
+<li><a href="#org2a415f1">4. Matching function and wage equation</a></li>
+<li><a href="#orgbf00319">5. Estimating model parameters</a></li>
+<li><a href="#org1aa213d">6. Run the estimation</a></li>
+<li><a href="#org1d6cb31">7. Compare model predictions to data</a></li>
+<li><a href="#org8426cf1">8. Interactive immigration shock (marimo slider)</a></li>
+<li><a href="#orgd9a8e9b">9. Compute short‑run effects</a></li>
+<li><a href="#org99c1a90">10. Plot the wage curve</a></li>
+</ul>
+</li>
+<li><a href="#orgbd5b5f8">Review questions</a>
+<ul>
+<li><a href="#org85ab009">Question 1. Simulating the matching function</a></li>
+<li><a href="#orge1b8ccc">Question 2. Job-finding probability</a></li>
+<li><a href="#orgcc8b3e1">Question 3. Wage curve</a></li>
+<li><a href="#orgf68c9cf">Question 4. Immigration shock in the short run</a></li>
+<li><a href="#orgddac1cd">Question 5. Estimating the matching function</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#lecture_dynamics">Lecture 5: Modeling Dynamics</a>
+<ul>
+<li><a href="#org9d4ef59">Solving Dynamic Economic Models</a></li>
+<li><a href="#org06a6b7b">Apps</a>
+<ul>
+<li><a href="#org93d2f18">Solow model</a></li>
+<li><a href="#org0060bf9">Mechanism design</a></li>
+<li><a href="#org632207d">Learning by doing</a></li>
+</ul>
+</li>
+<li><a href="#orgc113852">Python Code Explanation</a>
+<ul>
+<li><a href="#org07a1caa">Interactivity in Marimo</a></li>
+<li><a href="#org2bd748c">Solving Differential Equations in SciPy</a></li>
+<li><a href="#orga7b28f6">Solow Growth Model</a></li>
+<li><a href="#org1a9d9d6">Mechanism Design Model</a></li>
+<li><a href="#org6800708">Dynamic Pricing with Learning</a></li>
+</ul>
+</li>
+<li><a href="#orgf7f8b40">Review questions</a>
+<ul>
+<li><a href="#org2eb360f">Solow model</a></li>
+<li><a href="#orgf4bde95">Mechanism design</a></li>
+<li><a href="#org2b69471">Learning-by-doing</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#orgabebd4f">Bibliography</a></li>
 </ul>
 </div>
 </div>
 <main>
-<div id="outline-container-org38f1b99" class="outline-2">
-<h2 id="org38f1b99">Introduction</h2>
-<div class="outline-text-2" id="text-org38f1b99">
+<div id="outline-container-org49a5fee" class="outline-2">
+<h2 id="org49a5fee">Introduction</h2>
+<div class="outline-text-2" id="text-org49a5fee">
 <p>
 The idea of these lectures is to combine Python programing with economics. The overall goal is for you to acquire the skills to transfer information/knowledge to others (say, future colleagues) using more instruments than just written text.
 </p>
@@ -202,9 +269,9 @@ Our advice is to have this website open to read the information and next to it h
 </p>
 </div>
 </div>
-<div id="outline-container-orga2bb8fe" class="outline-2 section">
-<h2 id="orga2bb8fe">Lecture 1: The Power of Compounded Interest and Employment Dynamics</h2>
-<div class="outline-text-2" id="text-orga2bb8fe">
+<div id="outline-container-orga8776ad" class="outline-2 section">
+<h2 id="orga8776ad">Lecture 1: The Power of Compounded Interest and Employment Dynamics</h2>
+<div class="outline-text-2" id="text-orga8776ad">
 <p>
 In this lecture we program two simple apps. First, we model compounded interest and then we model employment dynamics in a labor market. Along the way you learn the following Python concepts:
 </p>
@@ -217,9 +284,9 @@ In this lecture we program two simple apps. First, we model compounded interest 
 <li>parameter sweep</li>
 </ul>
 </div>
-<div id="outline-container-org0b36870" class="outline-3">
-<h3 id="org0b36870">Apps</h3>
-<div class="outline-text-3" id="text-org0b36870">
+<div id="outline-container-org68f6767" class="outline-3">
+<h3 id="org68f6767">Apps</h3>
+<div class="outline-text-3" id="text-org68f6767">
 <p>
 This lecture introduces Python through two economic models:
 </p>
@@ -233,9 +300,9 @@ This lecture introduces Python through two economic models:
 You can experiment with both models in the interactive demos below.
 </p>
 </div>
-<div id="outline-container-orgbcc63c4" class="outline-4 section">
-<h4 id="orgbcc63c4">Compounded interest</h4>
-<div class="outline-text-4" id="text-orgbcc63c4">
+<div id="outline-container-orgda37bae" class="outline-4 section">
+<h4 id="orgda37bae">Compounded interest</h4>
+<div class="outline-text-4" id="text-orgda37bae">
 <p>
 The following app illustrates how a lower monthly deposit can be &ldquo;compensated&rdquo; by a higher interest rate and lead to a higher final balance then a high monthly deposit with lower interest rate. Adjust the sliders by setting a relatively high deposit and low interest rate in scenario 1 and low deposit with high interest rate in scenario 2. Click the &rsquo;Calculate&rsquo; button to see how the balance develops over time in each scenario.
 </p>
@@ -255,9 +322,9 @@ The following app illustrates how a lower monthly deposit can be &ldquo;compensa
 </div>
 </div>
 </div>
-<div id="outline-container-org6769efb" class="outline-4 section">
-<h4 id="org6769efb">Employment dynamics</h4>
-<div class="outline-text-4" id="text-org6769efb">
+<div id="outline-container-orgcb7dce9" class="outline-4 section">
+<h4 id="orgcb7dce9">Employment dynamics</h4>
+<div class="outline-text-4" id="text-orgcb7dce9">
 <p>
 The following app illustrates how employment/unemployment evolves in a small town with 20 inhabitants. We start with full employment. With the sliders you can set the probability that an employee is fired (say, because her firm goes bankrupt) and the probability that an unemployed person is hired. Select the number of periods for which you want to run the simulation and click the &rsquo;Run Simulation&rsquo; button.
 </p>
@@ -283,16 +350,16 @@ The second app illustrates a parameter sweep. This shows how sensitive an outcom
 </div>
 </div>
 </div>
-<div id="outline-container-org6eb2e8f" class="outline-3">
-<h3 id="org6eb2e8f">Python Code Explanation</h3>
-<div class="outline-text-3" id="text-org6eb2e8f">
+<div id="outline-container-org9bd6cec" class="outline-3">
+<h3 id="org9bd6cec">Python Code Explanation</h3>
+<div class="outline-text-3" id="text-org9bd6cec">
 <p>
 In this section we explain the Python code for the model itself, not yet for the interactive elements. In a next lecture we explain how to create sliders for parameters.
 </p>
 </div>
-<div id="outline-container-orga37463e" class="outline-4">
-<h4 id="orga37463e">Compounded Interest Model</h4>
-<div class="outline-text-4" id="text-orga37463e">
+<div id="outline-container-org41d331f" class="outline-4">
+<h4 id="org41d331f">Compounded Interest Model</h4>
+<div class="outline-text-4" id="text-org41d331f">
 <p>
 Let&rsquo;s see how you can model the growth of a bank account with regular deposits and compounded interest in Python.
 </p>
@@ -302,8 +369,8 @@ If you want to learn to program in Python, our advice is that you type the code 
 </p>
 </div>
 <ul class="org-ul">
-<li><a id="orgfe8f190"></a>1. Set the parameters<br />
-<div class="outline-text-5" id="text-orgfe8f190">
+<li><a id="org9fc61fa"></a>1. Set the parameters<br />
+<div class="outline-text-5" id="text-org9fc61fa">
 <p>
 We start by defining the monthly deposit, the monthly interest rate, and the number of months. Here, we use euros as the currency.
 </p>
@@ -313,15 +380,15 @@ We do this by defining variables, like <code>deposit</code>, and give these a va
 </p>
 
 <div class="org-src-container">
-<pre class="src src-jupyter-python"><span style="color: #005e8b;">deposit</span> = 500      <span style="color: #7f0000;"># </span><span style="color: #7f0000;">euros per month
-</span><span style="color: #005e8b;">rate</span> = 0.003        <span style="color: #7f0000;"># </span><span style="color: #7f0000;">monthly interest rate (0.3%)
-</span><span style="color: #005e8b;">months</span> = 20 * 12    <span style="color: #7f0000;"># </span><span style="color: #7f0000;">20 years</span>
-</pre>
+<pre class="src src-jupyter-python"><code><span style="color: #005e8b;">deposit</span> = 500      <span style="color: #7f0000;"># </span><span style="color: #7f0000;">euros per month</span>
+<span style="color: #005e8b;">rate</span> = 0.003        <span style="color: #7f0000;"># </span><span style="color: #7f0000;">monthly interest rate (0.3%)</span>
+<span style="color: #005e8b;">months</span> = 20 * 12    <span style="color: #7f0000;"># </span><span style="color: #7f0000;">20 years</span>
+</code></pre>
 </div>
 </div>
 </li>
-<li><a id="orge8620d3"></a>2. Initialize the balance and create an empty list<br />
-<div class="outline-text-5" id="text-orge8620d3">
+<li><a id="org8285c73"></a>2. Initialize the balance and create an empty list<br />
+<div class="outline-text-5" id="text-org8285c73">
 <p>
 We start with a balance of zero. We also create an empty <code>list</code> called <code>balances</code> to store the account balance at each month.
 </p>
@@ -332,14 +399,14 @@ We use a list here so we can keep track of the balance after each month, which i
 </p>
 
 <div class="org-src-container">
-<pre class="src src-jupyter-python"><span style="color: #005e8b;">balance</span> = 0
+<pre class="src src-jupyter-python"><code><span style="color: #005e8b;">balance</span> = 0
 <span style="color: #005e8b;">balances</span> = []
-</pre>
+</code></pre>
 </div>
 </div>
 </li>
-<li><a id="orgc81f225"></a>3. Simulate the account growth with a for loop<br />
-<div class="outline-text-5" id="text-orgc81f225">
+<li><a id="org3b1a08a"></a>3. Simulate the account growth with a for loop<br />
+<div class="outline-text-5" id="text-org3b1a08a">
 <p>
 We use a <code>for</code> loop to repeat the same calculation for each month.
 In each iteration, we first store the current balance in the list, then update the balance by adding the deposit and applying the interest.
@@ -353,15 +420,15 @@ This adds the current balance to the end of the <code>balances</code> list.</li>
 </ul>
 
 <div class="org-src-container">
-<pre class="src src-jupyter-python"><span style="color: #531ab6;">for</span> m <span style="color: #531ab6;">in</span> <span style="color: #8f0075;">range</span>(months + 1):
+<pre class="src src-jupyter-python"><code><span style="color: #531ab6;">for</span> m <span style="color: #531ab6;">in</span> <span style="color: #8f0075;">range</span>(months + 1):
     balances.append(balance)
     <span style="color: #005e8b;">balance</span> = balance * (1 + rate) + deposit
-</pre>
+</code></pre>
 </div>
 </div>
 </li>
-<li><a id="orgd365221"></a>4. Plot the results<br />
-<div class="outline-text-5" id="text-orgd365221">
+<li><a id="org0da67bb"></a>4. Plot the results<br />
+<div class="outline-text-5" id="text-org0da67bb">
 <p>
 We use <code>matplotlib</code> to visualize the growth of the account over time.
 </p>
@@ -378,7 +445,7 @@ the first for the x-axis, years, and the second for the y-axis, balances in euro
 </ul>
 
 <div class="org-src-container">
-<pre class="src src-jupyter-python"><span style="color: #531ab6;">import</span> matplotlib.pyplot <span style="color: #531ab6;">as</span> plt
+<pre class="src src-jupyter-python"><code><span style="color: #531ab6;">import</span> matplotlib.pyplot <span style="color: #531ab6;">as</span> plt
 <span style="color: #531ab6;">import</span> numpy <span style="color: #531ab6;">as</span> np
 
 <span style="color: #005e8b;">years</span> = np.arange(months + 1) / 12
@@ -386,11 +453,11 @@ plt.plot(years, balances)
 plt.xlabel(<span style="color: #3548cf;">"Years"</span>)
 plt.ylabel(<span style="color: #3548cf;">"Account Balance (&#8364;)"</span>)
 plt.title(<span style="color: #3548cf;">"Compounded Interest Over Time"</span>);
-</pre>
+</code></pre>
 </div>
 
 
-<div id="org62baf43" class="figure">
+<div id="orgc80da38" class="figure">
 <p><img src="./figures/compounded_interest.png" alt="compounded_interest.png" />
 </p>
 </div>
@@ -400,10 +467,10 @@ Use an LLM to figure out what the following Python code does:
 </p>
 
 <div class="org-src-container">
-<pre class="src src-jupyter-python"><span style="color: #005e8b;">periods</span> = months + 1
+<pre class="src src-jupyter-python"><code><span style="color: #005e8b;">periods</span> = months + 1
 <span style="color: #005e8b;">factors</span> = np.power(1 + rate, np.arange(periods))
 <span style="color: #005e8b;">balances</span> = deposit * np.cumsum(factors)
-</pre>
+</code></pre>
 </div>
 
 <hr />
@@ -411,47 +478,47 @@ Use an LLM to figure out what the following Python code does:
 </li>
 </ul>
 </div>
-<div id="outline-container-org2672edd" class="outline-4">
-<h4 id="org2672edd">Employment Dynamics Model</h4>
-<div class="outline-text-4" id="text-org2672edd">
+<div id="outline-container-orgce09667" class="outline-4">
+<h4 id="orgce09667">Employment Dynamics Model</h4>
+<div class="outline-text-4" id="text-orgce09667">
 <p>
 Let&rsquo;s break down the Python code for simulating employment and unemployment in a small village.
 </p>
 </div>
 <ul class="org-ul">
-<li><a id="org71eef4b"></a>1. Set the parameters<br />
-<div class="outline-text-5" id="text-org71eef4b">
+<li><a id="org445233c"></a>1. Set the parameters<br />
+<div class="outline-text-5" id="text-org445233c">
 <p>
 We define the number of people, the probabilities, and the number of time steps. Copy this into your <code>marimo</code> notebook and see what happens if you change the value of the variable <code>n_people</code> to, say, 1000.
 </p>
 
 <div class="org-src-container">
-<pre class="src src-jupyter-python"><span style="color: #005e8b;">n_people</span> = 20
-<span style="color: #005e8b;">p_fired</span> = 0.05   <span style="color: #7f0000;"># </span><span style="color: #7f0000;">probability an employed person is fired each step
-</span><span style="color: #005e8b;">p_hired</span> = 0.10   <span style="color: #7f0000;"># </span><span style="color: #7f0000;">probability an unemployed person finds a job each step
-</span><span style="color: #005e8b;">n_steps</span> = 100
-</pre>
+<pre class="src src-jupyter-python"><code><span style="color: #005e8b;">n_people</span> = 20
+<span style="color: #005e8b;">p_fired</span> = 0.05   <span style="color: #7f0000;"># </span><span style="color: #7f0000;">probability an employed person is fired each step</span>
+<span style="color: #005e8b;">p_hired</span> = 0.10   <span style="color: #7f0000;"># </span><span style="color: #7f0000;">probability an unemployed person finds a job each step</span>
+<span style="color: #005e8b;">n_steps</span> = 100
+</code></pre>
 </div>
 </div>
 </li>
-<li><a id="org6007d11"></a>2. Initialize the state<br />
-<div class="outline-text-5" id="text-org6007d11">
+<li><a id="orgd0596f8"></a>2. Initialize the state<br />
+<div class="outline-text-5" id="text-orgd0596f8">
 <p>
 We start with everyone employed.
 We create lists to store the number of employed and unemployed people at each time step.
 </p>
 
 <div class="org-src-container">
-<pre class="src src-jupyter-python"><span style="color: #005e8b;">employed</span> = n_people
+<pre class="src src-jupyter-python"><code><span style="color: #005e8b;">employed</span> = n_people
 <span style="color: #005e8b;">unemployed</span> = 0
 <span style="color: #005e8b;">employed_hist</span> = [employed]
 <span style="color: #005e8b;">unemployed_hist</span> = [unemployed]
-</pre>
+</code></pre>
 </div>
 </div>
 </li>
-<li><a id="orgfcceeef"></a>3. Simulate the process with a for loop<br />
-<div class="outline-text-5" id="text-orgfcceeef">
+<li><a id="orga0a01c6"></a>3. Simulate the process with a for loop<br />
+<div class="outline-text-5" id="text-orga0a01c6">
 <p>
 For each time step:
 </p>
@@ -474,19 +541,19 @@ Above we have already seen the use of <code>append</code> to &ldquo;add&rdquo; a
 </p>
 
 <div class="org-src-container">
-<pre class="src src-jupyter-python"><span style="color: #531ab6;">for</span> t <span style="color: #531ab6;">in</span> <span style="color: #8f0075;">range</span>(n_steps):
+<pre class="src src-jupyter-python"><code><span style="color: #531ab6;">for</span> t <span style="color: #531ab6;">in</span> <span style="color: #8f0075;">range</span>(n_steps):
     <span style="color: #005e8b;">fired</span> = np.random.binomial(employed, p_fired)
     <span style="color: #005e8b;">hired</span> = np.random.binomial(unemployed, p_hired)
     <span style="color: #005e8b;">employed</span> = employed - fired + hired
     <span style="color: #005e8b;">unemployed</span> = n_people - employed
     employed_hist.append(employed)
     unemployed_hist.append(unemployed)
-</pre>
+</code></pre>
 </div>
 </div>
 </li>
-<li><a id="org02702cc"></a>4. Plot the results<br />
-<div class="outline-text-5" id="text-org02702cc">
+<li><a id="org0c38d35"></a>4. Plot the results<br />
+<div class="outline-text-5" id="text-org0c38d35">
 <p>
 We use <code>matplotlib</code> to plot the number of employed and unemployed people over time.
 </p>
@@ -496,7 +563,7 @@ When you add a label to a <code>plt.plot</code> or <code>plt.scatter</code> comm
 </p>
 
 <div class="org-src-container">
-<pre class="src src-jupyter-python"><span style="color: #005e8b;">steps</span> = np.arange(n_steps + 1)
+<pre class="src src-jupyter-python"><code><span style="color: #005e8b;">steps</span> = np.arange(n_steps + 1)
 plt.plot(steps, employed_hist, label=<span style="color: #3548cf;">"Employed"</span>)
 plt.plot(steps, unemployed_hist, label=<span style="color: #3548cf;">"Unemployed"</span>)
 plt.xlabel(<span style="color: #3548cf;">"Time step"</span>)
@@ -504,18 +571,18 @@ plt.ylabel(<span style="color: #3548cf;">"Number of people"</span>)
 plt.title(<span style="color: #3548cf;">"Employment and Unemployment Over Time"</span>)
 plt.legend()
 plt.grid(<span style="color: #0000b0;">True</span>)
-</pre>
+</code></pre>
 </div>
 
 
-<div id="orge1898c2" class="figure">
+<div id="orgbce41f2" class="figure">
 <p><img src="./figures/employed_unemployed.png" alt="employed_unemployed.png" />
 </p>
 </div>
 </div>
 <ul class="org-ul">
-<li><a id="org9fadd7d"></a>Summary of what the code does<br />
-<div class="outline-text-6" id="text-org9fadd7d">
+<li><a id="orgad9911a"></a>Summary of what the code does<br />
+<div class="outline-text-6" id="text-orgad9911a">
 <ul class="org-ul">
 <li><b>Step 1:</b> Set the parameters for the simulation.</li>
 <li><b>Step 2:</b> Initialize the state and lists to store the results.</li>
@@ -534,9 +601,9 @@ This model demonstrates how randomness and probabilities can be used to simulate
 </li>
 </ul>
 </div>
-<div id="outline-container-org6036c0c" class="outline-4">
-<h4 id="org6036c0c">Parameter Sweep: Long-run Unemployment Rate</h4>
-<div class="outline-text-4" id="text-org6036c0c">
+<div id="outline-container-org2b5987c" class="outline-4">
+<h4 id="org2b5987c">Parameter Sweep: Long-run Unemployment Rate</h4>
+<div class="outline-text-4" id="text-org2b5987c">
 <p>
 A question when doing simulations is: how sensitive are the simulation results to the parameter values chosen. One way to get an idea of this sensitivity is to run the simulations for a sweep of parameter values. We illustrate this by analyzing long run or steady state unemployment. In the simulations we program long run unemployment as follows:
 </p>
@@ -558,8 +625,8 @@ As the model is quite simple, we can actually derive the steady state unemployme
 </div>
 </div>
 <ul class="org-ul">
-<li><a id="org3502622"></a>5. Sweep code<br />
-<div class="outline-text-5" id="text-org3502622">
+<li><a id="org5bcd4c0"></a>5. Sweep code<br />
+<div class="outline-text-5" id="text-org5bcd4c0">
 <p>
 Two points on the code:
 </p>
@@ -569,10 +636,10 @@ Two points on the code:
 </ul>
 
 <div class="org-src-container">
-<pre class="src src-jupyter-python"><span style="color: #005e8b;">n_people</span> = 20
+<pre class="src src-jupyter-python"><code><span style="color: #005e8b;">n_people</span> = 20
 <span style="color: #005e8b;">n_steps</span> = 200
-<span style="color: #005e8b;">p_fired</span> = 0.05  <span style="color: #7f0000;"># </span><span style="color: #7f0000;">fixed probability of being fired
-</span><span style="color: #005e8b;">sweep_p_hired</span> = np.linspace(0.1, 0.9, 30)
+<span style="color: #005e8b;">p_fired</span> = 0.05  <span style="color: #7f0000;"># </span><span style="color: #7f0000;">fixed probability of being fired</span>
+<span style="color: #005e8b;">sweep_p_hired</span> = np.linspace(0.1, 0.9, 30)
 <span style="color: #005e8b;">avg_unemp</span> = []
 <span style="color: #005e8b;">analytic_unemp</span> = []
 
@@ -586,19 +653,19 @@ Two points on the code:
         <span style="color: #005e8b;">employed</span> = employed - fired + hired
         <span style="color: #005e8b;">unemployed</span> = n_people - employed
         unemployed_hist.append(unemployed)
-    <span style="color: #7f0000;"># </span><span style="color: #7f0000;">Average unemployment rate over last 50 steps
-</span>    avg_unemp.append(np.mean(unemployed_hist[-50:]) / n_people)
-    <span style="color: #7f0000;"># </span><span style="color: #7f0000;">Analytic steady-state
-</span>    <span style="color: #005e8b;">u_analytic</span> = p_fired / (p_fired + p_h)
+    <span style="color: #7f0000;"># </span><span style="color: #7f0000;">Average unemployment rate over last 50 steps</span>
+    avg_unemp.append(np.mean(unemployed_hist[-50:]) / n_people)
+    <span style="color: #7f0000;"># </span><span style="color: #7f0000;">Analytic steady-state</span>
+    <span style="color: #005e8b;">u_analytic</span> = p_fired / (p_fired + p_h)
     analytic_unemp.append(u_analytic)
-</pre>
+</code></pre>
 </div>
 </div>
 </li>
-<li><a id="org148a905"></a>6. Plotting the sweep results<br />
-<div class="outline-text-5" id="text-org148a905">
+<li><a id="org7e67611"></a>6. Plotting the sweep results<br />
+<div class="outline-text-5" id="text-org7e67611">
 <div class="org-src-container">
-<pre class="src src-jupyter-python">plt.plot(sweep_p_hired, avg_unemp, label=<span style="color: #3548cf;">"Simulated (last 50 steps)"</span>)
+<pre class="src src-jupyter-python"><code>plt.plot(sweep_p_hired, avg_unemp, label=<span style="color: #3548cf;">"Simulated (last 50 steps)"</span>)
 plt.plot(sweep_p_hired, analytic_unemp, <span style="color: #3548cf;">'--'</span>, label=<span style="color: #3548cf;">"Analytic steady-state"</span>)
 plt.xlabel(<span style="color: #3548cf;">"Probability of finding a job"</span>)
 plt.ylabel(<span style="color: #3548cf;">"Unemployment rate"</span>)
@@ -606,18 +673,18 @@ plt.title(<span style="color: #3548cf;">"Long-run Unemployment Rate vs. Probabil
 plt.legend()
 plt.grid(<span style="color: #0000b0;">True</span>)
 plt.show()
-</pre>
+</code></pre>
 </div>
 
 
-<div id="org605397d" class="figure">
+<div id="org1cd5da3" class="figure">
 <p><img src="./figures/steady_state_unemployment.png" alt="steady_state_unemployment.png" />
 </p>
 </div>
 </div>
 <ul class="org-ul">
-<li><a id="orgab3af83"></a>Summary of what the code does<br />
-<div class="outline-text-6" id="text-orgab3af83">
+<li><a id="orgfaf66b9"></a>Summary of what the code does<br />
+<div class="outline-text-6" id="text-orgfaf66b9">
 <ul class="org-ul">
 <li><b>Step 1-4:</b> Simulate the employment dynamics as before.</li>
 <li><b>Step 5:</b> For a range of probabilities of finding a job, run the simulation and compute the average unemployment rate in the long run. Also compute the analytic steady-state unemployment rate:</li>
@@ -643,9 +710,9 @@ Sweeping parameters is a powerful way to explore how a model behaves as you chan
 </ul>
 </div>
 </div>
-<div id="outline-container-org28eae35" class="outline-3">
-<h3 id="org28eae35">Review Questions</h3>
-<div class="outline-text-3" id="text-org28eae35">
+<div id="outline-container-orgfb05fff" class="outline-3">
+<h3 id="orgfb05fff">Review Questions</h3>
+<div class="outline-text-3" id="text-orgfb05fff">
 <p>
 Test your understanding of the Python concepts and models from this lecture.
 Each question gives you some code and context. For each:
@@ -658,22 +725,22 @@ Each question gives you some code and context. For each:
 
 <hr />
 </div>
-<div id="outline-container-org4c9cac6" class="outline-4">
-<h4 id="org4c9cac6">Question 1: Predicting the Future Value</h4>
-<div class="outline-text-4" id="text-org4c9cac6">
+<div id="outline-container-org90ba8b9" class="outline-4">
+<h4 id="org90ba8b9">Question 1: Predicting the Future Value</h4>
+<div class="outline-text-4" id="text-org90ba8b9">
 <p>
 You want to predict the future value of a savings account after 10 years, but you only know the monthly deposit and the interest rate.
 You are given the following code fragment:
 </p>
 
 <div class="org-src-container">
-<pre class="src src-jupyter-python"><span style="color: #005e8b;">deposit</span> = 100
+<pre class="src src-jupyter-python"><code><span style="color: #005e8b;">deposit</span> = 100
 <span style="color: #005e8b;">rate</span> = 0.004
 <span style="color: #005e8b;">months</span> = 10 * 12
 <span style="color: #005e8b;">balance</span> = 0
 <span style="color: #531ab6;">for</span> m <span style="color: #531ab6;">in</span> <span style="color: #8f0075;">range</span>(months):
     <span style="color: #7f0000;"># </span><span style="color: #7f0000;">update balance here</span>
-</pre>
+</code></pre>
 </div>
 
 <ul class="org-ul">
@@ -703,15 +770,15 @@ For this question you need to use an <code>if</code> statement. Google &ldquo;if
 <hr />
 </div>
 </div>
-<div id="outline-container-org0bd93e6" class="outline-4">
-<h4 id="org0bd93e6">Question 2: Unemployment Fluctuations</h4>
-<div class="outline-text-4" id="text-org0bd93e6">
+<div id="outline-container-orgb51a413" class="outline-4">
+<h4 id="orgb51a413">Question 2: Unemployment Fluctuations</h4>
+<div class="outline-text-4" id="text-orgb51a413">
 <p>
 Suppose you want to simulate unemployment in a village, but you want to track the longest streak of consecutive months where unemployment is above 5 people.
 </p>
 
 <div class="org-src-container">
-<pre class="src src-jupyter-python"><span style="color: #005e8b;">n_people</span> = 20
+<pre class="src src-jupyter-python"><code><span style="color: #005e8b;">n_people</span> = 20
 <span style="color: #005e8b;">employed</span> = n_people
 <span style="color: #005e8b;">unemployed</span> = 0
 <span style="color: #005e8b;">p_fired</span> = 0.05
@@ -719,10 +786,10 @@ Suppose you want to simulate unemployment in a village, but you want to track th
 <span style="color: #005e8b;">longest_streak</span> = 0
 <span style="color: #005e8b;">current_streak</span> = 0
 <span style="color: #531ab6;">for</span> month <span style="color: #531ab6;">in</span> <span style="color: #8f0075;">range</span>(months):
-    <span style="color: #7f0000;"># </span><span style="color: #7f0000;">update employed and unemployed here
-</span>    <span style="color: #531ab6;">if</span> unemployed &gt; 5:
+    <span style="color: #7f0000;"># </span><span style="color: #7f0000;">update employed and unemployed here</span>
+    <span style="color: #531ab6;">if</span> unemployed &gt; 5:
         <span style="color: #7f0000;"># </span><span style="color: #7f0000;">update streaks here</span>
-</pre>
+</code></pre>
 </div>
 
 <ul class="org-ul">
@@ -748,9 +815,9 @@ Suppose you want to simulate unemployment in a village, but you want to track th
 <hr />
 </div>
 </div>
-<div id="outline-container-org372a211" class="outline-4">
-<h4 id="org372a211">Question 3: Parameter Sweep Analysis</h4>
-<div class="outline-text-4" id="text-org372a211">
+<div id="outline-container-org955086d" class="outline-4">
+<h4 id="org955086d">Question 3: Parameter Sweep Analysis</h4>
+<div class="outline-text-4" id="text-org955086d">
 <p>
 You want to analyze how the average unemployment rate (not steady state unemployment) changes as you sweep the probability of being fired.
 Suppose you run a simulation for each value and store the results in a list called <code>avg_unemp</code>.
@@ -779,13 +846,13 @@ Suppose you run a simulation for each value and store the results in a list call
 </div>
 </div>
 </div>
-<div id="outline-container-org0e12224" class="outline-2 section">
-<h2 id="org0e12224">Lecture 2: Healthcare expenditure</h2>
-<div class="outline-text-2" id="text-org0e12224">
+<div id="outline-container-org9ff03ad" class="outline-2 section">
+<h2 id="org9ff03ad">Lecture 2: Healthcare expenditure</h2>
+<div class="outline-text-2" id="text-org9ff03ad">
 </div>
-<div id="outline-container-orgfc1278e" class="outline-3 section">
-<h3 id="orgfc1278e">App: Healthcare expenditure</h3>
-<div class="outline-text-3" id="text-orgfc1278e">
+<div id="outline-container-org93816ac" class="outline-3 section">
+<h3 id="org93816ac">App: Healthcare expenditure</h3>
+<div class="outline-text-3" id="text-org93816ac">
 <iframe
   src="https://lecture2healthcare.streamlit.app/?embed=true"
   allow="fullscreen">
@@ -801,23 +868,23 @@ Suppose you run a simulation for each value and store the results in a list call
 </div>
 </div>
 </div>
-<div id="outline-container-org9d38d96" class="outline-3 section">
-<h3 id="org9d38d96">Python Code Explanation</h3>
-<div class="outline-text-3" id="text-org9d38d96">
+<div id="outline-container-org9edad5a" class="outline-3 section">
+<h3 id="org9edad5a">Python Code Explanation</h3>
+<div class="outline-text-3" id="text-org9edad5a">
 </div>
-<div id="outline-container-orgbad7743" class="outline-4">
-<h4 id="orgbad7743">1. Reading the data</h4>
-<div class="outline-text-4" id="text-orgbad7743">
+<div id="outline-container-orga3c0898" class="outline-4">
+<h4 id="orga3c0898">1. Reading the data</h4>
+<div class="outline-text-4" id="text-orga3c0898">
 <p>
 We use <code>pandas</code> to read the csv file with healthcare expenditure data for the Netherlands over the years 2000-2024. Here we just use the <code>pd.read_csv=</code> function, but with <code>pandas</code> you can also manipulate, clean data and merge dataframes. In the function call we specify the path where the csv file can be found: <code>'./data/gdp_healthcare_nl.csv'</code>.
 </p>
 
 <div class="org-src-container">
-<pre class="src src-jupyter-python"><span style="color: #531ab6;">import</span> pandas <span style="color: #531ab6;">as</span> pd
+<pre class="src src-jupyter-python"><code><span style="color: #531ab6;">import</span> pandas <span style="color: #531ab6;">as</span> pd
 
 <span style="color: #005e8b;">df</span> = pd.read_csv(<span style="color: #3548cf;">'./data/gdp_healthcare_nl.csv'</span>)
 df.head()
-</pre>
+</code></pre>
 </div>
 
 <div>
@@ -889,15 +956,15 @@ The columns/variables in this dataframe <code>df</code> are the year of observat
 </p>
 </div>
 </div>
-<div id="outline-container-org8e7e2f0" class="outline-4">
-<h4 id="org8e7e2f0">2. Plotting the data</h4>
-<div class="outline-text-4" id="text-org8e7e2f0">
+<div id="outline-container-orgf787512" class="outline-4">
+<h4 id="orgf787512">2. Plotting the data</h4>
+<div class="outline-text-4" id="text-orgf787512">
 <p>
 We use matplotlib to plot healthcare expenditure per head over time. Use google or an LLM to find out what <code>plt.grid, plt.tight_layout</code> do.
 </p>
 
 <div class="org-src-container">
-<pre class="src src-jupyter-python"><span style="color: #531ab6;">import</span> matplotlib.pyplot <span style="color: #531ab6;">as</span> plt
+<pre class="src src-jupyter-python"><code><span style="color: #531ab6;">import</span> matplotlib.pyplot <span style="color: #531ab6;">as</span> plt
 
 plt.figure(figsize=(8,5))
 plt.plot(df.Year, df.CHE_per_head, marker=<span style="color: #3548cf;">'o'</span>, color=<span style="color: #3548cf;">'orange'</span>)
@@ -906,19 +973,19 @@ plt.ylabel(<span style="color: #3548cf;">'Healthcare Expenditure per head (Euros
 plt.title(<span style="color: #3548cf;">'Healthcare Expenditure per head in the Netherlands'</span>)
 plt.grid(<span style="color: #0000b0;">True</span>)
 plt.tight_layout()
-</pre>
+</code></pre>
 </div>
 
 
-<div id="org6bac671" class="figure">
+<div id="orgf68c56c" class="figure">
 <p><img src="./figures/healthcare_expenditure.png" alt="healthcare_expenditure.png" />
 </p>
 </div>
 </div>
 </div>
-<div id="outline-container-org8df6238" class="outline-4">
-<h4 id="org8df6238">3. Defining a linear trend function</h4>
-<div class="outline-text-4" id="text-org8df6238">
+<div id="outline-container-org29eb390" class="outline-4">
+<h4 id="org29eb390">3. Defining a linear trend function</h4>
+<div class="outline-text-4" id="text-org29eb390">
 <p>
 Now we define our first function in Python. A function is a reusable block of code. Here, we define a function to compute a linear trend. We start with the keyword <code>def</code> specify the name of the function (which you are free to choose yourself but there are some restrictions on the name you choose) and then between parentheses &rsquo;()&rsquo; you specify the arguments of the function. That is, the variables that the function needs to calculate its results.
 </p>
@@ -928,9 +995,9 @@ Here, the function has three arguments: <code>years, intercept</code> and <code>
 </p>
 
 <div class="org-src-container">
-<pre class="src src-jupyter-python"><span style="color: #531ab6;">def</span> <span style="color: #721045;">linear_trend</span>(years, intercept, slope):
+<pre class="src src-jupyter-python"><code><span style="color: #531ab6;">def</span> <span style="color: #721045;">linear_trend</span>(years, intercept, slope):
     <span style="color: #531ab6;">return</span> intercept + slope * (years - years.iloc[0])
-</pre>
+</code></pre>
 </div>
 
 <p>
@@ -938,24 +1005,24 @@ If you want to practice with defining (simpler) functions, do something like the
 </p>
 
 <div class="org-src-container">
-<pre class="src src-jupyter-python"><span style="color: #531ab6;">def</span> <span style="color: #721045;">f</span>(x):
+<pre class="src src-jupyter-python"><code><span style="color: #531ab6;">def</span> <span style="color: #721045;">f</span>(x):
     <span style="color: #531ab6;">return</span> x**2
 
 <span style="color: #005e8b;">range_x</span> = np.linspace(-1,1,50)
 plt.plot(range_x,f(range_x));
-</pre>
+</code></pre>
 </div>
 
 
-<div id="orged0c850" class="figure">
+<div id="orgca99d5f" class="figure">
 <p><img src="./figures/quadratic_function.png" alt="quadratic_function.png" />
 </p>
 </div>
 </div>
 </div>
-<div id="outline-container-orgd99e6c1" class="outline-4">
-<h4 id="orgd99e6c1">4. Fitting and visualizing the trend</h4>
-<div class="outline-text-4" id="text-orgd99e6c1">
+<div id="outline-container-orgbce88d0" class="outline-4">
+<h4 id="orgbce88d0">4. Fitting and visualizing the trend</h4>
+<div class="outline-text-4" id="text-orgbce88d0">
 <p>
 We plot the data, the linear trend, and the residuals (shown as vertical differences). Since the variable <code>years</code> is a vector, the function <code>linear_trend</code> returns a vector as well (a value for each year in <code>years</code>).
 </p>
@@ -969,7 +1036,7 @@ Finally, there is a new <code>matplotlib</code> command: <code>plt.vlines</code>
 </p>
 
 <div class="org-src-container">
-<pre class="src src-jupyter-python"><span style="color: #005e8b;">years</span> = df.Year
+<pre class="src src-jupyter-python"><code><span style="color: #005e8b;">years</span> = df.Year
 <span style="color: #005e8b;">che</span> = df.CHE_per_head
 <span style="color: #005e8b;">intercept</span> = 3660.0
 <span style="color: #005e8b;">slope</span> = 126.0
@@ -986,19 +1053,19 @@ plt.title(<span style="color: #3548cf;">'Data, Linear Trend, and Residuals: OLS 
 plt.legend()
 plt.grid(<span style="color: #0000b0;">True</span>)
 plt.tight_layout()
-</pre>
+</code></pre>
 </div>
 
 
-<div id="org15c0264" class="figure">
+<div id="org98122c0" class="figure">
 <p><img src="./figures/healthcare_expenditure_linear_trend.png" alt="healthcare_expenditure_linear_trend.png" />
 </p>
 </div>
 </div>
 </div>
-<div id="outline-container-org326b778" class="outline-4">
-<h4 id="org326b778">5. Using optimization to find the best fit</h4>
-<div class="outline-text-4" id="text-org326b778">
+<div id="outline-container-org4c133db" class="outline-4">
+<h4 id="org4c133db">5. Using optimization to find the best fit</h4>
+<div class="outline-text-4" id="text-org4c133db">
 <p>
 Above we just chose some values for <code>intercept</code> and <code>slope</code>. Now we will try to find the values that give the best fit. We follow OLS in defining &ldquo;best&rdquo; as minimizing the sum of squared residuals.
 </p>
@@ -1020,7 +1087,7 @@ The outcome of the minimization routine is captured in the variable <code>res</c
 </p>
 
 <div class="org-src-container">
-<pre class="src src-jupyter-python"><span style="color: #531ab6;">from</span> scipy.optimize <span style="color: #531ab6;">import</span> minimize
+<pre class="src src-jupyter-python"><code><span style="color: #531ab6;">from</span> scipy.optimize <span style="color: #531ab6;">import</span> minimize
 <span style="color: #531ab6;">import</span> numpy <span style="color: #531ab6;">as</span> np
 
 <span style="color: #531ab6;">def</span> <span style="color: #721045;">rss</span>(params, years=years, y=che):
@@ -1031,7 +1098,7 @@ The outcome of the minimization routine is captured in the variable <code>res</c
 <span style="color: #005e8b;">res</span> = minimize(rss, x0=[0, 0])
 <span style="color: #005e8b;">opt_intercept</span>, <span style="color: #005e8b;">opt_slope</span> = res.x
 <span style="color: #8f0075;">print</span>(res.x)
-</pre>
+</code></pre>
 </div>
 
 <pre class="example">
@@ -1039,15 +1106,15 @@ The outcome of the minimization routine is captured in the variable <code>res</c
 </pre>
 </div>
 </div>
-<div id="outline-container-orgc4ac486" class="outline-4">
-<h4 id="orgc4ac486">6. Visualizing the optimal fit</h4>
-<div class="outline-text-4" id="text-orgc4ac486">
+<div id="outline-container-orgf7e51d6" class="outline-4">
+<h4 id="orgf7e51d6">6. Visualizing the optimal fit</h4>
+<div class="outline-text-4" id="text-orgf7e51d6">
 <p>
 Now we can plot our data with the time trend that gives the best fit. To find the OLS regression line, we call our function <code>linear_trend</code> with the years variable and the optimal values <code>opt_intercept, opt_slope</code>.
 </p>
 
 <div class="org-src-container">
-<pre class="src src-jupyter-python"><span style="color: #005e8b;">opt_trend</span> = linear_trend(years, opt_intercept, opt_slope)
+<pre class="src src-jupyter-python"><code><span style="color: #005e8b;">opt_trend</span> = linear_trend(years, opt_intercept, opt_slope)
 
 plt.figure(figsize=(8,5))
 plt.plot(years, che, marker=<span style="color: #3548cf;">'o'</span>, label=<span style="color: #3548cf;">'Data'</span>, color=<span style="color: #3548cf;">'tab:orange'</span>)
@@ -1061,19 +1128,19 @@ plt.legend()
 plt.grid(<span style="color: #0000b0;">True</span>)
 plt.tight_layout()
 plt.show()
-</pre>
+</code></pre>
 </div>
 
 
-<div id="org6a54b7c" class="figure">
+<div id="org4432a94" class="figure">
 <p><img src="./figures/health_expenditure_OLS.png" alt="health_expenditure_OLS.png" />
 </p>
 </div>
 </div>
 </div>
-<div id="outline-container-orgff07252" class="outline-4">
-<h4 id="orgff07252">7. Extending the model</h4>
-<div class="outline-text-4" id="text-orgff07252">
+<div id="outline-container-org887edaa" class="outline-4">
+<h4 id="org887edaa">7. Extending the model</h4>
+<div class="outline-text-4" id="text-org887edaa">
 <p>
 The fit of the OLS estimation is not bad. But we only used time (<code>years</code>) as explanatory variable. As healthcare is most likely a normal good, one would expect citizens to spend more on healthcare if they have higher incomes. On the macro level we can capture this with GDP per capita. Next to income, price is usually a determinant of expenditure on a good. Because the Netherlands has health insurance, people do not pay the full price of healthcare. But the deductible (part of healthcare expenditure that a patient pays her/himself) tends to reduce expenditure. Here we capture demand-side cost-sharing with the percentage that patients pay out-of-pocket (<code>oop</code>) for healthcare.
 </p>
@@ -1083,9 +1150,9 @@ Below we will add these variables to our OLS regression to improve the fit.
 </p>
 </div>
 </div>
-<div id="outline-container-orga09ce80" class="outline-4">
-<h4 id="orga09ce80">8. Extrapolating the OLS Linear Trend to 2050</h4>
-<div class="outline-text-4" id="text-orga09ce80">
+<div id="outline-container-org7a339a6" class="outline-4">
+<h4 id="org7a339a6">8. Extrapolating the OLS Linear Trend to 2050</h4>
+<div class="outline-text-4" id="text-org7a339a6">
 <p>
 We can use the optimal OLS parameters to extrapolate the linear trend far into the future, for example to the year 2050. With the current information/data that we have, how much do we expect Dutch citizens to spend on healthcare (per capita) in 2050?
 </p>
@@ -1103,7 +1170,7 @@ Because we used the method <code>iloc</code> in our definition of <code>linear_t
 </p>
 
 <div class="org-src-container">
-<pre class="src src-jupyter-python"><span style="color: #005e8b;">future_years</span> = np.arange(df.Year[0], 2051)
+<pre class="src src-jupyter-python"><code><span style="color: #005e8b;">future_years</span> = np.arange(df.Year[0], 2051)
 <span style="color: #005e8b;">future_years_df</span> = pd.Series(future_years)
 <span style="color: #005e8b;">future_trend</span> = linear_trend(future_years_df, opt_intercept, opt_slope)
 
@@ -1116,11 +1183,11 @@ plt.title(<span style="color: #3548cf;">'OLS Linear Extrapolation of Healthcare 
 plt.legend()
 plt.grid(<span style="color: #0000b0;">True</span>)
 plt.tight_layout();
-</pre>
+</code></pre>
 </div>
 
 
-<div id="orgbc3d26c" class="figure">
+<div id="org9081d3d" class="figure">
 <p><img src="./figures/healthcare_expenditure_extrapolation.png" alt="healthcare_expenditure_extrapolation.png" />
 </p>
 </div>
@@ -1134,15 +1201,15 @@ Second, the linear trend predicts healthcare expenditure growth that (most likel
 </p>
 </div>
 </div>
-<div id="outline-container-org9e8c6c0" class="outline-4">
-<h4 id="org9e8c6c0">9. Multi-variable Regression: Adding GDP and OOP</h4>
-<div class="outline-text-4" id="text-org9e8c6c0">
+<div id="outline-container-org24a5a0c" class="outline-4">
+<h4 id="org24a5a0c">9. Multi-variable Regression: Adding GDP and OOP</h4>
+<div class="outline-text-4" id="text-org24a5a0c">
 <p>
 We can improve the fit of the model by including additional covariates: GDP per head and the percentage of healthcare expenditure paid out-of-pocket (oop).
 </p>
 
 <div class="org-src-container">
-<pre class="src src-jupyter-python"><span style="color: #531ab6;">def</span> <span style="color: #721045;">rss_multi</span>(params, years=df.Year, gdp=df.GDP_per_head, oop=df.oop, y=df.CHE_per_head):
+<pre class="src src-jupyter-python"><code><span style="color: #531ab6;">def</span> <span style="color: #721045;">rss_multi</span>(params, years=df.Year, gdp=df.GDP_per_head, oop=df.oop, y=df.CHE_per_head):
     <span style="color: #005e8b;">intercept</span>, <span style="color: #005e8b;">slope_year</span>, <span style="color: #005e8b;">slope_gdp</span>, <span style="color: #005e8b;">slope_oop</span> = params
     <span style="color: #005e8b;">year_base</span> = years - years.iloc[0]
     <span style="color: #005e8b;">yhat</span> = intercept + slope_year * year_base + slope_gdp * gdp + slope_oop * oop
@@ -1173,11 +1240,11 @@ plt.title(<span style="color: #3548cf;">'Observed vs Multi-variable Model Predic
 plt.legend()
 plt.grid(<span style="color: #0000b0;">True</span>)
 plt.tight_layout();
-</pre>
+</code></pre>
 </div>
 
 
-<div id="orgce6a126" class="figure">
+<div id="org5f07dce" class="figure">
 <p><img src="./figures/healthcare_expenditure_multivariate.png" alt="healthcare_expenditure_multivariate.png" />
 </p>
 </div>
@@ -1187,9 +1254,9 @@ The fit is indeed better than the simple OLS linear trend.
 </p>
 </div>
 </div>
-<div id="outline-container-org44ae8bb" class="outline-4">
-<h4 id="org44ae8bb">10. Using a Numerical Solver (<code>fsolve</code>) to Find Required OOP Levels</h4>
-<div class="outline-text-4" id="text-org44ae8bb">
+<div id="outline-container-org4112774" class="outline-4">
+<h4 id="org4112774">10. Using a Numerical Solver (<code>fsolve</code>) to Find Required OOP Levels</h4>
+<div class="outline-text-4" id="text-org4112774">
 <p>
 Suppose the government wants to keep healthcare expenditure constant. How can we find, for each year 2015–2024, the level of oop needed to keep healthcare expenditure per head at the 2014 level.
 </p>
@@ -1223,7 +1290,7 @@ We set <code>oop_to_hold_che</code> equal to zero for the years 2015-2024 and ad
 </p>
 
 <div class="org-src-container">
-<pre class="src src-jupyter-python"><span style="color: #531ab6;">from</span> scipy.optimize <span style="color: #531ab6;">import</span> fsolve
+<pre class="src src-jupyter-python"><code><span style="color: #531ab6;">from</span> scipy.optimize <span style="color: #531ab6;">import</span> fsolve
 
 <span style="color: #005e8b;">che_2014</span> = df[df.Year == 2014][<span style="color: #3548cf;">'CHE_per_head'</span>]
 <span style="color: #005e8b;">years_proj</span> = np.arange(2015, 2025)
@@ -1256,19 +1323,19 @@ plt.title(<span style="color: #3548cf;">'OOP Levels Needed to Hold Healthcare Ex
 plt.legend()
 plt.grid(<span style="color: #0000b0;">True</span>)
 plt.tight_layout();
-</pre>
+</code></pre>
 </div>
 
 
-<div id="org9d81d02" class="figure">
+<div id="org1266ecb" class="figure">
 <p><img src="./figures/oop_keep_expenditure_constant.png" alt="oop_keep_expenditure_constant.png" />
 </p>
 </div>
 </div>
 </div>
-<div id="outline-container-org93f61f1" class="outline-4">
-<h4 id="org93f61f1">Summary of what the code does</h4>
-<div class="outline-text-4" id="text-org93f61f1">
+<div id="outline-container-org33f4a3f" class="outline-4">
+<h4 id="org33f4a3f">Summary of what the code does</h4>
+<div class="outline-text-4" id="text-org33f4a3f">
 <ol class="org-ol">
 <li>Reading the data: Load the healthcare expenditure, GDP per head, and out-of-pocket (oop) data into a <code>pandas</code> dataframe.</li>
 <li>Plotting the data: Visualize healthcare expenditure per head over time using <code>matplotlib</code>.</li>
@@ -1284,13 +1351,13 @@ plt.tight_layout();
 </div>
 </div>
 </div>
-<div id="outline-container-org7e94808" class="outline-3 section">
-<h3 id="org7e94808">Review questions</h3>
-<div class="outline-text-3" id="text-org7e94808">
+<div id="outline-container-org68b614b" class="outline-3 section">
+<h3 id="org68b614b">Review questions</h3>
+<div class="outline-text-3" id="text-org68b614b">
 </div>
-<div id="outline-container-orge049205" class="outline-4">
-<h4 id="orge049205">Question 1: Create Your Own Multi-variable Regression</h4>
-<div class="outline-text-4" id="text-orge049205">
+<div id="outline-container-org1c1f0e1" class="outline-4">
+<h4 id="org1c1f0e1">Question 1: Create Your Own Multi-variable Regression</h4>
+<div class="outline-text-4" id="text-org1c1f0e1">
 <p>
 Fit a new regression model that predicts healthcare expenditure per head using <i>only</i> GDP per head (not year or oop). Plot the predicted values versus the actual data. How does the fit compare to the simple linear trend?
 </p>
@@ -1303,11 +1370,11 @@ Fit a new regression model that predicts healthcare expenditure per head using <
 Define a function like: 
 </p>
 <div class="org-src-container">
-<pre class="src src-nil">  def rss_gdp(params, gdp=df.GDP_per_head, y=df.CHE_per_head):
+<pre class="src src-nil"><code>  def rss_gdp(params, gdp=df.GDP_per_head, y=df.CHE_per_head):
       intercept, slope_gdp = params
       yhat = intercept + slope_gdp * gdp
       return np.sum((y - yhat) ** 2)
-</pre>
+</code></pre>
 </div></li>
 <li>Use <code>minimize()</code> to find the optimal coefficients.</li>
 <li>Plot observed data and predicted values from this GDP-only model.</li>
@@ -1317,13 +1384,13 @@ Define a function like:
 </details>
 
 <p>
-&#x2014;
+&mdash;
 </p>
 </div>
 </div>
-<div id="outline-container-org139f6ba" class="outline-4">
-<h4 id="org139f6ba">Question 2: Use fsolve to Find the GDP Needed to Keep Expenditure Constant</h4>
-<div class="outline-text-4" id="text-org139f6ba">
+<div id="outline-container-orgc6c9fb9" class="outline-4">
+<h4 id="orgc6c9fb9">Question 2: Use fsolve to Find the GDP Needed to Keep Expenditure Constant</h4>
+<div class="outline-text-4" id="text-orgc6c9fb9">
 <p>
 Suppose you want to know, for a certain year (e.g., 2024), what value of GDP per head would keep healthcare expenditure fixed at its 2014 level, holding all else constant. Write a function and use <code>fsolve</code> to solve for this GDP value using your multi-variable model.
 </p>
@@ -1338,10 +1405,10 @@ Suppose you want to know, for a certain year (e.g., 2024), what value of GDP per
 Your function for <code>fsolve</code> should look like:  
 </p>
 <div class="org-src-container">
-<pre class="src src-nil">  def gdp_to_hold_che(gdp_guess):
+<pre class="src src-nil"><code>  def gdp_to_hold_che(gdp_guess):
       yhat = intercept + slope_year * (year - base_year) + slope_gdp * gdp_guess + slope_oop * oop
       return yhat - che_2014
-</pre>
+</code></pre>
 </div></li>
 <li>Try different initial guesses and run <code>fsolve(gdp_to_hold_che, gdp_init)</code>.</li>
 </ul>
@@ -1349,9 +1416,9 @@ Your function for <code>fsolve</code> should look like:
 </details>
 </div>
 </div>
-<div id="outline-container-org00e5d54" class="outline-4">
-<h4 id="org00e5d54">Question 3: analyze the following three functions</h4>
-<div class="outline-text-4" id="text-org00e5d54">
+<div id="outline-container-org56e2a1b" class="outline-4">
+<h4 id="org56e2a1b">Question 3: analyze the following three functions</h4>
+<div class="outline-text-4" id="text-org56e2a1b">
 <p>
 For each of the following functions, do the following:
 </p>
@@ -1372,9 +1439,9 @@ Use google or an LLM to find the relevant Python functions for this. Python has 
 </div>
 </div>
 </div>
-<div id="outline-container-org22816ed" class="outline-2">
-<h2 id="org22816ed">Lecture 3: Modeling Iteration</h2>
-<div class="outline-text-2" id="text-org22816ed">
+<div id="outline-container-orgd009709" class="outline-2">
+<h2 id="orgd009709">Lecture 3: Modeling Iteration</h2>
+<div class="outline-text-2" id="text-orgd009709">
 <p>
 In this lecture you will learn:
 </p>
@@ -1386,9 +1453,9 @@ In this lecture you will learn:
 <li>define a system of difference equations and work with it through matrix notation.</li>
 </ul>
 </div>
-<div id="outline-container-orge790312" class="outline-3">
-<h3 id="orge790312">Apps</h3>
-<div class="outline-text-3" id="text-orge790312">
+<div id="outline-container-orgc666364" class="outline-3">
+<h3 id="orgc666364">Apps</h3>
+<div class="outline-text-3" id="text-orgc666364">
 <p>
 In terms of economics, we consider three models:
 </p>
@@ -1398,9 +1465,9 @@ In terms of economics, we consider three models:
 <li>a dynamic labor market model with three states: unemployed, low wage jobs, high wage jobs.</li>
 </ul>
 </div>
-<div id="outline-container-org014b438" class="outline-4">
-<h4 id="org014b438">Adverse selection dynamics</h4>
-<div class="outline-text-4" id="text-org014b438">
+<div id="outline-container-orgb51eab2" class="outline-4">
+<h4 id="orgb51eab2">Adverse selection dynamics</h4>
+<div class="outline-text-4" id="text-orgb51eab2">
 <p>
 The following app models an adverse selection market. Well known examples of such markets are the second-hand car markets (with &ldquo;lemons&rdquo;) and (health) insurance markets. In each of these markets there is asymmetric information. The seller of the car has used the car herself. She knows how (aggressively) she has driven the car, taken care of the car, investments in car maintenance etc. For the buyer this is not so clear. In the health insurance market, the insurer offers contracts to insure healthcare costs. The consumer has more information on his own health than the insurer does. Does he have a (chronic) disease? Does he have a healthy diet, exercise regularly etc.
 </p>
@@ -1436,9 +1503,9 @@ The context of the app is more like the second-hand car market: sellers value th
 </div>
 </div>
 </div>
-<div id="outline-container-org86e6a42" class="outline-4">
-<h4 id="org86e6a42">Cournot best response dynamics</h4>
-<div class="outline-text-4" id="text-org86e6a42">
+<div id="outline-container-orga882816" class="outline-4">
+<h4 id="orga882816">Cournot best response dynamics</h4>
+<div class="outline-text-4" id="text-orga882816">
 <p>
 This app considers a Cournot market with two firms producing a homogenous good at constant marginal cost \(c\). Demand is of the form \(p = p(q_1+q_2)\). Hence, firm \(i\) maximizes profits
 </p>
@@ -1473,9 +1540,9 @@ One way to derive the Nash equilibium is to use iterated best responses: start w
 </div>
 </div>
 </div>
-<div id="outline-container-org54608e3" class="outline-4">
-<h4 id="org54608e3">Unemployment dynamics</h4>
-<div class="outline-text-4" id="text-org54608e3">
+<div id="outline-container-org4304a9f" class="outline-4">
+<h4 id="org4304a9f">Unemployment dynamics</h4>
+<div class="outline-text-4" id="text-org4304a9f">
 <p>
 Suppose we have an inelastic labor supply normalized to a mass of 1. Labor can be in one of three states: unemployed, employed in a low wage job and employed in a high wage job.???continue here???
 </p>
@@ -1527,13 +1594,13 @@ Using the same visuals as the clip above we show the equivalence of the transiti
 </div>
 </div>
 </div>
-<div id="outline-container-org1fa35eb" class="outline-3">
-<h3 id="org1fa35eb">Python Code Explanation</h3>
-<div class="outline-text-3" id="text-org1fa35eb">
+<div id="outline-container-orgc0704b3" class="outline-3">
+<h3 id="orgc0704b3">Python Code Explanation</h3>
+<div class="outline-text-3" id="text-orgc0704b3">
 </div>
-<div id="outline-container-org47b01dc" class="outline-4">
-<h4 id="org47b01dc">Adverse Selection Model</h4>
-<div class="outline-text-4" id="text-org47b01dc">
+<div id="outline-container-orgb82b588" class="outline-4">
+<h4 id="orgb82b588">Adverse Selection Model</h4>
+<div class="outline-text-4" id="text-orgb82b588">
 <p>
 In the adverse selection model, sellers have goods of quality \(q\) uniformly distributed on \([v_0, v_1]\). Sellers only offer goods if the market price \(p \geq q\). Buyers value quality at a mark-up:
 </p>
@@ -1553,7 +1620,7 @@ The equilibrium is found by iterating this price update until convergence.
 </p>
 
 <div class="org-src-container">
-<pre class="src src-python"><span style="color: #531ab6;">import</span> marimo <span style="color: #531ab6;">as</span> mo
+<pre class="src src-python"><code><span style="color: #531ab6;">import</span> marimo <span style="color: #531ab6;">as</span> mo
 <span style="color: #531ab6;">import</span> numpy <span style="color: #531ab6;">as</span> np
 <span style="color: #531ab6;">import</span> matplotlib.pyplot <span style="color: #531ab6;">as</span> plt
 
@@ -1562,11 +1629,11 @@ The equilibrium is found by iterating this price update until convergence.
 <span style="color: #005e8b;">markup</span> = mo.ui.slider(1.01, 2.0, value=1.2, step=0.01, label=<span style="color: #3548cf;">"Consumer mark-up"</span>)
 
 mo.hstack([v0,v1,markup])
-</pre>
+</code></pre>
 </div>
 
 <div class="org-src-container">
-<pre class="src src-python"><span style="color: #531ab6;">def</span> <span style="color: #721045;">expected_q_given_p_uniform</span>(p, a, b):
+<pre class="src src-python"><code><span style="color: #531ab6;">def</span> <span style="color: #721045;">expected_q_given_p_uniform</span>(p, a, b):
     <span style="color: #531ab6;">if</span> p &lt; a:
         <span style="color: #531ab6;">return</span> <span style="color: #0000b0;">None</span>
     <span style="color: #531ab6;">elif</span> p &gt;= b:
@@ -1590,7 +1657,7 @@ mo.hstack([v0,v1,markup])
     <span style="color: #005e8b;">p</span> = new_p
 plt.plot(history)
 
-</pre>
+</code></pre>
 </div>
 
 <p>
@@ -1598,9 +1665,9 @@ The code above uses Marimo sliders for the parameters. The function <code>expect
 </p>
 </div>
 </div>
-<div id="outline-container-org7f62a64" class="outline-4">
-<h4 id="org7f62a64">Cournot Duopoly Model</h4>
-<div class="outline-text-4" id="text-org7f62a64">
+<div id="outline-container-org0512ac8" class="outline-4">
+<h4 id="org0512ac8">Cournot Duopoly Model</h4>
+<div class="outline-text-4" id="text-org0512ac8">
 <p>
 In the Cournot model, two firms choose quantities \(q_1\) and \(q_2\). The market price is
 </p>
@@ -1630,7 +1697,7 @@ The Nash equilibrium is found by iteratively updating each firm&rsquo;s quantity
 </p>
 
 <div class="org-src-container">
-<pre class="src src-python"><span style="color: #531ab6;">import</span> marimo <span style="color: #531ab6;">as</span> mo
+<pre class="src src-python"><code><span style="color: #531ab6;">import</span> marimo <span style="color: #531ab6;">as</span> mo
 <span style="color: #531ab6;">import</span> numpy <span style="color: #531ab6;">as</span> np
 <span style="color: #531ab6;">import</span> matplotlib.pyplot <span style="color: #531ab6;">as</span> plt
 
@@ -1638,11 +1705,11 @@ The Nash equilibrium is found by iteratively updating each firm&rsquo;s quantity
 <span style="color: #005e8b;">q1_init</span> = mo.ui.slider(0, 0.99, value=0.45, step=0.01, label=<span style="color: #3548cf;">"Initial $q_1$"</span>)
 <span style="color: #005e8b;">n_iter</span> = mo.ui.slider(2, 30, value=14, step=1, label=<span style="color: #3548cf;">"Number of iterations"</span>)
 mo.hstack([c,q1_init,n_iter])
-</pre>
+</code></pre>
 </div>
 
 <div class="org-src-container">
-<pre class="src src-python"><span style="color: #531ab6;">def</span> <span style="color: #721045;">reaction1</span>(q2, c):
+<pre class="src src-python"><code><span style="color: #531ab6;">def</span> <span style="color: #721045;">reaction1</span>(q2, c):
     <span style="color: #531ab6;">return</span> (1 - q2 - c) / 2
 
 <span style="color: #531ab6;">def</span> <span style="color: #721045;">reaction2</span>(q1, c):
@@ -1662,7 +1729,7 @@ plt.scatter(*points[0],label=<span style="color: #3548cf;">"initial $q_1$"</span
 plt.legend()
 plt.xlabel(<span style="color: #3548cf;">'$q_1$'</span>)
 plt.ylabel(<span style="color: #3548cf;">'$q_2$'</span>)
-</pre>
+</code></pre>
 </div>
 
 <p>
@@ -1680,13 +1747,13 @@ From <code>scipy.optimize</code> use the <a href="https://docs.scipy.org/doc/sci
 <li>Define a function like:</li>
 </ul>
 <div class="org-src-container">
-<pre class="src src-python"><span style="color: #531ab6;">def</span> <span style="color: #721045;">fixed_point</span>(x,c):
+<pre class="src src-python"><code><span style="color: #531ab6;">def</span> <span style="color: #721045;">fixed_point</span>(x,c):
     <span style="color: #005e8b;">q1</span>, <span style="color: #005e8b;">q2</span> = x
     <span style="color: #531ab6;">return</span>  [
-        <span style="color: #7f0000;"># </span><span style="color: #7f0000;">q1 minus firm 1's optimal response,
-</span>        <span style="color: #7f0000;"># </span><span style="color: #7f0000;">q2 minus firm 2's optimal response
-</span>    ]
-</pre>
+        <span style="color: #7f0000;"># </span><span style="color: #7f0000;">q1 minus firm 1's optimal response,</span>
+        <span style="color: #7f0000;"># </span><span style="color: #7f0000;">q2 minus firm 2's optimal response</span>
+    ]
+</code></pre>
 </div>
 
 <p>
@@ -1696,9 +1763,9 @@ The call <code>scipy.optimize.root</code> with the function and a starting point
 </details>
 </div>
 </div>
-<div id="outline-container-org462e713" class="outline-4">
-<h4 id="org462e713">Labour Market Markov Model</h4>
-<div class="outline-text-4" id="text-org462e713">
+<div id="outline-container-orgb9842c8" class="outline-4">
+<h4 id="orgb9842c8">Labour Market Markov Model</h4>
+<div class="outline-text-4" id="text-orgb9842c8">
 <p>
 The labor market model has three states: unemployed (\(u\)), low wage (\(l\)), and high wage (\(h\)). The transitions are:
 </p>
@@ -1725,7 +1792,7 @@ h_{t+1} &= h_t + \lambda l_t - \delta_h h_t
 </p>
 
 <div class="org-src-container">
-<pre class="src src-python"><span style="color: #531ab6;">import</span> marimo <span style="color: #531ab6;">as</span> mo
+<pre class="src src-python"><code><span style="color: #531ab6;">import</span> marimo <span style="color: #531ab6;">as</span> mo
 <span style="color: #531ab6;">import</span> numpy <span style="color: #531ab6;">as</span> np
 <span style="color: #531ab6;">import</span> matplotlib.pyplot <span style="color: #531ab6;">as</span> plt
 
@@ -1736,11 +1803,11 @@ h_{t+1} &= h_t + \lambda l_t - \delta_h h_t
 <span style="color: #005e8b;">u0</span> = mo.ui.slider(0.0, 1.0, value=1.0, step=0.01, label=<span style="color: #3548cf;">"Initial unemployment $u_0$"</span>)
 
 mo.hstack([mu,lambda_,delta_l,delta_h,u0])
-</pre>
+</code></pre>
 </div>
 
 <div class="org-src-container">
-<pre class="src src-python"><span style="color: #005e8b;">T</span> = 60
+<pre class="src src-python"><code><span style="color: #005e8b;">T</span> = 60
 <span style="color: #005e8b;">u_hist</span>, <span style="color: #005e8b;">l_hist</span>, <span style="color: #005e8b;">h_hist</span> = [], [], []
 <span style="color: #005e8b;">u</span>, <span style="color: #005e8b;">l</span>, <span style="color: #005e8b;">h</span> = u0.value, 1 - u0.value, 0.0
 
@@ -1768,7 +1835,7 @@ plt.plot(h_hist,label=<span style="color: #3548cf;">"high wage employment"</span
 plt.legend()
 plt.xlabel(<span style="color: #3548cf;">"time"</span>)
 plt.ylabel(<span style="color: #3548cf;">"fraction employed/unemployed"</span>)
-</pre>
+</code></pre>
 </div>
 
 <p>
@@ -1801,8 +1868,8 @@ h_t
 \end{equation}
 </div>
 <ul class="org-ul">
-<li><a id="org94c242b"></a><span class="todo TODO">TODO</span> <br />
-<div class="outline-text-5" id="text-org94c242b">
+<li><a id="org7b48d6a"></a><span class="todo TODO">TODO</span> <br />
+<div class="outline-text-5" id="text-org7b48d6a">
 <ul class="org-ul">
 <li>use manim to explain matrix multiplication</li>
 </ul>
@@ -1813,13 +1880,13 @@ h_t
 We can define the transition matrix as follows:
 </p>
 <div class="org-src-container">
-<pre class="src src-python"><span style="color: #005e8b;">A</span> = np.array([
+<pre class="src src-python"><code><span style="color: #005e8b;">A</span> = np.array([
     [1-mu.value, delta_l.value, delta_h.value],
     [mu.value, 1-lambda_.value-delta_l.value,0],
     [0, lambda_.value,1-delta_h.value]
 ])
 
-</pre>
+</code></pre>
 </div>
 
 <p>
@@ -1827,7 +1894,7 @@ And then derive the employment dynamics in the following way. Although this may 
 </p>
 
 <div class="org-src-container">
-<pre class="src src-python"><span style="color: #005e8b;">S</span> = np.array([u0.value, 1 - u0.value, 0.0]).reshape(3, 1)
+<pre class="src src-python"><code><span style="color: #005e8b;">S</span> = np.array([u0.value, 1 - u0.value, 0.0]).reshape(3, 1)
 <span style="color: #531ab6;">for</span> _ <span style="color: #531ab6;">in</span> <span style="color: #8f0075;">range</span>(T):
     <span style="color: #005e8b;">S</span> = np.hstack((S,np.dot(A,S[:,-1].reshape(3,1))))
 
@@ -1837,20 +1904,20 @@ plt.plot(S[2],label=<span style="color: #3548cf;">"high wage employment"</span>)
 plt.legend()
 plt.xlabel(<span style="color: #3548cf;">"time"</span>)
 plt.ylabel(<span style="color: #3548cf;">"fraction employed/unemployed"</span>)
-</pre>
+</code></pre>
 </div>
 </div>
 </li>
 </ul>
 </div>
 </div>
-<div id="outline-container-orgdc3ad22" class="outline-3">
-<h3 id="orgdc3ad22">Review questions</h3>
-<div class="outline-text-3" id="text-orgdc3ad22">
+<div id="outline-container-org0e759b3" class="outline-3">
+<h3 id="org0e759b3">Review questions</h3>
+<div class="outline-text-3" id="text-org0e759b3">
 </div>
-<div id="outline-container-org5f7adff" class="outline-4">
-<h4 id="org5f7adff">1. Adverse Selection: Does Increasing Mark-Up Always Restore Trade?</h4>
-<div class="outline-text-4" id="text-org5f7adff">
+<div id="outline-container-org3169c2d" class="outline-4">
+<h4 id="org3169c2d">1. Adverse Selection: Does Increasing Mark-Up Always Restore Trade?</h4>
+<div class="outline-text-4" id="text-org3169c2d">
 <p>
 Consider the adverse selection model with \(v_0=30\) and \(v_1=90\). Write Marimo code to:
 </p>
@@ -1863,7 +1930,7 @@ Consider the adverse selection model with \(v_0=30\) and \(v_1=90\). Write Marim
 <summary><strong>Hint / Solution</strong></summary>
 
 <div class="org-src-container">
-<pre class="src src-python"><span style="color: #531ab6;">import</span> numpy <span style="color: #531ab6;">as</span> np
+<pre class="src src-python"><code><span style="color: #531ab6;">import</span> numpy <span style="color: #531ab6;">as</span> np
 <span style="color: #531ab6;">import</span> matplotlib.pyplot <span style="color: #531ab6;">as</span> plt
 
 <span style="color: #005e8b;">v0</span>, <span style="color: #005e8b;">v1</span> = 30, 90
@@ -1880,8 +1947,8 @@ Consider the adverse selection model with \(v_0=30\) and \(v_1=90\). Write Marim
         <span style="color: #531ab6;">return</span> (a + p) / 2
 
 <span style="color: #531ab6;">for</span> m <span style="color: #531ab6;">in</span> markups:
-    <span style="color: #005e8b;">p</span> = m*v1  <span style="color: #7f0000;"># </span><span style="color: #7f0000;">start at high price
-</span>    <span style="color: #531ab6;">for</span> _ <span style="color: #531ab6;">in</span> <span style="color: #8f0075;">range</span>(30):
+    <span style="color: #005e8b;">p</span> = m*v1  <span style="color: #7f0000;"># </span><span style="color: #7f0000;">start at high price</span>
+    <span style="color: #531ab6;">for</span> _ <span style="color: #531ab6;">in</span> <span style="color: #8f0075;">range</span>(30):
         <span style="color: #005e8b;">expected_q</span> = expected_q_given_p_uniform(p, v0, v1)
         <span style="color: #531ab6;">if</span> expected_q <span style="color: #531ab6;">is</span> <span style="color: #0000b0;">None</span>:
             <span style="color: #531ab6;">break</span>
@@ -1897,19 +1964,19 @@ plt.plot(markups, eq_prices, label=<span style="color: #3548cf;">"Equilibrium pr
 plt.plot(markups, fractions, label=<span style="color: #3548cf;">"Fraction traded"</span>)
 plt.xlabel(<span style="color: #3548cf;">"Markup"</span>)
 plt.legend()
-</pre>
+</code></pre>
 </div>
 
 </details>
 
 <p>
-&#x2014;
+&mdash;
 </p>
 </div>
 </div>
-<div id="outline-container-org9fff4b9" class="outline-4">
-<h4 id="org9fff4b9">2. Cournot Duopoly: Add a Third Firm</h4>
-<div class="outline-text-4" id="text-org9fff4b9">
+<div id="outline-container-org8cc1b6f" class="outline-4">
+<h4 id="org8cc1b6f">2. Cournot Duopoly: Add a Third Firm</h4>
+<div class="outline-text-4" id="text-org8cc1b6f">
 <p>
 Modify the Cournot duopoly Python code so there are three firms, each with marginal cost \(c\), facing demand of the form \(p = 1 - q_1 - q_2 - q_3\).  
 </p>
@@ -1923,8 +1990,8 @@ Modify the Cournot duopoly Python code so there are three firms, each with margi
 <summary><strong>Hint / Solution</strong></summary>
 
 <div class="org-src-container">
-<pre class="src src-python"><span style="color: #7f0000;"># </span><span style="color: #7f0000;">Reaction for each: maximize (1 - sum(qs) - c)*q_i
-</span><span style="color: #531ab6;">def</span> <span style="color: #721045;">r1</span>(q2, q3, c): <span style="color: #531ab6;">return</span> (1 - q2 - q3 - c)/2
+<pre class="src src-python"><code><span style="color: #7f0000;"># </span><span style="color: #7f0000;">Reaction for each: maximize (1 - sum(qs) - c)*q_i</span>
+<span style="color: #531ab6;">def</span> <span style="color: #721045;">r1</span>(q2, q3, c): <span style="color: #531ab6;">return</span> (1 - q2 - q3 - c)/2
 <span style="color: #531ab6;">def</span> <span style="color: #721045;">r2</span>(q1, q3, c): <span style="color: #531ab6;">return</span> (1 - q1 - q3 - c)/2
 <span style="color: #531ab6;">def</span> <span style="color: #721045;">r3</span>(q1, q2, c): <span style="color: #531ab6;">return</span> (1 - q1 - q2 - c)/2
 <span style="color: #005e8b;">c</span> = 0.2
@@ -1942,19 +2009,19 @@ plt.plot([row[1] <span style="color: #531ab6;">for</span> row <span style="color
 plt.plot([row[2] <span style="color: #531ab6;">for</span> row <span style="color: #531ab6;">in</span> history], label=<span style="color: #3548cf;">'$q_3$'</span>)
 plt.legend()
 plt.xlabel(<span style="color: #3548cf;">"Step"</span>)
-</pre>
+</code></pre>
 </div>
 
 </details>
 
 <p>
-&#x2014;
+&mdash;
 </p>
 </div>
 </div>
-<div id="outline-container-org8787993" class="outline-4">
-<h4 id="org8787993">3. Labor Market: Steady State Without Iteration</h4>
-<div class="outline-text-4" id="text-org8787993">
+<div id="outline-container-org9bbc970" class="outline-4">
+<h4 id="org9bbc970">3. Labor Market: Steady State Without Iteration</h4>
+<div class="outline-text-4" id="text-org9bbc970">
 <p>
 Derive and plot the steady-state unemployment \(u^*\) as a function of the job-finding rate \(\mu\) (other parameters fixed at \(\lambda=0.1\), \(\delta_l=0.05\), \(\delta_h=0.03\)).  
 </p>
@@ -1970,7 +2037,7 @@ Use google or an LLM to figure out what &rsquo;broyden1&rsquo; means. Why do we 
 </p>
 
 <div class="org-src-container">
-<pre class="src src-jupyter-python"><span style="color: #531ab6;">import</span> numpy <span style="color: #531ab6;">as</span> np
+<pre class="src src-jupyter-python"><code><span style="color: #531ab6;">import</span> numpy <span style="color: #531ab6;">as</span> np
 <span style="color: #531ab6;">from</span> scipy <span style="color: #531ab6;">import</span> optimize
 <span style="color: #531ab6;">import</span> matplotlib.pyplot <span style="color: #531ab6;">as</span> plt
 
@@ -1994,20 +2061,20 @@ Use google or an LLM to figure out what &rsquo;broyden1&rsquo; means. Why do we 
 plt.plot(mus,u_star)
 plt.xlabel(r<span style="color: #3548cf;">'$\mu$ (job finding rate)'</span>)
 plt.ylabel(<span style="color: #3548cf;">'Steady state $u^*$'</span>)
-</pre>
+</code></pre>
 </div>
 
 
 </details>
 
 <p>
-&#x2014;
+&mdash;
 </p>
 </div>
 </div>
-<div id="outline-container-org13cd2e8" class="outline-4">
-<h4 id="org13cd2e8">4. Matrix Notation: Simulation With Numpy Only</h4>
-<div class="outline-text-4" id="text-org13cd2e8">
+<div id="outline-container-org2f274ee" class="outline-4">
+<h4 id="org2f274ee">4. Matrix Notation: Simulation With Numpy Only</h4>
+<div class="outline-text-4" id="text-org2f274ee">
 <p>
 In the labor market model, implement the time path simulation <b>using only Numpy arrays and matrix multiplication</b> (not manually updating variables).  
 </p>
@@ -2020,7 +2087,7 @@ In the labor market model, implement the time path simulation <b>using only Nump
 <summary><strong>Hint / Solution</strong></summary>
 
 <div class="org-src-container">
-<pre class="src src-python"><span style="color: #005e8b;">mu</span>, <span style="color: #005e8b;">lmbd</span>, <span style="color: #005e8b;">dl</span>, <span style="color: #005e8b;">dh</span> = 0.12, 0.09, 0.04, 0.03
+<pre class="src src-python"><code><span style="color: #005e8b;">mu</span>, <span style="color: #005e8b;">lmbd</span>, <span style="color: #005e8b;">dl</span>, <span style="color: #005e8b;">dh</span> = 0.12, 0.09, 0.04, 0.03
 <span style="color: #005e8b;">A</span> = np.array([
     [1 - mu, dl, dh],
     [mu, 1 - lmbd - dl, 0],
@@ -2030,27 +2097,27 @@ In the labor market model, implement the time path simulation <b>using only Nump
 <span style="color: #005e8b;">history</span> = [S.flatten()]
 <span style="color: #531ab6;">for</span> _ <span style="color: #531ab6;">in</span> <span style="color: #8f0075;">range</span>(60):
     <span style="color: #005e8b;">S</span> = np.dot(A, S)
-    <span style="color: #005e8b;">S</span> = S / np.<span style="color: #8f0075;">sum</span>(S)   <span style="color: #7f0000;"># </span><span style="color: #7f0000;">(optional: renormalize so they sum to 1)
-</span>    history.append(S.flatten())
+    <span style="color: #005e8b;">S</span> = S / np.<span style="color: #8f0075;">sum</span>(S)   <span style="color: #7f0000;"># </span><span style="color: #7f0000;">(optional: renormalize so they sum to 1)</span>
+    history.append(S.flatten())
 <span style="color: #005e8b;">history</span> = np.array(history)
 plt.plot(history[:,0], label=<span style="color: #3548cf;">"Unemployed"</span>)
 plt.plot(history[:,1], label=<span style="color: #3548cf;">"Low wage"</span>)
 plt.plot(history[:,2], label=<span style="color: #3548cf;">"High wage"</span>)
 plt.legend()
 plt.show()
-</pre>
+</code></pre>
 </div>
 
 </details>
 
 <p>
-&#x2014;
+&mdash;
 </p>
 </div>
 </div>
-<div id="outline-container-org610f6ec" class="outline-4">
-<h4 id="org610f6ec">5. Extending the Labor Model: Add a Direct High Wage Offer Channel</h4>
-<div class="outline-text-4" id="text-org610f6ec">
+<div id="outline-container-org6fe043e" class="outline-4">
+<h4 id="org6fe043e">5. Extending the Labor Model: Add a Direct High Wage Offer Channel</h4>
+<div class="outline-text-4" id="text-org6fe043e">
 <p>
 Suppose a fraction \(\alpha\) of unemployed directly get a high wage job each period. The equations become:
 </p>
@@ -2069,18 +2136,18 @@ h_{t+1} &= h_t + \lambda l_t + \alpha u_t - \delta_h h_t
 <summary><strong>Hint / Solution</strong></summary>
 
 <div class="org-src-container">
-<pre class="src src-python"><span style="color: #005e8b;">mu</span> = mo.ui.slider(0.01, 0.5, value=0.1, label=<span style="color: #3548cf;">"Job finding rate"</span>)
+<pre class="src src-python"><code><span style="color: #005e8b;">mu</span> = mo.ui.slider(0.01, 0.5, value=0.1, label=<span style="color: #3548cf;">"Job finding rate"</span>)
 <span style="color: #005e8b;">lambda_</span> = mo.ui.slider(0.01, 0.5, value=0.15, label=<span style="color: #3548cf;">"Learning rate"</span>)
 <span style="color: #005e8b;">delta_l</span> = mo.ui.slider(0.01, 0.5, value=0.05, label=<span style="color: #3548cf;">"Low wage sep."</span>)
 <span style="color: #005e8b;">delta_h</span> = mo.ui.slider(0.01, 0.5, value=0.02, label=<span style="color: #3548cf;">"High wage sep."</span>)
 <span style="color: #005e8b;">alpha</span> = mo.ui.slider(0.0, 0.2, value=0.0, step=0.01, label=<span style="color: #3548cf;">"Direct high wage $</span><span style="color: #0000b0;">\a</span><span style="color: #3548cf;">lpha$"</span>)
 <span style="color: #005e8b;">u0</span> = mo.ui.slider(0.0, 1.0, value=1.0, step=0.01, label=<span style="color: #3548cf;">"Initial unemployment"</span>)
 mo.hstack([mu,lambda_,delta_l,delta_h,alpha,u0])
-</pre>
+</code></pre>
 </div>
 
 <div class="org-src-container">
-<pre class="src src-python">
+<pre class="src src-python"><code>
 <span style="color: #005e8b;">T</span> = 60
 <span style="color: #005e8b;">u_hist</span>, <span style="color: #005e8b;">l_hist</span>, <span style="color: #005e8b;">h_hist</span> = [], [], []
 <span style="color: #005e8b;">u</span>, <span style="color: #005e8b;">l</span>, <span style="color: #005e8b;">h</span> = u0.value, 1-u0.value, 0.0
@@ -2108,7 +2175,7 @@ plt.plot(u_hist,label=<span style="color: #3548cf;">"unemployment"</span>)
 plt.plot(l_hist,label=<span style="color: #3548cf;">"low wage"</span>)
 plt.plot(h_hist,label=<span style="color: #3548cf;">"high wage"</span>)
 plt.legend()
-</pre>
+</code></pre>
 </div>
 
 <p>
@@ -2117,6 +2184,1983 @@ As \(\alpha\) increases, the fraction in high wage employment rises and steady-s
 
 </details>
 </div>
+</div>
+</div>
+</div>
+<div id="outline-container-lecture_search_matching" class="outline-2">
+<h2 id="lecture_search_matching">Lecture 4: Search and Matching in the Labor Market</h2>
+<div class="outline-text-2" id="text-lecture_search_matching">
+<p>
+In this lecture you will learn:
+</p>
+<ul class="org-ul">
+<li>How to translate an economic question into two sub-problems:
+<ul class="org-ul">
+<li>what data can I use?</li>
+<li>what model is useful for this question?</li>
+</ul></li>
+<li>Use papers from the economics literature to calibrate parameters and use data to estimate (other) parameters.</li>
+<li>Define your own function to find the estimator that minimizes the sum of squared residuals.</li>
+<li>Use the model to simulate the outcomes of different scenarios.</li>
+</ul>
+</div>
+<div id="outline-container-org95788cb" class="outline-3">
+<h3 id="org95788cb">App</h3>
+<div class="outline-text-3" id="text-org95788cb">
+<p>
+Suppose after graduating you are hired by the Dutch Ministry of Social Affairs. In parliament there have been recurring discussions about immigration. The minister asks you to give her an idea of the potential effects of immigration on unemployment and wages in the Netherlands. Suppose immigration increases by 50%, or even doubles. What would happen to unemployment and wages?
+</p>
+
+<p>
+To answer this question we need two ingredients: data and an economic model. Before reading on, it may be useful to think about how you would approach this question yourself. There are many ways to model the effects of immigration. Below we develop one example using data from Statistics Netherlands (CBS) and a search and matching framework. We then use this model to build a small simulation in Python.
+</p>
+
+<p>
+The goal is not to obtain a precise prediction. Rather, we want to give the minister a sense of the <b>order of magnitude</b> of the effects. To build intuition, we construct an interactive model where immigration can increase by anywhere between 0% and 100%.
+</p>
+
+<p>
+For this exercise we focus on immigration from outside Europe (EU and EFTA) with the motivation to work in the Netherlands.
+</p>
+
+<p>
+A key advantage of the search and matching framework is that it focuses on <b>flows</b> in the labor market rather than the entire stock of workers. Workers search for jobs and firms post vacancies. Matches occur when searching workers and vacancies meet through the matching process.
+</p>
+
+<p>
+Asylum migration can also affect the labor market, but these effects are more indirect and occur with a lag. For example, asylum procedures can take several years before individuals are allowed to participate in the labor market. For simplicity, we abstract from these effects here.
+</p>
+
+<p>
+In the search framework, an increase in immigration initially increases the number of job seekers. However, the number of vacancies is not fixed in the long run. Firms respond to changes in labor market conditions by posting more vacancies. The interaction between workers and firms determines unemployment, vacancies, and wages.
+</p>
+
+<p>
+The key elements of the framework are:
+</p>
+<ul class="org-ul">
+<li>Workers and firms meet via a matching function.</li>
+<li>Wages are determined by Nash bargaining.</li>
+<li>Immigration acts as an exogenous increase in labor supply.</li>
+<li>Firms respond to a larger labor supply by posting more vacancies.</li>
+</ul>
+</div>
+<div id="outline-container-org86c16d8" class="outline-4">
+<h4 id="org86c16d8">Model structure</h4>
+<div class="outline-text-4" id="text-org86c16d8">
+<p>
+Notation:
+</p>
+<ul class="org-ul">
+<li>\(U\): number of unemployed workers</li>
+<li>\(V\): number of vacancies</li>
+<li>\(M\): number of matches between workers and firms</li>
+<li>\(\theta = V/U\): labor market tightness</li>
+</ul>
+
+<p>
+The matching process is described by a Cobb–Douglas matching function:
+</p>
+
+<p>
+\[
+M = m U^\alpha V^{1-\alpha}
+\]
+</p>
+
+<p>
+where \(m\) measures matching efficiency and \(\alpha\) is the elasticity of matches with respect to unemployment.
+</p>
+
+<p>
+A useful quantity is the <b>job-finding probability</b> for unemployed workers:
+</p>
+
+<p>
+\[
+\frac{M}{U} = m \theta^{1-\alpha}
+\]
+</p>
+
+<p>
+This expression shows that job finding increases when the labor market becomes tighter (more vacancies relative to unemployed workers).
+</p>
+</div>
+</div>
+<div id="outline-container-org814f623" class="outline-4">
+<h4 id="org814f623">Wage determination</h4>
+<div class="outline-text-4" id="text-org814f623">
+<p>
+Wages are determined through Nash bargaining between the worker and the firm. The wage splits the surplus of the match.
+</p>
+
+<p>
+In our simplified framework, the outside option of the worker depends on how easily a job can be found. When the labor market is tight and jobs are easy to find, the value of remaining unemployed is higher.
+</p>
+
+<p>
+We capture this idea in reduced form by specifying the worker&rsquo;s outside option as
+</p>
+
+<p>
+\[
+b \theta^{1-\alpha}
+\]
+</p>
+
+<p>
+where \(b\) summarizes factors such as welfare benefits and institutions that affect the value of unemployment.
+</p>
+
+<p>
+Given Nash bargaining with worker bargaining power \(\beta\), the wage becomes
+</p>
+
+<p>
+\[
+w = b \theta^{1-\alpha} + \beta \left(a - b \theta^{1-\alpha}\right)
+\]
+</p>
+
+<p>
+where
+</p>
+
+<ul class="org-ul">
+<li>\(w\): wage</li>
+<li>\(a\): worker productivity</li>
+<li>\(\beta\): worker bargaining power</li>
+</ul>
+
+<p>
+This equation shows that wages increase with productivity and with labor market tightness.
+</p>
+
+<p>
+From the literature (<a href="#citeproc_bib_item_1">Mortensen and Nagypál 2007</a>; <a href="#citeproc_bib_item_2">Petrongolo and Pissarides 2001</a>) we calibrate
+</p>
+
+<p>
+\[
+\alpha = 0.5, \quad \beta = 0.5
+\]
+</p>
+
+<p>
+The remaining parameters \(m\), \(a\), and \(b\) will be estimated using Dutch data.
+</p>
+</div>
+</div>
+<div id="outline-container-org6e0457b" class="outline-4">
+<h4 id="org6e0457b">Data</h4>
+<div class="outline-text-4" id="text-org6e0457b">
+<p>
+To estimate the model for the Netherlands we use data from CBS:
+</p>
+
+<ul class="org-ul">
+<li>unemployment <a href="https://www.cbs.nl/en-gb/figures/detail/80590eng">https://www.cbs.nl/en-gb/figures/detail/80590eng</a></li>
+<li>vacancies <a href="https://www.cbs.nl/en-gb/figures/detail/84545ENG">https://www.cbs.nl/en-gb/figures/detail/84545ENG</a></li>
+<li>wages <a href="https://opendata.cbs.nl/#/CBS/en/dataset/85663ENG/table">https://opendata.cbs.nl/#/CBS/en/dataset/85663ENG/table</a></li>
+</ul>
+
+<p>
+The relevant variables are:
+</p>
+<ul class="org-ul">
+<li>\(U\): &ldquo;Unemployed labour force / seasonally adjusted (x 1,000)&rdquo;</li>
+<li>\(V\): &ldquo;Vacancies seasonally adjusted, unfilled (x 1,000)&rdquo;</li>
+<li>\(M\): &ldquo;Vacancies seasonally adjusted, filled (x 1,000)&rdquo;</li>
+</ul>
+
+<p>
+The variable \(M\) represents the number of vacancies filled during a period and is therefore a proxy for the flow of matches.
+</p>
+
+<p>
+The dataset is stored in: <a href="./data/labour_data.csv">./data/labour_data.csv</a>
+</p>
+
+<p>
+We estimate the parameters \(m\), \(a\), and \(b\) by minimizing the sum of squared differences between model predictions and the observed data for matches and wages.
+</p>
+</div>
+</div>
+<div id="outline-container-orgb45bedc" class="outline-4">
+<h4 id="orgb45bedc">Immigration shock</h4>
+<div class="outline-text-4" id="text-orgb45bedc">
+<p>
+Our research question is: what happens when immigration increases?
+</p>
+
+<p>
+From the CBS migration statistics we observe that roughly 14,000 people per year migrate to the Netherlands with the explicit intention of joining the labor market. Using the table
+</p>
+
+<p>
+<a href="https://opendata.cbs.nl/#/CBS/nl/dataset/80016ned/table">https://opendata.cbs.nl/#/CBS/nl/dataset/80016ned/table</a>
+</p>
+
+<p>
+with the following selections:
+</p>
+
+<ul class="org-ul">
+<li>men and women</li>
+<li>age \(\geq 15\)</li>
+<li>all countries of birth</li>
+<li>migration motive: joining the labour force</li>
+</ul>
+
+<p>
+we obtain approximately 14,000 migrants per year in the early 2000s.
+</p>
+
+<p>
+We interpret these migrants as entering the labor market as job seekers. In other words, they initially increase unemployment \(U\).
+</p>
+</div>
+</div>
+<div id="outline-container-orga2449a6" class="outline-4">
+<h4 id="orga2449a6">Short-run effect</h4>
+<div class="outline-text-4" id="text-orga2449a6">
+<p>
+In the short run we assume that the number of vacancies is fixed. Firms cannot immediately adjust their vacancy postings.
+</p>
+
+<p>
+When immigration increases, the number of unemployed workers \(U\) rises while vacancies \(V\) remain fixed. As a result, labor market tightness
+</p>
+
+<p>
+\[
+\theta = V/U
+\]
+</p>
+
+<p>
+falls.
+</p>
+
+<p>
+Lower tightness reduces the job-finding probability and lowers the worker&rsquo;s outside option. Through the Nash bargaining equation this leads to lower wages.
+</p>
+</div>
+</div>
+<div id="outline-container-orgdc3f328" class="outline-4">
+<h4 id="orgdc3f328">Long-run adjustment</h4>
+<div class="outline-text-4" id="text-orgdc3f328">
+<p>
+In the longer run firms can respond by creating additional vacancies. Firms post vacancies until the expected profit from a vacancy equals the cost of posting it.
+</p>
+
+<p>
+The expected benefit of posting a vacancy equals the probability of filling it times the profit generated by a match.
+</p>
+
+<p>
+The probability that a vacancy is filled is
+</p>
+
+<p>
+\[
+q(\theta) = \frac{M}{V} = m \theta^{-\alpha}
+\]
+</p>
+
+<p>
+The free-entry condition for vacancies is therefore
+</p>
+
+<p>
+\[
+c = q(\theta)(a - w)
+\]
+</p>
+
+<p>
+where \(c\) is the cost of posting a vacancy.
+</p>
+
+<p>
+This condition determines equilibrium labor market tightness in the long run.
+</p>
+
+<p>
+After an immigration shock, firms gradually create additional vacancies until the free-entry condition holds again. As a result, labor market tightness and wages move back toward their original equilibrium levels, while the total number of vacancies increases.
+</p>
+</div>
+</div>
+<div id="outline-container-org5b9003e" class="outline-4">
+<h4 id="org5b9003e">Effect of immigration</h4>
+<div class="outline-text-4" id="text-org5b9003e">
+<p>
+The Streamlit app below allows you to explore these mechanisms. You can simulate increases in immigration between 0% and 100% and observe how unemployment, vacancies, labor market tightness, and wages respond in both the short run and the long run.
+</p>
+
+<iframe
+  src="https://lecture4searchmatching.streamlit.app/?embed=true"
+  allow="fullscreen">
+</iframe>
+
+<div class="fallback">
+  <p>
+    If the app does not load,
+    <a href="https://lecture4searchmatching.streamlit.app/?embed=true" target="_blank">
+      open it in a new tab
+    </a>.
+  </p>
+</div>
+</div>
+</div>
+</div>
+<div id="outline-container-orgbe65985" class="outline-3">
+<h3 id="orgbe65985">Python Code Explanation</h3>
+<div class="outline-text-3" id="text-orgbe65985">
+</div>
+<div id="outline-container-orgf33a315" class="outline-4">
+<h4 id="orgf33a315">1. Import libraries</h4>
+<div class="outline-text-4" id="text-orgf33a315">
+<p>
+We first import the Python packages used for data handling, estimation, and plotting.
+</p>
+
+<div class="org-src-container">
+<pre class="src src-jupyter-python"><code><span style="color: #531ab6;">import</span> numpy <span style="color: #531ab6;">as</span> np
+<span style="color: #531ab6;">import</span> pandas <span style="color: #531ab6;">as</span> pd
+<span style="color: #531ab6;">import</span> matplotlib.pyplot <span style="color: #531ab6;">as</span> plt
+<span style="color: #531ab6;">from</span> scipy.optimize <span style="color: #531ab6;">import</span> minimize, fsolve
+<span style="color: #531ab6;">import</span> marimo <span style="color: #531ab6;">as</span> mo
+</code></pre>
+</div>
+
+<p>
+&mdash;
+</p>
+</div>
+</div>
+<div id="outline-container-orgea01d26" class="outline-4">
+<h4 id="orgea01d26">2. Load the data</h4>
+<div class="outline-text-4" id="text-orgea01d26">
+<p>
+We load the CBS dataset containing unemployment, vacancies, matches, and a wage index.
+</p>
+
+<div class="org-src-container">
+<pre class="src src-jupyter-python"><code><span style="color: #005e8b;">df</span> = pd.read_csv(<span style="color: #3548cf;">"./data/labour_data.csv"</span>)
+df.head()
+</code></pre>
+</div>
+
+<p>
+Important columns in the dataset:
+</p>
+
+<ul class="org-ul">
+<li><code>Unemployed labour force/Seasonally adjusted (x 1,000)</code> → unemployment \(U\)</li>
+<li><code>Vacancies seasonally adjusted, unfilled (x 1000)</code> → vacancies \(V\)</li>
+<li><code>Vacancies seasonally adjusted, filled (x 1000)</code> → matches \(M\)</li>
+<li><code>Average_monthly_wage_index</code> → wage index</li>
+</ul>
+
+<p>
+&mdash;
+</p>
+</div>
+</div>
+<div id="outline-container-org002bab3" class="outline-4">
+<h4 id="org002bab3">3. Model parameters from the literature</h4>
+<div class="outline-text-4" id="text-org002bab3">
+<p>
+The search-and-matching literature suggests that we can calibrate \(\alpha\) and \(\beta\) at 0.5 (<a href="#citeproc_bib_item_1">Mortensen and Nagypál 2007</a>; <a href="#citeproc_bib_item_2">Petrongolo and Pissarides 2001</a>).
+</p>
+
+<div class="org-src-container">
+<pre class="src src-jupyter-python"><code><span style="color: #005e8b;">alpha</span> = 0.5
+<span style="color: #005e8b;">beta</span> = 0.5
+</code></pre>
+</div>
+
+<p>
+These values imply:
+</p>
+
+<ul class="org-ul">
+<li>unemployment and vacancies contribute symmetrically to matching</li>
+<li>workers and firms split the surplus equally.</li>
+</ul>
+
+<p>
+&mdash;
+</p>
+</div>
+</div>
+<div id="outline-container-org2a415f1" class="outline-4">
+<h4 id="org2a415f1">4. Matching function and wage equation</h4>
+<div class="outline-text-4" id="text-org2a415f1">
+<p>
+We now write a function that predicts <b>matches and wages</b> for a given observation.
+</p>
+
+<div class="org-src-container">
+<pre class="src src-jupyter-python"><code><span style="color: #531ab6;">def</span> <span style="color: #721045;">predict_row</span>(row, m, a, b, counterfactual_immigration=0):
+    
+    <span style="color: #005e8b;">U</span> = row[<span style="color: #3548cf;">'Unemployed labour force/Seasonally adjusted (x 1,000)'</span>] + counterfactual_immigration
+    <span style="color: #005e8b;">V</span> = row[<span style="color: #3548cf;">'Vacancies seasonally adjusted, unfilled (x 1000)'</span>]
+
+    <span style="color: #7f0000;"># </span><span style="color: #7f0000;">Matching function</span>
+    <span style="color: #005e8b;">M_pred</span> = m * (U**alpha) * (V**(1-alpha))
+
+    <span style="color: #7f0000;"># </span><span style="color: #7f0000;">Labor market tightness</span>
+    <span style="color: #005e8b;">theta</span> = V / U
+
+    <span style="color: #7f0000;"># </span><span style="color: #7f0000;">Wage equation (Nash bargaining)</span>
+    <span style="color: #005e8b;">wage_pred</span> = beta * a + (1 - beta) * b * (theta ** (1 - alpha))
+
+    <span style="color: #531ab6;">return</span> M_pred, wage_pred
+</code></pre>
+</div>
+
+<p>
+This function implements two key model equations:
+</p>
+<ul class="org-ul">
+<li>Matching: \(M = m U^α V^{1−α}\)</li>
+<li>Wage: \(w = βa + (1−β)b θ^{1−α}\)</li>
+</ul>
+
+<p>
+&mdash;
+</p>
+</div>
+</div>
+<div id="outline-container-orgbf00319" class="outline-4">
+<h4 id="orgbf00319">5. Estimating model parameters</h4>
+<div class="outline-text-4" id="text-orgbf00319">
+<p>
+We estimate the unknown parameters:
+</p>
+
+<ul class="org-ul">
+<li>matching efficiency \(m\)</li>
+<li>productivity \(a\)</li>
+<li>outside option parameter \(b\)</li>
+</ul>
+
+<p>
+We do this by minimizing the <b>sum of squared errors</b> between the model and the data.
+</p>
+
+<div class="org-src-container">
+<pre class="src src-jupyter-python"><code><span style="color: #531ab6;">def</span> <span style="color: #721045;">sum_squared_errors</span>(params, df):
+
+    <span style="color: #005e8b;">m</span>, <span style="color: #005e8b;">a</span>, <span style="color: #005e8b;">b</span> = params
+    <span style="color: #005e8b;">errors</span> = []
+
+    <span style="color: #531ab6;">for</span> _, row <span style="color: #531ab6;">in</span> df.iterrows():
+
+        <span style="color: #005e8b;">M_pred</span>, <span style="color: #005e8b;">wage_pred</span> = predict_row(row, m, a, b)
+
+        <span style="color: #005e8b;">e_M</span> = (row[<span style="color: #3548cf;">'Vacancies seasonally adjusted, filled (x 1000)'</span>] - M_pred)**2
+        <span style="color: #005e8b;">e_wage</span> = (row[<span style="color: #3548cf;">'Average_monthly_wage_index'</span>] - wage_pred)**2
+
+        errors.append(e_M + e_wage)
+
+    <span style="color: #531ab6;">return</span> np.<span style="color: #8f0075;">sum</span>(errors)
+</code></pre>
+</div>
+
+<p>
+This function computes how far the model predictions are from the data.
+</p>
+
+<p>
+&mdash;
+</p>
+</div>
+</div>
+<div id="outline-container-org1aa213d" class="outline-4">
+<h4 id="org1aa213d">6. Run the estimation</h4>
+<div class="outline-text-4" id="text-org1aa213d">
+<p>
+We now use a numerical optimizer to estimate the parameters.
+</p>
+
+<div class="org-src-container">
+<pre class="src src-jupyter-python"><code><span style="color: #005e8b;">init_params</span> = [0.8, 200, 50]
+
+<span style="color: #005e8b;">result</span> = minimize(sum_squared_errors, init_params, args=(df,))
+
+<span style="color: #005e8b;">m_hat</span>, <span style="color: #005e8b;">a_hat</span>, <span style="color: #005e8b;">b_hat</span> = result.x
+
+m_hat, a_hat, b_hat
+</code></pre>
+</div>
+
+<p>
+The optimizer searches for parameter values that make the model fit the observed data as closely as possible.
+</p>
+
+<p>
+&mdash;
+</p>
+</div>
+</div>
+<div id="outline-container-org1d6cb31" class="outline-4">
+<h4 id="org1d6cb31">7. Compare model predictions to data</h4>
+<div class="outline-text-4" id="text-org1d6cb31">
+<p>
+Using the estimated parameters, we compute predicted matches and wages.
+</p>
+
+<div class="org-src-container">
+<pre class="src src-jupyter-python"><code><span style="color: #005e8b;">M_pred</span> = []
+<span style="color: #005e8b;">wage_pred</span> = []
+
+<span style="color: #531ab6;">for</span> _, row <span style="color: #531ab6;">in</span> df.iterrows():
+    <span style="color: #005e8b;">mp</span>, <span style="color: #005e8b;">wp</span> = predict_row(row, m_hat, a_hat, b_hat)
+    M_pred.append(mp)
+    wage_pred.append(wp)
+</code></pre>
+</div>
+
+<p>
+Now we plot <b>observed vs predicted values</b>.
+</p>
+
+<div class="org-src-container">
+<pre class="src src-jupyter-python"><code><span style="color: #005e8b;">periods</span> = df[<span style="color: #3548cf;">'PeriodQ'</span>].astype(<span style="color: #8f0075;">str</span>)
+<span style="color: #005e8b;">fig</span>, <span style="color: #005e8b;">axs</span> = plt.subplots(1,2, figsize=(12,4))
+
+axs[0].plot(periods, df[<span style="color: #3548cf;">'Vacancies seasonally adjusted, filled (x 1000)'</span>])
+axs[0].plot(periods, M_pred)
+axs[0].set_title(<span style="color: #3548cf;">"Matches"</span>)
+axs[0].set_xticks(periods[::4])
+axs[0].tick_params(axis=<span style="color: #3548cf;">'x'</span>, rotation=45)
+
+
+axs[1].plot(periods, df[<span style="color: #3548cf;">'Average_monthly_wage_index'</span>])
+axs[1].plot(periods, wage_pred)
+axs[1].set_title(<span style="color: #3548cf;">"Wages"</span>)
+axs[1].set_xticks(periods[::4])
+axs[1].tick_params(axis=<span style="color: #3548cf;">'x'</span>, rotation=45)
+
+plt.tight_layout()
+fig
+</code></pre>
+</div>
+
+<p>
+The purpose of this step is simply to check whether the model roughly reproduces the data.
+</p>
+
+<p>
+&mdash;
+</p>
+</div>
+</div>
+<div id="outline-container-org8426cf1" class="outline-4">
+<h4 id="org8426cf1">8. Interactive immigration shock (marimo slider)</h4>
+<div class="outline-text-4" id="text-org8426cf1">
+<p>
+In the app, immigration is controlled with a slider.  
+In <code>marimo</code> we create the same interaction using a widget.
+</p>
+
+<div class="org-src-container">
+<pre class="src src-jupyter-python"><code><span style="color: #005e8b;">immigration_slider</span> = mo.ui.slider(
+    start=0,
+    stop=100,
+    step=1,
+    value=0,
+    label=<span style="color: #3548cf;">"Immigration increase (%)"</span>
+)
+</code></pre>
+</div>
+
+<p>
+The slider allows the user to simulate immigration increases between <b>0% and 100%</b>.
+</p>
+
+<p>
+&mdash;
+</p>
+</div>
+</div>
+<div id="outline-container-orgd9a8e9b" class="outline-4">
+<h4 id="orgd9a8e9b">9. Compute short‑run effects</h4>
+<div class="outline-text-4" id="text-orgd9a8e9b">
+<p>
+We use the latest observation as the baseline and simulate additional immigrants entering unemployment.
+</p>
+
+<div class="org-src-container">
+<pre class="src src-jupyter-python"><code>immigration_slider
+<span style="color: #005e8b;">latest</span> = df.iloc[-1]
+
+<span style="color: #005e8b;">U0</span> = latest[<span style="color: #3548cf;">"Unemployed labour force/Seasonally adjusted (x 1,000)"</span>] * 1000
+<span style="color: #005e8b;">V0</span> = latest[<span style="color: #3548cf;">"Vacancies seasonally adjusted, unfilled (x 1000)"</span>] * 1000
+
+<span style="color: #005e8b;">immigrants_per_year</span> = 14000
+
+<span style="color: #005e8b;">additional</span> = immigrants_per_year * immigration_slider.value / 100
+
+<span style="color: #005e8b;">U</span> = U0 + additional
+<span style="color: #005e8b;">theta</span> = V0 / U
+
+<span style="color: #005e8b;">w</span> = beta * a_hat + (1 - beta) * b_hat * theta**(1 - alpha)
+
+theta, w
+</code></pre>
+</div>
+
+<p>
+Short run assumption:
+</p>
+
+<ul class="org-ul">
+<li>immigration increases unemployment</li>
+<li>vacancies remain fixed</li>
+</ul>
+
+<p>
+This reduces labor market tightness \(θ = V/U\) and lowers wages.
+</p>
+
+<p>
+&mdash;
+</p>
+</div>
+</div>
+<div id="outline-container-org99c1a90" class="outline-4">
+<h4 id="org99c1a90">10. Plot the wage curve</h4>
+<div class="outline-text-4" id="text-org99c1a90">
+<p>
+Finally we visualize how immigration moves the economy along the wage curve.
+</p>
+
+<div class="org-src-container">
+<pre class="src src-jupyter-python"><code><span style="color: #005e8b;">theta0</span> = V0 / U0
+
+<span style="color: #005e8b;">theta_grid</span> = np.linspace(0.5*theta0, 1.5*theta0, 200)
+
+<span style="color: #005e8b;">w_grid</span> = beta * a_hat + (1 - beta) * b_hat * theta_grid**(1 - alpha)
+
+<span style="color: #005e8b;">fig</span>, <span style="color: #005e8b;">ax</span> = plt.subplots()
+
+ax.plot(theta_grid, w_grid)
+ax.scatter(theta, w)
+
+ax.set_xlabel(<span style="color: #3548cf;">"Labor market tightness &#952;"</span>)
+ax.set_ylabel(<span style="color: #3548cf;">"Wage index"</span>)
+
+plt.show()
+</code></pre>
+</div>
+
+<p>
+Interpretation:
+</p>
+
+<ul class="org-ul">
+<li>the curve shows wages implied by Nash bargaining</li>
+<li>immigration increases unemployment</li>
+<li>this lowers tightness \(θ\)</li>
+<li>the economy moves <b>left along the wage curve</b>, reducing wages.</li>
+</ul>
+</div>
+</div>
+</div>
+<div id="outline-container-orgbd5b5f8" class="outline-3">
+<h3 id="orgbd5b5f8">Review questions</h3>
+<div class="outline-text-3" id="text-orgbd5b5f8">
+</div>
+<div id="outline-container-org85ab009" class="outline-4">
+<h4 id="org85ab009">Question 1. Simulating the matching function</h4>
+<div class="outline-text-4" id="text-org85ab009">
+<p>
+Write a Python function that computes the number of matches \(M\) using the matching function
+</p>
+
+<p>
+\(M = m U^\alpha V^{1-\alpha}\)
+</p>
+
+<p>
+Choose parameter values \(m = 0.8\) and \(\alpha = 0.5\).  
+Simulate how matches change when unemployment \(U\) increases from 50 to 200 while vacancies \(V = 100\) remain fixed.  
+Plot matches as a function of unemployment.
+</p>
+
+<details>
+<summary><strong>Hint / Solution</strong></summary>
+
+<div class="org-src-container">
+<pre class="src src-python"><code><span style="color: #531ab6;">import</span> numpy <span style="color: #531ab6;">as</span> np
+<span style="color: #531ab6;">import</span> matplotlib.pyplot <span style="color: #531ab6;">as</span> plt
+
+<span style="color: #005e8b;">m</span> = 0.8
+<span style="color: #005e8b;">alpha</span> = 0.5
+<span style="color: #005e8b;">V</span> = 100
+
+<span style="color: #005e8b;">U</span> = np.linspace(50, 200, 100)
+
+<span style="color: #005e8b;">M</span> = m * (U**alpha) * (V**(1-alpha))
+
+plt.plot(U, M)
+plt.xlabel(<span style="color: #3548cf;">"Unemployment U"</span>)
+plt.ylabel(<span style="color: #3548cf;">"Matches M"</span>)
+plt.title(<span style="color: #3548cf;">"Matching Function"</span>)
+plt.show()
+</code></pre>
+</div>
+
+</details>
+</div>
+</div>
+<div id="outline-container-orge1b8ccc" class="outline-4">
+<h4 id="orge1b8ccc">Question 2. Job-finding probability</h4>
+<div class="outline-text-4" id="text-orge1b8ccc">
+<p>
+The probability that an unemployed worker finds a job is
+</p>
+
+<p>
+\(p(\theta) = m \theta^{1-\alpha}\)
+</p>
+
+<p>
+where \(\theta = V/U\).
+</p>
+
+<p>
+Write Python code that computes and plots the job-finding probability for \(\theta\) values between 0.2 and 2.
+</p>
+
+<details>
+<summary><strong>Hint / Solution</strong></summary>
+
+<div class="org-src-container">
+<pre class="src src-python"><code><span style="color: #531ab6;">import</span> numpy <span style="color: #531ab6;">as</span> np
+<span style="color: #531ab6;">import</span> matplotlib.pyplot <span style="color: #531ab6;">as</span> plt
+
+<span style="color: #005e8b;">m</span> = 0.8
+<span style="color: #005e8b;">alpha</span> = 0.5
+
+<span style="color: #005e8b;">theta</span> = np.linspace(0.2, 2, 100)
+
+<span style="color: #005e8b;">p</span> = m * theta**(1-alpha)
+
+plt.plot(theta, p)
+plt.xlabel(<span style="color: #3548cf;">"Labor market tightness &#952;"</span>)
+plt.ylabel(<span style="color: #3548cf;">"Job-finding probability"</span>)
+plt.title(<span style="color: #3548cf;">"Job-finding probability"</span>)
+plt.show()
+</code></pre>
+</div>
+
+</details>
+</div>
+</div>
+<div id="outline-container-orgcc8b3e1" class="outline-4">
+<h4 id="orgcc8b3e1">Question 3. Wage curve</h4>
+<div class="outline-text-4" id="text-orgcc8b3e1">
+<p>
+The wage equation in the lecture is
+</p>
+
+<p>
+\(w = \beta a + (1-\beta)b\theta^{1-\alpha}\)
+</p>
+
+<p>
+Assume  
+\(a = 200\), \(b = 50\), \(\alpha = 0.5\), \(\beta = 0.5\).
+</p>
+
+<p>
+Write Python code that plots the wage curve for \(\theta\) between 0.2 and 2.
+</p>
+
+<details>
+<summary><strong>Hint / Solution</strong></summary>
+
+<div class="org-src-container">
+<pre class="src src-python"><code><span style="color: #531ab6;">import</span> numpy <span style="color: #531ab6;">as</span> np
+<span style="color: #531ab6;">import</span> matplotlib.pyplot <span style="color: #531ab6;">as</span> plt
+
+<span style="color: #005e8b;">a</span> = 200
+<span style="color: #005e8b;">b</span> = 50
+<span style="color: #005e8b;">alpha</span> = 0.5
+<span style="color: #005e8b;">beta</span> = 0.5
+
+<span style="color: #005e8b;">theta</span> = np.linspace(0.2, 2, 100)
+
+<span style="color: #005e8b;">w</span> = beta * a + (1-beta) * b * theta**(1-alpha)
+
+plt.plot(theta, w)
+plt.xlabel(<span style="color: #3548cf;">"Labor market tightness &#952;"</span>)
+plt.ylabel(<span style="color: #3548cf;">"Wage"</span>)
+plt.title(<span style="color: #3548cf;">"Wage curve"</span>)
+plt.show()
+</code></pre>
+</div>
+
+</details>
+</div>
+</div>
+<div id="outline-container-orgf68c9cf" class="outline-4">
+<h4 id="orgf68c9cf">Question 4. Immigration shock in the short run</h4>
+<div class="outline-text-4" id="text-orgf68c9cf">
+<p>
+Suppose the labor market initially has
+</p>
+
+<p>
+U = 200 (thousand unemployed)  
+V = 150 (thousand vacancies)
+</p>
+
+<p>
+Immigration increases unemployment by 20%.
+</p>
+
+<p>
+Write Python code that
+</p>
+
+<p>
+• computes the initial tightness \(θ_0\)  
+• computes the new tightness after immigration  
+• computes the corresponding wages using the wage equation.
+</p>
+
+<details>
+<summary><strong>Hint / Solution</strong></summary>
+
+<div class="org-src-container">
+<pre class="src src-python"><code><span style="color: #531ab6;">import</span> numpy <span style="color: #531ab6;">as</span> np
+
+<span style="color: #005e8b;">a</span> = 200
+<span style="color: #005e8b;">b</span> = 50
+<span style="color: #005e8b;">alpha</span> = 0.5
+<span style="color: #005e8b;">beta</span> = 0.5
+
+<span style="color: #005e8b;">U0</span> = 200
+<span style="color: #005e8b;">V</span> = 150
+
+<span style="color: #005e8b;">theta0</span> = V / U0
+
+<span style="color: #005e8b;">U1</span> = U0 * 1.2
+<span style="color: #005e8b;">theta1</span> = V / U1
+
+<span style="color: #005e8b;">w0</span> = beta * a + (1-beta) * b * theta0**(1-alpha)
+<span style="color: #005e8b;">w1</span> = beta * a + (1-beta) * b * theta1**(1-alpha)
+
+<span style="color: #8f0075;">print</span>(theta0, theta1)
+<span style="color: #8f0075;">print</span>(w0, w1)
+</code></pre>
+</div>
+
+</details>
+</div>
+</div>
+<div id="outline-container-orgddac1cd" class="outline-4">
+<h4 id="orgddac1cd">Question 5. Estimating the matching function</h4>
+<div class="outline-text-4" id="text-orgddac1cd">
+<p>
+Using the matching function
+</p>
+
+<p>
+\(M = m U^\alpha V^{1-\alpha}\)
+</p>
+
+<p>
+generate simulated data for \(U\) and \(V\), compute \(M\), and then estimate the parameters \(m,\alpha\) using least squares.
+</p>
+
+<p>
+Hint: rearrange the equation as
+</p>
+
+<p>
+\(m = M / (U^\alpha V^{1-\alpha})\)
+</p>
+
+<p>
+Compute the average value of \(m\) from your simulated observations.
+</p>
+
+<details>
+<summary><strong>Hint / Solution</strong></summary>
+
+<div class="org-src-container">
+<pre class="src src-jupyter-python"><code><span style="color: #531ab6;">import</span> numpy <span style="color: #531ab6;">as</span> np
+
+<span style="color: #005e8b;">alpha</span> = 0.5
+<span style="color: #005e8b;">m_true</span> = 0.8
+
+np.random.seed(0)
+
+<span style="color: #005e8b;">U</span> = np.random.uniform(50, 200, 100)
+<span style="color: #005e8b;">V</span> = np.random.uniform(50, 200, 100)
+
+<span style="color: #005e8b;">M</span> = m_true * (U**alpha) * (V**(1-alpha)) + np.random.normal(0,10,100)
+
+</code></pre>
+</div>
+
+<p>
+Now define a matching function as a function of \(m,\alpha\), derive the residuals between the matching function and the observed values for \(M\). Minimize the sum of squared residuals. 
+</p>
+</details>
+</div>
+</div>
+</div>
+</div>
+<div id="outline-container-lecture_dynamics" class="outline-2">
+<h2 id="lecture_dynamics">Lecture 5: Modeling Dynamics</h2>
+<div class="outline-text-2" id="text-lecture_dynamics">
+<p>
+In this lecture you will learn:
+</p>
+<ul class="org-ul">
+<li>How to solve differential equations using <code>scipy</code>.</li>
+<li>Understand the economic intuition for dynamic effects and illustrating this using interactive apps.</li>
+<li>Solve dynamic optimization problems.</li>
+</ul>
+</div>
+<div id="outline-container-org9d4ef59" class="outline-3">
+<h3 id="org9d4ef59">Solving Dynamic Economic Models</h3>
+<div class="outline-text-3" id="text-org9d4ef59">
+<p>
+Much of economics is about understanding how things change over time. Capital accumulates gradually, firms learn from experience, and contracts must account for incentives that evolve across different types of consumers. These processes are inherently dynamic: what happens today influences what happens tomorrow.
+</p>
+
+<p>
+To study such problems formally, economists often describe economic forces with differential equations. These equations capture how key variables evolve as a function of their current level and economic incentives. In many cases the models cannot easily be solved analytically, but modern numerical tools allow us to compute their behavior and visualize the implied dynamics.
+</p>
+
+<p>
+The following three apps introduce three economic environments in which dynamics play a central role. Each example highlights a different type of dynamic reasoning commonly used in economic research.
+</p>
+</div>
+</div>
+<div id="outline-container-org06a6b7b" class="outline-3">
+<h3 id="org06a6b7b">Apps</h3>
+<div class="outline-text-3" id="text-org06a6b7b">
+</div>
+<div id="outline-container-org93d2f18" class="outline-4">
+<h4 id="org93d2f18">Solow model</h4>
+<div class="outline-text-4" id="text-org93d2f18">
+<p>
+One of the most fundamental questions in macroeconomics is why some countries are richer than others and how economies grow over time. A key mechanism behind long‑run growth is capital accumulation: societies invest part of their income in machines, infrastructure, and technology that increase future production.
+</p>
+
+<p>
+However, capital does not grow automatically. Investment increases the capital stock, but depreciation and population growth work in the opposite direction. New workers require additional capital to maintain capital per worker and productivity, and existing capital gradually wears out.
+</p>
+
+<p>
+The Solow growth model captures this tension between investment and dilution. In this framework, the economy produces output using capital and labor. A constant fraction of output is saved and invested, which increases the capital stock. At the same time, depreciation and population growth reduce the amount of capital available per worker.
+</p>
+
+<p>
+These forces determine how capital per worker evolves over time. If the economy starts with very little capital, investment will exceed depreciation and capital will grow rapidly. If the economy becomes very capital‑intensive, depreciation and population growth eventually dominate, slowing further accumulation.
+</p>
+
+<p>
+This dynamic adjustment leads to a steady state: a level of capital per worker at which investment exactly offsets depreciation and population growth. At this point the capital stock per worker stops changing.
+</p>
+
+<p>
+An important question is how the steady state depends on economic parameters. For example, how would the long‑run level of capital change if households saved a larger fraction of their income? What happens if population growth increases? How does the productivity of capital affect the outcome?
+</p>
+
+<p>
+Thinking through these questions helps build intuition for the forces that determine long‑run economic development.
+</p>
+
+<iframe
+  src="https://solowmodel.streamlit.app/?embed=true"
+  allow="fullscreen">
+</iframe>
+
+<div class="fallback">
+  <p>
+    If the app does not load,
+    <a href="https://solowmodel.streamlit.app/?embed=true" target="_blank">
+      open it in a new tab
+    </a>.
+  </p>
+</div>
+</div>
+</div>
+<div id="outline-container-org0060bf9" class="outline-4">
+<h4 id="org0060bf9">Mechanism design</h4>
+<div class="outline-text-4" id="text-org0060bf9">
+<p>
+Many markets involve asymmetric information. Firms often do not know exactly how much each consumer values their product. Some customers are willing to pay a lot, while others are much more price sensitive.
+</p>
+
+<p>
+Consider a monopolist selling a product whose quality or quantity can vary. Consumers differ in how much they value this quality, but the firm cannot observe their valuation directly. If the firm could perfectly observe each consumer’s type, it could tailor a price to each individual and extract all surplus. In reality, the firm must design a pricing strategy that induces consumers to reveal their preferences voluntarily.
+</p>
+
+<p>
+This leads to the problem of mechanism design or screening. The firm offers a menu of contracts, where each contract specifies a quantity or quality level together with a price. Consumers choose the option that maximizes their own utility.
+</p>
+
+<p>
+The difficulty is that high‑valuation consumers might pretend to be low‑valuation consumers if the low‑quality contract is cheaper. To prevent this, the menu must be designed so that each consumer prefers the option intended for their own type. This requirement is called incentive compatibility or truthful revelation.
+</p>
+
+<p>
+Ensuring truthful behavior typically forces the firm to leave some surplus &ndash;often called information rents&ndash; to higher-valuation consumers. These rents are the price the firm must pay to obtain information about consumers’ willingness to pay.
+</p>
+
+<p>
+The resulting optimal contracts display several interesting patterns. Higher types typically receive higher quality and pay higher prices. At the same time, the allocation is generally distorted relative to the socially efficient outcome, especially for low‑valuation consumers.
+</p>
+
+<p>
+Understanding these distortions is central to many areas of economics, including regulation, taxation, insurance, and pricing strategies in digital markets.
+</p>
+
+<iframe
+  src="https://mechanismdesign.streamlit.app/?embed=true"
+  allow="fullscreen">
+</iframe>
+
+<div class="fallback">
+  <p>
+    If the app does not load,
+    <a href="https://mechanismdesign.streamlit.app/?embed=true" target="_blank">
+      open it in a new tab
+    </a>.
+  </p>
+</div>
+</div>
+</div>
+<div id="outline-container-org632207d" class="outline-4">
+<h4 id="org632207d">Learning by doing</h4>
+<div class="outline-text-4" id="text-org632207d">
+<p>
+Firms often become more efficient as they gain experience with a production process. This phenomenon, known as learning by doing, has been documented in many industries such as semiconductor manufacturing, aircraft production, and renewable energy technologies.
+</p>
+
+<p>
+When firms produce more today, they accumulate knowledge that reduces future production costs. This creates a dynamic trade-off. Producing more in the present may reduce current profits, but it can increase future profitability by lowering costs.
+</p>
+
+<p>
+Because of this trade-off, firms may choose production paths that differ from the static profit-maximizing quantity. A purely static monopolist would simply choose the output level that maximizes current profits given current costs. A forward‑looking firm, however, takes into account that higher production today accelerates learning and reduces costs tomorrow.
+</p>
+
+<p>
+This introduces an investment motive in production decisions. Output today not only generates current revenue but also contributes to the firm’s stock of experience.
+</p>
+
+<p>
+Several interesting questions arise in this environment. Should firms produce more or less early in the life of a product? How does the importance of the future &ndash;captured by the discount rate&ndash; affect production choices? And how does the value of accumulated experience change over time?
+</p>
+
+<p>
+Analyzing these questions helps illustrate how dynamic optimization differs from static decision making. When future benefits are important, firms may deliberately deviate from short‑run profit maximization in order to improve long‑run outcomes.
+</p>
+
+<iframe
+  src="https://qqprotxxjhvhujcplsebfh.streamlit.app/?embed=true"
+  allow="fullscreen">
+</iframe>
+
+<div class="fallback">
+  <p>
+    If the app does not load,
+    <a href="https://qqprotxxjhvhujcplsebfh.streamlit.app/?embed=true" target="_blank">
+      open it in a new tab
+    </a>.
+  </p>
+</div>
+</div>
+</div>
+</div>
+<div id="outline-container-orgc113852" class="outline-3">
+<h3 id="orgc113852">Python Code Explanation</h3>
+<div class="outline-text-3" id="text-orgc113852">
+</div>
+<div id="outline-container-org07a1caa" class="outline-4">
+<h4 id="org07a1caa">Interactivity in Marimo</h4>
+<div class="outline-text-4" id="text-org07a1caa">
+<p>
+In <b>marimo</b>, interactive elements are created with <code>mo.ui</code> widgets.
+</p>
+
+<p>
+Example:
+</p>
+
+<div class="org-src-container">
+<pre class="src src-python"><code><span style="color: #531ab6;">import</span> marimo <span style="color: #531ab6;">as</span> mo
+
+<span style="color: #005e8b;">alpha</span> = mo.ui.slider(0.1, 0.9, value=0.3, step=0.01, label=<span style="color: #3548cf;">"Capital share (&#945;)"</span>)
+<span style="color: #005e8b;">s</span> = mo.ui.slider(0.01, 0.6, value=0.2, step=0.01, label=<span style="color: #3548cf;">"Savings rate"</span>)
+</code></pre>
+</div>
+
+<p>
+Then display them:
+</p>
+
+<div class="org-src-container">
+<pre class="src src-python"><code>alpha, s
+</code></pre>
+</div>
+
+<p>
+To use the value inside calculations:
+</p>
+
+<div class="org-src-container">
+<pre class="src src-nil"><code>alpha.value
+s.value
+</code></pre>
+</div>
+
+<p>
+Marimo automatically <b>re-runs dependent cells</b> when a widget value changes.  
+So if a plot depends on <code>alpha.value</code>, it updates automatically when the <code>alpha</code> slider moves.
+</p>
+
+<p>
+&mdash;
+</p>
+</div>
+</div>
+<div id="outline-container-org2bd748c" class="outline-4">
+<h4 id="org2bd748c">Solving Differential Equations in SciPy</h4>
+<div class="outline-text-4" id="text-org2bd748c">
+<p>
+Two numerical solvers are used in the apps.
+</p>
+</div>
+<ul class="org-ul">
+<li><a id="org6c162fe"></a>Initial Value Problems (IVP)<br />
+<div class="outline-text-5" id="text-org6c162fe">
+<p>
+Used in <b>App 1</b>.
+</p>
+
+<p>
+An IVP has the structure
+</p>
+
+<div class="org-src-container">
+<pre class="src src-nil"><code>y'(t) = f(t, y)
+y(t0) = y0
+</code></pre>
+</div>
+
+<p>
+Meaning:
+</p>
+
+<ul class="org-ul">
+<li>we know the <b>starting value</b></li>
+<li>we simulate the path forward in time.</li>
+</ul>
+
+<p>
+SciPy function:
+</p>
+
+<div class="org-src-container">
+<pre class="src src-nil"><code>scipy.integrate.solve_ivp
+</code></pre>
+</div>
+
+<p>
+Basic syntax:
+</p>
+
+<div class="org-src-container">
+<pre class="src src-nil"><code>solve_ivp(function, t_span, y0, t_eval=grid)
+</code></pre>
+</div>
+
+<p>
+Arguments:
+</p>
+
+<ul class="org-ul">
+<li><code>function</code> : defines the differential equation</li>
+<li><code>t_span</code> : time interval <code>(t0, T)</code></li>
+<li><code>y0</code> : initial value</li>
+<li><code>t_eval</code> : grid of times where the solution is reported</li>
+</ul>
+
+<p>
+The solver internally uses numerical integration methods (typically an algorithm called Runge–Kutta).
+</p>
+
+<p>
+The result object contains:
+</p>
+
+<div class="org-src-container">
+<pre class="src src-nil"><code>sol.t     time grid
+sol.y     solution values
+</code></pre>
+</div>
+
+<p>
+&mdash;
+</p>
+</div>
+</li>
+<li><a id="orgf157b30"></a>Boundary Value Problems (BVP)<br />
+<div class="outline-text-5" id="text-orgf157b30">
+<p>
+Used in <b>App 2 and App 3</b>.
+</p>
+
+<p>
+A BVP specifies conditions at <b>different points</b>, e.g.
+</p>
+
+<div class="org-src-container">
+<pre class="src src-nil"><code>y(a) = value1
+y(b) = value2
+</code></pre>
+</div>
+
+<p>
+Instead of simulating forward from a known starting value, the algorithm must <b>search for a function that satisfies both boundaries simultaneously</b>.
+</p>
+
+<p>
+SciPy function:
+</p>
+
+<div class="org-src-container">
+<pre class="src src-nil"><code>scipy.integrate.solve_bvp
+</code></pre>
+</div>
+
+<p>
+Basic structure:
+</p>
+
+<div class="org-src-container">
+<pre class="src src-nil"><code>solve_bvp(system, boundary_conditions, x_grid, initial_guess)
+</code></pre>
+</div>
+
+<p>
+Inputs:
+</p>
+
+<ul class="org-ul">
+<li><code>system(x,y)</code> → differential equations</li>
+<li><code>boundary_conditions(ya,yb)</code> → conditions at start and end</li>
+<li><code>x_grid</code> → grid for solution</li>
+<li><code>initial_guess</code> → guess for the solution path</li>
+</ul>
+
+<p>
+The solver iteratively adjusts the path until the differential equations <b>and boundary conditions</b> hold.
+</p>
+
+<p>
+The result object includes
+</p>
+
+<div class="org-src-container">
+<pre class="src src-nil"><code>sol.x     grid
+sol.y     solution
+sol.yp    derivatives
+</code></pre>
+</div>
+
+<p>
+&mdash;
+</p>
+</div>
+</li>
+</ul>
+</div>
+<div id="outline-container-orga7b28f6" class="outline-4">
+<h4 id="orga7b28f6">Solow Growth Model</h4>
+<div class="outline-text-4" id="text-orga7b28f6">
+</div>
+<ul class="org-ul">
+<li><a id="org8663891"></a>Model equation<br />
+<div class="outline-text-5" id="text-org8663891">
+<p>
+Capital evolves according to
+</p>
+
+<div class="org-src-container">
+<pre class="src src-nil"><code>k'(t) = s k^α − (n + δ) k
+</code></pre>
+</div>
+
+<p>
+This is a <b>single differential equation</b>. And we have a given capital stock \(k(0)=k_0\) at the start of time: initial value problem.
+</p>
+
+<p>
+&mdash;
+</p>
+</div>
+</li>
+<li><a id="org2719e45"></a>Step 1: Import libraries<br />
+<div class="outline-text-5" id="text-org2719e45">
+<div class="org-src-container">
+<pre class="src src-nil"><code>import numpy as np
+import matplotlib.pyplot as plt
+from scipy.integrate import solve_ivp
+</code></pre>
+</div>
+
+<p>
+Roles:
+</p>
+
+<ul class="org-ul">
+<li><code>numpy</code> → numerical operations</li>
+<li><code>matplotlib</code> → plotting</li>
+<li><code>solve_ivp</code> → differential equation solver</li>
+</ul>
+
+<p>
+&mdash;
+</p>
+</div>
+</li>
+<li><a id="org8a49037"></a>Step 2: Define parameters (interactive)<br />
+<div class="outline-text-5" id="text-org8a49037">
+<p>
+In marimo:
+</p>
+
+<div class="org-src-container">
+<pre class="src src-python"><code><span style="color: #005e8b;">alpha</span> = mo.ui.slider(0.1,0.9,value=0.3)
+<span style="color: #005e8b;">s</span> = mo.ui.slider(0.01,0.6,value=0.2)
+<span style="color: #005e8b;">n</span> = mo.ui.slider(0.0,0.05,value=0.01)
+<span style="color: #005e8b;">delta</span> = mo.ui.slider(0.0,0.1,value=0.05)
+<span style="color: #005e8b;">k0</span> = mo.ui.slider(0.01,5.0,value=0.5)
+</code></pre>
+</div>
+
+<p>
+Use them in calculations as
+</p>
+
+<div class="org-src-container">
+<pre class="src src-nil"><code>alpha.value
+</code></pre>
+</div>
+
+<p>
+&mdash;
+</p>
+</div>
+</li>
+<li><a id="org0a5bbfa"></a>Step 3: Define the differential equation<br />
+<div class="outline-text-5" id="text-org0a5bbfa">
+<div class="org-src-container">
+<pre class="src src-nil"><code>def solow(t,k):
+    return s.value*k**alpha.value - (n.value+delta.value)*k
+</code></pre>
+</div>
+
+<p>
+Important detail:
+</p>
+
+<p>
+SciPy expects the function signature
+</p>
+
+<div class="org-src-container">
+<pre class="src src-nil"><code>f(t,y)
+</code></pre>
+</div>
+
+<p>
+even if the equation does not depend on <code>t</code>.
+</p>
+
+<p>
+&mdash;
+</p>
+</div>
+</li>
+<li><a id="orga6aedb0"></a>Step 4: Compute steady state<br />
+<div class="outline-text-5" id="text-orga6aedb0">
+<p>
+The steady state solves
+</p>
+
+<div class="org-src-container">
+<pre class="src src-nil"><code>0 = s k^α − (n+δ)k
+</code></pre>
+</div>
+
+<p>
+which gives
+</p>
+
+<div class="org-src-container">
+<pre class="src src-nil"><code>k_ss = (s.value/(n.value+delta.value))**(1/(1-alpha.value))
+</code></pre>
+</div>
+
+<p>
+&mdash;
+</p>
+</div>
+</li>
+<li><a id="org1f27d8a"></a>Step 5: Time grid<br />
+<div class="outline-text-5" id="text-org1f27d8a">
+<div class="org-src-container">
+<pre class="src src-nil"><code>t_span = (0,50)
+t_eval = np.linspace(0,50,200)
+</code></pre>
+</div>
+
+<p>
+This means we simulate the model from time 0 to 50 and evaluate at 200 points.
+</p>
+
+<p>
+&mdash;
+</p>
+</div>
+</li>
+<li><a id="orgc0ea48b"></a>Step 6: Solve the IVP<br />
+<div class="outline-text-5" id="text-orgc0ea48b">
+<div class="org-src-container">
+<pre class="src src-nil"><code>sol = solve_ivp(solow, t_span, [k0.value], t_eval=t_eval)
+</code></pre>
+</div>
+
+<p>
+Note:
+</p>
+
+<p>
+<code>[k0]</code> must be a list because SciPy allows <b>systems of equations</b>.
+</p>
+
+<p>
+Solution:
+</p>
+
+<div class="org-src-container">
+<pre class="src src-nil"><code>sol.t
+sol.y[0]
+</code></pre>
+</div>
+
+<p>
+&mdash;
+</p>
+</div>
+</li>
+<li><a id="orgac33ad5"></a>Step 7: Plot transition dynamics<br />
+<div class="outline-text-5" id="text-orgac33ad5">
+<div class="org-src-container">
+<pre class="src src-nil"><code>plt.plot(sol.t, sol.y[0])
+plt.axhline(k_ss)
+</code></pre>
+</div>
+
+<p>
+Interpretation:
+</p>
+
+<ul class="org-ul">
+<li>the path converges toward the steady state.</li>
+</ul>
+
+<p>
+&mdash;
+</p>
+</div>
+</li>
+<li><a id="org3a4bdd6"></a>Step 8: Solow diagram<br />
+<div class="outline-text-5" id="text-org3a4bdd6">
+<p>
+Create a grid of capital levels:
+</p>
+
+<div class="org-src-container">
+<pre class="src src-nil"><code>k_grid = np.linspace(0.01,5,200)
+</code></pre>
+</div>
+
+<p>
+Compute
+</p>
+
+<div class="org-src-container">
+<pre class="src src-nil"><code>investment = s.value*k_grid**alpha.value
+break_even = (n.value+delta.value)*k_grid
+</code></pre>
+</div>
+
+<p>
+Plot both curves.
+</p>
+
+<p>
+Their intersection is the steady state.
+</p>
+
+<p>
+&mdash;
+</p>
+</div>
+</li>
+</ul>
+</div>
+<div id="outline-container-org1a9d9d6" class="outline-4">
+<h4 id="org1a9d9d6">Mechanism Design Model</h4>
+<div class="outline-text-4" id="text-org1a9d9d6">
+<p>
+This problem involves <b>two differential equations</b>:
+</p>
+
+<div class="org-src-container">
+<pre class="src src-nil"><code>u'(θ) = (θ − λ/f(θ))/c
+λ'(θ) = −f(θ)
+</code></pre>
+</div>
+
+<p>
+Boundary conditions:
+</p>
+
+<div class="org-src-container">
+<pre class="src src-nil"><code>u(θ_min) = 0
+λ(θ_max) = 0
+</code></pre>
+</div>
+
+<p>
+So this is a boundary value problem.
+</p>
+
+<p>
+&mdash;
+</p>
+</div>
+<ul class="org-ul">
+<li><a id="org9294d3f"></a>Step 1: Define density<br />
+<div class="outline-text-5" id="text-org9294d3f">
+<div class="org-src-container">
+<pre class="src src-nil"><code>def f(t):
+    return 1/(b-a)*np.ones_like(t)
+</code></pre>
+</div>
+
+<p>
+This corresponds to a <b>uniform distribution</b>.
+</p>
+
+<p>
+<code>np.ones_like(t)</code> ensures the function works for vector inputs needed in the <code>scipy</code> functions below.
+</p>
+
+<p>
+&mdash;
+</p>
+</div>
+</li>
+<li><a id="org46522bf"></a>Step 2: Define system of ODEs<br />
+<div class="outline-text-5" id="text-org46522bf">
+<div class="org-src-container">
+<pre class="src src-nil"><code>def design(t,y):
+    return np.vstack([
+        (t - y[1]/f(t))/c,
+        -f(t)
+    ])
+</code></pre>
+</div>
+
+<p>
+Interpretation:
+</p>
+
+<p>
+<code>y</code> is a vector:
+</p>
+
+<div class="org-src-container">
+<pre class="src src-nil"><code>y[0] = u(θ)
+y[1] = λ(θ)
+</code></pre>
+</div>
+
+<p>
+<code>np.vstack</code> stacks derivatives into a matrix required by <code>solve_bvp</code>.
+</p>
+
+<p>
+&mdash;
+</p>
+</div>
+</li>
+<li><a id="org320f65d"></a>Step 3: Boundary conditions<br />
+<div class="outline-text-5" id="text-org320f65d">
+<div class="org-src-container">
+<pre class="src src-nil"><code>def bc(ya,yb):
+    return np.array([ya[0], yb[1]])
+</code></pre>
+</div>
+
+<p>
+where
+</p>
+
+<div class="org-src-container">
+<pre class="src src-nil"><code>ya = solution at θ_min
+yb = solution at θ_max
+</code></pre>
+</div>
+
+<p>
+So the function enforces
+</p>
+
+<div class="org-src-container">
+<pre class="src src-nil"><code>u(θ_min)=0 # because index [0] in ya refers to u(θ): y[0]
+λ(θ_max)=0 # because index [1] in yb refers to λ(θ): y[1]
+</code></pre>
+</div>
+
+<p>
+&mdash;
+</p>
+</div>
+</li>
+<li><a id="org5cacc57"></a>Step 4: Initial grid<br />
+<div class="outline-text-5" id="text-org5cacc57">
+<div class="org-src-container">
+<pre class="src src-nil"><code>t_eval = np.linspace(a,b,100)
+</code></pre>
+</div>
+
+<p>
+&mdash;
+</p>
+</div>
+</li>
+<li><a id="org42ba558"></a>Step 5: Initial guess<br />
+<div class="outline-text-5" id="text-org42ba558">
+<div class="org-src-container">
+<pre class="src src-nil"><code>np.zeros((2, t_eval.shape[0]))
+</code></pre>
+</div>
+
+<p>
+Explanation:
+</p>
+
+<ul class="org-ul">
+<li>2 equations</li>
+<li>guess values along the grid</li>
+</ul>
+
+<p>
+&mdash;
+</p>
+</div>
+</li>
+<li><a id="org80f3af3"></a>Step 6: Solve BVP<br />
+<div class="outline-text-5" id="text-org80f3af3">
+<div class="org-src-container">
+<pre class="src src-nil"><code>sol = solve_bvp(design, bc, t_eval, guess)
+</code></pre>
+</div>
+
+<p>
+After solving:
+</p>
+
+<div class="org-src-container">
+<pre class="src src-nil"><code>sol.y[0] = u(θ)
+sol.y[1] = λ(θ)
+</code></pre>
+</div>
+
+<p>
+&mdash;
+</p>
+</div>
+</li>
+<li><a id="org5461cdf"></a>Step 7: Recover quantities and prices<br />
+<div class="outline-text-5" id="text-org5461cdf">
+<p>
+The optimal quantity:
+</p>
+
+<div class="org-src-container">
+<pre class="src src-nil"><code>x = sol.yp[0]
+</code></pre>
+</div>
+
+<p>
+Because
+</p>
+
+<div class="org-src-container">
+<pre class="src src-nil"><code>u'(θ) = x(θ)
+</code></pre>
+</div>
+
+<p>
+and <code>yp[0]</code> refers to the derivative (&ldquo;y prime&rdquo;) of the first element in <code>y</code> which is \(u\).
+</p>
+
+<p>
+Price is derived from
+</p>
+
+<div class="org-src-container">
+<pre class="src src-nil"><code>p = θx − u
+</code></pre>
+</div>
+
+<p>
+so
+</p>
+
+<div class="org-src-container">
+<pre class="src src-nil"><code>p = t_eval*x - sol.y[0]
+</code></pre>
+</div>
+
+<p>
+&mdash;
+</p>
+</div>
+</li>
+</ul>
+</div>
+<div id="outline-container-org6800708" class="outline-4">
+<h4 id="org6800708">Dynamic Pricing with Learning</h4>
+<div class="outline-text-4" id="text-org6800708">
+<p>
+This model also forms a <b>BVP</b>, but with <b>time as the state variable</b>.
+</p>
+
+<p>
+State variables:
+</p>
+
+<div class="org-src-container">
+<pre class="src src-nil"><code>Q(t)      cumulative production
+λ(t)      shadow value
+</code></pre>
+</div>
+
+<p>
+Differential equations:
+</p>
+
+<div class="org-src-container">
+<pre class="src src-nil"><code>Q'(t)
+λ'(t)
+</code></pre>
+</div>
+
+<p>
+Boundary conditions:
+</p>
+
+<div class="org-src-container">
+<pre class="src src-nil"><code>Q(0) = 0
+λ(T) = 0
+</code></pre>
+</div>
+
+<p>
+&mdash;
+</p>
+</div>
+<ul class="org-ul">
+<li><a id="org311fbfc"></a>Step 1: Define system<br />
+<div class="outline-text-5" id="text-org311fbfc">
+<div class="org-src-container">
+<pre class="src src-nil"><code>def learning(t,y):
+</code></pre>
+</div>
+
+<p>
+State variables stored as
+</p>
+
+<div class="org-src-container">
+<pre class="src src-nil"><code>y[0] = Q
+y[1] = λ
+</code></pre>
+</div>
+
+<p>
+Then return derivatives.
+</p>
+
+<p>
+<code>scipy</code> expects the result stacked:
+</p>
+
+<div class="org-src-container">
+<pre class="src src-nil"><code>np.vstack((dQdt, dlambdadt))
+</code></pre>
+</div>
+
+<p>
+&mdash;
+</p>
+</div>
+</li>
+<li><a id="orgce1776f"></a>Step 2: Boundary conditions<br />
+<div class="outline-text-5" id="text-orgce1776f">
+<div class="org-src-container">
+<pre class="src src-nil"><code>def bc(ya,yb):
+    return np.array([ya[0], yb[1]])
+</code></pre>
+</div>
+
+<p>
+Meaning
+</p>
+
+<div class="org-src-container">
+<pre class="src src-nil"><code>Q(0)=0
+λ(T)=0
+</code></pre>
+</div>
+
+<p>
+&mdash;
+</p>
+</div>
+</li>
+<li><a id="org773031b"></a>Step 3: Solve BVP<br />
+<div class="outline-text-5" id="text-org773031b">
+<div class="org-src-container">
+<pre class="src src-nil"><code>sol = solve_bvp(learning, bc, t_eval, guess)
+</code></pre>
+</div>
+
+<p>
+Extract solution:
+</p>
+
+<div class="org-src-container">
+<pre class="src src-nil"><code>Q = sol.y[0]
+λ = sol.y[1]
+q = sol.yp[0]
+</code></pre>
+</div>
+
+<p>
+Since
+</p>
+
+<div class="org-src-container">
+<pre class="src src-nil"><code>Q'(t) = q(t)
+</code></pre>
+</div>
+
+<p>
+&mdash;
+</p>
+</div>
+</li>
+<li><a id="org8788588"></a>Step 4: Static benchmark<br />
+<div class="outline-text-5" id="text-org8788588">
+<p>
+The static monopoly solution is
+</p>
+
+<div class="org-src-container">
+<pre class="src src-nil"><code>q_static = (1 - c/(1+Q)) / 2
+</code></pre>
+</div>
+
+<p>
+Plot both:
+</p>
+
+<div class="org-src-container">
+<pre class="src src-nil"><code>dynamic q(t)
+static q(t)
+</code></pre>
+</div>
+
+<p>
+&mdash;
+</p>
+</div>
+</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-orgf7f8b40" class="outline-3">
+<h3 id="orgf7f8b40">Review questions</h3>
+<div class="outline-text-3" id="text-orgf7f8b40">
+</div>
+<div id="outline-container-org2eb360f" class="outline-4">
+<h4 id="org2eb360f">Solow model</h4>
+<div class="outline-text-4" id="text-org2eb360f">
+<p>
+Create the Solow model in a marimo notebook and analyze the following:
+</p>
+<ul class="org-ul">
+<li>add <b>technological growth</b></li>
+<li>plot the growth in output \(f(k)\) over time. How is this figure affected by the initial capital stock \(k_0\) and the saving rate \(s\)?</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-orgf4bde95" class="outline-4">
+<h4 id="orgf4bde95">Mechanism design</h4>
+<div class="outline-text-4" id="text-orgf4bde95">
+<p>
+In your marimo notebook:
+</p>
+<ul class="org-ul">
+<li>change the distribution <code>f(θ)</code></li>
+<li>compare the information rent in the optimal solution with the information rent in the <b>first-best allocation</b>.</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-org2b69471" class="outline-4">
+<h4 id="org2b69471">Learning-by-doing</h4>
+<div class="outline-text-4" id="text-org2b69471">
+<p>
+In your marimo notebook:
+</p>
+<ul class="org-ul">
+<li>vary time horizon <code>T</code></li>
+<li>introduce <b>capacity constraints</b></li>
+<li>in competition policy cases there is a suspicion that firms that price below marginal costs (\(p < c\)) are trying to remove their competitors from the market to enjoy monopoly profits in the future. Discuss this suspicion in the light of this model.</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<div id="outline-container-orgabebd4f" class="outline-2">
+<h2 id="orgabebd4f">Bibliography</h2>
+<div class="outline-text-2" id="text-orgabebd4f">
+<div class="csl-bib-body">
+  <div class="csl-entry"><a id="citeproc_bib_item_1"></a>Mortensen, Dale T., and Éva Nagypál. 2007. “More on Unemployment and Vacancy Fluctuations.” <i>Review of Economic Dynamics</i> 10 (3): 327–47. <a href="https://doi.org/10.1016/j.red.2007.01.004">https://doi.org/10.1016/j.red.2007.01.004</a>.</div>
+  <div class="csl-entry"><a id="citeproc_bib_item_2"></a>Petrongolo, Barbara, and Christopher A Pissarides. 2001. “Looking into the Black Box: A Survey of the Matching Function.” <i>Journal of Economic Literature</i> 39 (2): 390–431. <a href="https://doi.org/10.1257/jel.39.2.390">https://doi.org/10.1257/jel.39.2.390</a>.</div>
 </div>
 </div>
 </div>

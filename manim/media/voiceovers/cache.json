@@ -43,5 +43,59 @@
     },
     "original_audio": "or-equivalently-steady-state-unemployment-equals-a3b5962d.mp3",
     "final_audio": "or-equivalently-steady-state-unemployment-equals-a3b5962d.mp3"
+  },
+  {
+    "input_text": "Let's see how matrix vector multiplication works.",
+    "input_data": {
+      "input_text": "Let's see how matrix vector multiplication works.",
+      "service": "gtts"
+    },
+    "original_audio": "let-s-see-how-matrix-vector-multiplication-works-27165b78.mp3",
+    "final_audio": "let-s-see-how-matrix-vector-multiplication-works-27165b78.mp3"
+  },
+  {
+    "input_text": "We start with a three by three matrix and a three dimensional vector.",
+    "input_data": {
+      "input_text": "We start with a three by three matrix and a three dimensional vector.",
+      "service": "gtts"
+    },
+    "original_audio": "we-start-with-a-three-by-three-matrix-and-a-three-60d376a5.mp3",
+    "final_audio": "we-start-with-a-three-by-three-matrix-and-a-three-60d376a5.mp3"
+  },
+  {
+    "input_text": "To compute the product, we take a row of the matrix and multiply it with the vector.",
+    "input_data": {
+      "input_text": "To compute the product, we take a row of the matrix and multiply it with the vector.",
+      "service": "gtts"
+    },
+    "original_audio": "to-compute-the-product-we-take-a-row-of-the-matrix-9134f2e8.mp3",
+    "final_audio": "to-compute-the-product-we-take-a-row-of-the-matrix-9134f2e8.mp3"
+  },
+  {
+    "input_text": "For the first row we multiply each entry with the corresponding element of the vector and add them up.",
+    "input_data": {
+      "input_text": "For the first row we multiply each entry with the corresponding element of the vector and add them up.",
+      "service": "gtts"
+    },
+    "original_audio": "for-the-first-row-we-multiply-each-entry-with-the-7868f17c.mp3",
+    "final_audio": "for-the-first-row-we-multiply-each-entry-with-the-7868f17c.mp3"
+  },
+  {
+    "input_text": "We repeat the same procedure for the second row.",
+    "input_data": {
+      "input_text": "We repeat the same procedure for the second row.",
+      "service": "gtts"
+    },
+    "original_audio": "we-repeat-the-same-procedure-for-the-second-row-1f90c995.mp3",
+    "final_audio": "we-repeat-the-same-procedure-for-the-second-row-1f90c995.mp3"
+  },
+  {
+    "input_text": "And again for the third row.",
+    "input_data": {
+      "input_text": "And again for the third row.",
+      "service": "gtts"
+    },
+    "original_audio": "and-again-for-the-third-row-c3064739.mp3",
+    "final_audio": "and-again-for-the-third-row-c3064739.mp3"
   }
 ]

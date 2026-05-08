@@ -402,7 +402,7 @@ Sweeping parameters is a powerful way to explore how a model behaves as you chan
 
 *** streamlit :noexport:
 
-#+begin_src python :tangle ./lecture1/app1/app.py
+#+begin_src python 
 import streamlit as st
 import numpy as np
 import matplotlib.pyplot as plt
@@ -455,7 +455,7 @@ else:
 #+end_src
 
 
-#+begin_src python :tangle ./lecture1/app2/app.py
+#+begin_src python
 import streamlit as st
 import numpy as np
 import matplotlib.pyplot as plt
@@ -582,7 +582,7 @@ In the terminal run =manim -pqk steady_state_unemployment.py DerivationScene=:
 - in the folder ./manim
 - after =conda activate manim_env=
 
-#+begin_src jupyter-python  :tangle ./manim/steady_state_unemployment.py
+#+begin_src jupyter-python
 from manim import *
 from manim_voiceover import VoiceoverScene
 from manim_voiceover.services.gtts import GTTSService
@@ -764,7 +764,7 @@ Suppose you run a simulation for each value and store the results in a list call
 
 *** streamlit :noexport:
 
-#+begin_src jupyter-python :tangle ./lecture2/app.py
+#+begin_src jupyter-python
 import streamlit as st
 import numpy as np
 import matplotlib.pyplot as plt
@@ -1549,7 +1549,7 @@ Using the same visuals as the clip above we show the equivalence of the transiti
 
 ** Streamlit :noexport:
 
-#+begin_src jupyter-python :tangle ./lecture3/app1.py
+#+begin_src jupyter-python
 import streamlit as st
 import numpy as np
 import matplotlib.pyplot as plt
@@ -1699,7 +1699,7 @@ else:
 
 
 
-#+begin_src jupyter-python :tangle ./lecture3/app2.py
+#+begin_src jupyter-python
 import streamlit as st
 import numpy as np
 import matplotlib.pyplot as plt
@@ -1785,7 +1785,7 @@ st.markdown(
 
 
 
-#+begin_src jupyter-python :tangle ./lecture3/app3.py
+#+begin_src jupyter-python
 import streamlit as st
 import numpy as np
 import matplotlib.pyplot as plt
@@ -1910,7 +1910,7 @@ In the terminal: =manim -pql matrix.py MatrixMultiplicationIntro= and =manim -pq
 
 
 
-#+begin_src jupyter-python :tangle ./manim/matrix.py
+#+begin_src jupyter-python
 from manim import *
 from manim_voiceover import VoiceoverScene
 from manim_voiceover.services.gtts import GTTSService
@@ -2597,3 +2597,2039 @@ As $\alpha$ increases, the fraction in high wage employment rises and steady-sta
 </details>
 #+END_EXPORT
 
+* Lecture 4: Search and Matching in the Labor Market
+:PROPERTIES:
+:CUSTOM_ID: lecture_search_matching
+:END:
+
+
+In this lecture you will learn:
+- How to translate an economic question into two sub-problems:
+  - what data can I use?
+  - what model is useful for this question?
+- Use papers from the economics literature to calibrate parameters and use data to estimate (other) parameters.
+- Define your own function to find the estimator that minimizes the sum of squared residuals.
+- Use the model to simulate the outcomes of different scenarios.
+
+
+** App
+
+Suppose after graduating you are hired by the Dutch Ministry of Social Affairs. In parliament there have been recurring discussions about immigration. The minister asks you to give her an idea of the potential effects of immigration on unemployment and wages in the Netherlands. Suppose immigration increases by 50%, or even doubles. What would happen to unemployment and wages?
+
+To answer this question we need two ingredients: data and an economic model. Before reading on, it may be useful to think about how you would approach this question yourself. There are many ways to model the effects of immigration. Below we develop one example using data from Statistics Netherlands (CBS) and a search and matching framework. We then use this model to build a small simulation in Python.
+
+The goal is not to obtain a precise prediction. Rather, we want to give the minister a sense of the *order of magnitude* of the effects. To build intuition, we construct an interactive model where immigration can increase by anywhere between 0% and 100%.
+
+For this exercise we focus on immigration from outside Europe (EU and EFTA) with the motivation to work in the Netherlands.
+
+A key advantage of the search and matching framework is that it focuses on *flows* in the labor market rather than the entire stock of workers. Workers search for jobs and firms post vacancies. Matches occur when searching workers and vacancies meet through the matching process.
+
+Asylum migration can also affect the labor market, but these effects are more indirect and occur with a lag. For example, asylum procedures can take several years before individuals are allowed to participate in the labor market. For simplicity, we abstract from these effects here.
+
+In the search framework, an increase in immigration initially increases the number of job seekers. However, the number of vacancies is not fixed in the long run. Firms respond to changes in labor market conditions by posting more vacancies. The interaction between workers and firms determines unemployment, vacancies, and wages.
+
+The key elements of the framework are:
+- Workers and firms meet via a matching function.
+- Wages are determined by Nash bargaining.
+- Immigration acts as an exogenous increase in labor supply.
+- Firms respond to a larger labor supply by posting more vacancies.
+
+*** Model structure
+
+Notation:
+- \(U\): number of unemployed workers  
+- \(V\): number of vacancies  
+- \(M\): number of matches between workers and firms  
+- \(\theta = V/U\): labor market tightness  
+
+The matching process is described by a Cobb–Douglas matching function:
+
+\[
+M = m U^\alpha V^{1-\alpha}
+\]
+
+where \(m\) measures matching efficiency and \(\alpha\) is the elasticity of matches with respect to unemployment.
+
+A useful quantity is the *job-finding probability* for unemployed workers:
+
+\[
+\frac{M}{U} = m \theta^{1-\alpha}
+\]
+
+This expression shows that job finding increases when the labor market becomes tighter (more vacancies relative to unemployed workers).
+
+*** Wage determination
+
+Wages are determined through Nash bargaining between the worker and the firm. The wage splits the surplus of the match.
+
+In our simplified framework, the outside option of the worker depends on how easily a job can be found. When the labor market is tight and jobs are easy to find, the value of remaining unemployed is higher.
+
+We capture this idea in reduced form by specifying the worker's outside option as
+
+\[
+b \theta^{1-\alpha}
+\]
+
+where \(b\) summarizes factors such as welfare benefits and institutions that affect the value of unemployment.
+
+Given Nash bargaining with worker bargaining power \(\beta\), the wage becomes
+
+\[
+w = b \theta^{1-\alpha} + \beta \left(a - b \theta^{1-\alpha}\right)
+\]
+
+where
+
+- \(w\): wage  
+- \(a\): worker productivity  
+- \(\beta\): worker bargaining power  
+
+This equation shows that wages increase with productivity and with labor market tightness.
+
+From the literature [cite:@mortensen-2007-more-unemp;@petrongolo-2001-lookin-into] we calibrate
+
+\[
+\alpha = 0.5, \quad \beta = 0.5
+\]
+
+The remaining parameters \(m\), \(a\), and \(b\) will be estimated using Dutch data.
+
+*** Data
+
+To estimate the model for the Netherlands we use data from CBS:
+
+- unemployment https://www.cbs.nl/en-gb/figures/detail/80590eng
+- vacancies https://www.cbs.nl/en-gb/figures/detail/84545ENG
+- wages https://opendata.cbs.nl/#/CBS/en/dataset/85663ENG/table
+
+The relevant variables are:
+- \(U\): "Unemployed labour force / seasonally adjusted (x 1,000)"
+- \(V\): "Vacancies seasonally adjusted, unfilled (x 1,000)"
+- \(M\): "Vacancies seasonally adjusted, filled (x 1,000)"
+
+The variable \(M\) represents the number of vacancies filled during a period and is therefore a proxy for the flow of matches.
+
+The dataset is stored in: [[./data/labour_data.csv]]
+
+We estimate the parameters \(m\), \(a\), and \(b\) by minimizing the sum of squared differences between model predictions and the observed data for matches and wages.
+
+*** Immigration shock
+
+Our research question is: what happens when immigration increases?
+
+From the CBS migration statistics we observe that roughly 14,000 people per year migrate to the Netherlands with the explicit intention of joining the labor market. Using the table
+
+https://opendata.cbs.nl/#/CBS/nl/dataset/80016ned/table
+
+with the following selections:
+
+- men and women
+- age $\geq 15$
+- all countries of birth
+- migration motive: joining the labour force
+
+we obtain approximately 14,000 migrants per year in the early 2000s.
+
+We interpret these migrants as entering the labor market as job seekers. In other words, they initially increase unemployment \(U\).
+
+*** Short-run effect
+
+In the short run we assume that the number of vacancies is fixed. Firms cannot immediately adjust their vacancy postings.
+
+When immigration increases, the number of unemployed workers \(U\) rises while vacancies \(V\) remain fixed. As a result, labor market tightness
+
+\[
+\theta = V/U
+\]
+
+falls.
+
+Lower tightness reduces the job-finding probability and lowers the worker's outside option. Through the Nash bargaining equation this leads to lower wages.
+
+*** Long-run adjustment
+
+In the longer run firms can respond by creating additional vacancies. Firms post vacancies until the expected profit from a vacancy equals the cost of posting it.
+
+The expected benefit of posting a vacancy equals the probability of filling it times the profit generated by a match.
+
+The probability that a vacancy is filled is
+
+\[
+q(\theta) = \frac{M}{V} = m \theta^{-\alpha}
+\]
+
+The free-entry condition for vacancies is therefore
+
+\[
+c = q(\theta)(a - w)
+\]
+
+where \(c\) is the cost of posting a vacancy.
+
+This condition determines equilibrium labor market tightness in the long run.
+
+After an immigration shock, firms gradually create additional vacancies until the free-entry condition holds again. As a result, labor market tightness and wages move back toward their original equilibrium levels, while the total number of vacancies increases.
+
+*** Effect of immigration
+
+The Streamlit app below allows you to explore these mechanisms. You can simulate increases in immigration between 0% and 100% and observe how unemployment, vacancies, labor market tightness, and wages respond in both the short run and the long run.
+
+#+BEGIN_EXPORT html
+<iframe
+  src="https://lecture4searchmatching.streamlit.app/?embed=true"
+  allow="fullscreen">
+</iframe>
+
+<div class="fallback">
+  <p>
+    If the app does not load,
+    <a href="https://lecture4searchmatching.streamlit.app/?embed=true" target="_blank">
+      open it in a new tab
+    </a>.
+  </p>
+</div>
+#+END_EXPORT
+
+
+
+
+
+** streamlit :noexport:
+
+#+begin_src python
+import streamlit as st
+import numpy as np
+import pandas as pd
+import matplotlib.pyplot as plt
+from scipy.optimize import minimize
+from scipy.optimize import fsolve
+
+st.title("Lecture 4: Search and Matching Model in Labor Economics")
+
+st.header("Interactive Demo: Search and Matching Model")
+
+st.markdown(r"""
+### Search and Matching Model
+
+The search and matching model describes how unemployed workers find jobs and how firms fill vacancies. The key equations are:
+
+$$
+M = m \cdot U^\alpha \cdot V^{1-\alpha}
+$$
+
+where:
+- $M$ is the number of matches,
+- $m$ is the matching efficiency,
+- $U$ is the number of unemployed,
+- $V$ is the number of vacancies,
+- $\alpha$ is the elasticity parameter.
+
+The wage is determined by Nash bargaining. In this version of the model the worker's outside option depends on how easily a job can be found.
+
+The probability that an unemployed worker finds a job is
+
+$$
+\frac{M}{U} = m\theta^{1-\alpha}
+$$
+
+where $\theta = V/U$ is labor market tightness.
+
+We assume that the outside option of the worker is proportional to this job‑finding probability. In the original Mortensen-Pissarides models the outside option of the worker is determined by the expected discounted value of being unemployed. For our simple application here, we will not introduce the dynamic (Bellman) equations of these models. We will model the outside option in a reduced form way capturing that the value of being unemployed is higher if you are more likely to find a job in the next period. We specify the outside option as follows, where we estimate the parameter $b$:
+
+$$
+b \cdot \theta^{1-\alpha}
+$$
+
+Intuitively, $b$ captures a combination of the matching efficiency $m$ and the generosity of welfare benefits when you are unemployed.
+
+Using Nash bargaining, the wage splits the surplus of a match between the worker and the firm. This gives the wage equation
+
+$$
+w = b \theta^{1-\alpha} + \beta (a - b \theta^{1-\alpha})
+$$
+
+where:
+- $w$ is the wage
+- $a$ is productivity
+- $\beta$ is the bargaining power of the worker
+
+This equation implies that a worker always gets her outside option plus a share ($\beta$) of the total surplus generated by the job (production $a$ minus the worker's outside option). This share of the surplus is higher, if a worker has more bargaining power. In other words, wages increase with productivity and with labor market tightness. When the labor market is tight, workers find jobs more easily, which increases their outside option and therefore their bargaining position.
+
+From the literature, we calibrate $\alpha = \beta = 0.5$. The other parameters, $m, a, b$, we estimate by minimizing the sum of squared residuals.
+
+### Data Source
+
+The data comes from CBS and is saved in the file `./data/labour_data.csv`. 
+
+""")
+
+# Load data
+df = pd.read_csv("./data/labour_data.csv")
+alpha = 0.5    # elasticity (example from notes)
+beta = 0.5     # bargaining power (example from notes)
+
+
+def predict_row(row, m, a, b, counterfactual_immigration=0):
+    U = row['Unemployed labour force/Seasonally adjusted (x 1,000)'] + counterfactual_immigration
+    V = row['Vacancies seasonally adjusted, unfilled (x 1000)']
+    # Matching
+    M_pred = m * (U**alpha) * (V**(1-alpha))
+    # Wage with outside option depending on job finding probability
+    theta = V / U
+    wage_pred = beta * a + (1 - beta) * b * (theta ** (1 - alpha))
+    return M_pred, wage_pred
+
+def sum_squared_errors(params, df):
+    m, a, b = params
+    errors = []
+    for _, row in df.iterrows():
+        M_pred, wage_pred = predict_row(row, m, a, b)
+        e_M = (row['Vacancies seasonally adjusted, filled (x 1000)'] - M_pred)**2
+        e_wage = (row['Average_monthly_wage_index'] - wage_pred)**2
+        errors.append(e_M + e_wage)
+    return np.sum(errors)
+
+init_params = [0.8, 200, 50]
+result = minimize(sum_squared_errors, init_params, args=(df,)) 
+
+m_hat, a_hat, b_hat = result.x
+
+
+
+# Compute predictions using estimated parameters over all quarters
+M_pred, wage_pred = [], []
+for _, row in df.iterrows():
+    mp, wp = predict_row(row, m_hat, a_hat, b_hat)
+    M_pred.append(mp)
+    wage_pred.append(wp)
+
+periods = df['PeriodQ'].astype(str)
+
+fig, axs = plt.subplots(1, 2, figsize=(13, 4), sharex=False)
+
+# 1. Filled Vacancies (M): observed vs predicted
+axs[0].plot(periods, df['Vacancies seasonally adjusted, filled (x 1000)'], label='Observed', color='blue')
+axs[0].plot(periods, M_pred, label='Predicted', color='orange', linestyle='--')
+axs[0].set_title("Matches: Filled Vacancies (M)")
+axs[0].set_ylabel("1000 persons")
+axs[0].set_xticks(periods[::4]) # Every fourth quarter
+axs[0].tick_params(axis='x', rotation=45)
+axs[0].legend()
+
+# 2. Wage index
+axs[1].plot(periods, df['Average_monthly_wage_index'], label='Observed', color='black')
+axs[1].plot(periods, wage_pred, label='Predicted', color='red', linestyle='--')
+axs[1].set_title("Wage Index (2020=100)")
+axs[1].set_ylabel("Index")
+axs[1].set_xticks(periods[::4])
+axs[1].tick_params(axis='x', rotation=45)
+axs[1].legend()
+
+plt.tight_layout()
+st.pyplot(fig)
+
+st.markdown(r"""
+For such a simple model, the fit seems reasonable enough. Remember our goal is to get a sense of the order of the effect; not an exact prediction.
+""")
+
+
+st.markdown(r"""
+### Interactive Model
+
+Use the slider below to simulate the effect of a 0–100% increase in immigration (14k per year as the baseline) on unemployment and wage.
+
+""")
+
+
+# Immigration and wage curve (2024 baseline)
+st.markdown("### Immigration and Wages in the Search Model (2024 baseline)")
+
+immigration_increase = st.slider("Immigration increase (%)", 0, 100, 0)
+
+# # Use most recent row (2024Q4)
+latest = df.iloc[-1]
+U0 = latest["Unemployed labour force/Seasonally adjusted (x 1,000)"] * 1000
+V0 = latest["Vacancies seasonally adjusted, unfilled (x 1000)"] * 1000
+
+immigrants_per_year = 14000
+additional = immigrants_per_year * immigration_increase / 100
+U = U0 + additional
+theta = V0 / U
+w = beta * a_hat + (1 - beta) * b_hat * theta**(1 - alpha)
+
+# Fix curve independent of slider so scales stay constant
+theta0 = V0 / U0
+theta_grid = np.linspace(0.5*theta0, 1.5*theta0, 200)
+w_grid = beta * a_hat + (1 - beta) * b_hat * theta_grid**(1 - alpha)
+
+fig, ax = plt.subplots(figsize=(7,4))
+ax.plot(theta_grid, w_grid, label="Wage curve w(θ)")
+ax.scatter(theta, w, color="red", s=80, label="Current equilibrium")
+
+# Fix axis limits
+ax.set_xlim(theta_grid.min(), theta_grid.max())
+ax.set_ylim(w_grid.min(), w_grid.max())
+
+ax.set_xlabel("Labor market tightness θ = V/U")
+ax.set_ylabel("Wage index")
+ax.set_title("Immigration moves the economy along the wage curve")
+ax.legend()
+
+st.pyplot(fig)
+
+st.markdown("""
+Immigration increases the number of job seekers. With vacancies fixed in the short run at $V_0$, unemployment rises, which lowers labor market tightness (θ = V_0/U). This moves the economy leftward along the Nash bargaining wage curve and reduces wages.
+""")
+
+# --- Long run adjustment ---
+st.markdown("### Long Run Adjustment (Free Entry of Vacancies)")
+st.markdown("In the long run firms can create vacancies. Vacancies increase until the **expected profit of posting a vacancy equals the cost of posting a vacancy** (free entry condition). The cost of posting a vacancy is denoted by $c$, the expected benefit of posting a vacancy equals the probability of a match, $M/V$, times the profit of the match, $a-w$. Hence, in the long run --when $V$ is endogenous-- we have: $c = (a-w) m \\theta^{-\\alpha}$.")
+
+# 1. Calibrate vacancy cost so that 2024 is long‑run equilibrium
+theta0 = V0 / U0
+w0 = beta * a_hat + (1 - beta) * b_hat * theta0**(1 - alpha)
+c_hat = m_hat * theta0**(-alpha) * (a_hat - w0)
+
+# Immigration from slider
+immigrants_per_year = 14000
+additional = immigrants_per_year * immigration_increase / 100
+U1 = U0 + additional
+
+# 2. Short run (vacancies fixed)
+theta_sr = V0 / U1
+w_sr = beta * a_hat + (1 - beta) * b_hat * theta_sr**(1 - alpha)
+V_sr = V0
+
+# 3. Long run (free entry)
+
+def free_entry(theta):
+    w = beta * a_hat + (1 - beta) * b_hat * theta**(1 - alpha)
+    q = m_hat * theta**(-alpha)
+    return q * (a_hat - w) - c_hat
+
+theta_lr = float(fsolve(free_entry, theta0)[0])
+w_lr = beta * a_hat + (1 - beta) * b_hat * theta_lr**(1 - alpha)
+V_lr = theta_lr * U1
+
+# Table comparison
+comparison = pd.DataFrame({
+    "Short run (V fixed)": [theta_sr, w_sr, V_sr],
+    "Long run (free entry)": [theta_lr, w_lr, V_lr]
+}, index=["Tightness θ", "Wage", "Vacancies V"])
+
+st.table(comparison)
+
+st.markdown("""
+,*Short run: immigration increases the number of job seekers while vacancies are fixed. This lowers labor market tightness and wages.*
+
+,*Long run: firms create vacancies until the free‑entry condition holds again. As a result labor market tightness and wages return close to their equilibrium levels, while the number of vacancies increases.*
+""")
+
+#+end_src
+
+
+** Python Code Explanation
+
+
+*** 1. Import libraries
+
+We first import the Python packages used for data handling, estimation, and plotting.
+
+#+begin_src jupyter-python
+import numpy as np
+import pandas as pd
+import matplotlib.pyplot as plt
+from scipy.optimize import minimize, fsolve
+import marimo as mo
+#+end_src
+
+---
+
+*** 2. Load the data
+
+We load the CBS dataset containing unemployment, vacancies, matches, and a wage index.
+
+#+begin_src jupyter-python
+df = pd.read_csv("./data/labour_data.csv")
+df.head()
+#+end_src
+
+Important columns in the dataset:
+
+- =Unemployed labour force/Seasonally adjusted (x 1,000)= → unemployment \(U\)  
+- =Vacancies seasonally adjusted, unfilled (x 1000)= → vacancies \(V\)  
+- =Vacancies seasonally adjusted, filled (x 1000)= → matches \(M\)  
+- =Average_monthly_wage_index= → wage index
+
+---
+
+*** 3. Model parameters from the literature
+
+The search-and-matching literature suggests that we can calibrate $\alpha$ and $\beta$ at 0.5 [cite:@mortensen-2007-more-unemp;@petrongolo-2001-lookin-into].
+
+#+begin_src jupyter-python
+alpha = 0.5
+beta = 0.5
+#+end_src
+
+These values imply:
+
+- unemployment and vacancies contribute symmetrically to matching
+- workers and firms split the surplus equally.
+
+---
+
+*** 4. Matching function and wage equation
+
+We now write a function that predicts *matches and wages* for a given observation.
+
+#+begin_src jupyter-python
+def predict_row(row, m, a, b, counterfactual_immigration=0):
+    
+    U = row['Unemployed labour force/Seasonally adjusted (x 1,000)'] + counterfactual_immigration
+    V = row['Vacancies seasonally adjusted, unfilled (x 1000)']
+
+    # Matching function
+    M_pred = m * (U**alpha) * (V**(1-alpha))
+
+    # Labor market tightness
+    theta = V / U
+
+    # Wage equation (Nash bargaining)
+    wage_pred = beta * a + (1 - beta) * b * (theta ** (1 - alpha))
+
+    return M_pred, wage_pred
+#+end_src
+
+This function implements two key model equations:
+- Matching: $M = m U^α V^{1−α}$
+- Wage: $w = βa + (1−β)b θ^{1−α}$
+
+---
+
+*** 5. Estimating model parameters
+
+We estimate the unknown parameters:
+
+- matching efficiency \(m\)  
+- productivity \(a\)  
+- outside option parameter \(b\)
+
+We do this by minimizing the *sum of squared errors* between the model and the data.
+
+#+begin_src jupyter-python
+def sum_squared_errors(params, df):
+
+    m, a, b = params
+    errors = []
+
+    for _, row in df.iterrows():
+
+        M_pred, wage_pred = predict_row(row, m, a, b)
+
+        e_M = (row['Vacancies seasonally adjusted, filled (x 1000)'] - M_pred)**2
+        e_wage = (row['Average_monthly_wage_index'] - wage_pred)**2
+
+        errors.append(e_M + e_wage)
+
+    return np.sum(errors)
+#+end_src
+
+This function computes how far the model predictions are from the data.
+
+---
+
+*** 6. Run the estimation
+
+We now use a numerical optimizer to estimate the parameters.
+
+#+begin_src jupyter-python
+init_params = [0.8, 200, 50]
+
+result = minimize(sum_squared_errors, init_params, args=(df,))
+
+m_hat, a_hat, b_hat = result.x
+
+m_hat, a_hat, b_hat
+#+end_src
+
+The optimizer searches for parameter values that make the model fit the observed data as closely as possible.
+
+---
+
+*** 7. Compare model predictions to data
+
+Using the estimated parameters, we compute predicted matches and wages.
+
+#+begin_src jupyter-python
+M_pred = []
+wage_pred = []
+
+for _, row in df.iterrows():
+    mp, wp = predict_row(row, m_hat, a_hat, b_hat)
+    M_pred.append(mp)
+    wage_pred.append(wp)
+#+end_src
+
+Now we plot *observed vs predicted values*.
+
+#+begin_src jupyter-python
+periods = df['PeriodQ'].astype(str)
+fig, axs = plt.subplots(1,2, figsize=(12,4))
+
+axs[0].plot(periods, df['Vacancies seasonally adjusted, filled (x 1000)'])
+axs[0].plot(periods, M_pred)
+axs[0].set_title("Matches")
+axs[0].set_xticks(periods[::4])
+axs[0].tick_params(axis='x', rotation=45)
+
+
+axs[1].plot(periods, df['Average_monthly_wage_index'])
+axs[1].plot(periods, wage_pred)
+axs[1].set_title("Wages")
+axs[1].set_xticks(periods[::4])
+axs[1].tick_params(axis='x', rotation=45)
+
+plt.tight_layout()
+fig
+#+end_src
+
+The purpose of this step is simply to check whether the model roughly reproduces the data.
+
+---
+
+*** 8. Interactive immigration shock (marimo slider)
+
+In the app, immigration is controlled with a slider.  
+In =marimo= we create the same interaction using a widget.
+
+#+begin_src jupyter-python
+immigration_slider = mo.ui.slider(
+    start=0,
+    stop=100,
+    step=1,
+    value=0,
+    label="Immigration increase (%)"
+)
+#+end_src
+
+The slider allows the user to simulate immigration increases between *0% and 100%*.
+
+---
+
+*** 9. Compute short‑run effects
+
+We use the latest observation as the baseline and simulate additional immigrants entering unemployment.
+
+#+begin_src jupyter-python
+immigration_slider
+latest = df.iloc[-1]
+
+U0 = latest["Unemployed labour force/Seasonally adjusted (x 1,000)"] * 1000
+V0 = latest["Vacancies seasonally adjusted, unfilled (x 1000)"] * 1000
+
+immigrants_per_year = 14000
+
+additional = immigrants_per_year * immigration_slider.value / 100
+
+U = U0 + additional
+theta = V0 / U
+
+w = beta * a_hat + (1 - beta) * b_hat * theta**(1 - alpha)
+
+theta, w
+#+end_src
+
+Short run assumption:
+
+- immigration increases unemployment  
+- vacancies remain fixed
+
+This reduces labor market tightness \(θ = V/U\) and lowers wages.
+
+---
+
+*** 10. Plot the wage curve
+
+Finally we visualize how immigration moves the economy along the wage curve.
+
+#+begin_src jupyter-python
+theta0 = V0 / U0
+
+theta_grid = np.linspace(0.5*theta0, 1.5*theta0, 200)
+
+w_grid = beta * a_hat + (1 - beta) * b_hat * theta_grid**(1 - alpha)
+
+fig, ax = plt.subplots()
+
+ax.plot(theta_grid, w_grid)
+ax.scatter(theta, w)
+
+ax.set_xlabel("Labor market tightness θ")
+ax.set_ylabel("Wage index")
+
+plt.show()
+#+end_src
+
+Interpretation:
+
+- the curve shows wages implied by Nash bargaining  
+- immigration increases unemployment  
+- this lowers tightness \(θ\)  
+- the economy moves *left along the wage curve*, reducing wages.
+
+** Review questions
+
+*** Question 1. Simulating the matching function
+
+Write a Python function that computes the number of matches \(M\) using the matching function
+
+\(M = m U^\alpha V^{1-\alpha}\)
+
+Choose parameter values \(m = 0.8\) and \(\alpha = 0.5\).  
+Simulate how matches change when unemployment \(U\) increases from 50 to 200 while vacancies \(V = 100\) remain fixed.  
+Plot matches as a function of unemployment.
+
+#+BEGIN_EXPORT html
+<details>
+<summary><strong>Hint / Solution</strong></summary>
+#+END_EXPORT
+
+#+begin_src python
+import numpy as np
+import matplotlib.pyplot as plt
+
+m = 0.8
+alpha = 0.5
+V = 100
+
+U = np.linspace(50, 200, 100)
+
+M = m * (U**alpha) * (V**(1-alpha))
+
+plt.plot(U, M)
+plt.xlabel("Unemployment U")
+plt.ylabel("Matches M")
+plt.title("Matching Function")
+plt.show()
+#+end_src
+
+#+BEGIN_EXPORT html
+</details>
+#+END_EXPORT
+
+
+*** Question 2. Job-finding probability
+
+The probability that an unemployed worker finds a job is
+
+\(p(\theta) = m \theta^{1-\alpha}\)
+
+where \(\theta = V/U\).
+
+Write Python code that computes and plots the job-finding probability for \(\theta\) values between 0.2 and 2.
+
+#+BEGIN_EXPORT html
+<details>
+<summary><strong>Hint / Solution</strong></summary>
+#+END_EXPORT
+
+#+begin_src python
+import numpy as np
+import matplotlib.pyplot as plt
+
+m = 0.8
+alpha = 0.5
+
+theta = np.linspace(0.2, 2, 100)
+
+p = m * theta**(1-alpha)
+
+plt.plot(theta, p)
+plt.xlabel("Labor market tightness θ")
+plt.ylabel("Job-finding probability")
+plt.title("Job-finding probability")
+plt.show()
+#+end_src
+
+#+BEGIN_EXPORT html
+</details>
+#+END_EXPORT
+
+
+*** Question 3. Wage curve
+
+The wage equation in the lecture is
+
+\(w = \beta a + (1-\beta)b\theta^{1-\alpha}\)
+
+Assume  
+\(a = 200\), \(b = 50\), \(\alpha = 0.5\), \(\beta = 0.5\).
+
+Write Python code that plots the wage curve for \(\theta\) between 0.2 and 2.
+
+#+BEGIN_EXPORT html
+<details>
+<summary><strong>Hint / Solution</strong></summary>
+#+END_EXPORT
+
+#+begin_src python
+import numpy as np
+import matplotlib.pyplot as plt
+
+a = 200
+b = 50
+alpha = 0.5
+beta = 0.5
+
+theta = np.linspace(0.2, 2, 100)
+
+w = beta * a + (1-beta) * b * theta**(1-alpha)
+
+plt.plot(theta, w)
+plt.xlabel("Labor market tightness θ")
+plt.ylabel("Wage")
+plt.title("Wage curve")
+plt.show()
+#+end_src
+
+#+BEGIN_EXPORT html
+</details>
+#+END_EXPORT
+
+
+*** Question 4. Immigration shock in the short run
+
+Suppose the labor market initially has
+
+U = 200 (thousand unemployed)  
+V = 150 (thousand vacancies)
+
+Immigration increases unemployment by 20%.
+
+Write Python code that
+
+• computes the initial tightness \(θ_0\)  
+• computes the new tightness after immigration  
+• computes the corresponding wages using the wage equation.
+
+#+BEGIN_EXPORT html
+<details>
+<summary><strong>Hint / Solution</strong></summary>
+#+END_EXPORT
+
+#+begin_src python
+import numpy as np
+
+a = 200
+b = 50
+alpha = 0.5
+beta = 0.5
+
+U0 = 200
+V = 150
+
+theta0 = V / U0
+
+U1 = U0 * 1.2
+theta1 = V / U1
+
+w0 = beta * a + (1-beta) * b * theta0**(1-alpha)
+w1 = beta * a + (1-beta) * b * theta1**(1-alpha)
+
+print(theta0, theta1)
+print(w0, w1)
+#+end_src
+
+#+BEGIN_EXPORT html
+</details>
+#+END_EXPORT
+
+
+*** Question 5. Estimating the matching function
+
+Using the matching function
+
+\(M = m U^\alpha V^{1-\alpha}\)
+
+generate simulated data for \(U\) and \(V\), compute \(M\), and then estimate the parameters \(m,\alpha\) using least squares.
+
+Hint: rearrange the equation as
+
+\(m = M / (U^\alpha V^{1-\alpha})\)
+
+Compute the average value of \(m\) from your simulated observations.
+
+#+BEGIN_EXPORT html
+<details>
+<summary><strong>Hint / Solution</strong></summary>
+#+END_EXPORT
+
+#+begin_src jupyter-python
+import numpy as np
+
+alpha = 0.5
+m_true = 0.8
+
+np.random.seed(0)
+
+U = np.random.uniform(50, 200, 100)
+V = np.random.uniform(50, 200, 100)
+
+M = m_true * (U**alpha) * (V**(1-alpha)) + np.random.normal(0,10,100)
+
+#+end_src
+
+Now define a matching function as a function of $m,\alpha$, derive the residuals between the matching function and the observed values for $M$. Minimize the sum of squared residuals. 
+#+BEGIN_EXPORT html
+</details>
+#+END_EXPORT
+
+* Lecture 5: Modeling Dynamics
+:PROPERTIES:
+:CUSTOM_ID: lecture_dynamics
+:END:
+
+In this lecture you will learn:
+- How to solve differential equations using =scipy=.
+- Understand the economic intuition for dynamic effects and illustrating this using interactive apps.
+- Solve dynamic optimization problems.
+
+** Solving Dynamic Economic Models
+
+Much of economics is about understanding how things change over time. Capital accumulates gradually, firms learn from experience, and contracts must account for incentives that evolve across different types of consumers. These processes are inherently dynamic: what happens today influences what happens tomorrow.
+
+To study such problems formally, economists often describe economic forces with differential equations. These equations capture how key variables evolve as a function of their current level and economic incentives. In many cases the models cannot easily be solved analytically, but modern numerical tools allow us to compute their behavior and visualize the implied dynamics.
+
+The following three apps introduce three economic environments in which dynamics play a central role. Each example highlights a different type of dynamic reasoning commonly used in economic research.
+
+
+** Apps
+
+*** Solow model
+
+One of the most fundamental questions in macroeconomics is why some countries are richer than others and how economies grow over time. A key mechanism behind long‑run growth is capital accumulation: societies invest part of their income in machines, infrastructure, and technology that increase future production.
+
+However, capital does not grow automatically. Investment increases the capital stock, but depreciation and population growth work in the opposite direction. New workers require additional capital to maintain capital per worker and productivity, and existing capital gradually wears out.
+
+The Solow growth model captures this tension between investment and dilution. In this framework, the economy produces output using capital and labor. A constant fraction of output is saved and invested, which increases the capital stock. At the same time, depreciation and population growth reduce the amount of capital available per worker.
+
+These forces determine how capital per worker evolves over time. If the economy starts with very little capital, investment will exceed depreciation and capital will grow rapidly. If the economy becomes very capital‑intensive, depreciation and population growth eventually dominate, slowing further accumulation.
+
+This dynamic adjustment leads to a steady state: a level of capital per worker at which investment exactly offsets depreciation and population growth. At this point the capital stock per worker stops changing.
+
+An important question is how the steady state depends on economic parameters. For example, how would the long‑run level of capital change if households saved a larger fraction of their income? What happens if population growth increases? How does the productivity of capital affect the outcome?
+
+Thinking through these questions helps build intuition for the forces that determine long‑run economic development.
+
+#+BEGIN_EXPORT html
+<iframe
+  src="https://solowmodel.streamlit.app/?embed=true"
+  allow="fullscreen">
+</iframe>
+
+<div class="fallback">
+  <p>
+    If the app does not load,
+    <a href="https://solowmodel.streamlit.app/?embed=true" target="_blank">
+      open it in a new tab
+    </a>.
+  </p>
+</div>
+#+END_EXPORT
+
+*** Mechanism design
+
+
+Many markets involve asymmetric information. Firms often do not know exactly how much each consumer values their product. Some customers are willing to pay a lot, while others are much more price sensitive.
+
+Consider a monopolist selling a product whose quality or quantity can vary. Consumers differ in how much they value this quality, but the firm cannot observe their valuation directly. If the firm could perfectly observe each consumer’s type, it could tailor a price to each individual and extract all surplus. In reality, the firm must design a pricing strategy that induces consumers to reveal their preferences voluntarily.
+
+This leads to the problem of mechanism design or screening. The firm offers a menu of contracts, where each contract specifies a quantity or quality level together with a price. Consumers choose the option that maximizes their own utility.
+
+The difficulty is that high‑valuation consumers might pretend to be low‑valuation consumers if the low‑quality contract is cheaper. To prevent this, the menu must be designed so that each consumer prefers the option intended for their own type. This requirement is called incentive compatibility or truthful revelation.
+
+Ensuring truthful behavior typically forces the firm to leave some surplus --often called information rents-- to higher-valuation consumers. These rents are the price the firm must pay to obtain information about consumers’ willingness to pay.
+
+The resulting optimal contracts display several interesting patterns. Higher types typically receive higher quality and pay higher prices. At the same time, the allocation is generally distorted relative to the socially efficient outcome, especially for low‑valuation consumers.
+
+Understanding these distortions is central to many areas of economics, including regulation, taxation, insurance, and pricing strategies in digital markets.
+
+#+BEGIN_EXPORT html
+<iframe
+  src="https://mechanismdesign.streamlit.app/?embed=true"
+  allow="fullscreen">
+</iframe>
+
+<div class="fallback">
+  <p>
+    If the app does not load,
+    <a href="https://mechanismdesign.streamlit.app/?embed=true" target="_blank">
+      open it in a new tab
+    </a>.
+  </p>
+</div>
+#+END_EXPORT
+
+*** Learning by doing
+
+
+Firms often become more efficient as they gain experience with a production process. This phenomenon, known as learning by doing, has been documented in many industries such as semiconductor manufacturing, aircraft production, and renewable energy technologies.
+
+When firms produce more today, they accumulate knowledge that reduces future production costs. This creates a dynamic trade-off. Producing more in the present may reduce current profits, but it can increase future profitability by lowering costs.
+
+Because of this trade-off, firms may choose production paths that differ from the static profit-maximizing quantity. A purely static monopolist would simply choose the output level that maximizes current profits given current costs. A forward‑looking firm, however, takes into account that higher production today accelerates learning and reduces costs tomorrow.
+
+This introduces an investment motive in production decisions. Output today not only generates current revenue but also contributes to the firm’s stock of experience.
+
+Several interesting questions arise in this environment. Should firms produce more or less early in the life of a product? How does the importance of the future --captured by the discount rate-- affect production choices? And how does the value of accumulated experience change over time?
+
+Analyzing these questions helps illustrate how dynamic optimization differs from static decision making. When future benefits are important, firms may deliberately deviate from short‑run profit maximization in order to improve long‑run outcomes.
+
+#+BEGIN_EXPORT html
+<iframe
+  src="https://qqprotxxjhvhujcplsebfh.streamlit.app/?embed=true"
+  allow="fullscreen">
+</iframe>
+
+<div class="fallback">
+  <p>
+    If the app does not load,
+    <a href="https://qqprotxxjhvhujcplsebfh.streamlit.app/?embed=true" target="_blank">
+      open it in a new tab
+    </a>.
+  </p>
+</div>
+#+END_EXPORT
+
+
+
+** streamlit :noexport:
+
+*** app 1
+
+#+begin_src python
+import streamlit as st
+import numpy as np
+import matplotlib.pyplot as plt
+from scipy.integrate import solve_ivp
+
+st.title("Modeling dynamics: differential equations")
+
+st.header("Capital Accumulation and Economic Growth")
+
+st.markdown(r"""
+### The Solow Model
+
+The Solow model is one of the fundamental models in macroeconomics. It explains how
+**capital accumulation, population growth, and savings determine long‑run income per worker**.
+
+The key dynamic equation describes how capital per worker evolves over time:
+
+$$
+\dot{k}(t) = s f(k(t)) - (n + \delta)k(t)
+$$
+
+where
+
+- $k$ : capital per worker
+- $\dot{k}$ : derivative of $k$ with respect to time
+- $s$ : (exogenous) savings rate
+- $f(k)$ : production function, usually $f(k) = k^{\alpha}$
+- $n$ : population growth
+- $\delta$ : depreciation rate
+
+The term $s f(k)$ represents **investment**, while $(n+\delta)k$ represents the amount of
+capital that must be devoted to **maintaining the capital stock**.
+
+This is a differential equation with starting point $k_0$: capital level at $t=0$. This is called an initial value problem `ivp`.
+
+The steady state occurs when
+
+$$
+\dot{k}=0
+$$
+
+meaning investment exactly offsets depreciation and population growth.
+
+Below we solve the differential equation numerically using `scipy.integrate.solve_ivp` and
+plot the transition of the economy over time.
+""")
+
+st.markdown("### Choose Parameters")
+
+alpha = st.slider("Capital share (α)",0.1,0.9,0.3)
+s = st.slider("Savings rate (s)",0.01,0.6,0.2)
+n = st.slider("Population growth (n)",0.0,0.05,0.01)
+delta = st.slider("Depreciation rate (δ)",0.0,0.1,0.05)
+k0 = st.slider("Initial capital per worker (k₀)",0.01,5.0,0.5)
+
+st.markdown("### Capital Dynamics")
+
+
+def solow(t,k):
+    return s*k**alpha - (n+delta)*k
+
+
+k_ss=(s/(n+delta))**(1/(1-alpha))
+t_span=(0,50)
+t_eval=np.linspace(*t_span,200)
+sol=solve_ivp(solow,t_span,[k0],t_eval=t_eval)
+
+
+col1,col2=st.columns(2)
+
+fig,ax=plt.subplots(figsize=(6,4))
+ax.plot(sol.t,sol.y[0],label="Capital path k(t)")
+ax.axhline(k_ss,linestyle="--",label="Steady state")
+# ax.scatter([sol.t[-1]],[sol.y[0][-1]],color="red",zorder=3)
+ax.set_xlabel("Time")
+ax.set_ylabel("Capital per worker")
+ax.set_title("Transition Dynamics")
+ax.legend()
+
+k_grid=np.linspace(0.01,max(5,k_ss+1),200)
+invest=s*k_grid**alpha
+break_even=(n+delta)*k_grid
+
+fig2,ax2=plt.subplots(figsize=(6,4))
+ax2.plot(k_grid,invest,label="s f(k)")
+ax2.plot(k_grid,break_even,label="(n+δ)k")
+ax2.scatter([k_ss],[s*k_ss**alpha],color="red",zorder=3,label="steady state")
+ax2.set_xlabel("Capital k")
+ax2.set_ylabel("Investment")
+ax2.set_title("Solow Diagram")
+ax2.legend()
+ax2.grid()
+
+with col1:
+    st.pyplot(fig)
+
+with col2:
+    st.pyplot(fig2)
+
+st.markdown(r"""
+### Interpretation
+
+- If $k_0$ is **below the steady state** capital level, investment exceeds depreciation
+  and capital grows.
+
+- If $k_0$ is **above the steady state** captal level, depreciation dominates and
+  capital falls.
+
+### Exercises
+
+- Move the **savings rate slider** upward and observe how the steady state moves in
+both graphs. Similarly, do this for $\alpha$ and $\delta$. Interpret the results.
+
+- Solve analytically for the steady state capital level where $\dot{k}=0$.
+""")
+#+end_src
+
+*** app 2
+
+#+begin_src python
+import streamlit as st
+import numpy as np
+import matplotlib.pyplot as plt
+from scipy.integrate import solve_bvp
+
+
+
+st.title("Modeling dynamics: differential equations")
+st.header("Mechanism Design and Price Discrimination")
+
+
+st.markdown(r"""
+### Economic Environment
+
+Consumers differ in their **type** $\theta$, which measures how much they value a good.
+The utility of a consumer buying the good with quality (or quantity) $x$ and paying price $p$ is
+
+$$
+u = \theta x - p
+$$
+
+The monopoly firm **cannot observe the consumer's type** but knows that type $\theta$ is distributed on interval
+$[\underline{\theta}, \bar{\theta}]$ with density function $f(\theta)$.
+
+To deal with this asymmetric information, the firm offers a **menu of contracts** for each $\theta$:
+
+$$
+(x(\theta), p(\theta))
+$$
+
+Each consumer $\theta$ chooses the option that maximizes utility:
+
+$$
+u(\theta) = \max_t \theta x(t) - p(t)
+$$
+
+In words, the consumer chooses option $(x(t),p(t))$ out of the menu to maximize $u$. In the language of mechanism design, type $\theta$ mimics type $t$.
+
+What we want here is that consumer $\theta$ chooses the option that is meant for her: $t = \theta$. This is called "truthful revelation" of types.
+
+Using the **envelope theorem**, truthful revelation implies:
+
+$$
+u'(\theta) = x(\theta)
+$$
+
+which links the consumers' utility or information rent to the quality/quantity they receive. The idea of "information rent" is that (all) consumers would have zero utility if the monopolist can observe their type and makes take-it-or-leave-it offers. In the latter case with perfect information, the monopolist would set $p(\theta) = \theta x(\theta)$ and leave no rents for consumers.
+
+
+We can write the firm's profits on consumer type $\theta$ as:
+
+$$
+\pi(\theta) = p(\theta) - c(x(\theta)) = \theta x - u(\theta) - c(x(\theta))
+$$
+
+where $c(x)$ denotes the costs of producing quality (or quantity) $x$.
+
+
+The optimization for the firm can be written as:
+
+$$
+\max \int_{\underline{\theta}}^{\bar \theta} f(\theta) (\theta x(\theta) - u(\theta) - c(x(\theta))) + \lambda(\theta) (u'(\theta)-x(\theta))d \theta
+$$
+
+On a "fraction" $f(\theta)$ of consumers, the firm makes $\pi(\theta)$ profits. We integrate $f(\theta) \pi(\theta)$ across all consumer types to find total (expected) profits. We add the truthful revelation constraint $u'(\theta) - x(\theta) = 0$ to the optimization problem with Lagrange multiplier $\lambda(\theta)$. For each type $\theta$ we add this constraint.
+
+The first order (Euler) equations can be written as:
+
+$$
+(\theta - c'(x(\theta)))f(\theta) - \lambda(\theta) = 0
+$$
+
+and
+
+$$
+\lambda'(\theta) = -f(\theta)
+$$
+
+Further, the so called transversality condition implies $\lambda(\bar \theta) = 0$. Further, the firm has no interest in leaving rents to the lowest type: $u(\underline{\theta})=0$.
+
+It is possible to solve this problem analytically, but here we solve it numerically using `scipy`.
+
+Assume $c(x) = 0.5*cx^2$. Then the first order condition for $x$ can be written as $x = (\theta - \lambda(\theta)/f(\theta))/c$. This leads to two differential equations:
+
+$$
+u'(\theta) = \frac{1}{c}  (\theta - \lambda(\theta)/f(\theta))
+$$
+
+and
+
+$$
+\lambda'(\theta) = -f(\theta)
+$$
+
+with boundary conditions $u(\underline{\theta})=0$ and $\lambda(\bar \theta) = 0$.
+
+This is called a boundary value problem `bvp` and we solve it numerically with the `scipy` function `solve_bvp`.
+
+
+""")
+
+st.markdown("### Model Parameters")
+
+c = st.slider("Cost parameter (c)",0.1,3.0,1.0)
+a=1
+b=2
+
+st.markdown("### Numerical Solution")
+
+
+def f(t):
+    return 1/(b-a)*np.ones_like(t)
+
+
+def design(t,y):
+    # t: Type
+    # y[0]: u(t)
+    # y[1]: lambda(t)
+    return np.vstack([(t-y[1]/f(t))/c,-f(t)])
+
+
+def bc(ya,yb):
+    # ya[0]: u(\underline \theta) = 0
+    # yb[1]: \lambda(\bar \theta) = 0
+    return np.array([ya[0],yb[1]])
+
+# type span
+t_eval=np.linspace(a,b,100)
+
+sol=solve_bvp(design,bc,t_eval,np.zeros((2,t_eval.shape[0])))
+x=sol.yp[0]
+p=t_eval*x-sol.y[0]
+
+col1,col2=st.columns(2)
+
+fig,ax=plt.subplots(figsize=(6,4))
+ax.plot(t_eval,x,label="Quantity x(θ)")
+ax.plot(t_eval,p,label="Price p(θ)")
+ax.plot(t_eval,x*t_eval,'--',label="Value θx(θ)")
+# ax.scatter(t_eval[-1],x[-1],color="red")
+ax.set_xlabel("Type θ")
+ax.set_ylabel("Contract")
+ax.set_title("Optimal Contract")
+ax.legend()
+ax.grid()
+
+u=sol.y[0]
+
+fig2,ax2=plt.subplots(figsize=(6,4))
+ax2.plot(t_eval,u,label="Information rent u(θ)")
+# ax2.scatter(t_eval[-1],u[-1],color="red")
+ax2.set_xlabel("Type θ")
+ax2.set_ylabel("Utility")
+ax2.set_title("Information Rents")
+ax2.legend()
+ax2.grid()
+
+with col1:
+    st.pyplot(fig)
+
+with col2:
+    st.pyplot(fig2)
+
+st.markdown(r"""
+### Interpretation
+
+Several important features appear in the optimal contract:
+
+- **Higher types receive higher quality/quantity.** Consumers who value the product more
+  are offered better quality or larger volume.
+
+- **Prices increase with type.** High‑valuation consumers pay more because they get "more" (higher quality or higher quantity)
+
+- Higher types obtain **positive information rents** because the firm must leave
+  them enough surplus so they reveal their type truthfully.
+
+### Exercises
+
+- What is the relation between the left and right panel in the figure above? How can we see $u(\theta)$ in the left panel? And (this is a bit more subtle) how can we see $x(\theta)$ in the right panel of the figure?
+
+- If we interpret $x$ as quantity, does the solution feature quantity discounts (price per unit descreases with more units bought)? Why (not)?
+
+- Show that the welfare maximizing quality/quanity is given by $x^*(\theta) = \theta/c$. Is this the output schedule $x(\theta)$ that the monopolist offers in the solution above? Why (not)?
+""")
+
+#+end_src
+
+
+
+*** app3
+
+#+begin_src python
+import streamlit as st
+import numpy as np
+import matplotlib.pyplot as plt
+from scipy.integrate import solve_bvp
+
+st.title("Modeling dynamics: differential equations")
+
+st.header("Pricing Dynamics with Learning by Doing")
+
+st.markdown(r"""
+### Economic Idea
+
+In many industries firms become more efficient as they produce more. This is known as
+**learning by doing**.
+
+Cumulative production lowers costs because firms gain experience with the technology.
+
+We model this by assuming that constant marginal costs depend on cumulative output $Q$:
+
+$$
+c(Q) = \frac{c}{1 + Q}
+$$
+
+In words, producing $q$ units today --with cumulative output $Q$ from previous periods-- costs $c q/(1+Q)$.
+
+The relation between $Q_t$ and $q_t$ is given by $Q'_t = q_t$: the change in cumulative $Q$ at time $t$ is given by $q_t$.
+
+Demand is given by
+
+$$
+p(q) = 1 - q
+$$
+
+Firms therefore decide **how much to produce today** knowing that producing more
+now reduces costs in the future.
+
+This creates a **dynamic optimization problem** over the period $[0,T]$:
+
+$$
+\max \int_0^T e^{-\rho t} (p(q_{t})-c(Q_t))q_{t} - \lambda_t (Q'_t - q_{t}) dt
+$$
+where $\rho$ denotes the discount factor and $\lambda_t$ the Lagrange multiplier on the constraint $Q'_t = q_t$.
+
+For this problem the first order (Euler) equations can be written as:
+
+$$
+e^{-\rho t}(p(q_t)-c(Q_t) + p'(q_t) q_t) + \lambda_t = 0
+$$
+
+and
+
+$$
+-\lambda'_t = -e^{-\rho t} q_t C'(Q_t)
+$$
+
+Further we have the initial condition $Q_0 = 0$ (when the firm starts there is no cumulative output from previous periods) and end (transversality) condition $\lambda_T = 0$.
+
+
+Verify that with $p = 1-q, c(Q) = c/(1+Q)$, we can solve the first order condition for $q$ as
+
+$$
+q_t = 0.5*(1-c(Q_t)+e^{\rho t} \lambda_t)
+$$
+
+Then our system of differential equations becomes:
+
+$$
+Q'_t = 0.5(1-c(Q_t) + e^{\rho t} \lambda_t)
+$$
+
+and
+
+$$
+-\lambda'_t = -e^{-\rho t} c'(Q_t) Q'_t = 0.5*e^{-\rho t} \frac{c}{(1+Q_t)^2} (1-c(Q_t) + e^{\rho t} \lambda_t)
+$$
+
+with $Q_0 = \lambda_T = 0$.
+
+This is a boundary value problem that we solve numerically with `solve_bvp`.
+
+
+""")
+
+st.markdown("### Model Parameters")
+
+rho = st.slider("Discount rate (ρ)",0.0,1.0,0.1)
+# c = st.slider("Cost parameter (c)",0.1,1.0,0.5)
+c = 0.1
+
+st.markdown("### Solving the Dynamic System")
+
+
+def learning(x,y):
+    # x is time t
+    # y = Q, lambda
+    return np.vstack((
+        0.5*(1-c/(1+y[0])+np.exp(rho*x)*y[1]),
+        -np.exp(-rho*x)*c/(1+y[0])**2*0.5*(1-c/(1+y[0])+np.exp(rho*x)*y[1])
+    ))
+
+
+def bc(ya,yb):
+    # ya[0] = Q_0
+    # yb[1] = lambda_T; note that the end point is indexed by 1 not T here
+    return np.array([ya[0],yb[1]])
+
+
+t_span=(0,10)
+t_eval=np.linspace(*t_span,400)
+sol=solve_bvp(learning,bc,t_eval,np.zeros((2,t_eval.shape[0])))
+
+q=sol.yp[0]
+Q=sol.y[0]
+l = sol.y[1]
+t=sol.x
+
+col1,col2=st.columns(2)
+
+fig,ax=plt.subplots(figsize=(6,4))
+ax.plot(t,q,label="Dynamic q(t)")
+ax.plot(t,(1-c/(1+Q))/2,':',label="Static optimum")
+ax.set_xlabel("Time")
+ax.set_ylabel("Output")
+ax.set_title("Optimal Output Path")
+ax.legend()
+ax.grid()
+
+fig2,ax2=plt.subplots(figsize=(6,4))
+ax2.plot(t,l,label="$\\lambda_t$")
+# ax2.plot(t,Q,label="Optimal cumulative Q(t)")
+ax2.set_xlabel("Time")
+ax2.set_ylabel("Shadow Price")
+ax2.set_title("Value of Learning Over Time")
+ax2.legend()
+ax2.grid()
+
+with col1:
+    st.pyplot(fig)
+
+with col2:
+    st.pyplot(fig2)
+
+st.markdown(r"""
+### Interpretation
+
+- We define the static optimum as the monopoly output level with given marginal costs $c/(1+Q)$ where $Q$ follows the optimal path derived above. Conditional on $Q$, the left panel of the figure shows the difference between a static profit maximizer and a firm taking the future value of learning into account.
+
+- At the beginning of the time horizon the firm produces **more than the static monopoly output**. The reason is that producing more increases cumulative experience $Q$ and therefore reduces future costs.
+
+- This extra production is an **investment in learning**. The right panel shows the marginal value of this learning.
+
+
+### Exercises
+
+- Increase the **discount rate**. What happens to output $q$ and why?
+
+- Why do the dynamic and static solutions coincide at $T=10$?
+""")
+#+end_src
+
+** Python Code Explanation
+
+
+*** Interactivity in Marimo
+
+In *marimo*, interactive elements are created with =mo.ui= widgets.
+
+Example:
+
+#+begin_src python
+import marimo as mo
+
+alpha = mo.ui.slider(0.1, 0.9, value=0.3, step=0.01, label="Capital share (α)")
+s = mo.ui.slider(0.01, 0.6, value=0.2, step=0.01, label="Savings rate")
+#+end_src
+
+Then display them:
+
+#+begin_src python
+alpha, s
+#+end_src
+
+To use the value inside calculations:
+
+#+begin_src 
+alpha.value
+s.value
+#+end_src
+
+Marimo automatically *re-runs dependent cells* when a widget value changes.  
+So if a plot depends on =alpha.value=, it updates automatically when the =alpha= slider moves.
+
+---
+
+*** Solving Differential Equations in SciPy
+
+Two numerical solvers are used in the apps.
+
+**** Initial Value Problems (IVP)
+
+Used in *App 1*.
+
+An IVP has the structure
+
+#+begin_src 
+y'(t) = f(t, y)
+y(t0) = y0
+#+end_src
+
+Meaning:
+
+- we know the *starting value*
+- we simulate the path forward in time.
+
+SciPy function:
+
+#+begin_src 
+scipy.integrate.solve_ivp
+#+end_src
+
+Basic syntax:
+
+#+begin_src 
+solve_ivp(function, t_span, y0, t_eval=grid)
+#+end_src
+
+Arguments:
+
+- =function= : defines the differential equation
+- =t_span= : time interval =(t0, T)=
+- =y0= : initial value
+- =t_eval= : grid of times where the solution is reported
+
+The solver internally uses numerical integration methods (typically an algorithm called Runge–Kutta).
+
+The result object contains:
+
+#+begin_src 
+sol.t     time grid
+sol.y     solution values
+#+end_src
+
+---
+
+**** Boundary Value Problems (BVP)
+
+Used in *App 2 and App 3*.
+
+A BVP specifies conditions at *different points*, e.g.
+
+#+begin_src 
+y(a) = value1
+y(b) = value2
+#+end_src
+
+Instead of simulating forward from a known starting value, the algorithm must *search for a function that satisfies both boundaries simultaneously*.
+
+SciPy function:
+
+#+begin_src 
+scipy.integrate.solve_bvp
+#+end_src
+
+Basic structure:
+
+#+begin_src 
+solve_bvp(system, boundary_conditions, x_grid, initial_guess)
+#+end_src
+
+Inputs:
+
+- =system(x,y)= → differential equations
+- =boundary_conditions(ya,yb)= → conditions at start and end
+- =x_grid= → grid for solution
+- =initial_guess= → guess for the solution path
+
+The solver iteratively adjusts the path until the differential equations *and boundary conditions* hold.
+
+The result object includes
+
+#+begin_src 
+sol.x     grid
+sol.y     solution
+sol.yp    derivatives
+#+end_src
+
+---
+
+*** Solow Growth Model
+
+**** Model equation
+
+Capital evolves according to
+
+#+begin_src 
+k'(t) = s k^α − (n + δ) k
+#+end_src
+
+This is a *single differential equation*. And we have a given capital stock $k(0)=k_0$ at the start of time: initial value problem.
+
+---
+
+**** Step 1: Import libraries
+
+#+begin_src 
+import numpy as np
+import matplotlib.pyplot as plt
+from scipy.integrate import solve_ivp
+#+end_src
+
+Roles:
+
+- =numpy= → numerical operations
+- =matplotlib= → plotting
+- =solve_ivp= → differential equation solver
+
+---
+
+**** Step 2: Define parameters (interactive)
+
+In marimo:
+
+#+begin_src python
+alpha = mo.ui.slider(0.1,0.9,value=0.3)
+s = mo.ui.slider(0.01,0.6,value=0.2)
+n = mo.ui.slider(0.0,0.05,value=0.01)
+delta = mo.ui.slider(0.0,0.1,value=0.05)
+k0 = mo.ui.slider(0.01,5.0,value=0.5)
+#+end_src
+
+Use them in calculations as
+
+#+begin_src 
+alpha.value
+#+end_src
+
+---
+
+**** Step 3: Define the differential equation
+
+#+begin_src 
+def solow(t,k):
+    return s.value*k**alpha.value - (n.value+delta.value)*k
+#+end_src
+
+Important detail:
+
+SciPy expects the function signature
+
+#+begin_src 
+f(t,y)
+#+end_src
+
+even if the equation does not depend on =t=.
+
+---
+
+**** Step 4: Compute steady state
+
+The steady state solves
+
+#+begin_src 
+0 = s k^α − (n+δ)k
+#+end_src
+
+which gives
+
+#+begin_src 
+k_ss = (s.value/(n.value+delta.value))**(1/(1-alpha.value))
+#+end_src
+
+---
+
+**** Step 5: Time grid
+
+#+begin_src 
+t_span = (0,50)
+t_eval = np.linspace(0,50,200)
+#+end_src
+
+This means we simulate the model from time 0 to 50 and evaluate at 200 points.
+
+---
+
+**** Step 6: Solve the IVP
+
+#+begin_src 
+sol = solve_ivp(solow, t_span, [k0.value], t_eval=t_eval)
+#+end_src
+
+Note:
+
+=[k0]= must be a list because SciPy allows *systems of equations*.
+
+Solution:
+
+#+begin_src 
+sol.t
+sol.y[0]
+#+end_src
+
+---
+
+**** Step 7: Plot transition dynamics
+
+#+begin_src 
+plt.plot(sol.t, sol.y[0])
+plt.axhline(k_ss)
+#+end_src
+
+Interpretation:
+
+- the path converges toward the steady state.
+
+---
+
+**** Step 8: Solow diagram
+
+Create a grid of capital levels:
+
+#+begin_src 
+k_grid = np.linspace(0.01,5,200)
+#+end_src
+
+Compute
+
+#+begin_src 
+investment = s.value*k_grid**alpha.value
+break_even = (n.value+delta.value)*k_grid
+#+end_src
+
+Plot both curves.
+
+Their intersection is the steady state.
+
+---
+
+*** Mechanism Design Model
+
+This problem involves *two differential equations*:
+
+#+begin_src 
+u'(θ) = (θ − λ/f(θ))/c
+λ'(θ) = −f(θ)
+#+end_src
+
+Boundary conditions:
+
+#+begin_src 
+u(θ_min) = 0
+λ(θ_max) = 0
+#+end_src
+
+So this is a boundary value problem.
+
+---
+
+**** Step 1: Define density
+
+#+begin_src 
+def f(t):
+    return 1/(b-a)*np.ones_like(t)
+#+end_src
+
+This corresponds to a *uniform distribution*.
+
+=np.ones_like(t)= ensures the function works for vector inputs needed in the =scipy= functions below.
+
+---
+
+**** Step 2: Define system of ODEs
+
+#+begin_src 
+def design(t,y):
+    return np.vstack([
+        (t - y[1]/f(t))/c,
+        -f(t)
+    ])
+#+end_src
+
+Interpretation:
+
+=y= is a vector:
+
+#+begin_src 
+y[0] = u(θ)
+y[1] = λ(θ)
+#+end_src
+
+=np.vstack= stacks derivatives into a matrix required by =solve_bvp=.
+
+---
+
+**** Step 3: Boundary conditions
+
+#+begin_src 
+def bc(ya,yb):
+    return np.array([ya[0], yb[1]])
+#+end_src
+
+where
+
+#+begin_src 
+ya = solution at θ_min
+yb = solution at θ_max
+#+end_src
+
+So the function enforces
+
+#+begin_src 
+u(θ_min)=0 # because index [0] in ya refers to u(θ): y[0]
+λ(θ_max)=0 # because index [1] in yb refers to λ(θ): y[1]
+#+end_src
+
+---
+
+**** Step 4: Initial grid
+
+#+begin_src 
+t_eval = np.linspace(a,b,100)
+#+end_src
+
+---
+
+**** Step 5: Initial guess
+
+#+begin_src 
+np.zeros((2, t_eval.shape[0]))
+#+end_src
+
+Explanation:
+
+- 2 equations
+- guess values along the grid
+
+---
+
+**** Step 6: Solve BVP
+
+#+begin_src 
+sol = solve_bvp(design, bc, t_eval, guess)
+#+end_src
+
+After solving:
+
+#+begin_src 
+sol.y[0] = u(θ)
+sol.y[1] = λ(θ)
+#+end_src
+
+---
+
+**** Step 7: Recover quantities and prices
+
+The optimal quantity:
+
+#+begin_src 
+x = sol.yp[0]
+#+end_src
+
+Because
+
+#+begin_src 
+u'(θ) = x(θ)
+#+end_src
+
+and =yp[0]= refers to the derivative ("y prime") of the first element in =y= which is $u$.
+
+Price is derived from
+
+#+begin_src 
+p = θx − u
+#+end_src
+
+so
+
+#+begin_src 
+p = t_eval*x - sol.y[0]
+#+end_src
+
+---
+
+*** Dynamic Pricing with Learning
+
+This model also forms a *BVP*, but with *time as the state variable*.
+
+State variables:
+
+#+begin_src 
+Q(t)      cumulative production
+λ(t)      shadow value
+#+end_src
+
+Differential equations:
+
+#+begin_src 
+Q'(t)
+λ'(t)
+#+end_src
+
+Boundary conditions:
+
+#+begin_src 
+Q(0) = 0
+λ(T) = 0
+#+end_src
+
+---
+
+**** Step 1: Define system
+
+#+begin_src 
+def learning(t,y):
+#+end_src
+
+State variables stored as
+
+#+begin_src 
+y[0] = Q
+y[1] = λ
+#+end_src
+
+Then return derivatives.
+
+=scipy= expects the result stacked:
+
+#+begin_src 
+np.vstack((dQdt, dlambdadt))
+#+end_src
+
+---
+
+**** Step 2: Boundary conditions
+
+#+begin_src 
+def bc(ya,yb):
+    return np.array([ya[0], yb[1]])
+#+end_src
+
+Meaning
+
+#+begin_src 
+Q(0)=0
+λ(T)=0
+#+end_src
+
+---
+
+**** Step 3: Solve BVP
+
+#+begin_src 
+sol = solve_bvp(learning, bc, t_eval, guess)
+#+end_src
+
+Extract solution:
+
+#+begin_src 
+Q = sol.y[0]
+λ = sol.y[1]
+q = sol.yp[0]
+#+end_src
+
+Since
+
+#+begin_src 
+Q'(t) = q(t)
+#+end_src
+
+---
+
+**** Step 4: Static benchmark
+
+The static monopoly solution is
+
+#+begin_src 
+q_static = (1 - c/(1+Q)) / 2
+#+end_src
+
+Plot both:
+
+#+begin_src 
+dynamic q(t)
+static q(t)
+#+end_src
+
+---
+
+
+** Review questions
+
+*** Solow model
+Create the Solow model in a marimo notebook and analyze the following:
+- add *technological growth*
+- plot the growth in output $f(k)$ over time. How is this figure affected by the initial capital stock $k_0$ and the saving rate $s$?
+
+*** Mechanism design
+In your marimo notebook:
+- change the distribution =f(θ)=
+- compare the information rent in the optimal solution with the information rent in the *first-best allocation*.
+
+*** Learning-by-doing
+In your marimo notebook:
+- vary time horizon =T=
+- introduce *capacity constraints*
+- in competition policy cases there is a suspicion that firms that price below marginal costs ($p < c$) are trying to remove their competitors from the market to enjoy monopoly profits in the future. Discuss this suspicion in the light of this model.
+
+
+
+* Bibliography
+#+cite_export: csl ./chicago-author-date.csl
+#+bibliography:~/Nextcloud2/Literature/references.bib
+#+print_bibliography:
