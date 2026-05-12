@@ -206,3 +206,8 @@ marimo/
 marimo/_static/
 marimo/_lsp/
 __marimo__/
+
+# Manim
+manim/media/tex/
+manim/media/texts/
+manim/media/voiceovers/
