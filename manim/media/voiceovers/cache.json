@@ -97,5 +97,1508 @@
     },
     "original_audio": "and-again-for-the-third-row-c3064739.mp3",
     "final_audio": "and-again-for-the-third-row-c3064739.mp3"
+  },
+  {
+    "input_text": "In this video we explain the envelope theorem.",
+    "input_data": {
+      "input_text": "In this video we explain the envelope theorem.",
+      "service": "gtts"
+    },
+    "original_audio": "in-this-video-we-explain-the-envelope-theorem-95fcefeb.mp3",
+    "final_audio": "in-this-video-we-explain-the-envelope-theorem-95fcefeb.mp3"
+  },
+  {
+    "input_text": "Suppose we define a value function F of t as the maximum of a function f over x.",
+    "input_data": {
+      "input_text": "Suppose we define a value function F of t as the maximum of a function f over x.",
+      "service": "gtts"
+    },
+    "original_audio": "suppose-we-define-a-value-function-f-of-t-as-the-307aad4c.mp3",
+    "final_audio": "suppose-we-define-a-value-function-f-of-t-as-the-307aad4c.mp3"
+  },
+  {
+    "input_text": "The envelope theorem tells us that the derivative of this value function with respect to t equals the partial derivative of f with respect to t.",
+    "input_data": {
+      "input_text": "The envelope theorem tells us that the derivative of this value function with respect to t equals the partial derivative of f with respect to t.",
+      "service": "gtts"
+    },
+    "original_audio": "the-envelope-theorem-tells-us-that-the-derivative-b29a0275.mp3",
+    "final_audio": "the-envelope-theorem-tells-us-that-the-derivative-b29a0275.mp3"
+  },
+  {
+    "input_text": "The reason is that the optimal x satisfies the first order condition.",
+    "input_data": {
+      "input_text": "The reason is that the optimal x satisfies the first order condition.",
+      "service": "gtts"
+    },
+    "original_audio": "the-reason-is-that-the-optimal-x-satisfies-the-1344fd86.mp3",
+    "final_audio": "the-reason-is-that-the-optimal-x-satisfies-the-1344fd86.mp3"
+  },
+  {
+    "input_text": "Let's look at a concrete example.",
+    "input_data": {
+      "input_text": "Let's look at a concrete example.",
+      "service": "gtts"
+    },
+    "original_audio": "let-s-look-at-a-concrete-example-0cfa4d91.mp3",
+    "final_audio": "let-s-look-at-a-concrete-example-0cfa4d91.mp3"
+  },
+  {
+    "input_text": "First we compute the first order condition.",
+    "input_data": {
+      "input_text": "First we compute the first order condition.",
+      "service": "gtts"
+    },
+    "original_audio": "first-we-compute-the-first-order-condition-58c98c0e.mp3",
+    "final_audio": "first-we-compute-the-first-order-condition-58c98c0e.mp3"
+  },
+  {
+    "input_text": "Solving this gives the optimal choice x star equal to t.",
+    "input_data": {
+      "input_text": "Solving this gives the optimal choice x star equal to t.",
+      "service": "gtts"
+    },
+    "original_audio": "solving-this-gives-the-optimal-choice-x-star-equal-e00a95e0.mp3",
+    "final_audio": "solving-this-gives-the-optimal-choice-x-star-equal-e00a95e0.mp3"
+  },
+  {
+    "input_text": "Substituting the optimal x into the function gives the value function.",
+    "input_data": {
+      "input_text": "Substituting the optimal x into the function gives the value function.",
+      "service": "gtts"
+    },
+    "original_audio": "substituting-the-optimal-x-into-the-function-gives-23b89d98.mp3",
+    "final_audio": "substituting-the-optimal-x-into-the-function-gives-23b89d98.mp3"
+  },
+  {
+    "input_text": "Taking the derivative with respect to t gives minus two t.",
+    "input_data": {
+      "input_text": "Taking the derivative with respect to t gives minus two t.",
+      "service": "gtts"
+    },
+    "original_audio": "taking-the-derivative-with-respect-to-t-gives-489ae779.mp3",
+    "final_audio": "taking-the-derivative-with-respect-to-t-gives-489ae779.mp3"
+  },
+  {
+    "input_text": "Now compute the partial derivative of f with respect to t.",
+    "input_data": {
+      "input_text": "Now compute the partial derivative of f with respect to t.",
+      "service": "gtts"
+    },
+    "original_audio": "now-compute-the-partial-derivative-of-f-with-65fbb8b4.mp3",
+    "final_audio": "now-compute-the-partial-derivative-of-f-with-65fbb8b4.mp3"
+  },
+  {
+    "input_text": "If we substitute the optimal x equal to t, we obtain minus two t, exactly the same result.",
+    "input_data": {
+      "input_text": "If we substitute the optimal x equal to t, we obtain minus two t, exactly the same result.",
+      "service": "gtts"
+    },
+    "original_audio": "if-we-substitute-the-optimal-x-equal-to-t-we-facc9168.mp3",
+    "final_audio": "if-we-substitute-the-optimal-x-equal-to-t-we-facc9168.mp3"
+  },
+  {
+    "input_text": "In this video we explain the envelope theorem.",
+    "input_data": {
+      "input_text": "In this video we explain the envelope theorem.",
+      "service": "gtts"
+    },
+    "original_audio": "in-this-video-we-explain-the-envelope-theorem-95fcefeb.mp3",
+    "final_audio": "in-this-video-we-explain-the-envelope-theorem-95fcefeb.mp3"
+  },
+  {
+    "input_text": "Suppose we define a value function F of t as the maximum of a function f over x.",
+    "input_data": {
+      "input_text": "Suppose we define a value function F of t as the maximum of a function f over x.",
+      "service": "gtts"
+    },
+    "original_audio": "suppose-we-define-a-value-function-f-of-t-as-the-307aad4c.mp3",
+    "final_audio": "suppose-we-define-a-value-function-f-of-t-as-the-307aad4c.mp3"
+  },
+  {
+    "input_text": "The envelope theorem tells us that the derivative of this value function with respect to t equals the partial derivative of f with respect to t.",
+    "input_data": {
+      "input_text": "The envelope theorem tells us that the derivative of this value function with respect to t equals the partial derivative of f with respect to t.",
+      "service": "gtts"
+    },
+    "original_audio": "the-envelope-theorem-tells-us-that-the-derivative-b29a0275.mp3",
+    "final_audio": "the-envelope-theorem-tells-us-that-the-derivative-b29a0275.mp3"
+  },
+  {
+    "input_text": "The reason is that the optimal x satisfies the first order condition.",
+    "input_data": {
+      "input_text": "The reason is that the optimal x satisfies the first order condition.",
+      "service": "gtts"
+    },
+    "original_audio": "the-reason-is-that-the-optimal-x-satisfies-the-1344fd86.mp3",
+    "final_audio": "the-reason-is-that-the-optimal-x-satisfies-the-1344fd86.mp3"
+  },
+  {
+    "input_text": "Let's look at a concrete example.",
+    "input_data": {
+      "input_text": "Let's look at a concrete example.",
+      "service": "gtts"
+    },
+    "original_audio": "let-s-look-at-a-concrete-example-0cfa4d91.mp3",
+    "final_audio": "let-s-look-at-a-concrete-example-0cfa4d91.mp3"
+  },
+  {
+    "input_text": "First we compute the first order condition.",
+    "input_data": {
+      "input_text": "First we compute the first order condition.",
+      "service": "gtts"
+    },
+    "original_audio": "first-we-compute-the-first-order-condition-58c98c0e.mp3",
+    "final_audio": "first-we-compute-the-first-order-condition-58c98c0e.mp3"
+  },
+  {
+    "input_text": "Solving this gives the optimal choice x star equal to t.",
+    "input_data": {
+      "input_text": "Solving this gives the optimal choice x star equal to t.",
+      "service": "gtts"
+    },
+    "original_audio": "solving-this-gives-the-optimal-choice-x-star-equal-e00a95e0.mp3",
+    "final_audio": "solving-this-gives-the-optimal-choice-x-star-equal-e00a95e0.mp3"
+  },
+  {
+    "input_text": "Substituting the optimal x into the function gives the value function.",
+    "input_data": {
+      "input_text": "Substituting the optimal x into the function gives the value function.",
+      "service": "gtts"
+    },
+    "original_audio": "substituting-the-optimal-x-into-the-function-gives-23b89d98.mp3",
+    "final_audio": "substituting-the-optimal-x-into-the-function-gives-23b89d98.mp3"
+  },
+  {
+    "input_text": "Taking the derivative with respect to t gives minus two t.",
+    "input_data": {
+      "input_text": "Taking the derivative with respect to t gives minus two t.",
+      "service": "gtts"
+    },
+    "original_audio": "taking-the-derivative-with-respect-to-t-gives-489ae779.mp3",
+    "final_audio": "taking-the-derivative-with-respect-to-t-gives-489ae779.mp3"
+  },
+  {
+    "input_text": "Now compute the partial derivative of f with respect to t.",
+    "input_data": {
+      "input_text": "Now compute the partial derivative of f with respect to t.",
+      "service": "gtts"
+    },
+    "original_audio": "now-compute-the-partial-derivative-of-f-with-65fbb8b4.mp3",
+    "final_audio": "now-compute-the-partial-derivative-of-f-with-65fbb8b4.mp3"
+  },
+  {
+    "input_text": "If we substitute the optimal x equal to t, we obtain minus two t, exactly the same result.",
+    "input_data": {
+      "input_text": "If we substitute the optimal x equal to t, we obtain minus two t, exactly the same result.",
+      "service": "gtts"
+    },
+    "original_audio": "if-we-substitute-the-optimal-x-equal-to-t-we-facc9168.mp3",
+    "final_audio": "if-we-substitute-the-optimal-x-equal-to-t-we-facc9168.mp3"
+  },
+  {
+    "input_text": "In this video we explain the envelope theorem.",
+    "input_data": {
+      "input_text": "In this video we explain the envelope theorem.",
+      "service": "gtts"
+    },
+    "original_audio": "in-this-video-we-explain-the-envelope-theorem-95fcefeb.mp3",
+    "final_audio": "in-this-video-we-explain-the-envelope-theorem-95fcefeb.mp3"
+  },
+  {
+    "input_text": "Suppose we define a value function F of t as the maximum of a function f over x.",
+    "input_data": {
+      "input_text": "Suppose we define a value function F of t as the maximum of a function f over x.",
+      "service": "gtts"
+    },
+    "original_audio": "suppose-we-define-a-value-function-f-of-t-as-the-307aad4c.mp3",
+    "final_audio": "suppose-we-define-a-value-function-f-of-t-as-the-307aad4c.mp3"
+  },
+  {
+    "input_text": "The envelope theorem tells us that the derivative of this value function with respect to t equals the partial derivative of f with respect to t.",
+    "input_data": {
+      "input_text": "The envelope theorem tells us that the derivative of this value function with respect to t equals the partial derivative of f with respect to t.",
+      "service": "gtts"
+    },
+    "original_audio": "the-envelope-theorem-tells-us-that-the-derivative-b29a0275.mp3",
+    "final_audio": "the-envelope-theorem-tells-us-that-the-derivative-b29a0275.mp3"
+  },
+  {
+    "input_text": "The reason is that the optimal x satisfies the first order condition.",
+    "input_data": {
+      "input_text": "The reason is that the optimal x satisfies the first order condition.",
+      "service": "gtts"
+    },
+    "original_audio": "the-reason-is-that-the-optimal-x-satisfies-the-1344fd86.mp3",
+    "final_audio": "the-reason-is-that-the-optimal-x-satisfies-the-1344fd86.mp3"
+  },
+  {
+    "input_text": "Let's look at a concrete example.",
+    "input_data": {
+      "input_text": "Let's look at a concrete example.",
+      "service": "gtts"
+    },
+    "original_audio": "let-s-look-at-a-concrete-example-0cfa4d91.mp3",
+    "final_audio": "let-s-look-at-a-concrete-example-0cfa4d91.mp3"
+  },
+  {
+    "input_text": "First we compute the first order condition.",
+    "input_data": {
+      "input_text": "First we compute the first order condition.",
+      "service": "gtts"
+    },
+    "original_audio": "first-we-compute-the-first-order-condition-58c98c0e.mp3",
+    "final_audio": "first-we-compute-the-first-order-condition-58c98c0e.mp3"
+  },
+  {
+    "input_text": "Solving this gives the optimal choice x star equal to t.",
+    "input_data": {
+      "input_text": "Solving this gives the optimal choice x star equal to t.",
+      "service": "gtts"
+    },
+    "original_audio": "solving-this-gives-the-optimal-choice-x-star-equal-e00a95e0.mp3",
+    "final_audio": "solving-this-gives-the-optimal-choice-x-star-equal-e00a95e0.mp3"
+  },
+  {
+    "input_text": "Substituting the optimal x into the function gives the value function.",
+    "input_data": {
+      "input_text": "Substituting the optimal x into the function gives the value function.",
+      "service": "gtts"
+    },
+    "original_audio": "substituting-the-optimal-x-into-the-function-gives-23b89d98.mp3",
+    "final_audio": "substituting-the-optimal-x-into-the-function-gives-23b89d98.mp3"
+  },
+  {
+    "input_text": "Taking the derivative with respect to t gives minus two t.",
+    "input_data": {
+      "input_text": "Taking the derivative with respect to t gives minus two t.",
+      "service": "gtts"
+    },
+    "original_audio": "taking-the-derivative-with-respect-to-t-gives-489ae779.mp3",
+    "final_audio": "taking-the-derivative-with-respect-to-t-gives-489ae779.mp3"
+  },
+  {
+    "input_text": "Now compute the partial derivative of f with respect to t.",
+    "input_data": {
+      "input_text": "Now compute the partial derivative of f with respect to t.",
+      "service": "gtts"
+    },
+    "original_audio": "now-compute-the-partial-derivative-of-f-with-65fbb8b4.mp3",
+    "final_audio": "now-compute-the-partial-derivative-of-f-with-65fbb8b4.mp3"
+  },
+  {
+    "input_text": "If we substitute the optimal x equal to t, we obtain minus two t, exactly the same result.",
+    "input_data": {
+      "input_text": "If we substitute the optimal x equal to t, we obtain minus two t, exactly the same result.",
+      "service": "gtts"
+    },
+    "original_audio": "if-we-substitute-the-optimal-x-equal-to-t-we-facc9168.mp3",
+    "final_audio": "if-we-substitute-the-optimal-x-equal-to-t-we-facc9168.mp3"
+  },
+  {
+    "input_text": "In this video we explain the envelope theorem.",
+    "input_data": {
+      "input_text": "In this video we explain the envelope theorem.",
+      "service": "gtts"
+    },
+    "original_audio": "in-this-video-we-explain-the-envelope-theorem-95fcefeb.mp3",
+    "final_audio": "in-this-video-we-explain-the-envelope-theorem-95fcefeb.mp3"
+  },
+  {
+    "input_text": "Suppose we define a value function F of t as the maximum of a function f over x.",
+    "input_data": {
+      "input_text": "Suppose we define a value function F of t as the maximum of a function f over x.",
+      "service": "gtts"
+    },
+    "original_audio": "suppose-we-define-a-value-function-f-of-t-as-the-307aad4c.mp3",
+    "final_audio": "suppose-we-define-a-value-function-f-of-t-as-the-307aad4c.mp3"
+  },
+  {
+    "input_text": "The envelope theorem tells us that the derivative of this value function with respect to t equals the partial derivative of f with respect to t.",
+    "input_data": {
+      "input_text": "The envelope theorem tells us that the derivative of this value function with respect to t equals the partial derivative of f with respect to t.",
+      "service": "gtts"
+    },
+    "original_audio": "the-envelope-theorem-tells-us-that-the-derivative-b29a0275.mp3",
+    "final_audio": "the-envelope-theorem-tells-us-that-the-derivative-b29a0275.mp3"
+  },
+  {
+    "input_text": "If we differentiate before using optimality, the chain rule gives two terms: the direct effect and the effect through x.",
+    "input_data": {
+      "input_text": "If we differentiate before using optimality, the chain rule gives two terms: the direct effect and the effect through x.",
+      "service": "gtts"
+    },
+    "original_audio": "if-we-differentiate-before-using-optimality-the-dca4eec1.mp3",
+    "final_audio": "if-we-differentiate-before-using-optimality-the-dca4eec1.mp3"
+  },
+  {
+    "input_text": "But at the optimum the first order condition implies that the derivative with respect to x is zero.",
+    "input_data": {
+      "input_text": "But at the optimum the first order condition implies that the derivative with respect to x is zero.",
+      "service": "gtts"
+    },
+    "original_audio": "but-at-the-optimum-the-first-order-condition-15c28deb.mp3",
+    "final_audio": "but-at-the-optimum-the-first-order-condition-15c28deb.mp3"
+  },
+  {
+    "input_text": "Let's look at a concrete example.",
+    "input_data": {
+      "input_text": "Let's look at a concrete example.",
+      "service": "gtts"
+    },
+    "original_audio": "let-s-look-at-a-concrete-example-0cfa4d91.mp3",
+    "final_audio": "let-s-look-at-a-concrete-example-0cfa4d91.mp3"
+  },
+  {
+    "input_text": "First we compute the first order condition.",
+    "input_data": {
+      "input_text": "First we compute the first order condition.",
+      "service": "gtts"
+    },
+    "original_audio": "first-we-compute-the-first-order-condition-58c98c0e.mp3",
+    "final_audio": "first-we-compute-the-first-order-condition-58c98c0e.mp3"
+  },
+  {
+    "input_text": "Solving this gives the optimal choice x star equal to t.",
+    "input_data": {
+      "input_text": "Solving this gives the optimal choice x star equal to t.",
+      "service": "gtts"
+    },
+    "original_audio": "solving-this-gives-the-optimal-choice-x-star-equal-e00a95e0.mp3",
+    "final_audio": "solving-this-gives-the-optimal-choice-x-star-equal-e00a95e0.mp3"
+  },
+  {
+    "input_text": "Substituting the optimal x into the function gives the value function.",
+    "input_data": {
+      "input_text": "Substituting the optimal x into the function gives the value function.",
+      "service": "gtts"
+    },
+    "original_audio": "substituting-the-optimal-x-into-the-function-gives-23b89d98.mp3",
+    "final_audio": "substituting-the-optimal-x-into-the-function-gives-23b89d98.mp3"
+  },
+  {
+    "input_text": "Taking the derivative with respect to t gives minus two t.",
+    "input_data": {
+      "input_text": "Taking the derivative with respect to t gives minus two t.",
+      "service": "gtts"
+    },
+    "original_audio": "taking-the-derivative-with-respect-to-t-gives-489ae779.mp3",
+    "final_audio": "taking-the-derivative-with-respect-to-t-gives-489ae779.mp3"
+  },
+  {
+    "input_text": "Now compute the partial derivative of f with respect to t.",
+    "input_data": {
+      "input_text": "Now compute the partial derivative of f with respect to t.",
+      "service": "gtts"
+    },
+    "original_audio": "now-compute-the-partial-derivative-of-f-with-65fbb8b4.mp3",
+    "final_audio": "now-compute-the-partial-derivative-of-f-with-65fbb8b4.mp3"
+  },
+  {
+    "input_text": "If we substitute the optimal x equal to t, we obtain minus two t, exactly the same result.",
+    "input_data": {
+      "input_text": "If we substitute the optimal x equal to t, we obtain minus two t, exactly the same result.",
+      "service": "gtts"
+    },
+    "original_audio": "if-we-substitute-the-optimal-x-equal-to-t-we-facc9168.mp3",
+    "final_audio": "if-we-substitute-the-optimal-x-equal-to-t-we-facc9168.mp3"
+  },
+  {
+    "input_text": "In this video we explain the envelope theorem.",
+    "input_data": {
+      "input_text": "In this video we explain the envelope theorem.",
+      "service": "gtts"
+    },
+    "original_audio": "in-this-video-we-explain-the-envelope-theorem-95fcefeb.mp3",
+    "final_audio": "in-this-video-we-explain-the-envelope-theorem-95fcefeb.mp3"
+  },
+  {
+    "input_text": "Suppose we define a value function F of t as the maximum of a function f over x.",
+    "input_data": {
+      "input_text": "Suppose we define a value function F of t as the maximum of a function f over x.",
+      "service": "gtts"
+    },
+    "original_audio": "suppose-we-define-a-value-function-f-of-t-as-the-307aad4c.mp3",
+    "final_audio": "suppose-we-define-a-value-function-f-of-t-as-the-307aad4c.mp3"
+  },
+  {
+    "input_text": "The envelope theorem tells us that the derivative of this value function with respect to t equals the partial derivative of f with respect to t.",
+    "input_data": {
+      "input_text": "The envelope theorem tells us that the derivative of this value function with respect to t equals the partial derivative of f with respect to t.",
+      "service": "gtts"
+    },
+    "original_audio": "the-envelope-theorem-tells-us-that-the-derivative-b29a0275.mp3",
+    "final_audio": "the-envelope-theorem-tells-us-that-the-derivative-b29a0275.mp3"
+  },
+  {
+    "input_text": "If we differentiate before using optimality, the chain rule gives two terms: the direct effect and the effect through x.",
+    "input_data": {
+      "input_text": "If we differentiate before using optimality, the chain rule gives two terms: the direct effect and the effect through x.",
+      "service": "gtts"
+    },
+    "original_audio": "if-we-differentiate-before-using-optimality-the-dca4eec1.mp3",
+    "final_audio": "if-we-differentiate-before-using-optimality-the-dca4eec1.mp3"
+  },
+  {
+    "input_text": "But at the optimum the first order condition implies that the derivative with respect to x is zero.",
+    "input_data": {
+      "input_text": "But at the optimum the first order condition implies that the derivative with respect to x is zero.",
+      "service": "gtts"
+    },
+    "original_audio": "but-at-the-optimum-the-first-order-condition-15c28deb.mp3",
+    "final_audio": "but-at-the-optimum-the-first-order-condition-15c28deb.mp3"
+  },
+  {
+    "input_text": "Let's look at a concrete example.",
+    "input_data": {
+      "input_text": "Let's look at a concrete example.",
+      "service": "gtts"
+    },
+    "original_audio": "let-s-look-at-a-concrete-example-0cfa4d91.mp3",
+    "final_audio": "let-s-look-at-a-concrete-example-0cfa4d91.mp3"
+  },
+  {
+    "input_text": "First we compute the first order condition.",
+    "input_data": {
+      "input_text": "First we compute the first order condition.",
+      "service": "gtts"
+    },
+    "original_audio": "first-we-compute-the-first-order-condition-58c98c0e.mp3",
+    "final_audio": "first-we-compute-the-first-order-condition-58c98c0e.mp3"
+  },
+  {
+    "input_text": "Solving this gives the optimal choice x star equal to t.",
+    "input_data": {
+      "input_text": "Solving this gives the optimal choice x star equal to t.",
+      "service": "gtts"
+    },
+    "original_audio": "solving-this-gives-the-optimal-choice-x-star-equal-e00a95e0.mp3",
+    "final_audio": "solving-this-gives-the-optimal-choice-x-star-equal-e00a95e0.mp3"
+  },
+  {
+    "input_text": "Substituting the optimal x into the function gives the value function.",
+    "input_data": {
+      "input_text": "Substituting the optimal x into the function gives the value function.",
+      "service": "gtts"
+    },
+    "original_audio": "substituting-the-optimal-x-into-the-function-gives-23b89d98.mp3",
+    "final_audio": "substituting-the-optimal-x-into-the-function-gives-23b89d98.mp3"
+  },
+  {
+    "input_text": "Taking the derivative with respect to t gives minus two t.",
+    "input_data": {
+      "input_text": "Taking the derivative with respect to t gives minus two t.",
+      "service": "gtts"
+    },
+    "original_audio": "taking-the-derivative-with-respect-to-t-gives-489ae779.mp3",
+    "final_audio": "taking-the-derivative-with-respect-to-t-gives-489ae779.mp3"
+  },
+  {
+    "input_text": "Now compute the partial derivative of f with respect to t.",
+    "input_data": {
+      "input_text": "Now compute the partial derivative of f with respect to t.",
+      "service": "gtts"
+    },
+    "original_audio": "now-compute-the-partial-derivative-of-f-with-65fbb8b4.mp3",
+    "final_audio": "now-compute-the-partial-derivative-of-f-with-65fbb8b4.mp3"
+  },
+  {
+    "input_text": "If we substitute the optimal x equal to t, we obtain minus two t, exactly the same result.",
+    "input_data": {
+      "input_text": "If we substitute the optimal x equal to t, we obtain minus two t, exactly the same result.",
+      "service": "gtts"
+    },
+    "original_audio": "if-we-substitute-the-optimal-x-equal-to-t-we-facc9168.mp3",
+    "final_audio": "if-we-substitute-the-optimal-x-equal-to-t-we-facc9168.mp3"
+  },
+  {
+    "input_text": "In this video we explain the envelope theorem.",
+    "input_data": {
+      "input_text": "In this video we explain the envelope theorem.",
+      "service": "gtts"
+    },
+    "original_audio": "in-this-video-we-explain-the-envelope-theorem-95fcefeb.mp3",
+    "final_audio": "in-this-video-we-explain-the-envelope-theorem-95fcefeb.mp3"
+  },
+  {
+    "input_text": "Suppose we define a value function F of t as the maximum of a function f over x.",
+    "input_data": {
+      "input_text": "Suppose we define a value function F of t as the maximum of a function f over x.",
+      "service": "gtts"
+    },
+    "original_audio": "suppose-we-define-a-value-function-f-of-t-as-the-307aad4c.mp3",
+    "final_audio": "suppose-we-define-a-value-function-f-of-t-as-the-307aad4c.mp3"
+  },
+  {
+    "input_text": "The envelope theorem tells us that the derivative of this value function with respect to t equals the partial derivative of f with respect to t.",
+    "input_data": {
+      "input_text": "The envelope theorem tells us that the derivative of this value function with respect to t equals the partial derivative of f with respect to t.",
+      "service": "gtts"
+    },
+    "original_audio": "the-envelope-theorem-tells-us-that-the-derivative-b29a0275.mp3",
+    "final_audio": "the-envelope-theorem-tells-us-that-the-derivative-b29a0275.mp3"
+  },
+  {
+    "input_text": "If we differentiate before using optimality, the chain rule gives two terms: the direct effect and the effect through x.",
+    "input_data": {
+      "input_text": "If we differentiate before using optimality, the chain rule gives two terms: the direct effect and the effect through x.",
+      "service": "gtts"
+    },
+    "original_audio": "if-we-differentiate-before-using-optimality-the-dca4eec1.mp3",
+    "final_audio": "if-we-differentiate-before-using-optimality-the-dca4eec1.mp3"
+  },
+  {
+    "input_text": "But at the optimum the first order condition implies that the derivative with respect to x is zero.",
+    "input_data": {
+      "input_text": "But at the optimum the first order condition implies that the derivative with respect to x is zero.",
+      "service": "gtts"
+    },
+    "original_audio": "but-at-the-optimum-the-first-order-condition-15c28deb.mp3",
+    "final_audio": "but-at-the-optimum-the-first-order-condition-15c28deb.mp3"
+  },
+  {
+    "input_text": "Let's look at a concrete example.",
+    "input_data": {
+      "input_text": "Let's look at a concrete example.",
+      "service": "gtts"
+    },
+    "original_audio": "let-s-look-at-a-concrete-example-0cfa4d91.mp3",
+    "final_audio": "let-s-look-at-a-concrete-example-0cfa4d91.mp3"
+  },
+  {
+    "input_text": "First we compute the first order condition.",
+    "input_data": {
+      "input_text": "First we compute the first order condition.",
+      "service": "gtts"
+    },
+    "original_audio": "first-we-compute-the-first-order-condition-58c98c0e.mp3",
+    "final_audio": "first-we-compute-the-first-order-condition-58c98c0e.mp3"
+  },
+  {
+    "input_text": "Solving this gives the optimal choice x star equal to t.",
+    "input_data": {
+      "input_text": "Solving this gives the optimal choice x star equal to t.",
+      "service": "gtts"
+    },
+    "original_audio": "solving-this-gives-the-optimal-choice-x-star-equal-e00a95e0.mp3",
+    "final_audio": "solving-this-gives-the-optimal-choice-x-star-equal-e00a95e0.mp3"
+  },
+  {
+    "input_text": "Substituting the optimal x into the function gives the value function.",
+    "input_data": {
+      "input_text": "Substituting the optimal x into the function gives the value function.",
+      "service": "gtts"
+    },
+    "original_audio": "substituting-the-optimal-x-into-the-function-gives-23b89d98.mp3",
+    "final_audio": "substituting-the-optimal-x-into-the-function-gives-23b89d98.mp3"
+  },
+  {
+    "input_text": "Taking the derivative with respect to t gives minus two t.",
+    "input_data": {
+      "input_text": "Taking the derivative with respect to t gives minus two t.",
+      "service": "gtts"
+    },
+    "original_audio": "taking-the-derivative-with-respect-to-t-gives-489ae779.mp3",
+    "final_audio": "taking-the-derivative-with-respect-to-t-gives-489ae779.mp3"
+  },
+  {
+    "input_text": "Now compute the partial derivative of f with respect to t.",
+    "input_data": {
+      "input_text": "Now compute the partial derivative of f with respect to t.",
+      "service": "gtts"
+    },
+    "original_audio": "now-compute-the-partial-derivative-of-f-with-65fbb8b4.mp3",
+    "final_audio": "now-compute-the-partial-derivative-of-f-with-65fbb8b4.mp3"
+  },
+  {
+    "input_text": "If we substitute the optimal x equal to t, we obtain minus two t, exactly the same result.",
+    "input_data": {
+      "input_text": "If we substitute the optimal x equal to t, we obtain minus two t, exactly the same result.",
+      "service": "gtts"
+    },
+    "original_audio": "if-we-substitute-the-optimal-x-equal-to-t-we-facc9168.mp3",
+    "final_audio": "if-we-substitute-the-optimal-x-equal-to-t-we-facc9168.mp3"
+  },
+  {
+    "input_text": "In this video we explain the envelope theorem.",
+    "input_data": {
+      "input_text": "In this video we explain the envelope theorem.",
+      "service": "gtts"
+    },
+    "original_audio": "in-this-video-we-explain-the-envelope-theorem-95fcefeb.mp3",
+    "final_audio": "in-this-video-we-explain-the-envelope-theorem-95fcefeb.mp3"
+  },
+  {
+    "input_text": "Suppose we define a value function F of t as the maximum of a function f over x.",
+    "input_data": {
+      "input_text": "Suppose we define a value function F of t as the maximum of a function f over x.",
+      "service": "gtts"
+    },
+    "original_audio": "suppose-we-define-a-value-function-f-of-t-as-the-307aad4c.mp3",
+    "final_audio": "suppose-we-define-a-value-function-f-of-t-as-the-307aad4c.mp3"
+  },
+  {
+    "input_text": "The envelope theorem tells us that the derivative of this value function with respect to t equals the partial derivative of f with respect to t.",
+    "input_data": {
+      "input_text": "The envelope theorem tells us that the derivative of this value function with respect to t equals the partial derivative of f with respect to t.",
+      "service": "gtts"
+    },
+    "original_audio": "the-envelope-theorem-tells-us-that-the-derivative-b29a0275.mp3",
+    "final_audio": "the-envelope-theorem-tells-us-that-the-derivative-b29a0275.mp3"
+  },
+  {
+    "input_text": "If we differentiate before using optimality, the chain rule gives two terms: the direct effect and the effect through x.",
+    "input_data": {
+      "input_text": "If we differentiate before using optimality, the chain rule gives two terms: the direct effect and the effect through x.",
+      "service": "gtts"
+    },
+    "original_audio": "if-we-differentiate-before-using-optimality-the-dca4eec1.mp3",
+    "final_audio": "if-we-differentiate-before-using-optimality-the-dca4eec1.mp3"
+  },
+  {
+    "input_text": "But at the optimum the first order condition implies that the derivative with respect to x is zero.",
+    "input_data": {
+      "input_text": "But at the optimum the first order condition implies that the derivative with respect to x is zero.",
+      "service": "gtts"
+    },
+    "original_audio": "but-at-the-optimum-the-first-order-condition-15c28deb.mp3",
+    "final_audio": "but-at-the-optimum-the-first-order-condition-15c28deb.mp3"
+  },
+  {
+    "input_text": "Let's look at a concrete example.",
+    "input_data": {
+      "input_text": "Let's look at a concrete example.",
+      "service": "gtts"
+    },
+    "original_audio": "let-s-look-at-a-concrete-example-0cfa4d91.mp3",
+    "final_audio": "let-s-look-at-a-concrete-example-0cfa4d91.mp3"
+  },
+  {
+    "input_text": "First we compute the first order condition.",
+    "input_data": {
+      "input_text": "First we compute the first order condition.",
+      "service": "gtts"
+    },
+    "original_audio": "first-we-compute-the-first-order-condition-58c98c0e.mp3",
+    "final_audio": "first-we-compute-the-first-order-condition-58c98c0e.mp3"
+  },
+  {
+    "input_text": "Solving this gives the optimal choice x star equal to t.",
+    "input_data": {
+      "input_text": "Solving this gives the optimal choice x star equal to t.",
+      "service": "gtts"
+    },
+    "original_audio": "solving-this-gives-the-optimal-choice-x-star-equal-e00a95e0.mp3",
+    "final_audio": "solving-this-gives-the-optimal-choice-x-star-equal-e00a95e0.mp3"
+  },
+  {
+    "input_text": "Substituting the optimal x into the function gives the value function.",
+    "input_data": {
+      "input_text": "Substituting the optimal x into the function gives the value function.",
+      "service": "gtts"
+    },
+    "original_audio": "substituting-the-optimal-x-into-the-function-gives-23b89d98.mp3",
+    "final_audio": "substituting-the-optimal-x-into-the-function-gives-23b89d98.mp3"
+  },
+  {
+    "input_text": "Taking the derivative with respect to t gives minus two t.",
+    "input_data": {
+      "input_text": "Taking the derivative with respect to t gives minus two t.",
+      "service": "gtts"
+    },
+    "original_audio": "taking-the-derivative-with-respect-to-t-gives-489ae779.mp3",
+    "final_audio": "taking-the-derivative-with-respect-to-t-gives-489ae779.mp3"
+  },
+  {
+    "input_text": "Now compute the partial derivative of f with respect to t.",
+    "input_data": {
+      "input_text": "Now compute the partial derivative of f with respect to t.",
+      "service": "gtts"
+    },
+    "original_audio": "now-compute-the-partial-derivative-of-f-with-65fbb8b4.mp3",
+    "final_audio": "now-compute-the-partial-derivative-of-f-with-65fbb8b4.mp3"
+  },
+  {
+    "input_text": "If we substitute the optimal x equal to t, we obtain minus two t, exactly the same result.",
+    "input_data": {
+      "input_text": "If we substitute the optimal x equal to t, we obtain minus two t, exactly the same result.",
+      "service": "gtts"
+    },
+    "original_audio": "if-we-substitute-the-optimal-x-equal-to-t-we-facc9168.mp3",
+    "final_audio": "if-we-substitute-the-optimal-x-equal-to-t-we-facc9168.mp3"
+  },
+  {
+    "input_text": "In this video we explain the envelope theorem.",
+    "input_data": {
+      "input_text": "In this video we explain the envelope theorem.",
+      "service": "gtts"
+    },
+    "original_audio": "in-this-video-we-explain-the-envelope-theorem-95fcefeb.mp3",
+    "final_audio": "in-this-video-we-explain-the-envelope-theorem-95fcefeb.mp3"
+  },
+  {
+    "input_text": "Suppose we define a value function F of t as the maximum of a function f over x.",
+    "input_data": {
+      "input_text": "Suppose we define a value function F of t as the maximum of a function f over x.",
+      "service": "gtts"
+    },
+    "original_audio": "suppose-we-define-a-value-function-f-of-t-as-the-307aad4c.mp3",
+    "final_audio": "suppose-we-define-a-value-function-f-of-t-as-the-307aad4c.mp3"
+  },
+  {
+    "input_text": "The envelope theorem tells us that the derivative of this value function with respect to t equals the partial derivative of f with respect to t.",
+    "input_data": {
+      "input_text": "The envelope theorem tells us that the derivative of this value function with respect to t equals the partial derivative of f with respect to t.",
+      "service": "gtts"
+    },
+    "original_audio": "the-envelope-theorem-tells-us-that-the-derivative-b29a0275.mp3",
+    "final_audio": "the-envelope-theorem-tells-us-that-the-derivative-b29a0275.mp3"
+  },
+  {
+    "input_text": "If we differentiate before using optimality, the chain rule gives two terms: the direct effect and the effect through x.",
+    "input_data": {
+      "input_text": "If we differentiate before using optimality, the chain rule gives two terms: the direct effect and the effect through x.",
+      "service": "gtts"
+    },
+    "original_audio": "if-we-differentiate-before-using-optimality-the-dca4eec1.mp3",
+    "final_audio": "if-we-differentiate-before-using-optimality-the-dca4eec1.mp3"
+  },
+  {
+    "input_text": "But at the optimum the first order condition implies that the derivative with respect to x is zero.",
+    "input_data": {
+      "input_text": "But at the optimum the first order condition implies that the derivative with respect to x is zero.",
+      "service": "gtts"
+    },
+    "original_audio": "but-at-the-optimum-the-first-order-condition-15c28deb.mp3",
+    "final_audio": "but-at-the-optimum-the-first-order-condition-15c28deb.mp3"
+  },
+  {
+    "input_text": "Let's look at a concrete example.",
+    "input_data": {
+      "input_text": "Let's look at a concrete example.",
+      "service": "gtts"
+    },
+    "original_audio": "let-s-look-at-a-concrete-example-0cfa4d91.mp3",
+    "final_audio": "let-s-look-at-a-concrete-example-0cfa4d91.mp3"
+  },
+  {
+    "input_text": "First we compute the first order condition.",
+    "input_data": {
+      "input_text": "First we compute the first order condition.",
+      "service": "gtts"
+    },
+    "original_audio": "first-we-compute-the-first-order-condition-58c98c0e.mp3",
+    "final_audio": "first-we-compute-the-first-order-condition-58c98c0e.mp3"
+  },
+  {
+    "input_text": "Solving this gives the optimal choice x star equal to t.",
+    "input_data": {
+      "input_text": "Solving this gives the optimal choice x star equal to t.",
+      "service": "gtts"
+    },
+    "original_audio": "solving-this-gives-the-optimal-choice-x-star-equal-e00a95e0.mp3",
+    "final_audio": "solving-this-gives-the-optimal-choice-x-star-equal-e00a95e0.mp3"
+  },
+  {
+    "input_text": "Substituting the optimal x into the function gives the value function.",
+    "input_data": {
+      "input_text": "Substituting the optimal x into the function gives the value function.",
+      "service": "gtts"
+    },
+    "original_audio": "substituting-the-optimal-x-into-the-function-gives-23b89d98.mp3",
+    "final_audio": "substituting-the-optimal-x-into-the-function-gives-23b89d98.mp3"
+  },
+  {
+    "input_text": "Taking the derivative with respect to t gives minus two t.",
+    "input_data": {
+      "input_text": "Taking the derivative with respect to t gives minus two t.",
+      "service": "gtts"
+    },
+    "original_audio": "taking-the-derivative-with-respect-to-t-gives-489ae779.mp3",
+    "final_audio": "taking-the-derivative-with-respect-to-t-gives-489ae779.mp3"
+  },
+  {
+    "input_text": "Now compute the partial derivative of f with respect to t.",
+    "input_data": {
+      "input_text": "Now compute the partial derivative of f with respect to t.",
+      "service": "gtts"
+    },
+    "original_audio": "now-compute-the-partial-derivative-of-f-with-65fbb8b4.mp3",
+    "final_audio": "now-compute-the-partial-derivative-of-f-with-65fbb8b4.mp3"
+  },
+  {
+    "input_text": "If we substitute the optimal x equal to t, we obtain minus two t, exactly the same result.",
+    "input_data": {
+      "input_text": "If we substitute the optimal x equal to t, we obtain minus two t, exactly the same result.",
+      "service": "gtts"
+    },
+    "original_audio": "if-we-substitute-the-optimal-x-equal-to-t-we-facc9168.mp3",
+    "final_audio": "if-we-substitute-the-optimal-x-equal-to-t-we-facc9168.mp3"
+  },
+  {
+    "input_text": "In this video we explain the envelope theorem.",
+    "input_data": {
+      "input_text": "In this video we explain the envelope theorem.",
+      "service": "gtts"
+    },
+    "original_audio": "in-this-video-we-explain-the-envelope-theorem-95fcefeb.mp3",
+    "final_audio": "in-this-video-we-explain-the-envelope-theorem-95fcefeb.mp3"
+  },
+  {
+    "input_text": "Suppose we define a value function F of t as the maximum of a function f over x.",
+    "input_data": {
+      "input_text": "Suppose we define a value function F of t as the maximum of a function f over x.",
+      "service": "gtts"
+    },
+    "original_audio": "suppose-we-define-a-value-function-f-of-t-as-the-307aad4c.mp3",
+    "final_audio": "suppose-we-define-a-value-function-f-of-t-as-the-307aad4c.mp3"
+  },
+  {
+    "input_text": "The envelope theorem tells us that the derivative of this value function with respect to t equals the partial derivative of f with respect to t.",
+    "input_data": {
+      "input_text": "The envelope theorem tells us that the derivative of this value function with respect to t equals the partial derivative of f with respect to t.",
+      "service": "gtts"
+    },
+    "original_audio": "the-envelope-theorem-tells-us-that-the-derivative-b29a0275.mp3",
+    "final_audio": "the-envelope-theorem-tells-us-that-the-derivative-b29a0275.mp3"
+  },
+  {
+    "input_text": "If we differentiate before using optimality, the chain rule gives two terms: the direct effect and the effect through x.",
+    "input_data": {
+      "input_text": "If we differentiate before using optimality, the chain rule gives two terms: the direct effect and the effect through x.",
+      "service": "gtts"
+    },
+    "original_audio": "if-we-differentiate-before-using-optimality-the-dca4eec1.mp3",
+    "final_audio": "if-we-differentiate-before-using-optimality-the-dca4eec1.mp3"
+  },
+  {
+    "input_text": "But at the optimum the first order condition implies that the derivative with respect to x is zero.",
+    "input_data": {
+      "input_text": "But at the optimum the first order condition implies that the derivative with respect to x is zero.",
+      "service": "gtts"
+    },
+    "original_audio": "but-at-the-optimum-the-first-order-condition-15c28deb.mp3",
+    "final_audio": "but-at-the-optimum-the-first-order-condition-15c28deb.mp3"
+  },
+  {
+    "input_text": "Let's look at a concrete example.",
+    "input_data": {
+      "input_text": "Let's look at a concrete example.",
+      "service": "gtts"
+    },
+    "original_audio": "let-s-look-at-a-concrete-example-0cfa4d91.mp3",
+    "final_audio": "let-s-look-at-a-concrete-example-0cfa4d91.mp3"
+  },
+  {
+    "input_text": "First we compute the first order condition.",
+    "input_data": {
+      "input_text": "First we compute the first order condition.",
+      "service": "gtts"
+    },
+    "original_audio": "first-we-compute-the-first-order-condition-58c98c0e.mp3",
+    "final_audio": "first-we-compute-the-first-order-condition-58c98c0e.mp3"
+  },
+  {
+    "input_text": "Solving this gives the optimal choice x star equal to t.",
+    "input_data": {
+      "input_text": "Solving this gives the optimal choice x star equal to t.",
+      "service": "gtts"
+    },
+    "original_audio": "solving-this-gives-the-optimal-choice-x-star-equal-e00a95e0.mp3",
+    "final_audio": "solving-this-gives-the-optimal-choice-x-star-equal-e00a95e0.mp3"
+  },
+  {
+    "input_text": "Substituting the optimal x into the function gives the value function.",
+    "input_data": {
+      "input_text": "Substituting the optimal x into the function gives the value function.",
+      "service": "gtts"
+    },
+    "original_audio": "substituting-the-optimal-x-into-the-function-gives-23b89d98.mp3",
+    "final_audio": "substituting-the-optimal-x-into-the-function-gives-23b89d98.mp3"
+  },
+  {
+    "input_text": "Taking the derivative with respect to t gives minus two t.",
+    "input_data": {
+      "input_text": "Taking the derivative with respect to t gives minus two t.",
+      "service": "gtts"
+    },
+    "original_audio": "taking-the-derivative-with-respect-to-t-gives-489ae779.mp3",
+    "final_audio": "taking-the-derivative-with-respect-to-t-gives-489ae779.mp3"
+  },
+  {
+    "input_text": "Now compute the partial derivative of f with respect to t.",
+    "input_data": {
+      "input_text": "Now compute the partial derivative of f with respect to t.",
+      "service": "gtts"
+    },
+    "original_audio": "now-compute-the-partial-derivative-of-f-with-65fbb8b4.mp3",
+    "final_audio": "now-compute-the-partial-derivative-of-f-with-65fbb8b4.mp3"
+  },
+  {
+    "input_text": "If we substitute the optimal x equal to t, we obtain minus two t, exactly the same result.",
+    "input_data": {
+      "input_text": "If we substitute the optimal x equal to t, we obtain minus two t, exactly the same result.",
+      "service": "gtts"
+    },
+    "original_audio": "if-we-substitute-the-optimal-x-equal-to-t-we-facc9168.mp3",
+    "final_audio": "if-we-substitute-the-optimal-x-equal-to-t-we-facc9168.mp3"
+  },
+  {
+    "input_text": "In this video we explain the envelope theorem.",
+    "input_data": {
+      "input_text": "In this video we explain the envelope theorem.",
+      "service": "gtts"
+    },
+    "original_audio": "in-this-video-we-explain-the-envelope-theorem-95fcefeb.mp3",
+    "final_audio": "in-this-video-we-explain-the-envelope-theorem-95fcefeb.mp3"
+  },
+  {
+    "input_text": "Suppose we define a value function F of t as the maximum of a function f over x.",
+    "input_data": {
+      "input_text": "Suppose we define a value function F of t as the maximum of a function f over x.",
+      "service": "gtts"
+    },
+    "original_audio": "suppose-we-define-a-value-function-f-of-t-as-the-307aad4c.mp3",
+    "final_audio": "suppose-we-define-a-value-function-f-of-t-as-the-307aad4c.mp3"
+  },
+  {
+    "input_text": "The envelope theorem tells us that the derivative of this value function with respect to t equals the partial derivative of f with respect to t.",
+    "input_data": {
+      "input_text": "The envelope theorem tells us that the derivative of this value function with respect to t equals the partial derivative of f with respect to t.",
+      "service": "gtts"
+    },
+    "original_audio": "the-envelope-theorem-tells-us-that-the-derivative-b29a0275.mp3",
+    "final_audio": "the-envelope-theorem-tells-us-that-the-derivative-b29a0275.mp3"
+  },
+  {
+    "input_text": "If we differentiate before using optimality, the chain rule gives two terms: the direct effect and the effect through x.",
+    "input_data": {
+      "input_text": "If we differentiate before using optimality, the chain rule gives two terms: the direct effect and the effect through x.",
+      "service": "gtts"
+    },
+    "original_audio": "if-we-differentiate-before-using-optimality-the-dca4eec1.mp3",
+    "final_audio": "if-we-differentiate-before-using-optimality-the-dca4eec1.mp3"
+  },
+  {
+    "input_text": "But at the optimum the first order condition implies that the derivative with respect to x is zero.",
+    "input_data": {
+      "input_text": "But at the optimum the first order condition implies that the derivative with respect to x is zero.",
+      "service": "gtts"
+    },
+    "original_audio": "but-at-the-optimum-the-first-order-condition-15c28deb.mp3",
+    "final_audio": "but-at-the-optimum-the-first-order-condition-15c28deb.mp3"
+  },
+  {
+    "input_text": "Let's look at a concrete example.",
+    "input_data": {
+      "input_text": "Let's look at a concrete example.",
+      "service": "gtts"
+    },
+    "original_audio": "let-s-look-at-a-concrete-example-0cfa4d91.mp3",
+    "final_audio": "let-s-look-at-a-concrete-example-0cfa4d91.mp3"
+  },
+  {
+    "input_text": "First we compute the first order condition.",
+    "input_data": {
+      "input_text": "First we compute the first order condition.",
+      "service": "gtts"
+    },
+    "original_audio": "first-we-compute-the-first-order-condition-58c98c0e.mp3",
+    "final_audio": "first-we-compute-the-first-order-condition-58c98c0e.mp3"
+  },
+  {
+    "input_text": "Solving this gives the optimal choice x star equal to t.",
+    "input_data": {
+      "input_text": "Solving this gives the optimal choice x star equal to t.",
+      "service": "gtts"
+    },
+    "original_audio": "solving-this-gives-the-optimal-choice-x-star-equal-e00a95e0.mp3",
+    "final_audio": "solving-this-gives-the-optimal-choice-x-star-equal-e00a95e0.mp3"
+  },
+  {
+    "input_text": "Substituting the optimal x into the function gives the value function.",
+    "input_data": {
+      "input_text": "Substituting the optimal x into the function gives the value function.",
+      "service": "gtts"
+    },
+    "original_audio": "substituting-the-optimal-x-into-the-function-gives-23b89d98.mp3",
+    "final_audio": "substituting-the-optimal-x-into-the-function-gives-23b89d98.mp3"
+  },
+  {
+    "input_text": "Taking the derivative with respect to t gives minus two t.",
+    "input_data": {
+      "input_text": "Taking the derivative with respect to t gives minus two t.",
+      "service": "gtts"
+    },
+    "original_audio": "taking-the-derivative-with-respect-to-t-gives-489ae779.mp3",
+    "final_audio": "taking-the-derivative-with-respect-to-t-gives-489ae779.mp3"
+  },
+  {
+    "input_text": "Now compute the partial derivative of f with respect to t.",
+    "input_data": {
+      "input_text": "Now compute the partial derivative of f with respect to t.",
+      "service": "gtts"
+    },
+    "original_audio": "now-compute-the-partial-derivative-of-f-with-65fbb8b4.mp3",
+    "final_audio": "now-compute-the-partial-derivative-of-f-with-65fbb8b4.mp3"
+  },
+  {
+    "input_text": "If we substitute the optimal x equal to t, we obtain minus two t, exactly the same result.",
+    "input_data": {
+      "input_text": "If we substitute the optimal x equal to t, we obtain minus two t, exactly the same result.",
+      "service": "gtts"
+    },
+    "original_audio": "if-we-substitute-the-optimal-x-equal-to-t-we-facc9168.mp3",
+    "final_audio": "if-we-substitute-the-optimal-x-equal-to-t-we-facc9168.mp3"
+  },
+  {
+    "input_text": "In this video we explain the envelope theorem.",
+    "input_data": {
+      "input_text": "In this video we explain the envelope theorem.",
+      "service": "gtts"
+    },
+    "original_audio": "in-this-video-we-explain-the-envelope-theorem-95fcefeb.mp3",
+    "final_audio": "in-this-video-we-explain-the-envelope-theorem-95fcefeb.mp3"
+  },
+  {
+    "input_text": "Suppose we define a value function F of t as the maximum of a function f over x.",
+    "input_data": {
+      "input_text": "Suppose we define a value function F of t as the maximum of a function f over x.",
+      "service": "gtts"
+    },
+    "original_audio": "suppose-we-define-a-value-function-f-of-t-as-the-307aad4c.mp3",
+    "final_audio": "suppose-we-define-a-value-function-f-of-t-as-the-307aad4c.mp3"
+  },
+  {
+    "input_text": "The envelope theorem tells us that the derivative of this value function with respect to t equals the partial derivative of f with respect to t.",
+    "input_data": {
+      "input_text": "The envelope theorem tells us that the derivative of this value function with respect to t equals the partial derivative of f with respect to t.",
+      "service": "gtts"
+    },
+    "original_audio": "the-envelope-theorem-tells-us-that-the-derivative-b29a0275.mp3",
+    "final_audio": "the-envelope-theorem-tells-us-that-the-derivative-b29a0275.mp3"
+  },
+  {
+    "input_text": "If we differentiate before using optimality, the chain rule gives two terms: the direct effect and the effect through x.",
+    "input_data": {
+      "input_text": "If we differentiate before using optimality, the chain rule gives two terms: the direct effect and the effect through x.",
+      "service": "gtts"
+    },
+    "original_audio": "if-we-differentiate-before-using-optimality-the-dca4eec1.mp3",
+    "final_audio": "if-we-differentiate-before-using-optimality-the-dca4eec1.mp3"
+  },
+  {
+    "input_text": "But at the optimum the first order condition implies that the derivative with respect to x is zero.",
+    "input_data": {
+      "input_text": "But at the optimum the first order condition implies that the derivative with respect to x is zero.",
+      "service": "gtts"
+    },
+    "original_audio": "but-at-the-optimum-the-first-order-condition-15c28deb.mp3",
+    "final_audio": "but-at-the-optimum-the-first-order-condition-15c28deb.mp3"
+  },
+  {
+    "input_text": "Let's look at a concrete example.",
+    "input_data": {
+      "input_text": "Let's look at a concrete example.",
+      "service": "gtts"
+    },
+    "original_audio": "let-s-look-at-a-concrete-example-0cfa4d91.mp3",
+    "final_audio": "let-s-look-at-a-concrete-example-0cfa4d91.mp3"
+  },
+  {
+    "input_text": "First we compute the first order condition.",
+    "input_data": {
+      "input_text": "First we compute the first order condition.",
+      "service": "gtts"
+    },
+    "original_audio": "first-we-compute-the-first-order-condition-58c98c0e.mp3",
+    "final_audio": "first-we-compute-the-first-order-condition-58c98c0e.mp3"
+  },
+  {
+    "input_text": "Solving this gives the optimal choice x star equal to t.",
+    "input_data": {
+      "input_text": "Solving this gives the optimal choice x star equal to t.",
+      "service": "gtts"
+    },
+    "original_audio": "solving-this-gives-the-optimal-choice-x-star-equal-e00a95e0.mp3",
+    "final_audio": "solving-this-gives-the-optimal-choice-x-star-equal-e00a95e0.mp3"
+  },
+  {
+    "input_text": "Substituting the optimal x into the function gives the value function.",
+    "input_data": {
+      "input_text": "Substituting the optimal x into the function gives the value function.",
+      "service": "gtts"
+    },
+    "original_audio": "substituting-the-optimal-x-into-the-function-gives-23b89d98.mp3",
+    "final_audio": "substituting-the-optimal-x-into-the-function-gives-23b89d98.mp3"
+  },
+  {
+    "input_text": "Taking the derivative with respect to t gives minus two t.",
+    "input_data": {
+      "input_text": "Taking the derivative with respect to t gives minus two t.",
+      "service": "gtts"
+    },
+    "original_audio": "taking-the-derivative-with-respect-to-t-gives-489ae779.mp3",
+    "final_audio": "taking-the-derivative-with-respect-to-t-gives-489ae779.mp3"
+  },
+  {
+    "input_text": "Now compute the partial derivative of f with respect to t.",
+    "input_data": {
+      "input_text": "Now compute the partial derivative of f with respect to t.",
+      "service": "gtts"
+    },
+    "original_audio": "now-compute-the-partial-derivative-of-f-with-65fbb8b4.mp3",
+    "final_audio": "now-compute-the-partial-derivative-of-f-with-65fbb8b4.mp3"
+  },
+  {
+    "input_text": "If we substitute the optimal x equal to t, we obtain minus two t, exactly the same result.",
+    "input_data": {
+      "input_text": "If we substitute the optimal x equal to t, we obtain minus two t, exactly the same result.",
+      "service": "gtts"
+    },
+    "original_audio": "if-we-substitute-the-optimal-x-equal-to-t-we-facc9168.mp3",
+    "final_audio": "if-we-substitute-the-optimal-x-equal-to-t-we-facc9168.mp3"
+  },
+  {
+    "input_text": "In this video we explain the envelope theorem.",
+    "input_data": {
+      "input_text": "In this video we explain the envelope theorem.",
+      "service": "gtts"
+    },
+    "original_audio": "in-this-video-we-explain-the-envelope-theorem-95fcefeb.mp3",
+    "final_audio": "in-this-video-we-explain-the-envelope-theorem-95fcefeb.mp3"
+  },
+  {
+    "input_text": "Suppose we define a value function F of t as the maximum of a function f over x.",
+    "input_data": {
+      "input_text": "Suppose we define a value function F of t as the maximum of a function f over x.",
+      "service": "gtts"
+    },
+    "original_audio": "suppose-we-define-a-value-function-f-of-t-as-the-307aad4c.mp3",
+    "final_audio": "suppose-we-define-a-value-function-f-of-t-as-the-307aad4c.mp3"
+  },
+  {
+    "input_text": "The envelope theorem tells us that the derivative of this value function with respect to t equals the partial derivative of f with respect to t.",
+    "input_data": {
+      "input_text": "The envelope theorem tells us that the derivative of this value function with respect to t equals the partial derivative of f with respect to t.",
+      "service": "gtts"
+    },
+    "original_audio": "the-envelope-theorem-tells-us-that-the-derivative-b29a0275.mp3",
+    "final_audio": "the-envelope-theorem-tells-us-that-the-derivative-b29a0275.mp3"
+  },
+  {
+    "input_text": "If we differentiate before using optimality, the chain rule gives two terms: the direct effect and the effect through x.",
+    "input_data": {
+      "input_text": "If we differentiate before using optimality, the chain rule gives two terms: the direct effect and the effect through x.",
+      "service": "gtts"
+    },
+    "original_audio": "if-we-differentiate-before-using-optimality-the-dca4eec1.mp3",
+    "final_audio": "if-we-differentiate-before-using-optimality-the-dca4eec1.mp3"
+  },
+  {
+    "input_text": "But at the optimum the first order condition implies that the derivative with respect to x is zero.",
+    "input_data": {
+      "input_text": "But at the optimum the first order condition implies that the derivative with respect to x is zero.",
+      "service": "gtts"
+    },
+    "original_audio": "but-at-the-optimum-the-first-order-condition-15c28deb.mp3",
+    "final_audio": "but-at-the-optimum-the-first-order-condition-15c28deb.mp3"
+  },
+  {
+    "input_text": "Let's look at a concrete example.",
+    "input_data": {
+      "input_text": "Let's look at a concrete example.",
+      "service": "gtts"
+    },
+    "original_audio": "let-s-look-at-a-concrete-example-0cfa4d91.mp3",
+    "final_audio": "let-s-look-at-a-concrete-example-0cfa4d91.mp3"
+  },
+  {
+    "input_text": "First we compute the first order condition.",
+    "input_data": {
+      "input_text": "First we compute the first order condition.",
+      "service": "gtts"
+    },
+    "original_audio": "first-we-compute-the-first-order-condition-58c98c0e.mp3",
+    "final_audio": "first-we-compute-the-first-order-condition-58c98c0e.mp3"
+  },
+  {
+    "input_text": "Solving this gives the optimal choice x star equal to t.",
+    "input_data": {
+      "input_text": "Solving this gives the optimal choice x star equal to t.",
+      "service": "gtts"
+    },
+    "original_audio": "solving-this-gives-the-optimal-choice-x-star-equal-e00a95e0.mp3",
+    "final_audio": "solving-this-gives-the-optimal-choice-x-star-equal-e00a95e0.mp3"
+  },
+  {
+    "input_text": "Substituting the optimal x into the function gives the value function.",
+    "input_data": {
+      "input_text": "Substituting the optimal x into the function gives the value function.",
+      "service": "gtts"
+    },
+    "original_audio": "substituting-the-optimal-x-into-the-function-gives-23b89d98.mp3",
+    "final_audio": "substituting-the-optimal-x-into-the-function-gives-23b89d98.mp3"
+  },
+  {
+    "input_text": "Taking the derivative with respect to t gives minus two t.",
+    "input_data": {
+      "input_text": "Taking the derivative with respect to t gives minus two t.",
+      "service": "gtts"
+    },
+    "original_audio": "taking-the-derivative-with-respect-to-t-gives-489ae779.mp3",
+    "final_audio": "taking-the-derivative-with-respect-to-t-gives-489ae779.mp3"
+  },
+  {
+    "input_text": "Now compute the partial derivative of f with respect to t.",
+    "input_data": {
+      "input_text": "Now compute the partial derivative of f with respect to t.",
+      "service": "gtts"
+    },
+    "original_audio": "now-compute-the-partial-derivative-of-f-with-65fbb8b4.mp3",
+    "final_audio": "now-compute-the-partial-derivative-of-f-with-65fbb8b4.mp3"
+  },
+  {
+    "input_text": "If we substitute the optimal x equal to t, we obtain minus two t, exactly the same result.",
+    "input_data": {
+      "input_text": "If we substitute the optimal x equal to t, we obtain minus two t, exactly the same result.",
+      "service": "gtts"
+    },
+    "original_audio": "if-we-substitute-the-optimal-x-equal-to-t-we-facc9168.mp3",
+    "final_audio": "if-we-substitute-the-optimal-x-equal-to-t-we-facc9168.mp3"
+  },
+  {
+    "input_text": "In this video we introduce the Euler equation, which is the first order condition for a dynamic optimization problem.",
+    "input_data": {
+      "input_text": "In this video we introduce the Euler equation, which is the first order condition for a dynamic optimization problem.",
+      "service": "gtts"
+    },
+    "original_audio": "in-this-video-we-introduce-the-euler-equation-522138d1.mp3",
+    "final_audio": "in-this-video-we-introduce-the-euler-equation-522138d1.mp3"
+  },
+  {
+    "input_text": "You are already familiar with static optimization. We choose a variable x in order to maximize a function f of x.",
+    "input_data": {
+      "input_text": "You are already familiar with static optimization. We choose a variable x in order to maximize a function f of x.",
+      "service": "gtts"
+    },
+    "original_audio": "you-are-already-familiar-with-static-optimization-0a4a6b60.mp3",
+    "final_audio": "you-are-already-familiar-with-static-optimization-0a4a6b60.mp3"
+  },
+  {
+    "input_text": "The first order condition says that the derivative of f with respect to x must be equal to zero.",
+    "input_data": {
+      "input_text": "The first order condition says that the derivative of f with respect to x must be equal to zero.",
+      "service": "gtts"
+    },
+    "original_audio": "the-first-order-condition-says-that-the-derivative-a2a4446c.mp3",
+    "final_audio": "the-first-order-condition-says-that-the-derivative-a2a4446c.mp3"
+  },
+  {
+    "input_text": "In dynamic optimization we do not choose a single number. Instead we choose an entire path over time.",
+    "input_data": {
+      "input_text": "In dynamic optimization we do not choose a single number. Instead we choose an entire path over time.",
+      "service": "gtts"
+    },
+    "original_audio": "in-dynamic-optimization-we-do-not-choose-a-single-7a55ddbb.mp3",
+    "final_audio": "in-dynamic-optimization-we-do-not-choose-a-single-7a55ddbb.mp3"
+  },
+  {
+    "input_text": "The objective function is now an integral over time. The function f depends on time, on the variable x of t, and also on the derivative of x with respect to time.",
+    "input_data": {
+      "input_text": "The objective function is now an integral over time. The function f depends on time, on the variable x of t, and also on the derivative of x with respect to time.",
+      "service": "gtts"
+    },
+    "original_audio": "the-objective-function-is-now-an-integral-over-5982903e.mp3",
+    "final_audio": "the-objective-function-is-now-an-integral-over-5982903e.mp3"
+  },
+  {
+    "input_text": "So the choice variable is the entire function x of t. You can think of this as choosing a trajectory or path over time.",
+    "input_data": {
+      "input_text": "So the choice variable is the entire function x of t. You can think of this as choosing a trajectory or path over time.",
+      "service": "gtts"
+    },
+    "original_audio": "so-the-choice-variable-is-the-entire-function-x-of-ed4ff825.mp3",
+    "final_audio": "so-the-choice-variable-is-the-entire-function-x-of-ed4ff825.mp3"
+  },
+  {
+    "input_text": "The first order condition for this dynamic problem is called the Euler equation.",
+    "input_data": {
+      "input_text": "The first order condition for this dynamic problem is called the Euler equation.",
+      "service": "gtts"
+    },
+    "original_audio": "the-first-order-condition-for-this-dynamic-problem-dcaf7dc3.mp3",
+    "final_audio": "the-first-order-condition-for-this-dynamic-problem-dcaf7dc3.mp3"
+  },
+  {
+    "input_text": "The Euler equation tells us how the optimal path of x over time must behave.",
+    "input_data": {
+      "input_text": "The Euler equation tells us how the optimal path of x over time must behave.",
+      "service": "gtts"
+    },
+    "original_audio": "the-euler-equation-tells-us-how-the-optimal-path-97c4accf.mp3",
+    "final_audio": "the-euler-equation-tells-us-how-the-optimal-path-97c4accf.mp3"
+  },
+  {
+    "input_text": "It balances the direct effect of x on the objective function with the effect of changing the slope of the path.",
+    "input_data": {
+      "input_text": "It balances the direct effect of x on the objective function with the effect of changing the slope of the path.",
+      "service": "gtts"
+    },
+    "original_audio": "it-balances-the-direct-effect-of-x-on-the-e542096d.mp3",
+    "final_audio": "it-balances-the-direct-effect-of-x-on-the-e542096d.mp3"
+  },
+  {
+    "input_text": "To build some intuition, look at the two components that appear in the Euler equation.",
+    "input_data": {
+      "input_text": "To build some intuition, look at the two components that appear in the Euler equation.",
+      "service": "gtts"
+    },
+    "original_audio": "to-build-some-intuition-look-at-the-two-components-ac302973.mp3",
+    "final_audio": "to-build-some-intuition-look-at-the-two-components-ac302973.mp3"
+  },
+  {
+    "input_text": "The first term is the partial derivative of f with respect to x. This captures the direct effect of changing x at a given moment in time.",
+    "input_data": {
+      "input_text": "The first term is the partial derivative of f with respect to x. This captures the direct effect of changing x at a given moment in time.",
+      "service": "gtts"
+    },
+    "original_audio": "the-first-term-is-the-partial-derivative-of-f-with-07626895.mp3",
+    "final_audio": "the-first-term-is-the-partial-derivative-of-f-with-07626895.mp3"
+  },
+  {
+    "input_text": "The second term involves the derivative of the partial derivative of f with respect to x prime. This reflects how changing the slope of the path affects the objective over time.",
+    "input_data": {
+      "input_text": "The second term involves the derivative of the partial derivative of f with respect to x prime. This reflects how changing the slope of the path affects the objective over time.",
+      "service": "gtts"
+    },
+    "original_audio": "the-second-term-involves-the-derivative-of-the-7d8bda82.mp3",
+    "final_audio": "the-second-term-involves-the-derivative-of-the-7d8bda82.mp3"
+  },
+  {
+    "input_text": "At the optimum these effects must balance, which gives the Euler equation.",
+    "input_data": {
+      "input_text": "At the optimum these effects must balance, which gives the Euler equation.",
+      "service": "gtts"
+    },
+    "original_audio": "at-the-optimum-these-effects-must-balance-which-7529e8d1.mp3",
+    "final_audio": "at-the-optimum-these-effects-must-balance-which-7529e8d1.mp3"
+  },
+  {
+    "input_text": "In this video we introduce the Euler equation, which is the first order condition for a dynamic optimization problem.",
+    "input_data": {
+      "input_text": "In this video we introduce the Euler equation, which is the first order condition for a dynamic optimization problem.",
+      "service": "gtts"
+    },
+    "original_audio": "in-this-video-we-introduce-the-euler-equation-522138d1.mp3",
+    "final_audio": "in-this-video-we-introduce-the-euler-equation-522138d1.mp3"
+  },
+  {
+    "input_text": "You are already familiar with static optimization. We choose a variable x in order to maximize a function f of x.",
+    "input_data": {
+      "input_text": "You are already familiar with static optimization. We choose a variable x in order to maximize a function f of x.",
+      "service": "gtts"
+    },
+    "original_audio": "you-are-already-familiar-with-static-optimization-0a4a6b60.mp3",
+    "final_audio": "you-are-already-familiar-with-static-optimization-0a4a6b60.mp3"
+  },
+  {
+    "input_text": "The first order condition says that the derivative of f with respect to x must be equal to zero.",
+    "input_data": {
+      "input_text": "The first order condition says that the derivative of f with respect to x must be equal to zero.",
+      "service": "gtts"
+    },
+    "original_audio": "the-first-order-condition-says-that-the-derivative-a2a4446c.mp3",
+    "final_audio": "the-first-order-condition-says-that-the-derivative-a2a4446c.mp3"
+  },
+  {
+    "input_text": "In dynamic optimization we do not choose a single number. Instead we choose an entire path over time.",
+    "input_data": {
+      "input_text": "In dynamic optimization we do not choose a single number. Instead we choose an entire path over time.",
+      "service": "gtts"
+    },
+    "original_audio": "in-dynamic-optimization-we-do-not-choose-a-single-7a55ddbb.mp3",
+    "final_audio": "in-dynamic-optimization-we-do-not-choose-a-single-7a55ddbb.mp3"
+  },
+  {
+    "input_text": "The objective function is now an integral over time. The function f depends on time, on the variable x of t, and also on the derivative of x with respect to time.",
+    "input_data": {
+      "input_text": "The objective function is now an integral over time. The function f depends on time, on the variable x of t, and also on the derivative of x with respect to time.",
+      "service": "gtts"
+    },
+    "original_audio": "the-objective-function-is-now-an-integral-over-5982903e.mp3",
+    "final_audio": "the-objective-function-is-now-an-integral-over-5982903e.mp3"
+  },
+  {
+    "input_text": "So the choice variable is the entire function x of t. You can think of this as choosing a trajectory or path over time.",
+    "input_data": {
+      "input_text": "So the choice variable is the entire function x of t. You can think of this as choosing a trajectory or path over time.",
+      "service": "gtts"
+    },
+    "original_audio": "so-the-choice-variable-is-the-entire-function-x-of-ed4ff825.mp3",
+    "final_audio": "so-the-choice-variable-is-the-entire-function-x-of-ed4ff825.mp3"
+  },
+  {
+    "input_text": "The first order condition for this dynamic problem is called the Euler equation.",
+    "input_data": {
+      "input_text": "The first order condition for this dynamic problem is called the Euler equation.",
+      "service": "gtts"
+    },
+    "original_audio": "the-first-order-condition-for-this-dynamic-problem-dcaf7dc3.mp3",
+    "final_audio": "the-first-order-condition-for-this-dynamic-problem-dcaf7dc3.mp3"
+  },
+  {
+    "input_text": "The Euler equation tells us how the optimal path of x over time must behave.",
+    "input_data": {
+      "input_text": "The Euler equation tells us how the optimal path of x over time must behave.",
+      "service": "gtts"
+    },
+    "original_audio": "the-euler-equation-tells-us-how-the-optimal-path-97c4accf.mp3",
+    "final_audio": "the-euler-equation-tells-us-how-the-optimal-path-97c4accf.mp3"
+  },
+  {
+    "input_text": "It balances the direct effect of x on the objective function with the effect of changing the slope of the path.",
+    "input_data": {
+      "input_text": "It balances the direct effect of x on the objective function with the effect of changing the slope of the path.",
+      "service": "gtts"
+    },
+    "original_audio": "it-balances-the-direct-effect-of-x-on-the-e542096d.mp3",
+    "final_audio": "it-balances-the-direct-effect-of-x-on-the-e542096d.mp3"
+  },
+  {
+    "input_text": "To build some intuition, look at the two components that appear in the Euler equation.",
+    "input_data": {
+      "input_text": "To build some intuition, look at the two components that appear in the Euler equation.",
+      "service": "gtts"
+    },
+    "original_audio": "to-build-some-intuition-look-at-the-two-components-ac302973.mp3",
+    "final_audio": "to-build-some-intuition-look-at-the-two-components-ac302973.mp3"
+  },
+  {
+    "input_text": "The first term is the partial derivative of f with respect to x. This captures the direct effect of changing x at a given moment in time.",
+    "input_data": {
+      "input_text": "The first term is the partial derivative of f with respect to x. This captures the direct effect of changing x at a given moment in time.",
+      "service": "gtts"
+    },
+    "original_audio": "the-first-term-is-the-partial-derivative-of-f-with-07626895.mp3",
+    "final_audio": "the-first-term-is-the-partial-derivative-of-f-with-07626895.mp3"
+  },
+  {
+    "input_text": "The second term involves the partial derivative of f with respect to x prime. This reflects how changing the slope of the path affects the objective over time.",
+    "input_data": {
+      "input_text": "The second term involves the partial derivative of f with respect to x prime. This reflects how changing the slope of the path affects the objective over time.",
+      "service": "gtts"
+    },
+    "original_audio": "the-second-term-involves-the-partial-derivative-of-7d082e4f.mp3",
+    "final_audio": "the-second-term-involves-the-partial-derivative-of-7d082e4f.mp3"
+  },
+  {
+    "input_text": "At the optimum these effects must balance, which gives the Euler equation.",
+    "input_data": {
+      "input_text": "At the optimum these effects must balance, which gives the Euler equation.",
+      "service": "gtts"
+    },
+    "original_audio": "at-the-optimum-these-effects-must-balance-which-7529e8d1.mp3",
+    "final_audio": "at-the-optimum-these-effects-must-balance-which-7529e8d1.mp3"
   }
 ]

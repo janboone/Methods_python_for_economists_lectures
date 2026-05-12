@@ -3555,6 +3555,60 @@ The resulting optimal contracts display several interesting patterns. Higher typ
 
 Understanding these distortions is central to many areas of economics, including regulation, taxation, insurance, and pricing strategies in digital markets.
 
+
+#+BEGIN_EXPORT html
+<details>
+<summary><strong>Click here if you need a refresher on the envelope theorem</strong></summary>
+#+END_EXPORT
+
+The envelope theorem is a property of optimization problems that economists tend to use a lot. The following clip explains what it is and illustrates the envelope theorem with a simple example.
+
+#+BEGIN_EXPORT html
+<div style="text-align:center;">
+  <video style="width:600px;" controls>
+    <source src="./manim/media/videos/envelopetheorem/480p15/EnvelopeTheorem.mp4" type="video/mp4">
+  </video>
+</div>
+</details>
+#+END_EXPORT
+
+#+BEGIN_EXPORT html
+<details>
+<summary><strong>Click here if you need a refresher on the Euler equation</strong></summary>
+#+END_EXPORT
+
+The Euler equation is used in dynamic optimization problems.
+
+#+BEGIN_EXPORT html
+<div style="text-align:center;">
+  <video style="width:600px;" controls>
+    <source src="./manim/media/videos/euler/480p15/EulerEquationIntro.mp4" type="video/mp4">
+  </video>
+</div>
+</details>
+#+END_EXPORT
+
+We will use the Euler equation in two applications below. In these applications, we optimize over two variables and for one of these variables the objective function does not depend on the time derivative of this variable. Hence, we have a problem like:
+
+$$
+\max_{x,y} \int_{t_0}^{t_1} f(t,x(t),y(t),x'(t))dt
+$$
+
+Then the Euler equation implies that the first order conditions are:
+
+$$
+\frac{\partial f}{\partial x} - \frac{d}{dt} \left( \frac{\partial f}{\partial x'} \right) = 0
+$$
+
+and for $y(t)$:
+
+$$
+\frac{\partial f}{\partial y} = 0
+$$
+
+because $\frac{\partial f}{\partial y'} = 0$.
+
+
 #+BEGIN_EXPORT html
 <iframe
   src="https://mechanismdesign.streamlit.app/?embed=true"
