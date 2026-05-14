@@ -56,6 +56,30 @@ The structure of each lecture is the same:
 
 Our advice is to have this website open to read the information and next to it have your [[https://marimo.io/][marimo]] notebook to make notes and program the interactive elements for the app. Most apps below are programed with [[https://streamlit.io/][streamlit]] which is very similar to =marimo=.
 
+#+CAPTION: Roadmap of the course: linking economic models and Python tools
+#+NAME: tab:course-roadmap
+#+BEGIN_EXPORT html
+<div style="overflow-x:auto; margin:20px 0;">
+<table style="border-collapse:collapse; width:100%;">
+<thead>
+<tr style="background:#1f3c88;color:white;">
+<th style="padding:8px;border:1px solid #ddd;">Lecture</th>
+<th style="padding:8px;border:1px solid #ddd;">Economic Topic</th>
+<th style="padding:8px;border:1px solid #ddd;">Core Economic Idea</th>
+<th style="padding:8px;border:1px solid #ddd;">Python / Computational Skills</th>
+</tr>
+</thead>
+<tbody>
+<tr><td style="padding:8px;border:1px solid #ddd;">1</td><td style="padding:8px;border:1px solid #ddd;">Compounded interest and employment flows</td><td style="padding:8px;border:1px solid #ddd;">Simple dynamic processes and stochastic transitions</td><td style="padding:8px;border:1px solid #ddd;">Variables, loops, simulations, plotting</td></tr>
+<tr><td style="padding:8px;border:1px solid #ddd;">2</td><td style="padding:8px;border:1px solid #ddd;">Healthcare expenditure and regression</td><td style="padding:8px;border:1px solid #ddd;">Empirical economic analysis using data</td><td style="padding:8px;border:1px solid #ddd;">pandas, functions, optimization, residual analysis</td></tr>
+<tr><td style="padding:8px;border:1px solid #ddd;">3</td><td style="padding:8px;border:1px solid #ddd;">Iterative equilibrium models</td><td style="padding:8px;border:1px solid #ddd;">Markets converging through iterative adjustment</td><td style="padding:8px;border:1px solid #ddd;">Interactive apps, sliders, difference equations</td></tr>
+<tr><td style="padding:8px;border:1px solid #ddd;">4</td><td style="padding:8px;border:1px solid #ddd;">Search and matching model</td><td style="padding:8px;border:1px solid #ddd;">Structural modeling and calibration</td><td style="padding:8px;border:1px solid #ddd;">Parameter calibration and simulation</td></tr>
+<tr><td style="padding:8px;border:1px solid #ddd;">5</td><td style="padding:8px;border:1px solid #ddd;">Dynamic economic models</td><td style="padding:8px;border:1px solid #ddd;">Continuous‑time adjustment and transition paths</td><td style="padding:8px;border:1px solid #ddd;">Solving differential equations numerically</td></tr>
+<tr><td style="padding:8px;border:1px solid #ddd;">6</td><td style="padding:8px;border:1px solid #ddd;">Dynamical systems</td><td style="padding:8px;border:1px solid #ddd;">Phase diagrams and stability of equilibria</td><td style="padding:8px;border:1px solid #ddd;">Simulating two‑dimensional systems</td></tr>
+</tbody>
+</table>
+</div>
+#+END_EXPORT
 
 
 * Lecture 1: The Power of Compounded Interest and Employment Dynamics
@@ -63,13 +87,22 @@ Our advice is to have this website open to read the information and next to it h
 :HTML_CONTAINER_CLASS: section
 :END:
 
-In this lecture we program two simple apps. First, we model compounded interest and then we model employment dynamics in a labor market. Along the way you learn the following Python concepts:
-- variables
-- lists and how to append lists
-- for-loop
-- =numpy= and =numpy= arrays, generating random numbers (e.g. from a binomial distribution)
-- =matplotlib= to create figures
-- parameter sweep 
+*Skills you learn in this lecture:* simulation of simple economic processes, Python basics (variables, lists, loops), visualization of dynamic outcomes.
+
+** Learning objectives
+
+After completing this lecture you should be able to:
+- explain the economic intuition behind compounded interest and unemployment dynamics
+- understand how stochastic processes can generate aggregate economic outcomes
+- translate simple economic mechanisms into Python simulations
+- work with variables, lists, and =for= loops to simulate dynamics over time
+- visualize simulation results using =matplotlib= and analyze how outcomes change when parameters vary
+
+** Introduction
+
+In this lecture we program two simple economic models. First, we model compounded interest to understand how savings evolve over time when interest accumulates. Second, we simulate employment dynamics in a small labor market where workers may lose or find jobs with certain probabilities.
+
+These examples illustrate how Python can be used to represent economic mechanisms step by step. Even simple models already allow us to visualize dynamics, run simulations, and explore how outcomes depend on parameter values.
 
 ** Apps
 
@@ -624,17 +657,32 @@ class DerivationScene(VoiceoverScene):
 #+end_src
 
 
+** Summary
+
+In this lecture we introduced Python by modeling two simple economic processes. The compounded interest model illustrated how repeated calculations over time can generate nonlinear growth. The employment dynamics model showed how stochastic processes can be simulated using probabilities and random draws.
+
+You learned how to use variables, lists, and for-loops to simulate economic models step by step. We also introduced numerical libraries such as =numpy= and visualization tools such as =matplotlib=. Finally, we demonstrated how a parameter sweep can help analyze how sensitive model outcomes are to parameter choices.
+
+#+BEGIN_EXPORT html
+<div style="border-left:4px solid #1f3c88;padding:10px;margin:15px 0;background:#f5f7fa;">
+<strong>Key economic takeaway</strong><br>
+Small economic mechanisms repeated over time—such as interest compounding or job flows—can generate large aggregate outcomes. Simulation helps economists understand these dynamics and explore how policy-relevant parameters affect long-run results.
+</div>
+#+END_EXPORT
+
+*Looking ahead:* In the next lecture we move from simple simulations to **empirical economic analysis**, using real data to estimate and interpret economic relationships.
+
 ** Review Questions
 
-Test your understanding of the Python concepts and models from this lecture.
-Each question gives you some code and context. For each:
+Test your understanding of the Python concepts and models from this lecture. For each question:
 
-1. *Explain* what the code does (think before you look at the hint).
-2. *Complete* the code in your own notebook.
+1. Explain what the code does.
+2. Complete the code in your own notebook.
 
 -----
 
-*** Question 1: Predicting the Future Value
+*** Question 1
+**** Predicting the Future Value
 
 You want to predict the future value of a savings account after 10 years, but you only know the monthly deposit and the interest rate.
 You are given the following code fragment:
@@ -672,7 +720,8 @@ For this question you need to use an ~if~ statement. Google "if statements in py
 
 -----
 
-*** Question 2: Unemployment Fluctuations
+*** Question 2
+**** Unemployment Fluctuations
 
 Suppose you want to simulate unemployment in a village, but you want to track the longest streak of consecutive months where unemployment is above 5 people.
 
@@ -710,7 +759,8 @@ for month in range(months):
 
 -----
 
-*** Question 3: Parameter Sweep Analysis
+*** Question 3
+**** Parameter Sweep Analysis
 
 You want to analyze how the average unemployment rate (not steady state unemployment) changes as you sweep the probability of being fired.
 Suppose you run a simulation for each value and store the results in a list called ~avg_unemp~.
@@ -731,6 +781,33 @@ Suppose you run a simulation for each value and store the results in a list call
 #+BEGIN_EXPORT html
 </details>
 #+END_EXPORT
+
+-----
+
+*** Question 4
+**** Economic intuition: Compounding and Labor Market Flows
+
+Consider the two economic mechanisms in this lecture.
+
+- a. Why does compounded interest lead to faster growth over time even if the interest rate stays constant?
+- b. In the employment model, what economic factors in reality might correspond to the probabilities of being fired and being hired?
+- c. Which policy measures could reduce the steady-state unemployment level in this type of model?
+
+#+BEGIN_EXPORT html
+<details>
+<summary><strong>Hint / Solution</strong></summary>
+#+END_EXPORT
+
+- Compounding means that interest is earned not only on deposits but also on previously earned interest.
+- Hiring probabilities reflect labor demand and job matching efficiency; firing probabilities reflect firm shocks or separations.
+- Policies that increase hiring probabilities (e.g. training, job matching services) or reduce separations can reduce steady-state unemployment.
+
+#+BEGIN_EXPORT html
+</details>
+#+END_EXPORT
+
+-----------
+
 -----------
 
 * Lecture 2: Healthcare expenditure
@@ -738,7 +815,29 @@ Suppose you run a simulation for each value and store the results in a list call
 :HTML_CONTAINER_CLASS: section
 :END:
 
-** App: Healthcare expenditure
+*Skills you learn in this lecture:* working with real economic data, regression intuition, numerical optimization, interpreting empirical models.
+
+** Learning objectives
+
+After completing this lecture you should be able to:
+- load and inspect datasets using =pandas=
+- visualize economic data using =matplotlib=
+- define and use Python functions
+- estimate model parameters using numerical optimization
+- interpret regression results and residuals in an economic context
+- explain the economic meaning of trends and covariates in healthcare expenditure
+
+** Introduction
+
+In this lecture we analyze healthcare expenditure using real data for the Netherlands. We start by visualizing how healthcare expenditure per capita has evolved over time. Next, we construct a simple linear trend model and examine how well it fits the data.
+
+We then estimate the best fitting parameters using numerical optimization and interpret the resulting regression line. Finally, we extend the model by including additional explanatory variables such as GDP per capita and out-of-pocket healthcare spending.
+
+The goal of this lecture is to demonstrate how Python can be used for empirical economic analysis: reading data, estimating models, and exploring policy implications.
+
+** Apps
+
+*** Healthcare expenditure
 :PROPERTIES:
 :HTML_CONTAINER_CLASS: section
 :END:
@@ -1343,7 +1442,22 @@ plt.tight_layout();
 10. Using a Numerical Solver (~fsolve~): For each future year, use ~fsolve~ to determine the oop needed to keep expenditure constant at 2014 levels, plot the required vs. actual oop, and discuss the relevance for policy.
 
 
-** Review questions
+** Summary
+
+In this lecture we used data on healthcare expenditure in the Netherlands to illustrate how economists combine empirical data with simple models. We first explored the data visually and then estimated a linear trend using numerical optimization.
+
+We also showed how adding additional explanatory variables such as GDP per capita and out-of-pocket payments can improve the explanatory power of the model. Finally, we used the estimated model to perform policy-oriented simulations, such as determining how changes in out-of-pocket payments could affect healthcare expenditure.
+
+#+BEGIN_EXPORT html
+<div style="border-left:4px solid #1f3c88;padding:10px;margin:15px 0;background:#f5f7fa;">
+<strong>Key economic takeaway</strong><br>
+Empirical economic analysis combines theory, data, and statistical estimation. Even simple regression models can provide useful insights into economic trends and help explore the potential effects of policy changes.
+</div>
+#+END_EXPORT
+
+*Looking ahead:* In the next lecture we study **iterative economic models**, where equilibrium emerges through repeated adjustments of agents over time.
+
+** Review Questions
 :PROPERTIES:
 :HTML_CONTAINER_CLASS: section
 :END:
@@ -1411,16 +1525,29 @@ Use google or an LLM to find the relevant Python functions for this. Python has 
 
 
 
+-----------
+
 * Lecture 3: Modeling Iteration
 
-In this lecture you will learn:
-- how to make interactive apps with Python in =marimo=,
-- how to define sliders for parameters values and then use these parameters values to make plots,
-- to program with ~if, elif~ and ~else~ clauses
-- use ~for~ loops to model iteration, e.g. to solve a model over time
-- define a system of difference equations and work with it through matrix notation.
+*Skills you learn in this lecture:* iterative equilibrium computation, interactive apps with sliders, modeling economic dynamics with difference equations.
 
+** Learning objectives
 
+After completing this lecture you should be able to:
+- create interactive applications using Python and =marimo=
+- define sliders for model parameters and use them in simulations
+- implement conditional logic using ~if~, ~elif~, and ~else~ statements
+- simulate iterative economic processes using =for= loops
+- explain how iterative adjustment processes lead to economic equilibria
+- represent dynamic economic systems using difference equations and matrix notation
+
+** Introduction
+
+Many economic models describe processes that evolve step by step over time. In this lecture we study such iterative dynamics using Python. We implement models in which economic variables adjust repeatedly until they converge to an equilibrium.
+
+The lecture illustrates three examples. First, we analyze an adverse selection market where prices update based on expected quality. Second, we study a Cournot duopoly where firms repeatedly best respond to each other. Third, we simulate a labor market with transitions between unemployment and different job types.
+
+These examples demonstrate how Python can be used to simulate dynamic economic systems and visualize how equilibria emerge through iteration.
 
 ** Apps
 
@@ -1490,7 +1617,7 @@ One way to derive the Nash equilibium is to use iterated best responses: start w
 
 *** Unemployment dynamics
 
-Suppose we have an inelastic labor supply normalized to a mass of 1. Labor can be in one of three states: unemployed, employed in a low wage job and employed in a high wage job.???continue here???
+Suppose we have an inelastic labor supply normalized to a mass of 1. Labor can be in one of three states: unemployed, employed in a low wage job and employed in a high wage job.
 
 #+BEGIN_EXPORT html
 <iframe
@@ -2106,6 +2233,9 @@ class DynamicSystemMatrixForm(Scene):
 #+end_src
 
 ** Python Code Explanation
+
+In this section we explain the Python code used to implement the models behind the interactive applications. The focus is on understanding how the economic mechanisms are translated into algorithms and simulations.
+
 *** Adverse Selection Model
 
 In the adverse selection model, sellers have goods of quality $q$ uniformly distributed on $[v_0, v_1]$. Sellers only offer goods if the market price $p \geq q$. Buyers value quality at a mark-up:
@@ -2326,9 +2456,6 @@ h_t
 \end{bmatrix}
 \end{equation}
 
-**** TODO
-- use manim to explain matrix multiplication
-
 
 
 We can define the transition matrix as follows:
@@ -2358,9 +2485,25 @@ plt.ylabel("fraction employed/unemployed")
 
 
 
-** Review questions
+** Summary
 
-*** 1. Adverse Selection: Does Increasing Mark-Up Always Restore Trade?
+In this lecture we studied how iterative processes can be used to model economic dynamics. We implemented simulations where variables adjust repeatedly until they converge to equilibrium outcomes.
+
+The adverse selection example illustrated how markets with asymmetric information may unravel through iterative price updates. The Cournot model showed how repeated best responses can lead firms toward the Nash equilibrium. Finally, the labor market example demonstrated how difference equations and transition matrices can be used to model dynamic systems.
+
+These examples illustrate how Python is a powerful tool for exploring dynamic economic models and visualizing the paths through which equilibria emerge.
+
+#+BEGIN_EXPORT html
+<div style="border-left:4px solid #1f3c88;padding:10px;margin:15px 0;background:#f5f7fa;">
+<strong>Key economic takeaway</strong><br>
+Many economic equilibria can be understood as the result of iterative adjustment processes. Simulating these dynamics helps reveal whether markets converge to stable outcomes or exhibit instability such as market unraveling.
+</div>
+#+END_EXPORT
+
+** Review Questions
+
+*** Question 1
+**** Adverse Selection: Does Increasing Mark-Up Always Restore Trade?
 Consider the adverse selection model with $v_0=30$ and $v_1=90$. Write Marimo code to:
 - Plot the equilibrium price and fraction traded as the mark-up varies from 1.01 to 2.0.
 - Is there always trade (fraction traded > 0) for any mark-up $>1$?
@@ -2413,7 +2556,8 @@ plt.legend()
 
 ---
 
-*** 2. Cournot Duopoly: Add a Third Firm
+*** Question 2
+**** Cournot Duopoly: Add a Third Firm
 Modify the Cournot duopoly Python code so there are three firms, each with marginal cost $c$, facing demand of the form $p = 1 - q_1 - q_2 - q_3$.  
 - Define best-response functions for each firm.
 - Write a for loop to iterate best responses starting with initial quantities $q_1=0.3, q_2=0.3, q_3=0.3$.
@@ -2452,7 +2596,8 @@ plt.xlabel("Step")
 
 ---
 
-*** 3. Labor Market: Steady State Without Iteration
+*** Question 3
+**** Labor Market: Steady State Without Iteration
 Derive and plot the steady-state unemployment $u^*$ as a function of the job-finding rate $\mu$ (other parameters fixed at $\lambda=0.1$, $\delta_l=0.05$, $\delta_h=0.03$).  
 - Use the fact that in steady state, all variables don’t change over time.
 
@@ -2497,7 +2642,8 @@ plt.ylabel('Steady state $u^*$')
 
 ---
 
-*** 4. Matrix Notation: Simulation With Numpy Only
+*** Question 4
+**** Matrix Notation: Simulation With Numpy Only
 In the labor market model, implement the time path simulation *using only Numpy arrays and matrix multiplication* (not manually updating variables).  
 - Set up the transition matrix for $\mu=0.12$, $\lambda=0.09$, $\delta_l=0.04$, $\delta_h=0.03$, $u_0=0.8$.
 - Plot the evolution of all three states.
@@ -2534,7 +2680,8 @@ plt.show()
 
 ---
 
-*** 5. Extending the Labor Model: Add a Direct High Wage Offer Channel
+*** Question 5
+**** Extending the Labor Model: Add a Direct High Wage Offer Channel
 Suppose a fraction $\alpha$ of unemployed directly get a high wage job each period. The equations become:
 \begin{align*}
 u_{t+1} &= u_t + \delta_l l_t + \delta_h h_t - \mu u_t - \alpha u_t \\
@@ -2597,22 +2744,30 @@ As $\alpha$ increases, the fraction in high wage employment rises and steady-sta
 </details>
 #+END_EXPORT
 
+-----------
+
 * Lecture 4: Search and Matching in the Labor Market
 :PROPERTIES:
 :CUSTOM_ID: lecture_search_matching
 :END:
 
+*Skills you learn in this lecture:* calibrating structural economic models, combining theory and data, simulating labor‑market policy scenarios.
 
-In this lecture you will learn:
-- How to translate an economic question into two sub-problems:
-  - what data can I use?
-  - what model is useful for this question?
-- Use papers from the economics literature to calibrate parameters and use data to estimate (other) parameters.
-- Define your own function to find the estimator that minimizes the sum of squared residuals.
-- Use the model to simulate the outcomes of different scenarios.
+** Learning objectives
 
+After completing this lecture you should be able to:
+- explain the economic intuition behind search and matching models of the labor market
+- understand how labor market tightness affects job finding probabilities and wages
+- combine economic theory and data to calibrate and estimate model parameters
+- implement a search and matching model in Python and simulate policy scenarios
 
-** App
+** Introduction
+
+Search and matching models are widely used in labor economics to study unemployment, vacancies, and wage determination. Instead of focusing only on the total number of workers and jobs, these models emphasize *flows* in the labor market: workers search for jobs and firms post vacancies, and matches occur when these two sides meet.
+
+In this lecture we build a simplified search and matching model using Dutch labor market data. We then use the model to simulate the potential effects of immigration on unemployment and wages. The goal is not to produce precise forecasts, but to develop intuition about the magnitude and direction of these effects.
+
+** Apps
 
 Suppose after graduating you are hired by the Dutch Ministry of Social Affairs. In parliament there have been recurring discussions about immigration. The minister asks you to give her an idea of the potential effects of immigration on unemployment and wages in the Netherlands. Suppose immigration increases by 50%, or even doubles. What would happen to unemployment and wages?
 
@@ -3278,7 +3433,22 @@ Interpretation:
 - this lowers tightness \(θ\)  
 - the economy moves *left along the wage curve*, reducing wages.
 
-** Review questions
+** Summary
+
+In this lecture we developed a simple **search and matching model** to study how workers and firms interact in the labor market. The model focuses on flows in the labor market: unemployed workers search for jobs while firms post vacancies, and matches occur through a matching function.
+
+Using Dutch labor market data, we calibrated and estimated key parameters of the model and compared the model's predictions to observed outcomes. We then used the model to simulate the effects of an immigration shock and analyze how unemployment, labor market tightness, and wages respond.
+
+This illustrates how economists combine **economic theory, data, and numerical simulation** to analyze policy questions. Even relatively simple structural models can provide useful intuition about how labor market shocks propagate through the economy.
+
+#+BEGIN_EXPORT html
+<div style="border-left:4px solid #1f3c88;padding:10px;margin:15px 0;background:#f5f7fa;">
+<strong>Key economic takeaway</strong><br>
+Search and matching models emphasize that unemployment and wages are determined by the interaction between workers and firms. Shocks such as immigration affect labor market outcomes by changing labor market tightness, which influences job‑finding probabilities and wages.
+</div>
+#+END_EXPORT
+
+** Review Questions
 
 *** Question 1. Simulating the matching function
 
@@ -3445,6 +3615,37 @@ print(w0, w1)
 </details>
 #+END_EXPORT
 
+#+BEGIN_EXPORT html
+<details>
+<summary><strong>LLM Hint (how to prompt an LLM)</strong></summary>
+#+END_EXPORT
+
+If you use an LLM to help with this question, explain the economic context and the equations clearly.
+
+A useful prompt could be:
+
+"I am solving an exercise from a graduate economics course on search and matching models. The wage equation is
+
+w = βa + (1−β)bθ^(1−α)
+
+and labor market tightness is θ = V / U.
+
+Initially U = 200 and V = 150. Immigration increases unemployment by 20%.
+
+Can you help me write Python code that
+1) computes the initial tightness,
+2) computes the new tightness after immigration, and
+3) computes wages before and after the shock?"
+
+Good prompting practice:
+- Write the economic equations explicitly.
+- Provide parameter values.
+- Ask for both the Python code and a short explanation of the steps.
+
+#+BEGIN_EXPORT html
+</details>
+#+END_EXPORT
+
 
 *** Question 5. Estimating the matching function
 
@@ -3485,15 +3686,29 @@ Now define a matching function as a function of $m,\alpha$, derive the residuals
 </details>
 #+END_EXPORT
 
+-----------
+
 * Lecture 5: Modeling Dynamics
 :PROPERTIES:
 :CUSTOM_ID: lecture_dynamics
 :END:
 
-In this lecture you will learn:
-- How to solve differential equations using =scipy=.
-- Understand the economic intuition for dynamic effects and illustrating this using interactive apps.
-- Solve dynamic optimization problems.
+*Skills you learn in this lecture:* continuous‑time economic modeling, solving differential equations numerically, analyzing transition paths in dynamic models.
+
+** Learning objectives
+
+After completing this lecture you should be able to:
+- explain how continuous‑time models differ from discrete‑time economic models
+- understand how differential equations describe the evolution of economic variables
+- compute transition paths in dynamic economic models
+- analyze steady states and convergence in growth and learning models
+- interpret dynamic adjustment paths generated by numerical simulations
+
+** Introduction
+
+Many economic problems involve decisions and adjustments that unfold over time. Investment today affects future production, firms learn from past experience, and strategic decisions often depend on expectations about future outcomes. To analyze such situations economists use dynamic models.
+
+Dynamic models are frequently expressed using differential equations that describe how economic variables evolve as a function of their current values. Although these models can sometimes be solved analytically, numerical methods are often needed to compute their behavior and visualize their implications.
 
 ** Solving Dynamic Economic Models
 
@@ -4663,7 +4878,20 @@ static q(t)
 ---
 
 
-** Review questions
+** Summary
+
+In this lecture we studied how dynamic economic models can be analyzed using numerical tools in Python. We explored several examples in which economic decisions and outcomes evolve over time, including capital accumulation, mechanism design with asymmetric information, and learning-by-doing dynamics.
+
+These examples illustrated how differential equations and dynamic optimization problems can be translated into numerical algorithms. By solving these models computationally we can visualize adjustment paths, understand steady states, and explore how economic outcomes respond to parameter changes.
+
+#+BEGIN_EXPORT html
+<div style="border-left:4px solid #1f3c88;padding:10px;margin:15px 0;background:#f5f7fa;">
+<strong>Key economic takeaway</strong><br>
+Dynamic economic models describe how decisions and incentives today affect outcomes in the future. Numerical methods allow economists to analyze these dynamics even when analytical solutions are difficult or impossible to obtain.
+</div>
+#+END_EXPORT
+
+** Review Questions
 
 *** Solow model
 Create the Solow model in a marimo notebook and analyze the following:
@@ -4681,7 +4909,1308 @@ In your marimo notebook:
 - introduce *capacity constraints*
 - in competition policy cases there is a suspicion that firms that price below marginal costs ($p < c$) are trying to remove their competitors from the market to enjoy monopoly profits in the future. Discuss this suspicion in the light of this model.
 
+#+BEGIN_EXPORT html
+<details>
+<summary><strong>LLM Hint (how to prompt an LLM)</strong></summary>
+#+END_EXPORT
 
+If you ask an LLM for help with this question, clearly describe both the **economic model** and the **dynamic optimization problem**.
+
+Example prompt you could use:
+
+"I am working on a graduate economics exercise about a dynamic learning‑by‑doing model solved with differential equations in Python. The model describes how experience or cumulative output affects productivity over time. I need to simulate how the optimal output path changes when the time horizon T or capacity constraints change. Can you help me write Python code using scipy (solve_ivp or a similar solver) to simulate the dynamic path and explain the economic interpretation of the results?"
+
+Helpful prompting strategies:
+- Explain the **economic setting** (learning‑by‑doing and dynamic optimization).
+- Write down the **equations or objective function** if they are available.
+- Specify the **Python tools** you are using (for example scipy or solve_ivp).
+- Ask the LLM to explain both the **code** and the **economic intuition**.
+
+#+BEGIN_EXPORT html
+</details>
+#+END_EXPORT
+
+
+-----------
+
+* Lecture 6: Dynamical Systems
+
+*Skills you learn in this lecture:* analyzing two‑dimensional dynamical systems, phase diagrams, and stability of economic equilibria.
+
+In this lecture we program two dynamic models that are often used in Economics: the Ramsey model of consumption and investment and the predator-prey model to analyze business cycles.
+
+
+** Learning objectives
+
+This lecture introduces dynamic models that describe how economic variables evolve over time. Instead of studying static equilibrium, we analyze systems where variables continuously interact and adjust.
+
+In this lecture you will learn:
+- how economists represent dynamic processes using differential equations  
+- how to simulate dynamic systems numerically using Python  
+- how to interpret trajectories and phase diagrams in two‑dimensional systems  
+- how the Ramsey model describes optimal consumption and capital accumulation over time  
+- why the Ramsey model produces a saddle‑path equilibrium  
+- how the Lotka–Volterra predator–prey model generates cyclical dynamics  
+- how the same mathematical structure can be used to study economic business cycles (Goodwin model)
+
+By the end of the lecture you will have implemented both models in Python and explored their dynamics interactively.
+
+** Introduction
+
+
+
+The *Ramsey model* studies how an economy chooses *consumption and saving over time* when households are forward‑looking. Unlike the Solow model, the saving rate is not imposed from outside the model. Instead, a representative household decides how much to consume and how much to save in order to maximize lifetime utility.
+
+The household solves
+
+\[
+\max \int_0^\infty e^{-\rho t} u(c(t)) dt
+\]
+
+subject to the capital accumulation equation
+
+\[
+\dot{k}=f(k)-\delta k-c
+\]
+
+Capital increases when output exceeds consumption and depreciation. The parameter \( \rho \) measures how impatient households are (the *discount rate*), while \( \delta \) is the *depreciation rate*.
+
+Optimal behaviour implies a second dynamic equation describing how consumption evolves over time. Together with capital accumulation this gives a *two‑dimensional dynamical system*
+
+\[
+\dot{k} = f(k)-\delta k-c
+\]
+
+\[
+\dot{c} = \frac{c}{0.3}\left(0.5 k^{-0.5}-\delta-\rho\right)
+\]
+
+The economy therefore evolves jointly in *capital* \(k\) and *consumption* \(c\). The steady state \((k^*,c^*)\) occurs where both variables stop changing.
+
+A key insight of the Ramsey model is that the steady state is *saddle‑path stable*. This means that only one particular initial level of consumption is consistent with convergence to the steady state for a given initial capital stock. If consumption is too high, the economy depletes capital. If consumption is too low, capital grows excessively.
+
+The app above allows you to explore these dynamics interactively.
+
+You can change:
+
+- the discount rate \( \rho \)
+- the depreciation rate \( \delta \)
+- the initial capital stock \(k_0\)
+- the initial consumption level \(c_0\)
+
+The figures show two important objects:
+
+1. *Time paths* of capital and consumption.
+2. The *phase diagram* in \((k,c)\) space.
+
+The phase diagram shows the loci where \( \dot{k}=0 \) and \( \dot{c}=0 \), as well as the trajectory implied by the initial conditions. The app also computes the *saddle path*, which is the unique trajectory that leads to the steady state.
+
+Use the sliders to explore how parameters affect the steady state and how the economy adjusts when it starts away from equilibrium.
+
+
+The predator–prey model is one of the simplest and most influential examples of a *dynamic system with interacting variables*. It was originally developed by *Alfred Lotka and Vito Volterra* in the 1920s to describe how two biological populations evolve over time.
+
+The key idea is that the growth of each population depends on the other.
+
+- Prey (for example rabbits) reproduce naturally and would grow exponentially if predators did not exist.
+- Predators (for example foxes) depend on prey for food, so their population grows when prey are abundant.
+- When predators become numerous, they reduce the prey population.
+- As prey become scarce, predators begin to starve and their population declines.
+
+This interaction creates a *feedback loop* that typically produces *cycles*: prey rise first, predators follow, prey then decline, and predators eventually decline as well.
+
+The classic *Lotka–Volterra system* is
+
+\[
+\dot{x} = ax - bxy
+\]
+
+\[
+\dot{y} = -cy + dxy
+\]
+
+where
+
+- \(x(t)\) is the prey population
+- \(y(t)\) is the predator population
+
+and the parameters have the following interpretation:
+
+- \(a\): natural growth rate of prey  
+- \(b\): intensity of predation  
+- \(c\): natural death rate of predators  
+- \(d\): efficiency with which predators convert prey into new predators  
+
+Although this model originated in ecology, the same mathematical structure appears in many areas of economics. One important example is the *Goodwin growth cycle model*, where the interacting variables are
+
+- the *employment rate*
+- the *wage share of income*
+
+When employment is high, workers have stronger bargaining power and wages rise. Higher wages reduce profits and slow hiring, causing employment to fall. When unemployment rises, wage pressure weakens and profits recover, leading to renewed hiring. This interaction generates *endogenous business cycles*.
+
+The app above allows you to experiment with these dynamics. You can interpret the variables either as predator–prey populations or as employment and wage share in the Goodwin model. By adjusting the parameters and initial values, you can see how cycles emerge and how their size and speed depend on the underlying economic mechanisms.
+
+Pay particular attention to the *phase diagram*. It shows the trajectory of the system in the \((x,y)\) plane and illustrates how the interaction between the two variables produces cyclical motion.
+
+
+
+
+
+** apps
+
+*** Ramsey model
+
+
+#+BEGIN_EXPORT html
+<iframe
+  src="https://ramseymodel.streamlit.app/?embed=true"
+  allow="fullscreen">
+</iframe>
+
+<div class="fallback">
+  <p>
+    If the app does not load,
+    <a href="https://ramseymodel.streamlit.app/?embed=true" target="_blank">
+      open it in a new tab
+    </a>.
+  </p>
+</div>
+#+END_EXPORT
+
+
+*** Predator-prey model
+
+
+#+BEGIN_EXPORT html
+<iframe
+  src="https://predatorprey.streamlit.app/?embed=true"
+  allow="fullscreen">
+</iframe>
+
+<div class="fallback">
+  <p>
+    If the app does not load,
+    <a href="https://predatorprey.streamlit.app/?embed=true" target="_blank">
+      open it in a new tab
+    </a>.
+  </p>
+</div>
+#+END_EXPORT
+
+
+
+
+
+** streamlit :noexport:
+
+*** Ramsey model
+
+#+begin_src python
+import streamlit as st
+import numpy as np
+import matplotlib.pyplot as plt
+from scipy.integrate import solve_ivp
+from scipy.optimize import root_scalar
+
+st.title("Ramsey Growth Model")
+
+st.markdown(r"""
+This interactive app illustrates the **Ramsey optimal growth model**.
+
+Instead of assuming an exogenous saving rate $s$ as in the Solow model, here we endogenize the agent's saving decision.
+
+A representative household chooses consumption to maximize
+
+$$
+\max \int_0^{\infty} e^{-\rho t} u(c(t)) \, dt
+$$
+
+subject to capital accumulation
+
+$$
+\dot{k} = f(k) - \delta k - c
+$$
+
+We can solve this problem using the **Euler equation** for dynamic optimization. Consider
+
+$$
+\mathcal{L}=e^{-\rho t}\left(u(c(t)) - \lambda(t)(\dot{k} - f(k) + \delta k + c)\right)
+$$
+
+The first‑order conditions are as follows.
+
+Consumption:
+
+$$
+\frac{\partial \mathcal{L}}{\partial c}=e^{-\rho t}(u'(c)-\lambda)=0
+$$
+
+Capital (Euler equation):
+
+$$
+\frac{d}{dt}\left(\frac{\partial \mathcal{L}}{\partial \dot{k}}\right)-\frac{\partial \mathcal{L}}{\partial k}=0
+$$
+
+which implies
+
+$$
+\dot{\lambda}=(\rho+\delta-f'(k))\lambda
+$$
+
+Using the condition $\lambda=u'(c)$ and differentiating gives --what is called-- the **Euler equation for consumption**
+
+$$
+\frac{u''(c)}{u'(c)} \dot{c} = -(f'(k) - \delta - \rho)
+$$
+
+With the functional forms
+
+$$
+u(c) = c^{0.7}, \qquad f(k) = k^{0.5}
+$$
+
+The dynamic system becomes
+
+$$
+\dot{k} = k^{0.5} - \delta k - c
+$$
+
+$$
+\dot{c} = \frac{c}{0.3}\left(0.5 k^{-0.5} - \delta - \rho\right)
+$$
+""")
+
+st.sidebar.header("Parameters")
+
+# Restrict parameters to avoid explosive dynamics
+rho = st.sidebar.slider("Discount rate ρ",0.01,0.06,0.03,0.005)
+delta = st.sidebar.slider("Depreciation δ",0.02,0.08,0.05,0.005)
+
+st.sidebar.header("Initial conditions")
+
+k0 = st.sidebar.slider("Initial capital k0",5.0,50.0,20.0)
+c0 = st.sidebar.slider("Initial consumption c0",0.5,4.0,2.0)
+
+# steady state
+k_star = (0.5/(delta+rho))**2
+c_star = np.sqrt(k_star) - delta*k_star
+
+
+st.header("Steady state outcome")
+
+st.write("We define the steady state as the values $(k^*,c^*)$ where $\dot{k} = \dot{c} = 0$")
+st.write("With the functional forms above and the selected parameter values we find the following.")
+st.write("Steady state capital k* =",round(k_star,3))
+st.write("Steady state consumption c* =",round(c_star,3))
+
+
+def ramsey_rhs(t,y):
+    k,c = y
+
+    # keep variables in numerically safe region
+    k = max(k,1e-8)
+    c = max(c,1e-8)
+
+    dk = np.sqrt(k) - delta*k - c
+    dc = (c/0.3)*(0.5/np.sqrt(k) - delta - rho)
+
+    return [dk,dc]
+
+# solve dynamics
+# Stop integration if capital becomes negative or extremely large
+def stop_event(t,y):
+    k = y[0]
+    return min(k-1e-4,100-k)
+stop_event.terminal = True
+
+sol = solve_ivp(ramsey_rhs,(0,80),[k0,c0],t_eval=np.linspace(0,80,400),events=stop_event,max_step=0.5)
+
+k = sol.y[0]
+c = sol.y[1]
+
+# time paths
+fig1,ax1 = plt.subplots()
+line_k, = ax1.plot(sol.t,k,label="capital k(t)")
+line_c, = ax1.plot(sol.t,c,label="consumption c(t)")
+
+# steady states with matching colors
+ax1.axhline(k_star,linestyle="--",color=line_k.get_color(),label="k*")
+ax1.axhline(c_star,linestyle="--",color=line_c.get_color(),label="c*")
+
+ax1.set_xlabel("time")
+ax1.legend()
+
+# phase diagram
+k_max = 100
+kgrid = np.linspace(0.1,k_max,120)
+cgrid = np.linspace(0.1,6,80)
+K,C = np.meshgrid(kgrid,cgrid)
+
+dK = K**0.5 - delta*K - C
+dC = (C/0.3)*(0.5*K**-0.5 - delta - rho)
+
+fig2,ax2 = plt.subplots()
+ax2.streamplot(K,C,dK,dC,color="gray",density=1)
+
+c_kdot0 = kgrid**0.5 - delta*kgrid
+ax2.plot(kgrid,c_kdot0,label="k'=0")
+ax2.axvline(k_star,linestyle="--",label="c'=0")
+
+ax2.plot(k,c,color="red",label="trajectory")
+ax2.scatter([k_star],[c_star])
+
+ax2.set_xlim(0,k_max)
+ax2.set_ylim(0,6)
+ax2.set_xlabel("capital k")
+ax2.set_ylabel("consumption c")
+ax2.legend()
+
+# show first two figures side-by-side
+col1, col2 = st.columns(2)
+with col1:
+    st.pyplot(fig1)
+with col2:
+    st.pyplot(fig2)
+
+# -------- Saddle path calculation --------
+st.header("Saddle path consumption for given k₀")
+
+# function used for shooting method
+def terminal_k(c0_guess):
+    sol_tmp = solve_ivp(ramsey_rhs,(0,120),[k0,c0_guess],max_step=0.5)
+    return sol_tmp.y[0,-1] - k_star
+
+try:
+    root = root_scalar(terminal_k,bracket=[0.2,5],method="brentq")
+    c0_saddle = root.root
+
+    st.write("For given initial capital stock $k_0$, there is only one value $c_0$ that sets the economy on the path to the steady state.")
+    st.write(f"Consumption on the saddle path for $k_0$ = {k0:.2f} is $c_0$ ≈ {c0_saddle:.3f}")
+
+    sol_saddle = solve_ivp(ramsey_rhs,(0,80),[k0,c0_saddle],t_eval=np.linspace(0,80,400),max_step=0.5)
+
+    # ---- add saddle path to phase diagram ----
+    ax2.plot(sol_saddle.y[0],sol_saddle.y[1],"--",color="red",label="saddle path")
+    ax2.legend()
+
+    # ---- time dynamics on saddle path ----
+    fig3,ax3 = plt.subplots()
+    line_k_s, = ax3.plot(sol_saddle.t,sol_saddle.y[0],label="capital k(t)")
+    line_c_s, = ax3.plot(sol_saddle.t,sol_saddle.y[1],label="consumption c(t)")
+
+    ax3.axhline(k_star,linestyle="--",color=line_k_s.get_color(),label="k*")
+    ax3.axhline(c_star,linestyle="--",color=line_c_s.get_color(),label="c*")
+
+    ax3.set_xlabel("time")
+    ax3.set_title("Dynamics on the saddle path")
+    ax3.legend()
+
+    # show saddle dynamics (left) and phase diagram (right)
+    col3, col4 = st.columns(2)
+    with col3:
+        st.pyplot(fig3)
+    with col4:
+        st.pyplot(fig2)
+
+except ValueError:
+    st.warning("Could not find a saddle-path value for c₀ with the current parameters.")
+
+
+# -------- Exercises for students --------
+st.header("Exercises")
+
+st.markdown("""
+**Question 1.** Use the sliders for the parameters $\\rho$ and $\delta$ to find a situation where the steady‑state capital level $k^*$ is **approximately equal to 25**.  
+
+- What values of $\\rho$ and $\delta$ achieve this?  
+- What is the corresponding steady‑state consumption $c^*$?
+
+**Question 2.** Choose parameters $\\rho = 0.03$ and $\delta = 0.05$. Now change the initial capital level $k_0$.
+
+- Find one value of $k_0$ for which the economy must **initially reduce consumption** (consumption falls before converging to the steady state).
+- Find one value of $k_0$ for which the economy must **initially increase consumption**.
+
+Explain your answer using the **phase diagram** and the **saddle path**.
+""")
+#+end_src
+
+
+
+
+
+
+
+
+
+*** predator-prey
+
+
+#+begin_src python
+import streamlit as st
+import numpy as np
+import matplotlib.pyplot as plt
+from scipy.integrate import solve_ivp
+
+st.title("Predator–Prey Dynamics and a Second Order Differential Equation")
+
+st.markdown(r"""
+The **predator–prey model** is one of the most famous examples of a dynamic
+system. It was introduced by **Lotka and Volterra** in the 1920s to describe
+how two interacting populations evolve over time.
+
+The basic idea is simple:
+
+- When there are many prey (for example rabbits), predators (for example foxes)
+  have plenty of food and their population grows.
+- When there are many predators, the prey population declines because more
+  prey are eaten.
+- When prey become scarce, predators start to starve and their population
+  declines again.
+
+This interaction often generates **cycles**: prey rise first, then predators
+follow, after which prey fall and predators eventually fall as well.
+
+Models like this appear in many fields beyond ecology. Similar dynamics arise
+in:
+
+- economics (for example interacting markets or business cycles),
+- epidemiology (spread of diseases),
+- chemical reactions,
+- and strategic interactions in game theory.
+
+Studying this model helps illustrate several important ideas:
+
+- how to formulate **dynamic models using differential equations**,
+- how interacting variables generate **feedback and cycles**,
+- and how to **solve systems of differential equations numerically in Python**.
+
+The classic **Lotka–Volterra predator–prey model** is
+
+$$
+\dot{x} = ax - bxy
+$$
+
+$$
+\dot{y} = -cy + dxy
+$$
+
+where
+
+- $x(t)$ = prey population
+- $y(t)$ = predator population
+
+The parameters have intuitive interpretations:
+
+- $a$ : natural growth rate of prey
+- $b$ : intensity of predation
+- $c$ : natural death rate of predators
+- $d$ : efficiency with which predators convert prey into new predators
+
+""")
+
+st.sidebar.header("Model interpretation")
+
+model_type = st.sidebar.radio(
+    "Choose interpretation",
+    ["Predator–prey (ecology)", "Business cycle (Goodwin model)"]
+)
+
+st.sidebar.header("Parameters")
+
+a = st.sidebar.slider("a",0.1,3.0,1.0)
+b = st.sidebar.slider("b",0.1,2.0,0.5)
+c = st.sidebar.slider("c",0.1,3.0,1.5)
+d = st.sidebar.slider("d",0.1,2.0,0.75)
+
+st.sidebar.header("Initial values")
+
+x0 = st.sidebar.slider("Initial x",0.5,10.0,4.0)
+y0 = st.sidebar.slider("Initial y",0.5,10.0,2.0)
+
+
+def lotka_volterra(t, z):
+    x, y = z
+
+    dx = a*x - b*x*y
+    dy = -c*y + d*x*y
+
+    return [dx, dy]
+
+
+T = 40
+sol = solve_ivp(lotka_volterra,(0,T),[x0,y0],t_eval=np.linspace(0,T,500))
+
+x = sol.y[0]
+y = sol.y[1]
+
+if model_type == "Predator–prey (ecology)":
+    x_label = "prey"
+    y_label = "predators"
+else:
+    x_label = "employment rate"
+    y_label = "wage share"
+
+fig1,ax1 = plt.subplots()
+ax1.plot(sol.t,x,label=f"{x_label} x(t)")
+ax1.plot(sol.t,y,label=f"{y_label} y(t)")
+ax1.set_xlabel("time")
+ax1.legend()
+
+fig2,ax2 = plt.subplots()
+ax2.plot(x,y)
+ax2.set_xlabel(x_label)
+ax2.set_ylabel(y_label)
+ax2.set_title("Phase diagram")
+
+col1,col2 = st.columns(2)
+
+with col1:
+    st.pyplot(fig1)
+
+with col2:
+    st.pyplot(fig2)
+
+st.markdown(r"""
+## An economic interpretation: business cycles (Goodwin model)
+
+The same mathematical structure can also describe **economic cycles**.  
+A famous example is the **Goodwin growth cycle model** (1967), which applies
+Lotka–Volterra dynamics to macroeconomics.
+
+Instead of animals, the interacting variables are:
+
+- $x(t)$ : the **employment rate** in the economy
+- $y(t)$ : the **wage share** of income (the fraction of output going to workers)
+
+The intuition is similar to predator–prey interactions.
+
+**Step 1 — High employment increases wages**  
+When employment is high, workers have stronger bargaining power. Firms must
+raise wages to attract or keep workers. As a result, the **wage share rises**.
+
+**Step 2 — High wages reduce profits and hiring**  
+When wages take a larger share of output, firms' profits fall. Firms invest and
+hire less, so **employment begins to decline**.
+
+**Step 3 — Low employment weakens worker bargaining power**  
+When unemployment rises, workers compete for jobs and wage growth slows. The
+**wage share falls**.
+
+**Step 4 — Lower wages restore profitability**  
+With lower wages, firms become more profitable again. Investment and hiring
+increase, and **employment rises again**.
+
+This feedback loop generates **endogenous business cycles**: employment rises
+first, wages follow, then employment falls, followed by falling wages.
+
+Mathematically, the Goodwin model can be written in a form that closely
+resembles the Lotka–Volterra system:
+
+$$
+\dot{x} = ax - bxy
+$$
+
+$$
+\dot{y} = -cy + dxy
+$$
+
+where now
+
+- $x$ = employment rate
+- $y$ = wage share
+
+In this interpretation:
+
+- $a$ is the **baseline growth rate of employment** when wage pressure is low
+- $b$ captures how a higher **wage share** reduces employment growth (because higher wages reduce profits and hiring incentives)
+- $c$ captures the **baseline downward pressure on the wage share** (for example due to unemployment, labour market competition, or institutional factors)
+- $d$ captures how tight labour markets push wages up
+
+To see the intuition more clearly, rewrite both equations as
+
+$$
+\dot{x} = x(a - by)
+$$
+
+$$
+\dot{y} = y(-c + dx)
+$$
+
+The wage share therefore **falls when employment is low** (because the term
+$-c$ dominates) and **rises when employment becomes sufficiently high** so
+that $dx > c$. This captures the idea of a **Phillips‑curve type mechanism**:
+tight labour markets increase workers' bargaining power and push wages up.
+
+The **same mathematics** therefore describes both
+
+- ecological predator–prey cycles, and
+- macroeconomic business cycles.
+
+This is one reason why dynamic systems are so useful: once we understand the
+structure of the equations, we can apply them in many different fields.
+
+---
+
+## Exercises
+
+Use the **sliders in the sidebar** to explore how the dynamics change.
+
+**Question 1**  
+Try to find parameter values where the **cycles become very large** (large swings
+in the two variables). Which parameters seem most important in determining how
+big the fluctuations are?
+
+**Question 2**  
+Find a combination of parameters and initial values where the variables change
+**very slowly** over time and the cycle becomes long. Which parameter changes
+slow down the dynamics of the system?
+
+Explain the economic intuition behind the parameter changes you used.
+""")
+
+#+end_src
+
+** Python Code Explanation
+
+*** Ramsey model in Python
+
+Below we reproduce the main elements of the app using standard Python code that can be run inside a *marimo notebook*. The goal is to understand how a dynamical system can be implemented and simulated.
+
+**** Importing libraries
+
+#+begin_src python
+import marimo as mo
+import numpy as np
+import matplotlib.pyplot as plt
+from scipy.integrate import solve_ivp
+#+end_src
+
+Explanation:
+
+- =numpy= provides numerical tools and arrays.
+- =matplotlib= is used for plotting the results.
+- =solve_ivp= from =scipy= numerically solves systems of differential equations.
+- =marimo= provides interactive widgets such as sliders.
+
+---
+
+**** Choosing parameters with sliders
+
+#+begin_src python
+rho = mo.ui.slider(0.01, 0.06, value=0.03, step=0.005, label="Discount rate ρ")
+delta = mo.ui.slider(0.02, 0.08, value=0.05, step=0.005, label="Depreciation δ")
+
+rho, delta
+#+end_src
+
+Explanation:
+
+These sliders allow the user to change parameter values interactively.
+
+- \( \rho \) represents how impatient households are.
+- \( \delta \) represents the depreciation rate of capital.
+
+The sliders return numerical values that can be used in later calculations.
+
+---
+
+**** Initial conditions
+
+#+begin_src python
+k0 = mo.ui.slider(5.0, 50.0, value=20.0, label="Initial capital k0")
+c0 = mo.ui.slider(0.5, 4.0, value=2.0, label="Initial consumption c0")
+
+k0, c0
+#+end_src
+
+Explanation:
+
+A dynamical system requires *initial conditions*. These determine where the economy starts in the \((k,c)\) phase space.
+
+Different initial values will produce different trajectories.
+
+---
+
+**** Computing the steady state
+
+From the Euler equation, the steady state satisfies
+
+\[
+f'(k^*) = \rho + \delta
+\]
+
+With \(f(k)=k^{0.5}\), we have \(f'(k)=0.5k^{-0.5}\). Solving this gives
+
+\[
+k^/ = \left(\frac{0.5}{\rho+\delta}\right)^2
+\]
+
+#+begin_src python
+k_star = (0.5/(delta + rho))**2
+c_star = np.sqrt(k_star) - delta*k_star
+
+k_star, c_star
+#+end_src
+
+Explanation:
+
+- =k_star= is the steady‑state capital level.
+- =c_star= is steady‑state consumption obtained from the capital accumulation equation.
+
+---
+
+**** Defining the dynamical system
+
+We now translate the economic model into a Python function.
+
+#+begin_src python
+def ramsey_rhs(t, y):
+    k, c = y
+
+    dk = np.sqrt(k) - delta*k - c
+    dc = (c/0.3) * (0.5/np.sqrt(k) - delta - rho)
+
+    return [dk, dc]
+#+end_src
+
+Explanation:
+
+This function defines the *right‑hand side of the differential equations*.
+
+Input:
+
+- =t= is time.
+- =y= contains the variables \(k\) and \(c\).
+
+Output:
+
+- =dk= corresponds to \( \dot{k} \)
+- =dc= corresponds to \( \dot{c} \)
+
+The function therefore encodes the Ramsey model's dynamics.
+
+---
+
+**** Simulating the dynamics
+
+We can now solve the system numerically.
+
+#+begin_src python
+sol = solve_ivp(
+    ramsey_rhs,
+    (0, 80),
+    [k0, c0],
+    t_eval=np.linspace(0, 80, 400)
+)
+
+k = sol.y[0]
+c = sol.y[1]
+t = sol.t
+#+end_src
+
+Explanation:
+
+=solve_ivp= numerically integrates the differential equations.
+
+Inputs:
+
+- =(0,80)= is the time interval.
+- =[k0,c0]= are the initial values.
+- =t_eval= specifies the grid of time points where the solution is stored.
+
+The output =sol= contains the full simulated path of the economy.
+
+---
+
+**** Plotting the time paths
+
+#+begin_src python
+fig, ax = plt.subplots()
+
+ax.plot(t, k, label="capital k(t)")
+ax.plot(t, c, label="consumption c(t)")
+
+ax.axhline(k_star, linestyle="--", label="k*")
+ax.axhline(c_star, linestyle="--", label="c*")
+
+ax.set_xlabel("time")
+ax.legend()
+
+fig
+#+end_src
+
+Explanation:
+
+This figure shows how capital and consumption evolve over time.
+
+The dashed lines indicate the steady state. If the system converges, both variables approach these values.
+
+---
+
+**** Plotting the phase diagram
+
+The phase diagram helps visualize the joint dynamics of \(k\) and \(c\).
+
+#+begin_src python
+kgrid = np.linspace(0.1, 100, 120)
+cgrid = np.linspace(0.1, 6, 80)
+
+K, C = np.meshgrid(kgrid, cgrid)
+
+dK = K**0.5 - delta*K - C
+dC = (C/0.3) * (0.5*K**-0.5 - delta - rho)
+
+fig, ax = plt.subplots()
+
+ax.streamplot(K, C, dK, dC, color="gray")
+
+c_kdot0 = kgrid**0.5 - delta*kgrid
+ax.plot(kgrid, c_kdot0, label="k'=0")
+
+ax.axvline(k_star, linestyle="--", label="c'=0")
+
+ax.plot(k, c, color="red", label="trajectory")
+ax.scatter([k_star], [c_star])
+
+ax.set_xlabel("capital k")
+ax.set_ylabel("consumption c")
+ax.legend()
+
+fig
+#+end_src
+
+Explanation:
+
+This diagram shows the dynamics in *state space*.
+
+Key elements:
+
+- The *streamplot* shows the direction of motion of the system.
+- The curve \(k'=0\) shows combinations of \(k\) and \(c\) where capital is constant.
+- The vertical line \(c'=0\) shows where consumption growth is zero.
+- The red line is the trajectory implied by the chosen initial conditions.
+
+This graphical approach is widely used in macroeconomics to understand the behavior of dynamic models.
+
+---
+
+Running these cells in a marimo notebook allows you to experiment with parameter values and observe how the Ramsey model behaves numerically and graphically.
+
+*** predator–prey model
+
+We now reproduce the core elements of the simulation using Python code that can be run in a *marimo notebook*. The goal is to show how a system of differential equations can be translated into code and solved numerically.
+
+---
+
+**** Importing the required libraries
+
+#+begin_src python
+import marimo as mo
+import numpy as np
+import matplotlib.pyplot as plt
+from scipy.integrate import solve_ivp
+#+end_src
+
+Explanation:
+
+This cell imports the main libraries used in the simulation.
+
+- =numpy= provides numerical tools and array operations.
+- =matplotlib= is used to create graphs.
+- =solve_ivp= from =scipy.integrate= numerically solves systems of differential equations.
+- =marimo= provides interactive widgets such as sliders.
+
+---
+
+**** Choosing parameter values
+
+#+begin_src python
+a = mo.ui.slider(0.1, 3.0, value=1.0, label="a: prey growth rate")
+b = mo.ui.slider(0.1, 2.0, value=0.5, label="b: predation intensity")
+c = mo.ui.slider(0.1, 3.0, value=1.5, label="c: predator death rate")
+d = mo.ui.slider(0.1, 2.0, value=0.75, label="d: predator reproduction efficiency")
+
+a, b, c, d
+#+end_src
+
+Explanation:
+
+These sliders allow us to change the parameters interactively.
+
+Economically (in the Goodwin interpretation):
+
+- =a= reflects the baseline growth of employment when wage pressure is low.
+- =b= measures how strongly a higher wage share reduces employment growth.
+- =c= captures downward pressure on wages when labour markets are weak.
+- =d= measures how strongly high employment pushes wages upward.
+
+Changing these parameters alters the speed and size of the cycles.
+
+---
+
+**** Setting initial values
+
+#+begin_src python
+x0 = mo.ui.slider(0.5, 10.0, value=4.0, label="initial x")
+y0 = mo.ui.slider(0.5, 10.0, value=2.0, label="initial y")
+
+x0, y0
+#+end_src
+
+Explanation:
+
+Dynamic systems require *initial conditions*. These determine where the system starts in the phase space.
+
+- \(x_0\) might represent the initial prey population (or employment rate).
+- \(y_0\) might represent the initial predator population (or wage share).
+
+Different initial values can lead to different trajectories, even with the same parameters.
+
+---
+
+**** Writing the differential equations
+
+#+begin_src python
+def lotka_volterra(t, z):
+    x, y = z
+
+    dx = a*x - b*x*y
+    dy = -c*y + d*x*y
+
+    return [dx, dy]
+#+end_src
+
+Explanation:
+
+This function encodes the *Lotka–Volterra system*.
+
+Inputs:
+
+- =t= is time (required by the solver even though the equations do not depend explicitly on time).
+- =z= is a vector containing the variables \(x\) and \(y\).
+
+Outputs:
+
+- =dx= corresponds to \( \dot{x} \), the growth rate of the first variable.
+- =dy= corresponds to \( \dot{y} \), the growth rate of the second variable.
+
+The function therefore translates the mathematical model directly into Python.
+
+---
+
+**** Solving the system numerically
+
+#+begin_src python
+T = 40
+
+sol = solve_ivp(
+    lotka_volterra,
+    (0, T),
+    [x0, y0],
+    t_eval=np.linspace(0, T, 500)
+)
+
+t = sol.t
+x = sol.y[0]
+y = sol.y[1]
+#+end_src
+
+Explanation:
+
+=solve_ivp` numerically integrates the system of differential equations.
+
+Key elements:
+
+- `(0, T)` defines the time interval.
+- `[x0, y0]` provides the initial conditions.
+- `t_eval` specifies the time grid where the solution should be recorded.
+
+The result `sol` contains the simulated paths of both variables.
+
+---
+
+***** Plotting the time paths
+
+#+begin_src python
+fig, ax = plt.subplots()
+
+ax.plot(t, x, label="x(t)")
+ax.plot(t, y, label="y(t)")
+
+ax.set_xlabel("time")
+ax.legend()
+
+fig
+#+end_src
+
+Explanation:
+
+This figure shows how the two variables evolve over time.
+
+In predator–prey terms, you typically observe that:
+
+- the prey population rises first,
+- the predator population rises with a delay,
+- the prey population then falls,
+- and predators eventually decline as well.
+
+This delayed interaction generates cyclical dynamics.
+
+---
+
+***** Plotting the phase diagram
+
+#+begin_src python
+fig, ax = plt.subplots()
+
+ax.plot(x, y)
+
+ax.set_xlabel("x")
+ax.set_ylabel("y")
+ax.set_title("Phase diagram")
+
+fig
+#+end_src
+
+Explanation:
+
+The **phase diagram** plots one variable against the other rather than against time.
+
+This representation highlights the structure of the dynamic system. For the Lotka–Volterra model, the trajectory typically forms a **closed orbit**, meaning the system cycles indefinitely.
+
+In the Goodwin interpretation, this orbit represents a recurring cycle between
+
+- **employment** and  
+- **wage share**.
+
+
+
+** Summary
+
+In this lecture you explored how dynamic systems can be used to study economic behavior over time.
+
+You have learned:
+- how to translate an economic model into a system of differential equations  
+- how to simulate these equations numerically using Python and =solve_ivp =
+- how to interpret time paths showing how variables evolve over time  
+- how to use phase diagrams to visualize the interaction between state variables  
+- how the Ramsey model determines optimal consumption and capital accumulation and leads to a saddle‑path equilibrium  
+- how predator–prey dynamics generate cyclical behavior through feedback between variables  
+- how the same mathematical structure can be applied to macroeconomic fluctuations in the Goodwin business cycle model
+
+These examples illustrate an important idea in economics: once we understand the structure of a dynamic system, the same mathematical tools can be applied to many different economic problems.
+
+
+** Review Questions
+
+Test your understanding of the dynamic systems introduced in this lecture.
+For each question:
+1. Explain the economic intuition behind the model.
+2. Use Python to simulate the model and interpret the results.
+
+-----
+
+*** Question 1
+**** Ramsey model: steady state and saddle path
+
+Using the Ramsey model implemented in the app:
+
+- a. Compute the steady state values $(k^*,c^*)$ analytically from the equations $\dot{k}=0$ and $\dot{c}=0$.
+- b. Verify numerically that the values in the app correspond to this steady state.
+- c. Explain why the steady state of the Ramsey model is *saddle‑path stable*.
+
+#+BEGIN_EXPORT html
+<details>
+<summary><strong>Hint / Solution</strong></summary>
+#+END_EXPORT
+
+From the Euler equation the steady state requires
+
+$f'(k^*) = \delta + \rho$.
+
+With $f(k)=k^{0.5}$ we have
+
+$0.5 k^{-0.5} = \delta + \rho$.
+
+Solve this equation for $k^*$ and then substitute into
+
+$c^* = f(k^*) - \delta k^*$.
+
+#+BEGIN_EXPORT html
+</details>
+#+END_EXPORT
+
+-----
+
+*** Question 2
+**** Ramsey dynamics and adjustment paths
+
+Use the Ramsey model app and vary the initial capital stock $k_0$.
+
+- a. Find a value of $k_0$ for which the economy initially **reduces consumption** before converging to the steady state.
+- b. Find a value of $k_0$ for which the economy initially **increases consumption**.
+- c. Explain your answers using the *phase diagram* and the *saddle path*.
+
+#+BEGIN_EXPORT html
+<details>
+<summary><strong>Hint / Solution</strong></summary>
+#+END_EXPORT
+
+If $k_0$ is **below** the steady state, capital is scarce and the optimal path typically requires temporarily lowering consumption to allow faster capital accumulation.
+
+If $k_0$ is **above** the steady state, the economy initially consumes more while capital declines toward its long‑run level.
+
+#+BEGIN_EXPORT html
+</details>
+#+END_EXPORT
+
+-----
+
+*** Question 3
+**** Predator–prey model: steady state and cycles
+
+Consider the Lotka–Volterra system
+
+$\dot{x}=ax-bxy$
+
+$\dot{y}=-cy+dxy$.
+
+- a. Compute the steady state $(x^*,y^*)$ of the system.
+- b. Plot this steady state in the phase diagram of the app.
+- c. Explain why the trajectories of the system typically form *closed cycles* around this point.
+
+#+BEGIN_EXPORT html
+<details>
+<summary><strong>Hint / Solution</strong></summary>
+#+END_EXPORT
+
+Set both derivatives equal to zero.
+
+The steady state satisfies
+
+$x^* = c/d$
+
+$y^* = a/b$.
+
+The nonlinear interaction terms create a feedback loop that causes the system to rotate around this steady state.
+
+#+BEGIN_EXPORT html
+</details>
+#+END_EXPORT
+
+-----
+
+*** Question 4
+**** Economic interpretation of predator–prey dynamics
+
+Interpret the predator–prey model as the *Goodwin growth cycle model*.
+
+- a. Which variables correspond to predators and prey in the Goodwin interpretation?
+- b. Explain why the interaction between these variables generates cyclical dynamics.
+- c. Which parameters would make the cycles faster or slower?
+
+#+BEGIN_EXPORT html
+<details>
+<summary><strong>Hint / Solution</strong></summary>
+#+END_EXPORT
+
+In the Goodwin interpretation:
+
+- $x$ can represent the **employment rate**
+- $y$ can represent the **wage share**.
+
+High employment increases worker bargaining power and raises wages. Higher wages reduce profits and hiring, which lowers employment again. This feedback generates cycles.
+
+#+BEGIN_EXPORT html
+</details>
+#+END_EXPORT
+
+-----
+
+*** Question 5
+**** From predator–prey to a second‑order differential equation
+
+The predator–prey system can be rewritten as a single second‑order equation.
+
+- a. Solve the prey equation for $y$ and substitute it into the predator equation.
+- b. Show that the model can be written as a second‑order differential equation for $x$.
+- c. Rewrite this second‑order equation as a system of two first‑order equations by defining
+
+$v = \dot{x}$.
+
+Implement this alternative representation numerically and verify that it generates the same trajectories as the original system.
+
+#+BEGIN_EXPORT html
+<details>
+<summary><strong>Hint / Solution</strong></summary>
+#+END_EXPORT
+
+A second‑order ODE can always be rewritten as a system of two first‑order equations by introducing
+
+$v = \dot{x}$.
+
+Then
+
+$\dot{x}=v$
+
+$\dot{v}=f(x,v)$.
+
+You can solve this system using the same numerical solver (e.g. =solve_ivp=).
+
+#+BEGIN_EXPORT html
+</details>
+#+END_EXPORT
+
+#+BEGIN_EXPORT html
+<details>
+<summary><strong>LLM Hint (how to prompt an LLM)</strong></summary>
+#+END_EXPORT
+
+For derivations in dynamic systems, LLMs work best if you clearly state the **system of equations** and the **goal of the derivation**.
+
+Example prompt:
+
+"I am solving an exercise about the Lotka–Volterra predator–prey model used in economics (Goodwin growth cycles). The system is
+
+ dx/dt = ax − bxy
+ dy/dt = −cy + dxy
+
+I want to rewrite this system as a single second‑order differential equation for x(t). First solve the prey equation for y and substitute it into the predator equation. Then rewrite the second‑order equation as a system of two first‑order equations using v = dx/dt. Can you derive the equations step by step and explain the logic?"
+
+Prompting tips:
+- Always include the **full system of equations**.
+- Clearly state the **mathematical goal** (for example: derive a second‑order equation).
+- Ask for **step‑by‑step reasoning**, not just the final formula.
+
+#+BEGIN_EXPORT html
+</details>
+#+END_EXPORT
+
+-----
+
+*** Question 6
+**** Conceptual question: Stability and economic dynamics
+
+Dynamic economic models often exhibit very different types of behavior: convergence to a steady state, divergence, or cyclical motion.
+
+- a. Explain what economists mean by a *saddle‑path stable equilibrium*.
+- b. Why does the Ramsey model require the economy to start on a specific saddle path in order to converge to the steady state?
+- c. Compare this behavior to the predator–prey (Lotka–Volterra) system. Why do trajectories typically form cycles rather than converge to a single point?
+
+#+BEGIN_EXPORT html
+<details>
+<summary><strong>Hint / Solution</strong></summary>
+#+END_EXPORT
+
+In the Ramsey model the steady state is saddle‑path stable: only one trajectory leads to the steady state for a given initial capital stock. If consumption starts above or below this path, the economy diverges from the steady state.
+
+In contrast, the Lotka–Volterra system has a different structure: the interaction between the two variables creates a feedback loop that generates closed orbits. Instead of converging to the steady state, the system cycles around it.
+
+Economically, this illustrates that some systems stabilize around equilibrium while others generate persistent fluctuations.
+
+#+BEGIN_EXPORT html
+</details>
+#+END_EXPORT
 
 * Bibliography
 #+cite_export: csl ./chicago-author-date.csl
