@@ -3,7 +3,7 @@
 #+AUTHOR: Jan Boone
 #+property: header-args  :session lectures :kernel python3 :async yes
 #+OPTIONS: toc:nil num:nil html-style:nil
-#+auto_tangle: t
+#+auto_tangle: nil
 
 #+LANGUAGE: en
 #+INFOJS_OPT: view:showall toc:t ltoc:t mouse:underline path:http://orgmode.org/org-info.js
@@ -22,15 +22,26 @@
 
 #+HTML_HEAD: <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 #+HTML_HEAD: <style>
-#+HTML_HEAD: body { font-family: Arial, sans-serif; margin: 0; background-color: #f5f7fa; line-height: 1.6; }
+#+HTML_HEAD: body { font-family: Arial, sans-serif; margin: 0; background-color: #f5f7fa; line-height: 1.7; }
 #+HTML_HEAD: header { background-color: #1f3c88; color: white; padding: 25px; text-align: center; }
-#+HTML_HEAD: main { max-width: 1100px; margin: 40px auto; padding: 25px; background: white; border-radius: 10px; box-shadow: 0 3px 12px rgba(0,0,0,0.1); }
-#+HTML_HEAD: h1, h2 { margin-top: 0; }
-#+HTML_HEAD: iframe { width: 100%; height: 1000px; border: none; border-radius: 8px; }
+#+HTML_HEAD: main { max-width: 950px; margin: 40px auto; padding: 30px; background: white; border-radius: 10px; box-shadow: 0 3px 12px rgba(0,0,0,0.1); }
+#+HTML_HEAD: h1 { margin-top: 0; margin-bottom: 15px; }
+#+HTML_HEAD: h2 { margin-top: 35px; margin-bottom: 10px; }
+#+HTML_HEAD: h3 { margin-top: 25px; }
+#+HTML_HEAD: iframe { width: 100%; height: 1000px; border: none; border-radius: 8px; margin-top: 15px; margin-bottom: 15px; }
+#+HTML_HEAD: pre { padding: 14px; border-radius: 6px; background: #f7f7f7; overflow-x: auto; }
+#+HTML_HEAD: code { font-family: Consolas, Monaco, monospace; }
+#+HTML_HEAD: table { font-size: 0.95em; border-collapse: collapse; }
+#+HTML_HEAD: thead th { background:#1f3c88 !important; color:white !important; padding:8px; border:1px solid #ddd; }
+#+HTML_HEAD: tbody td { padding:8px; border:1px solid #ddd; }
+#+HTML_HEAD: figure, img { display: block; margin: 25px auto; max-width: 100%; }
 #+HTML_HEAD: .fallback { margin-top: 15px; text-align: center; }
 #+HTML_HEAD: .fallback a { color: #1f3c88; text-decoration: none; font-weight: bold; }
 #+HTML_HEAD: .fallback a:hover { text-decoration: underline; }
-#+HTML_HEAD: .section { margin-bottom: 25px; }
+#+HTML_HEAD: .section { margin-bottom: 40px; }
+#+HTML_HEAD: /* Improve styling of takeaway boxes */
+#+HTML_HEAD: div[style*="border-left:4px solid #1f3c88"] { border-radius:6px; padding:14px; }
+#+HTML_HEAD: div[style*="border-left:4px solid #2c7a7b"] { border-radius:6px; padding:14px; }
 #+HTML_HEAD: </style>
 
 #+BEGIN_EXPORT html
@@ -56,6 +67,19 @@ The structure of each lecture is the same:
 
 Our advice is to have this website open to read the information and next to it have your [[https://marimo.io/][marimo]] notebook to make notes and program the interactive elements for the app. Most apps below are programed with [[https://streamlit.io/][streamlit]] which is very similar to =marimo=.
 
+#+BEGIN_EXPORT html
+<div style="border-left:4px solid #444;padding:10px;margin:20px 0;background:#f7f7f7;">
+<strong>How to work with these lectures</strong>
+<ul>
+<li>Read the economic explanation to understand the intuition of the model.</li>
+<li>Open your own <code>marimo</code> notebook and type the Python code yourself rather than copying it.</li>
+<li>Experiment with the parameters and modify the code to see how the model behaves.</li>
+<li>Use the review questions to check whether you understand both the economic intuition and the Python implementation.</li>
+<li>If you get stuck, try debugging the code yourself first and then consult documentation, classmates, or an LLM.</li>
+</ul>
+</div>
+#+END_EXPORT
+
 #+CAPTION: Roadmap of the course: linking economic models and Python tools
 #+NAME: tab:course-roadmap
 #+BEGIN_EXPORT html
@@ -64,9 +88,9 @@ Our advice is to have this website open to read the information and next to it h
 <thead>
 <tr style="background:#1f3c88;color:white;">
 <th style="padding:8px;border:1px solid #ddd;">Lecture</th>
-<th style="padding:8px;border:1px solid #ddd;">Economic Topic</th>
-<th style="padding:8px;border:1px solid #ddd;">Core Economic Idea</th>
-<th style="padding:8px;border:1px solid #ddd;">Python / Computational Skills</th>
+<th style="padding:8px;border:1px solid #ddd;">Topic</th>
+<th style="padding:8px;border:1px solid #ddd;">Economics</th>
+<th style="padding:8px;border:1px solid #ddd;">Python</th>
 </tr>
 </thead>
 <tbody>
@@ -118,6 +142,8 @@ You can experiment with both models in the interactive demos below.
 :HTML_CONTAINER_CLASS: section
 :END:
 
+Most people know that a savings account with a given sum of money in it can grow a lot through yearly interest payments. Hence a low starting capital with high interest rate can outperform a high starting capital with low interest rate. Suppose you want to explain to colleagues or friends that having a high monthly deposit with a low interest rate can similarly be "dwarfed" by an alternative with low monthly deposit but high interest rate. How can you do this using an interactive app?
+
 The following app illustrates how a lower monthly deposit can be "compensated" by a higher interest rate and lead to a higher final balance then a high monthly deposit with lower interest rate. Adjust the sliders by setting a relatively high deposit and low interest rate in scenario 1 and low deposit with high interest rate in scenario 2. Click the 'Calculate' button to see how the balance develops over time in each scenario.
 
 #+BEGIN_EXPORT html
@@ -141,9 +167,11 @@ The following app illustrates how a lower monthly deposit can be "compensated" b
 :HTML_CONTAINER_CLASS: section
 :END:
 
-The following app illustrates how employment/unemployment evolves in a small town with 20 inhabitants. We start with full employment. With the sliders you can set the probability that an employee is fired (say, because her firm goes bankrupt) and the probability that an unemployed person is hired. Select the number of periods for which you want to run the simulation and click the 'Run Simulation' button.
+Some people tend to think of unemployment as a static phenomenon. Some people work and other are unemployed all their life. To explain that unemployment is a dynamic and stochastic phenomenon, we create an interactive app starting from intuitive basic principles: workers have a probability of losing their job (e.g. their firm goes bankrupt) and unemployed have a probability of finding a job. We can then follow workers over time, show how many are either employed or unemployed in each time period and thus illustrate that there is a lot of variation. Even when we know what the unemployment rate will be in the long run, there will be a lot of variation around this steady state unemployment rate. Not a static phenomenon at all!  
 
-The second app illustrates a parameter sweep. This shows how sensitive an outcome is to the parameter value. In this case, we want to analyze the sensitivity of the long run unemployment level to the probability of finding a job. As this is a simple simulation model, we can actually derive the long run unemployment level analytically. The figure compares the simulated long run unemployment level with the analytic solution. For the probability of being fired chosen in the first app, clicking 'Sweep Parameter' shows long run unemployment for different values of $p_{hired}$.
+The following app illustrates how employment/unemployment evolves in a small town with 20 inhabitants. We start with full employment. With the sliders you can set the probability that an employee is fired and the probability that an unemployed person is hired. Select the number of periods for which you want to run the simulation and click the 'Run Simulation' button.
+
+The second app illustrates a parameter sweep. This shows how sensitive an outcome is to the parameter value. In this case, we want to analyze the sensitivity of the steady state unemployment level to the probability of finding a job. As this is a simple simulation model, we can actually derive the long run unemployment level analytically. The figure compares the simulated long run unemployment level with the analytic solution. For the probability of being fired chosen in the first app, clicking 'Sweep Parameter' shows long run unemployment for different values of $p_{hired}$.
 
 
 #+BEGIN_EXPORT html
@@ -208,9 +236,9 @@ We use a =for= loop to repeat the same calculation for each month.
 In each iteration, we first store the current balance in the list, then update the balance by adding the deposit and applying the interest.
 
 - ~for m in range(months + 1):~
-  This loop runs once for each month, including month 0.
+  This loop runs once for each month, including month 0. Note the ":" (colon) at the end of this statement.
 - ~balances.append(balance)~
-  This adds the current balance to the end of the ~balances~ list.
+  This adds the current balance to the end of the ~balances~ list. Note that the two statements that need to be repeated in the for loop have the same alignment (usually 4 spaces from the left in Python; your editor probably does this for you). This tells Python the lines that belong to the for-loop (without parentheses, or semicolons in the code). The next statement not belonging to the loop is outlined on the left again. If you have a so-called nested for-loop, you go 8 spaces to the right.
 
 #+begin_src jupyter-python
 for m in range(months + 1):
@@ -232,6 +260,7 @@ We use =matplotlib= to visualize the growth of the account over time.
   The ~plot~ function takes two lists or arrays of equal length:
   the first for the x-axis, years, and the second for the y-axis, balances in euros.
 - By looking at the figure, you can probably infer what the functions ~plt.xlabel, plt.ylabel, plt.title~ do.
+- If you wonder what the semicolon does at the end of ~plt.title();~: delete it and run the code again.
 
 #+begin_src jupyter-python :file ./figures/compounded_interest.png
 import matplotlib.pyplot as plt
@@ -266,7 +295,7 @@ Let's break down the Python code for simulating employment and unemployment in a
 
 **** 1. Set the parameters
 
-We define the number of people, the probabilities, and the number of time steps. Copy this into your =marimo= notebook and see what happens if you change the value of the variable ~n_people~ to, say, 1000.
+We define the number of people, the probabilities, and the number of time steps. Type this into your =marimo= notebook and see what happens if you change the value of the variable ~n_people~ to, say, 1000. Interpret the different results you see compared to our case with 20 people.
 
 #+begin_src jupyter-python
 n_people = 20
@@ -371,7 +400,8 @@ As the model is quite simple, we can actually derive the steady state unemployme
 
 Two points on the code:
 - here we use ~np.linspace~ instead of ~np.arange~. Both functions achieve the same result with slightly different syntax. Google "numpy linspace" for details.
-- in a later lecture we will look into indexing of lists and arrays. For now: ~unemployment_hist[-50:]~ refers to the final 50 entries in list/array ~unemployment_hist~.
+- in a later lecture we consider some simple indexing of lists and arrays. For now: ~unemployment_hist[-50:]~ refers to the final 50 entries in list/array ~unemployment_hist~. If you want to know more about this google or use an LLM: "how does slicing and indexing work in Python"
+- Note the nested for-loops and 8 spaces from the left in the "inner" loop.
 
 #+begin_src jupyter-python
 n_people = 20
@@ -604,11 +634,6 @@ else:
     st.info('Press "Sweep Parameter" to run the parameter sweep and see the results.')
 #+end_src
 
-
-#+BEGIN_EXPORT html
-</main>
-#+END_EXPORT
-
 *** manim :noexport:
 
 In the terminal run =manim -pqk steady_state_unemployment.py DerivationScene=:
@@ -656,7 +681,6 @@ class DerivationScene(VoiceoverScene):
             self.wait(1)
 #+end_src
 
-
 ** Summary
 
 In this lecture we introduced Python by modeling two simple economic processes. The compounded interest model illustrated how repeated calculations over time can generate nonlinear growth. The employment dynamics model showed how stochastic processes can be simulated using probabilities and random draws.
@@ -670,6 +694,14 @@ Small economic mechanisms repeated over time—such as interest compounding or j
 </div>
 #+END_EXPORT
 
+#+BEGIN_EXPORT html
+<div style="border-left:4px solid #2c7a7b;padding:10px;margin:15px 0;background:#eef6f6;">
+<strong>Key Python takeaway</strong><br>
+Basic Python structures such as variables, lists, and <code>for</code>-loops allow economists to simulate dynamic processes step by step. Libraries like <code>numpy</code> and <code>matplotlib</code> make it easy to compute and visualize the results of these simulations.
+</div>
+#+END_EXPORT
+
+
 *Looking ahead:* In the next lecture we move from simple simulations to **empirical economic analysis**, using real data to estimate and interpret economic relationships.
 
 ** Review Questions
@@ -681,8 +713,7 @@ Test your understanding of the Python concepts and models from this lecture. For
 
 -----
 
-*** Question 1
-**** Predicting the Future Value
+*** Question 1 Predicting the Future Value
 
 You want to predict the future value of a savings account after 10 years, but you only know the monthly deposit and the interest rate.
 You are given the following code fragment:
@@ -720,8 +751,7 @@ For this question you need to use an ~if~ statement. Google "if statements in py
 
 -----
 
-*** Question 2
-**** Unemployment Fluctuations
+*** Question 2 Unemployment Fluctuations
 
 Suppose you want to simulate unemployment in a village, but you want to track the longest streak of consecutive months where unemployment is above 5 people.
 
@@ -759,8 +789,7 @@ for month in range(months):
 
 -----
 
-*** Question 3
-**** Parameter Sweep Analysis
+*** Question 3 Parameter Sweep Analysis
 
 You want to analyze how the average unemployment rate (not steady state unemployment) changes as you sweep the probability of being fired.
 Suppose you run a simulation for each value and store the results in a list called ~avg_unemp~.
@@ -784,8 +813,7 @@ Suppose you run a simulation for each value and store the results in a list call
 
 -----
 
-*** Question 4
-**** Economic intuition: Compounding and Labor Market Flows
+*** Question 4 Economic intuition: Compounding and Labor Market Flows
 
 Consider the two economic mechanisms in this lecture.
 
@@ -829,19 +857,26 @@ After completing this lecture you should be able to:
 
 ** Introduction
 
+Newspaper articles argue that healthcare expenditure in Western countries (including the Netherlands) are getting out of control. To see how bad the situation is, we look at Eurostat data and estimate a simple model. We start with a linear trend and then add other variables. If we want to use demand-side cost-sharing to keep expenditure constant, how high should out-of-pocket expenditure be?
+
 In this lecture we analyze healthcare expenditure using real data for the Netherlands. We start by visualizing how healthcare expenditure per capita has evolved over time. Next, we construct a simple linear trend model and examine how well it fits the data.
 
 We then estimate the best fitting parameters using numerical optimization and interpret the resulting regression line. Finally, we extend the model by including additional explanatory variables such as GDP per capita and out-of-pocket healthcare spending.
 
 The goal of this lecture is to demonstrate how Python can be used for empirical economic analysis: reading data, estimating models, and exploring policy implications.
 
-** Apps
+** App
 
 *** Healthcare expenditure
 :PROPERTIES:
 :HTML_CONTAINER_CLASS: section
 :END:
 
+In the app below, we use data from Eurostat to visualize how healthcare expenditure has developed over time in the Netherlands. To predict how expenditure develops till the year 2050 we estimate a linear trend. First, you can use the sliders to create a trend yourself and then we estimate the trend using ordinary least squares (OLS). OLS minimizes the sum of the squared errors to find the best fitting intercept and slope (time trend). We visualize the errors and the OLS time trend.
+
+Then we extrapolate the time trend till 2050. According to this model, healthcare expenditure per head will become almost 9000 euro in 2050. This prediction is not necessarily realistic. To illustrate, the government may well change policies to curb expenditure growth. One option is demand-side cost-sharing. In the Netherlands we have a deductible. Our data has information on which percentage of healthcare expenditure is paid for out-of-pocket.
+
+In order to understand which percentage needs to be paid out-of-pocket to keep expenditure constant, we estimate a model with this variable in it. To solve for this percentage of out-of-pocket expenditure and the OLS regressions we use the =optimize= library from =scipy=.
 
 
 #+BEGIN_EXPORT html
@@ -1156,12 +1191,12 @@ df.head()
 </div>
 #+end_export
 
-The columns/variables in this dataframe ~df~ are the year of observation, GDP per head, healthcare expenditure per head and the percentage of healthcare expenditure that people pay out-of-pocket (~oop~).
+The columns/variables in this dataframe ~df~ are the year of observation, [[https://ec.europa.eu/eurostat/databrowser/view/nama_10_pc/default/table?lang=en&category=na10.nama10.nama_10_ma][GDP per head]], [[https://ec.europa.eu/eurostat/databrowser/view/hlth_sha11_hf/default/table?lang=en&category=hlth.hlth_care.hlth_sha11.hlth_sha11_sum][healthcare expenditure per head and the percentage of healthcare expenditure that people pay out-of-pocket]] (~oop~).
 
 
 *** 2. Plotting the data
 
-We use matplotlib to plot healthcare expenditure per head over time. Use google or an LLM to find out what ~plt.grid, plt.tight_layout~ do.
+We use =matplotlib= to plot healthcare expenditure per head, ~CHE_per_head~, over time. Use google or an LLM to find out what ~plt.grid, plt.tight_layout~ do.
 
 #+BEGIN_SRC jupyter-python :file ./figures/healthcare_expenditure.png
 import matplotlib.pyplot as plt
@@ -1178,11 +1213,14 @@ plt.tight_layout()
 #+RESULTS:
 [[file:./figures/healthcare_expenditure.png]]
 
+When you plot data, like the time series on healthcare expenditure above, always think: "does this make sense?" Can I explain the pattern that I see? Here the two patterns to pay attention to would be: (i) the series is rising over time; is this in line with what I know about his series? (ii) why is there a spike in 2021?
+
+
 *** 3. Defining a linear trend function
 
 Now we define our first function in Python. A function is a reusable block of code. Here, we define a function to compute a linear trend. We start with the keyword ~def~ specify the name of the function (which you are free to choose yourself but there are some restrictions on the name you choose) and then between parentheses '()' you specify the arguments of the function. That is, the variables that the function needs to calculate its results.
 
-Here, the function has three arguments: ~years, intercept~ and ~slope~. The function returns ~intercept + slope * (years - years.iloc[0])~. Although this is not clear from the function definition, ~intercept~ and ~slope~ will be scalars and ~years~ is a vector (actually a =pandas= series). The syntax ~iloc[0]~ chooses the first element of this series. With ~df.Year~ as loaded from our data above, ~df.Year.iloc[0]~ equals 2000. The intercept equals ~linear_trend~ in the year 2000 and the trend ~slope~ applies to ~years~ $> 2000$.
+Here, the function has three arguments: ~years, intercept~ and ~slope~. The function returns ~intercept + slope * (years - years.iloc[0])~. Although this is not clear from the function definition, ~intercept~ and ~slope~ will be scalars and ~years~ is a vector (actually a =pandas= series). The syntax ~iloc[0]~ chooses the first element of this series (Python starts counting/indexing at 0). With ~df.Year~ as loaded from our data above, ~df.Year.iloc[0]~ equals 2000. The intercept equals ~linear_trend~ in the year 2000 and the trend ~slope~ applies to ~years~ $> 2000$.
 
 #+BEGIN_SRC jupyter-python
 def linear_trend(years, intercept, slope):
@@ -1210,7 +1248,7 @@ We plot the data, the linear trend, and the residuals (shown as vertical differe
 
 The Python syntax ~zip(years,che,trend)~ creates the combinations of the variables ~years,che,trend~. After running the code block below in your =marimo= notebook (to make sure the variables are defined) you can evaluate ~for x, y, yhat in zip(years, che, trend): print(x, y, yhat)~ to see what ~zip~ does.
 
-Finally, there is a new =matplotlib= command: ~plt.vlines~: you give it three arguments: the $x$ coordinate, the low value for $y$ and high value for $y$ between which a vertical line is drawn. ~linestyle=':'~ creates a dotted line.
+Finally, there is a new =matplotlib= command: ~plt.vlines~: you give it three arguments: the $x$ coordinate, the low value for $y$ and high value for $y$ between which a vertical line is drawn. ~linestyle=':'~ creates a dotted line. Use google or an LLM to figure out what ~alpha=0.7~ means.
 
 #+BEGIN_SRC jupyter-python :file ./figures/healthcare_expenditure_linear_trend.png
 years = df.Year
@@ -1237,9 +1275,9 @@ plt.tight_layout()
 
 *** 5. Using optimization to find the best fit
 
-Above we just chose some values for ~intercept~ and ~slope~. Now we will try to find the values that give the best fit. We follow OLS in defining "best" as minimizing the sum of squared residuals.
+Above we just chose some values for ~intercept~ and ~slope~. Now we will try to find the values that give the best fit. We follow OLS in defining "best" as minimizing the sum of squared residuals (the vertical lines in the figure above).
 
-We use ~scipy.optimize.minimize~ to find the intercept and slope that minimize the sum of squared residuals. We define the function ~rss~ which has as arguments the parameters (intercept and slope), the years (independent variable) and healthcare expenditure ~che~ as dependent variable. By specifying ~y = che~ (or ~years=years~) in the function definition of ~rss~ we give the function default values: if we do not specify ~y~ (or ~years~) in our function call, Python will work with the specified default values for these variable.
+We use ~scipy.optimize.minimize~ to find the intercept and slope that minimize the sum of squared residuals. We define the function ~rss~ which has as arguments the parameters (intercept and slope), the years (independent variable) and healthcare expenditure ~che~ (defined in the code block above) as dependent variable. By specifying ~y = che~ (or ~years=years~) in the function definition of ~rss~ we give the function default values: if we do not specify ~y~ (or ~years~) in our function call, Python will work with the specified default values for these variable.
 
 Within the function definition of ~rss~ we call the function ~linear_trend~ that we defined above. The function ~np.sum~ sums the vector in its argument. To see how this works, run the code ~np.sum(np.arange(4))~ in your =marimo= notebook.
 
@@ -1266,7 +1304,7 @@ print(res.x)
 
 *** 6. Visualizing the optimal fit
 
-Now we can plot our data with the time trend that gives the best fit. To find the OLS regression line, we call our function ~linear_trend~ with the years variable and the optimal values ~opt_intercept, opt_slope~.
+Now we can plot our data with the time trend that gives the best fit. To find the OLS regression line, we call our function ~linear_trend~ with the years variable and the optimal values ~opt_intercept, opt_slope~ defined above.
 
 #+BEGIN_SRC jupyter-python :file ./figures/health_expenditure_OLS.png
 opt_trend = linear_trend(years, opt_intercept, opt_slope)
@@ -1296,7 +1334,7 @@ Below we will add these variables to our OLS regression to improve the fit.
 
 *** 8. Extrapolating the OLS Linear Trend to 2050
 
-We can use the optimal OLS parameters to extrapolate the linear trend far into the future, for example to the year 2050. With the current information/data that we have, how much do we expect Dutch citizens to spend on healthcare (per capita) in 2050?
+We can use the OLS parameters to extrapolate the linear trend far into the future, for example to the year 2050. With the current information/data that we have, how much do we expect Dutch citizens to spend on healthcare (per capita) in 2050?
 
 In order to predict (extrapolate) healthcare expenditure in 2050, we use our OLS regression line and substitute years till 2050 in the regression.
 
@@ -1436,10 +1474,10 @@ plt.tight_layout();
 4. Fitting and visualizing the trend: Plot the data, an example linear trend, and show residuals (vertical differences between data and trend).
 5. Using optimization to find the best fit: Use ~scipy.optimize.minimize~ to find the intercept and slope that minimize the sum of squared residuals (OLS fit).
 6. Visualizing the optimal fit: Plot the data and the resulting OLS regression line with residuals.
-7. Extending the model: Discuss that only using time is limited and that other variables like income (GDP per head) and patient payments (oop) may matter.
+7. Extending the model: only using time is limited; other variables like income (GDP per head) and patient payments (oop) may matter.
 8. Extrapolating the OLS Linear Trend to 2050: Use the OLS results to predict future healthcare expenditure up to 2050 and plot the (possibly unrealistic) extrapolation.
 9. Multi-variable Regression: Improve the fit by adding GDP per head and oop as covariates in a multi-variable regression, and compare the fitted values to the data and simple trend.
-10. Using a Numerical Solver (~fsolve~): For each future year, use ~fsolve~ to determine the oop needed to keep expenditure constant at 2014 levels, plot the required vs. actual oop, and discuss the relevance for policy.
+10. Using a Numerical Solver (~fsolve~): For each future year, use ~fsolve~ to determine the oop needed to keep expenditure constant at 2014 levels, plot the required vs. actual oop.
 
 
 ** Summary
@@ -1455,6 +1493,12 @@ Empirical economic analysis combines theory, data, and statistical estimation. E
 </div>
 #+END_EXPORT
 
+#+BEGIN_EXPORT html
+<div style="border-left:4px solid #2c7a7b;padding:10px;margin:15px 0;background:#eef6f6;">
+<strong>Key Python takeaway</strong><br>
+Working with real economic data requires tools such as <code>pandas</code> for data handling and Python functions for reusable code. Numerical optimization can then be used to estimate economic relationships such as regression models.
+</div>
+#+END_EXPORT
 *Looking ahead:* In the next lecture we study **iterative economic models**, where equilibrium emerges through repeated adjustments of agents over time.
 
 ** Review Questions
@@ -1545,7 +1589,7 @@ After completing this lecture you should be able to:
 
 Many economic models describe processes that evolve step by step over time. In this lecture we study such iterative dynamics using Python. We implement models in which economic variables adjust repeatedly until they converge to an equilibrium.
 
-The lecture illustrates three examples. First, we analyze an adverse selection market where prices update based on expected quality. Second, we study a Cournot duopoly where firms repeatedly best respond to each other. Third, we simulate a labor market with transitions between unemployment and different job types.
+The lecture uses three examples to illustrate iteration. First, we analyze an adverse selection market where prices update based on expected quality. Second, we study a Cournot duopoly where firms repeatedly best respond to each other. Third, we simulate a labor market with transitions between unemployment and different job types.
 
 These examples demonstrate how Python can be used to simulate dynamic economic systems and visualize how equilibria emerge through iteration.
 
@@ -1559,7 +1603,9 @@ In terms of economics, we consider three models:
 
 *** Adverse selection dynamics
 
-The following app models an adverse selection market. Well known examples of such markets are the second-hand car markets (with "lemons") and (health) insurance markets. In each of these markets there is asymmetric information. The seller of the car has used the car herself. She knows how (aggressively) she has driven the car, taken care of the car, investments in car maintenance etc. For the buyer this is not so clear. In the health insurance market, the insurer offers contracts to insure healthcare costs. The consumer has more information on his own health than the insurer does. Does he have a (chronic) disease? Does he have a healthy diet, exercise regularly etc.
+People sometimes wonder why health insurance in the Netherlands is mandatory and not a (voluntary) choice by consumers. Think of creating an app which shows how markets with asymmetric information can unravel and lead to inefficient outcomes.
+
+The following app models an adverse selection market. Well known examples of such markets are the second-hand car markets (with "lemons") and (health) insurance markets. In each of these markets there is asymmetric information. The seller of the car has used the car herself. She knows how (aggressively) she has driven the car, taken care of the car, her investments in car maintenance etc. For the buyer this is not so clear. In the health insurance market, the insurer offers contracts to insure healthcare costs. The consumer has more information on his own health than the insurer does. Does he have a (chronic) disease? Does he have a healthy diet, exercise regularly etc.
 
 The equilibrium in these markets tend to be inefficient: there is less trade than would be optimal from a welfare point of view. With the next app you can see how this inefficiency is affected by parameter values.
 
@@ -1567,7 +1613,10 @@ One interpretation of the iteration in the app is that agents react to what they
 
 This process is called the unraveling of the market or a death spiral.
 
-The context of the app is more like the second-hand car market: sellers value their car at $q$ and are willing to sell to any buyer who pays a price above $q$. Each car is worth more to the buyer than to the seller but the buyer cannot observe $q$. If people are only willing to sell their car if $q<p$, the buyer's expectation of quality is given by $E(q|q<p)$. By assumption the car has more value for the buyer than the seller, hence the buyer is willing to pay a markup over $E(q|q<p)$ to buy the car. Which share of cars are going to be traded in the market?
+The context of the app is more like the second-hand car market: sellers value their car at $q$ and are willing to sell to any buyer who pays a price above $q$. Each car is worth more to the buyer than to the seller but the buyer cannot observe $q$. If people are only willing to sell their car if $q \leq p$ the buyer's expectation of quality is given by $E(q|q \leq p)$. By assumption the car has more value for the buyer than the seller, hence the buyer is willing to pay a markup over $E(q|q \leq p)$ to buy the car. Which share of cars are going to be traded in the market?
+
+
+---------
 
 #+BEGIN_EXPORT html
 <iframe
@@ -1578,7 +1627,7 @@ The context of the app is more like the second-hand car market: sellers value th
 <div class="fallback">
   <p>
     If the app does not load,
-    <a href="https://lecture3adverseselection.streamlit.appembed=true" target="_blank">
+    <a href="https://lecture3adverseselection.streamlit.app/?embed=true" target="_blank">
       open it in a new tab
     </a>.
   </p>
@@ -1586,6 +1635,8 @@ The context of the app is more like the second-hand car market: sellers value th
 #+END_EXPORT
 
 *** Cournot best response dynamics
+
+Consider two profit maximizing firms in a market. Each firm wants to choose an optimal reaction to the other firm's action, but then the "other firm" also reacts to the first firm's choice of action. Is this not an infinite loop with no ending? Think of an app that can show this iterated reaction to the other firm and how this converges to (Nash) equilibrium.
 
 This app considers a Cournot market with two firms producing a homogenous good at constant marginal cost $c$. Demand is of the form $p = p(q_1+q_2)$. Hence, firm $i$ maximizes profits
 \begin{equation}
@@ -1617,7 +1668,9 @@ One way to derive the Nash equilibium is to use iterated best responses: start w
 
 *** Unemployment dynamics
 
-Suppose we have an inelastic labor supply normalized to a mass of 1. Labor can be in one of three states: unemployed, employed in a low wage job and employed in a high wage job.
+Sometimes the state of the labor market is summarized simply by the unemployment rate; but not all employment is equal. People can learn on the job and become more productive in their work. Think of an app that illustrates different employment states. Is it the case that more people in high wage jobs lead to lower unemployment?
+
+Suppose we have an inelastic labor supply normalized to a mass of 1. Labor can be in one of three states: unemployed, employed in a low wage job and employed in a high wage job. With transition equations we can keep track of the development over time of the fraction of people in each of these three states.
 
 #+BEGIN_EXPORT html
 <iframe
@@ -2248,6 +2301,8 @@ The equilibrium is found by iterating this price update until convergence.
 
 *Python code in Marimo:*
 
+We import the relevant libraries and define some interactive sliders.
+
 #+BEGIN_SRC python
 import marimo as mo
 import numpy as np
@@ -2259,6 +2314,11 @@ markup = mo.ui.slider(1.01, 2.0, value=1.2, step=0.01, label="Consumer mark-up")
 
 mo.hstack([v0,v1,markup])
 #+END_SRC
+
+In =marimo= sliders are defined with ~mo.ui.slider~, then give the starting value, the end value (a step, is the step is not one) and an initial =value= (the default value if the user does choose a value). Also give the slider a =label= so that the user knows what it represents. Defining a slider does not imply that it shows up. Calling the slider with, say, =v0= makes it visible to the user. With ~mo.hstack~ you can stack the sliders; here we stack them horizontally.
+
+
+
 
 #+BEGIN_SRC python
 def expected_q_given_p_uniform(p, a, b):
@@ -2287,7 +2347,9 @@ plt.plot(history)
 
 #+END_SRC
 
-The code above uses Marimo sliders for the parameters. The function ~expected_q_given_p_uniform~ computes the expected quality conditional on $q < p$. The price update is iterated until convergence.
+The code above uses =marimo= sliders for the parameter values. If you want to refer to the value of a slider use ~.value~ like ~v0.value~. In other words, ~v0~ refers to the slider itself and ~v0.value~ to the value that is selected with the slider.
+
+The function ~expected_q_given_p_uniform~ computes the expected quality conditional on $q < p$. With a uniform distribution and $p \in [a,b]$, this expectation equals $(a+p)/2$. Given =expected_q=, we can calculate the price that consumers are willing to pay, using the =markup=. Then we iterate over the prices by adjusting the expectation based on last period's price. The price update is iterated until convergence: the new price is very close to previous period's price and we reach steady state. If you do not understand what =1e-6= means, use google or an LLM.
 
 *** Cournot Duopoly Model
 
@@ -2307,6 +2369,8 @@ The Nash equilibrium is found by iteratively updating each firm's quantity.
 
 *Python code in Marimo:*
 
+We import libraries and define sliders.
+
 #+BEGIN_SRC python
 import marimo as mo
 import numpy as np
@@ -2317,6 +2381,8 @@ q1_init = mo.ui.slider(0, 0.99, value=0.45, step=0.01, label="Initial $q_1$")
 n_iter = mo.ui.slider(2, 30, value=14, step=1, label="Number of iterations")
 mo.hstack([c,q1_init,n_iter])
 #+END_SRC
+
+In the following code block, the syntax ~i % 2 == 0~ is a test whether $i$ is either an even or odd number.
 
 #+begin_src python
 def reaction1(q2, c):
@@ -2343,7 +2409,7 @@ plt.ylabel('$q_2$')
 
 The code above shows how the Cournot best responses are iterated, starting from an initial $q_1$.
 
-From =scipy.optimize= use the [[https://docs.scipy.org/doc/scipy/reference/generated/scipy.optimize.root.html][root]] function to calculate the Cournot equilibrium. You can use an LLM to help you with this.
+From =scipy.optimize= use either the [[https://docs.scipy.org/doc/scipy/reference/generated/scipy.optimize.root.html][root]] function or =fsolve= (as above) to calculate the Cournot equilibrium. You can use an LLM to help you with this.
 
 #+BEGIN_EXPORT html
 <details>
@@ -2360,7 +2426,7 @@ def fixed_point(x,c):
     ]
 #+end_src
 
-The call =scipy.optimize.root= with the function and a starting point for the algorithm.
+Call =scipy.optimize.root= with the function and a starting point for the algorithm.
   
 #+BEGIN_EXPORT html
 </details>
@@ -2386,6 +2452,8 @@ h_{t+1} &= h_t + \lambda l_t - \delta_h h_t
 
 *Python code in Marimo:*
 
+We start by importing libraries and defining some sliders.
+
 #+BEGIN_SRC python
 import marimo as mo
 import numpy as np
@@ -2399,6 +2467,10 @@ u0 = mo.ui.slider(0.0, 1.0, value=1.0, step=0.01, label="Initial unemployment $u
 
 mo.hstack([mu,lambda_,delta_l,delta_h,u0])
 #+END_SRC
+
+Why do we denote the slider =lambda_= and not just =lambda=?
+
+We create three (empty) lists to keep track of the three fractions: unemployed, low wage and high wage job.
 
 #+BEGIN_SRC python
 T = 60
@@ -2431,7 +2503,7 @@ plt.xlabel("time")
 plt.ylabel("fraction employed/unemployed")
 #+END_SRC
 
-This code simulates the labor market Markov process using Marimo sliders for all parameters. 
+This code simulates the labor market Markov process using =marimo= sliders for all parameters. 
 
 
 
@@ -2500,10 +2572,18 @@ Many economic equilibria can be understood as the result of iterative adjustment
 </div>
 #+END_EXPORT
 
+#+BEGIN_EXPORT html
+<div style="border-left:4px solid #2c7a7b;padding:10px;margin:15px 0;background:#eef6f6;">
+<strong>Key Python takeaway</strong><br>
+Iterative algorithms and matrix operations allow Python to simulate how economic variables adjust over time. Tools from <code>numpy</code> make it straightforward to implement these dynamics efficiently.
+</div>
+#+END_EXPORT
+
+*Looking ahead:* In the next lecture we apply these computational tools to structural economic models and explore how calibration can connect economic theory with quantitative predictions.
+
 ** Review Questions
 
-*** Question 1
-**** Adverse Selection: Does Increasing Mark-Up Always Restore Trade?
+*** Question 1 Adverse Selection: Does Increasing Mark-Up Always Restore Trade?
 Consider the adverse selection model with $v_0=30$ and $v_1=90$. Write Marimo code to:
 - Plot the equilibrium price and fraction traded as the mark-up varies from 1.01 to 2.0.
 - Is there always trade (fraction traded > 0) for any mark-up $>1$?
@@ -2556,8 +2636,7 @@ plt.legend()
 
 ---
 
-*** Question 2
-**** Cournot Duopoly: Add a Third Firm
+*** Question 2 Cournot Duopoly: Add a Third Firm
 Modify the Cournot duopoly Python code so there are three firms, each with marginal cost $c$, facing demand of the form $p = 1 - q_1 - q_2 - q_3$.  
 - Define best-response functions for each firm.
 - Write a for loop to iterate best responses starting with initial quantities $q_1=0.3, q_2=0.3, q_3=0.3$.
@@ -2596,8 +2675,7 @@ plt.xlabel("Step")
 
 ---
 
-*** Question 3
-**** Labor Market: Steady State Without Iteration
+*** Question 3 Labor Market: Steady State Without Iteration
 Derive and plot the steady-state unemployment $u^*$ as a function of the job-finding rate $\mu$ (other parameters fixed at $\lambda=0.1$, $\delta_l=0.05$, $\delta_h=0.03$).  
 - Use the fact that in steady state, all variables don’t change over time.
 
@@ -2642,8 +2720,7 @@ plt.ylabel('Steady state $u^*$')
 
 ---
 
-*** Question 4
-**** Matrix Notation: Simulation With Numpy Only
+*** Question 4 Matrix Notation: Simulation With Numpy Only
 In the labor market model, implement the time path simulation *using only Numpy arrays and matrix multiplication* (not manually updating variables).  
 - Set up the transition matrix for $\mu=0.12$, $\lambda=0.09$, $\delta_l=0.04$, $\delta_h=0.03$, $u_0=0.8$.
 - Plot the evolution of all three states.
@@ -2680,8 +2757,7 @@ plt.show()
 
 ---
 
-*** Question 5
-**** Extending the Labor Model: Add a Direct High Wage Offer Channel
+*** Question 5 Extending the Labor Model: Add a Direct High Wage Offer Channel
 Suppose a fraction $\alpha$ of unemployed directly get a high wage job each period. The equations become:
 \begin{align*}
 u_{t+1} &= u_t + \delta_l l_t + \delta_h h_t - \mu u_t - \alpha u_t \\
@@ -2767,13 +2843,13 @@ Search and matching models are widely used in labor economics to study unemploym
 
 In this lecture we build a simplified search and matching model using Dutch labor market data. We then use the model to simulate the potential effects of immigration on unemployment and wages. The goal is not to produce precise forecasts, but to develop intuition about the magnitude and direction of these effects.
 
-** Apps
+** App
 
 Suppose after graduating you are hired by the Dutch Ministry of Social Affairs. In parliament there have been recurring discussions about immigration. The minister asks you to give her an idea of the potential effects of immigration on unemployment and wages in the Netherlands. Suppose immigration increases by 50%, or even doubles. What would happen to unemployment and wages?
 
 To answer this question we need two ingredients: data and an economic model. Before reading on, it may be useful to think about how you would approach this question yourself. There are many ways to model the effects of immigration. Below we develop one example using data from Statistics Netherlands (CBS) and a search and matching framework. We then use this model to build a small simulation in Python.
 
-The goal is not to obtain a precise prediction. Rather, we want to give the minister a sense of the *order of magnitude* of the effects. To build intuition, we construct an interactive model where immigration can increase by anywhere between 0% and 100%.
+As said, the goal is not to obtain a precise prediction. Rather, we want to give the minister a sense of the *order of magnitude* of the effects. To build intuition, we construct an interactive model where immigration can increase by anywhere between 0% and 100%.
 
 For this exercise we focus on immigration from outside Europe (EU and EFTA) with the motivation to work in the Netherlands.
 
@@ -2815,9 +2891,9 @@ This expression shows that job finding increases when the labor market becomes t
 
 *** Wage determination
 
-Wages are determined through Nash bargaining between the worker and the firm. The wage splits the surplus of the match.
+Wages are determined through Nash bargaining between worker and firm. The wage splits the surplus of the match.
 
-In our simplified framework, the outside option of the worker depends on how easily a job can be found. When the labor market is tight and jobs are easy to find, the value of remaining unemployed is higher.
+In our simplified framework, the outside option of the worker depends on how easily a job can be found. When the labor market is tight and jobs are easy to find, the value of being unemployed is higher; because finding a job in the next period is (more) likely. To simplify our model, we will not model the dynamics explicitly here.
 
 We capture this idea in reduced form by specifying the worker's outside option as
 
@@ -2836,7 +2912,7 @@ w = b \theta^{1-\alpha} + \beta \left(a - b \theta^{1-\alpha}\right)
 where
 
 - \(w\): wage  
-- \(a\): worker productivity  
+- \(a\): worker production/productivity  
 - \(\beta\): worker bargaining power  
 
 This equation shows that wages increase with productivity and with labor market tightness.
@@ -2858,7 +2934,7 @@ To estimate the model for the Netherlands we use data from CBS:
 - wages https://opendata.cbs.nl/#/CBS/en/dataset/85663ENG/table
 
 The relevant variables are:
-- \(U\): "Unemployed labour force / seasonally adjusted (x 1,000)"
+- \(U\): "Unemployed labour force seasonally adjusted (x 1,000)"
 - \(V\): "Vacancies seasonally adjusted, unfilled (x 1,000)"
 - \(M\): "Vacancies seasonally adjusted, filled (x 1,000)"
 
@@ -3353,10 +3429,9 @@ The purpose of this step is simply to check whether the model roughly reproduces
 
 ---
 
-*** 8. Interactive immigration shock (marimo slider)
+*** 8. Interactive immigration shock
 
-In the app, immigration is controlled with a slider.  
-In =marimo= we create the same interaction using a widget.
+In =marimo= we create the slider with ~mo.ui.slider~ as before.
 
 #+begin_src jupyter-python
 immigration_slider = mo.ui.slider(
@@ -3447,6 +3522,15 @@ This illustrates how economists combine **economic theory, data, and numerical s
 Search and matching models emphasize that unemployment and wages are determined by the interaction between workers and firms. Shocks such as immigration affect labor market outcomes by changing labor market tightness, which influences job‑finding probabilities and wages.
 </div>
 #+END_EXPORT
+
+#+BEGIN_EXPORT html
+<div style="border-left:4px solid #2c7a7b;padding:10px;margin:15px 0;background:#eef6f6;">
+<strong>Key Python takeaway</strong><br>
+Python can be used to calibrate structural economic models by combining theory with data. Numerical simulation then allows economists to explore how policy shocks affect model outcomes.
+</div>
+#+END_EXPORT
+
+*Looking ahead:* In the next lecture we move from discrete‑time simulations to continuous‑time models and learn how differential equations can describe economic dynamics.
 
 ** Review Questions
 
@@ -3706,12 +3790,6 @@ After completing this lecture you should be able to:
 
 ** Introduction
 
-Many economic problems involve decisions and adjustments that unfold over time. Investment today affects future production, firms learn from past experience, and strategic decisions often depend on expectations about future outcomes. To analyze such situations economists use dynamic models.
-
-Dynamic models are frequently expressed using differential equations that describe how economic variables evolve as a function of their current values. Although these models can sometimes be solved analytically, numerical methods are often needed to compute their behavior and visualize their implications.
-
-** Solving Dynamic Economic Models
-
 Much of economics is about understanding how things change over time. Capital accumulates gradually, firms learn from experience, and contracts must account for incentives that evolve across different types of consumers. These processes are inherently dynamic: what happens today influences what happens tomorrow.
 
 To study such problems formally, economists often describe economic forces with differential equations. These equations capture how key variables evolve as a function of their current level and economic incentives. In many cases the models cannot easily be solved analytically, but modern numerical tools allow us to compute their behavior and visualize the implied dynamics.
@@ -3733,7 +3811,7 @@ These forces determine how capital per worker evolves over time. If the economy 
 
 This dynamic adjustment leads to a steady state: a level of capital per worker at which investment exactly offsets depreciation and population growth. At this point the capital stock per worker stops changing.
 
-An important question is how the steady state depends on economic parameters. For example, how would the long‑run level of capital change if households saved a larger fraction of their income? What happens if population growth increases? How does the productivity of capital affect the outcome?
+An important question is how the steady state depends on economic parameters. For example, how would the long‑run level of capital change if households saved a larger fraction of their income? What happens if population growth increases? How does the productivity of capital affect the outcome? An interactive app where these parameters can be easily adjusted with sliders helps to answer these questions.
 
 Thinking through these questions helps build intuition for the forces that determine long‑run economic development.
 
@@ -3851,7 +3929,7 @@ Because of this trade-off, firms may choose production paths that differ from th
 
 This introduces an investment motive in production decisions. Output today not only generates current revenue but also contributes to the firm’s stock of experience.
 
-Several interesting questions arise in this environment. Should firms produce more or less early in the life of a product? How does the importance of the future --captured by the discount rate-- affect production choices? And how does the value of accumulated experience change over time?
+Several interesting questions arise in this environment. Should firms produce more output early or late in the life of a product (early because they want to invest in learning or late as their costs fall with accumulated production)? How does the importance of the future --captured by the discount rate-- affect production choices? And how does the value of accumulated experience change over time?
 
 Analyzing these questions helps illustrate how dynamic optimization differs from static decision making. When future benefits are important, firms may deliberately deviate from short‑run profit maximization in order to improve long‑run outcomes.
 
@@ -4495,6 +4573,7 @@ This is a *single differential equation*. And we have a given capital stock $k(0
 **** Step 1: Import libraries
 
 #+begin_src 
+import marimo as mo
 import numpy as np
 import matplotlib.pyplot as plt
 from scipy.integrate import solve_ivp
@@ -4502,6 +4581,7 @@ from scipy.integrate import solve_ivp
 
 Roles:
 
+- =marimo= → interactive elements
 - =numpy= → numerical operations
 - =matplotlib= → plotting
 - =solve_ivp= → differential equation solver
@@ -4513,14 +4593,23 @@ Roles:
 In marimo:
 
 #+begin_src python
-alpha = mo.ui.slider(0.1,0.9,value=0.3)
+alpha = mo.ui.slider(0.1,0.9,value=0.3,step=0.1)
 s = mo.ui.slider(0.01,0.6,value=0.2)
 n = mo.ui.slider(0.0,0.05,value=0.01)
 delta = mo.ui.slider(0.0,0.1,value=0.05)
 k0 = mo.ui.slider(0.01,5.0,value=0.5)
 #+end_src
 
-Use them in calculations as
+Adjust the definitions of the sliders; e.g. specifying =step= for each parameter or changing the default value.
+
+
+If you want to place a slider somewhere in your marimo notebook, use
+
+#+begin_src python
+alpha
+#+end_src
+
+or use a slider value in a calculation:
 
 #+begin_src 
 alpha.value
@@ -4543,7 +4632,7 @@ SciPy expects the function signature
 f(t,y)
 #+end_src
 
-even if the equation does not depend on =t=.
+even if the equation does not depend on =t=, like the function =solow= actually does not depend on =t=.
 
 ---
 
@@ -4651,7 +4740,7 @@ So this is a boundary value problem.
 
 #+begin_src 
 def f(t):
-    return 1/(b-a)*np.ones_like(t)
+    return 1/(θ_max-θ_min)*np.ones_like(t)
 #+end_src
 
 This corresponds to a *uniform distribution*.
@@ -4891,19 +4980,28 @@ Dynamic economic models describe how decisions and incentives today affect outco
 </div>
 #+END_EXPORT
 
+#+BEGIN_EXPORT html
+<div style="border-left:4px solid #2c7a7b;padding:10px;margin:15px 0;background:#eef6f6;">
+<strong>Key Python takeaway</strong><br>
+Dynamic economic models expressed as differential equations can be solved numerically in Python using tools such as <code>scipy.integrate</code>. This allows economists to compute transition paths and visualize how economies evolve over time.
+</div>
+#+END_EXPORT
+
+*Looking ahead:* In the next lecture we extend the analysis of dynamic models to systems with multiple interacting variables and learn how phase diagrams help analyze stability.
+
 ** Review Questions
 
-*** Solow model
+*** Question 1: Solow model
 Create the Solow model in a marimo notebook and analyze the following:
 - add *technological growth*
 - plot the growth in output $f(k)$ over time. How is this figure affected by the initial capital stock $k_0$ and the saving rate $s$?
 
-*** Mechanism design
+*** Question 2: Mechanism design
 In your marimo notebook:
 - change the distribution =f(θ)=
 - compare the information rent in the optimal solution with the information rent in the *first-best allocation*.
 
-*** Learning-by-doing
+*** Question 3: Learning-by-doing
 In your marimo notebook:
 - vary time horizon =T=
 - introduce *capacity constraints*
@@ -4945,8 +5043,6 @@ In this lecture we program two dynamic models that are often used in Economics: 
 This lecture introduces dynamic models that describe how economic variables evolve over time. Instead of studying static equilibrium, we analyze systems where variables continuously interact and adjust.
 
 In this lecture you will learn:
-- how economists represent dynamic processes using differential equations  
-- how to simulate dynamic systems numerically using Python  
 - how to interpret trajectories and phase diagrams in two‑dimensional systems  
 - how the Ramsey model describes optimal consumption and capital accumulation over time  
 - why the Ramsey model produces a saddle‑path equilibrium  
@@ -4957,7 +5053,15 @@ By the end of the lecture you will have implemented both models in Python and ex
 
 ** Introduction
 
+In this lecture we extend our knowledge (from the previous lecture) on differential equations in economics.
 
+The Ramsey model analyses savings and investment like the Solow model, but --unlike the Solow model-- the saving decision is endogenized. A consumer maximizing utility decides how much she wants to save each period.
+
+We also consider an example of a system of differential equations: the predator-prey model. In the exercises you will see how second order differential equations (i.e. equations with a second derivative in them, like $y''(t)$) can be solved in the same way as a system of equations.
+
+** apps
+
+*** Ramsey model
 
 The *Ramsey model* studies how an economy chooses *consumption and saving over time* when households are forward‑looking. Unlike the Solow model, the saving rate is not imposed from outside the model. Instead, a representative household decides how much to consume and how much to save in order to maximize lifetime utility.
 
@@ -4989,7 +5093,7 @@ The economy therefore evolves jointly in *capital* \(k\) and *consumption* \(c\)
 
 A key insight of the Ramsey model is that the steady state is *saddle‑path stable*. This means that only one particular initial level of consumption is consistent with convergence to the steady state for a given initial capital stock. If consumption is too high, the economy depletes capital. If consumption is too low, capital grows excessively.
 
-The app above allows you to explore these dynamics interactively.
+The app below allows you to explore these dynamics interactively.
 
 You can change:
 
@@ -5003,9 +5107,29 @@ The figures show two important objects:
 1. *Time paths* of capital and consumption.
 2. The *phase diagram* in \((k,c)\) space.
 
-The phase diagram shows the loci where \( \dot{k}=0 \) and \( \dot{c}=0 \), as well as the trajectory implied by the initial conditions. The app also computes the *saddle path*, which is the unique trajectory that leads to the steady state.
+The phase diagram shows the combinations $(k,c)$ where \( \dot{k}=0 \) and \( \dot{c}=0 \), as well as the trajectory implied by the initial conditions. The app also computes the *saddle path*, which is the unique trajectory that leads to the steady state.
 
 Use the sliders to explore how parameters affect the steady state and how the economy adjusts when it starts away from equilibrium.
+
+#+BEGIN_EXPORT html
+<iframe
+  src="https://ramseymodel.streamlit.app/?embed=true"
+  allow="fullscreen">
+</iframe>
+
+<div class="fallback">
+  <p>
+    If the app does not load,
+    <a href="https://ramseymodel.streamlit.app/?embed=true" target="_blank">
+      open it in a new tab
+    </a>.
+  </p>
+</div>
+#+END_EXPORT
+
+
+*** Predator-prey model
+
 
 
 The predator–prey model is one of the simplest and most influential examples of a *dynamic system with interacting variables*. It was originally developed by *Alfred Lotka and Vito Volterra* in the 1920s to describe how two biological populations evolve over time.
@@ -5048,7 +5172,7 @@ Although this model originated in ecology, the same mathematical structure appea
 
 When employment is high, workers have stronger bargaining power and wages rise. Higher wages reduce profits and slow hiring, causing employment to fall. When unemployment rises, wage pressure weakens and profits recover, leading to renewed hiring. This interaction generates *endogenous business cycles*.
 
-The app above allows you to experiment with these dynamics. You can interpret the variables either as predator–prey populations or as employment and wage share in the Goodwin model. By adjusting the parameters and initial values, you can see how cycles emerge and how their size and speed depend on the underlying economic mechanisms.
+The app below allows you to experiment with these dynamics. You can interpret the variables either as predator–prey populations or as employment and wage share in the Goodwin model. By adjusting the parameters and initial values, you can see how cycles emerge and how their size and speed depend on the underlying economic mechanisms.
 
 Pay particular attention to the *phase diagram*. It shows the trajectory of the system in the \((x,y)\) plane and illustrates how the interaction between the two variables produces cyclical motion.
 
@@ -5056,29 +5180,6 @@ Pay particular attention to the *phase diagram*. It shows the trajectory of the 
 
 
 
-** apps
-
-*** Ramsey model
-
-
-#+BEGIN_EXPORT html
-<iframe
-  src="https://ramseymodel.streamlit.app/?embed=true"
-  allow="fullscreen">
-</iframe>
-
-<div class="fallback">
-  <p>
-    If the app does not load,
-    <a href="https://ramseymodel.streamlit.app/?embed=true" target="_blank">
-      open it in a new tab
-    </a>.
-  </p>
-</div>
-#+END_EXPORT
-
-
-*** Predator-prey model
 
 
 #+BEGIN_EXPORT html
@@ -5642,8 +5743,10 @@ f'(k^*) = \rho + \delta
 With \(f(k)=k^{0.5}\), we have \(f'(k)=0.5k^{-0.5}\). Solving this gives
 
 \[
-k^/ = \left(\frac{0.5}{\rho+\delta}\right)^2
+k^{*} = \left(\frac{0.5}{\rho+\delta}\right)^2
 \]
+
+Then $\dot{k} = 0$ implies $c^* = \sqrt{k^{*}}-\delta k^*$:
 
 #+begin_src python
 k_star = (0.5/(delta + rho))**2
@@ -5815,11 +5918,6 @@ Explanation:
 
 This cell imports the main libraries used in the simulation.
 
-- =numpy= provides numerical tools and array operations.
-- =matplotlib= is used to create graphs.
-- =solve_ivp= from =scipy.integrate= numerically solves systems of differential equations.
-- =marimo= provides interactive widgets such as sliders.
-
 ---
 
 **** Choosing parameter values
@@ -5917,15 +6015,15 @@ y = sol.y[1]
 
 Explanation:
 
-=solve_ivp` numerically integrates the system of differential equations.
+=solve_ivp= numerically integrates the system of differential equations.
 
 Key elements:
 
-- `(0, T)` defines the time interval.
-- `[x0, y0]` provides the initial conditions.
-- `t_eval` specifies the time grid where the solution should be recorded.
+- =(0, T)= defines the time interval.
+- =[x0, y0]= provides the initial conditions.
+- =t_eval= specifies the time grid where the solution should be recorded.
 
-The result `sol` contains the simulated paths of both variables.
+The result =sol= contains the simulated paths of both variables.
 
 ---
 
@@ -5991,7 +6089,7 @@ In this lecture you explored how dynamic systems can be used to study economic b
 
 You have learned:
 - how to translate an economic model into a system of differential equations  
-- how to simulate these equations numerically using Python and =solve_ivp =
+- how to simulate these equations numerically using Python and =solve_ivp=
 - how to interpret time paths showing how variables evolve over time  
 - how to use phase diagrams to visualize the interaction between state variables  
 - how the Ramsey model determines optimal consumption and capital accumulation and leads to a saddle‑path equilibrium  
@@ -5999,6 +6097,22 @@ You have learned:
 - how the same mathematical structure can be applied to macroeconomic fluctuations in the Goodwin business cycle model
 
 These examples illustrate an important idea in economics: once we understand the structure of a dynamic system, the same mathematical tools can be applied to many different economic problems.
+
+#+BEGIN_EXPORT html
+<div style="border-left:4px solid #1f3c88;padding:10px;margin:15px 0;background:#f5f7fa;">
+<strong>Key economic takeaway</strong><br>
+Many economic models involve multiple variables that interact dynamically. Phase diagrams and numerical simulations help economists understand how these interactions determine stability, adjustment paths, and long‑run equilibria.
+</div>
+#+END_EXPORT
+
+#+BEGIN_EXPORT html
+<div style="border-left:4px solid #2c7a7b;padding:10px;margin:15px 0;background:#eef6f6;">
+<strong>Key Python takeaway</strong><br>
+Two‑dimensional dynamical systems can be simulated in Python and visualized using time paths and phase diagrams. These computational tools help economists study stability, saddle paths, and cyclical dynamics.
+</div>
+#+END_EXPORT
+
+*Looking back:* In this final lecture we combined the computational tools developed throughout the course with dynamic economic models to analyze stability, adjustment paths, and long‑run behavior.
 
 
 ** Review Questions
@@ -6010,8 +6124,7 @@ For each question:
 
 -----
 
-*** Question 1
-**** Ramsey model: steady state and saddle path
+*** Question 1 Ramsey model: steady state and saddle path
 
 Using the Ramsey model implemented in the app:
 
@@ -6042,8 +6155,7 @@ $c^* = f(k^*) - \delta k^*$.
 
 -----
 
-*** Question 2
-**** Ramsey dynamics and adjustment paths
+*** Question 2 Ramsey dynamics and adjustment paths
 
 Use the Ramsey model app and vary the initial capital stock $k_0$.
 
@@ -6066,8 +6178,7 @@ If $k_0$ is **above** the steady state, the economy initially consumes more whil
 
 -----
 
-*** Question 3
-**** Predator–prey model: steady state and cycles
+*** Question 3 Predator–prey model: steady state and cycles
 
 Consider the Lotka–Volterra system
 
@@ -6100,8 +6211,7 @@ The nonlinear interaction terms create a feedback loop that causes the system to
 
 -----
 
-*** Question 4
-**** Economic interpretation of predator–prey dynamics
+*** Question 4 Economic interpretation of predator–prey dynamics
 
 Interpret the predator–prey model as the *Goodwin growth cycle model*.
 
@@ -6127,8 +6237,7 @@ High employment increases worker bargaining power and raises wages. Higher wages
 
 -----
 
-*** Question 5
-**** From predator–prey to a second‑order differential equation
+*** Question 5 From predator–prey to a second‑order differential equation
 
 The predator–prey system can be rewritten as a single second‑order equation.
 
@@ -6188,8 +6297,7 @@ Prompting tips:
 
 -----
 
-*** Question 6
-**** Conceptual question: Stability and economic dynamics
+*** Question 6 Conceptual question: Stability and economic dynamics
 
 Dynamic economic models often exhibit very different types of behavior: convergence to a steady state, divergence, or cyclical motion.
 
@@ -6212,7 +6320,30 @@ Economically, this illustrates that some systems stabilize around equilibrium wh
 </details>
 #+END_EXPORT
 
+* Course takeaway: Python as a tool for economic reasoning
+
+Throughout these lectures you have seen how Python can be used as a practical tool for economic analysis. Even relatively simple pieces of code allow economists to simulate models, visualize economic mechanisms, and explore how outcomes change when parameters vary.
+
+Across the six lectures we used Python in several complementary ways:
+
+- to **simulate economic processes**, such as job flows or capital accumulation
+- to **analyze empirical data**, estimate trends, and interpret residuals
+- to **compute equilibria and transition paths** in economic models
+- to **solve differential equations** describing dynamic economic systems
+- to **communicate intuition** through interactive apps
+
+Modern economic research and policy analysis increasingly rely on computational tools. Being able to translate economic ideas into code allows economists to explore models more deeply and to communicate their insights more clearly.
+
+
 * Bibliography
 #+cite_export: csl ./chicago-author-date.csl
 #+bibliography:~/Nextcloud2/Literature/references.bib
 #+print_bibliography:
+
+
+
+
+
+#+BEGIN_EXPORT html
+</main>
+#+END_EXPORT

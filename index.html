@@ -19,16 +19,27 @@
 <script src="https://cdn.jsdelivr.net/npm/prismjs/prism.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <style>
-body { font-family: Arial, sans-serif; margin: 0; background-color: #f5f7fa; line-height: 1.6; }
+body { font-family: Arial, sans-serif; margin: 0; background-color: #f5f7fa; line-height: 1.7; }
 header { background-color: #1f3c88; color: white; padding: 25px; text-align: center; }
-main { max-width: 1100px; margin: 40px auto; padding: 25px; background: white; border-radius: 10px; box-shadow: 0 3px 12px rgba(0,0,0,0.1); }
-h1, h2 { margin-top: 0; }
-iframe { width: 100%; height: 1000px; border: none; border-radius: 8px; }
+main { max-width: 950px; margin: 40px auto; padding: 30px; background: white; border-radius: 10px; box-shadow: 0 3px 12px rgba(0,0,0,0.1); }
+h1 { margin-top: 0; margin-bottom: 15px; }
+h2 { margin-top: 35px; margin-bottom: 10px; }
+h3 { margin-top: 25px; }
+iframe { width: 100%; height: 1000px; border: none; border-radius: 8px; margin-top: 15px; margin-bottom: 15px; }
+pre { padding: 14px; border-radius: 6px; background: #f7f7f7; overflow-x: auto; }
+code { font-family: Consolas, Monaco, monospace; }
+table { font-size: 0.95em; border-collapse: collapse; }
+thead th { background:#1f3c88 !important; color:white !important; padding:8px; border:1px solid #ddd; }
+tbody td { padding:8px; border:1px solid #ddd; }
+figure, img { display: block; margin: 25px auto; max-width: 100%; }
 .fallback { margin-top: 15px; text-align: center; }
 .fallback a { color: #1f3c88; text-decoration: none; font-weight: bold; }
 .fallback a:hover { text-decoration: underline; }
-.section { margin-bottom: 25px; }
-</style>
+.section { margin-bottom: 40px; }
+/* Improve styling of takeaway boxes */
+div[style*="border-left:4px solid #1f3c88"] { border-radius:6px; padding:14px; }
+div[style*="border-left:4px solid #2c7a7b"] { border-radius:6px; padding:14px; }
+</style><style>.csl-entry{text-indent: -1.5em; margin-left: 1.5em;}</style>
 
 <script src="http://orgmode.org/org-info.js">
 // @license magnet:?xt=urn:btih:1f739d935676111cfff4b4693e3816e664797050&amp;dn=gpl-3.0.txt GPL-v3-or-Later
@@ -89,208 +100,208 @@ org_html_manager.setup();  // activate after the parameters are set
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents" role="doc-toc">
 <ul>
-<li><a href="#org8704165">Introduction</a></li>
-<li><a href="#orga99cea4">Lecture 1: The Power of Compounded Interest and Employment Dynamics</a>
+<li><a href="#orge95ce1c">Introduction</a></li>
+<li><a href="#orgac58ff0">Lecture 1: The Power of Compounded Interest and Employment Dynamics</a>
 <ul>
-<li><a href="#org265e641">Learning objectives</a></li>
-<li><a href="#org6b738e0">Introduction</a></li>
-<li><a href="#orgc688eff">Apps</a>
+<li><a href="#org218daf3">Learning objectives</a></li>
+<li><a href="#org5babfe8">Introduction</a></li>
+<li><a href="#org8212ed5">Apps</a>
 <ul>
-<li><a href="#org30fa5d3">Compounded interest</a></li>
-<li><a href="#orged8b1e8">Employment dynamics</a></li>
+<li><a href="#org70870dd">Compounded interest</a></li>
+<li><a href="#org5860563">Employment dynamics</a></li>
 </ul>
 </li>
-<li><a href="#orgb54e950">Python Code Explanation</a>
+<li><a href="#orgb7b10d0">Python Code Explanation</a>
 <ul>
-<li><a href="#org3727141">Compounded Interest Model</a></li>
-<li><a href="#org7210dc8">Employment Dynamics Model</a></li>
-<li><a href="#org342cea4">Parameter Sweep: Long-run Unemployment Rate</a></li>
+<li><a href="#org81c6192">Compounded Interest Model</a></li>
+<li><a href="#org0b9c223">Employment Dynamics Model</a></li>
+<li><a href="#org91ccbc9">Parameter Sweep: Long-run Unemployment Rate</a></li>
 </ul>
 </li>
-<li><a href="#org8f70bd8">Summary</a></li>
-<li><a href="#org0283827">Review Questions</a>
+<li><a href="#org9e9802e">Summary</a></li>
+<li><a href="#org4d086a1">Review Questions</a>
 <ul>
-<li><a href="#org8f6ba6e">Question 1</a></li>
-<li><a href="#orga8d5888">Question 2</a></li>
-<li><a href="#org4c5cfb2">Question 3</a></li>
-<li><a href="#org4c779a3">Question 4</a></li>
-</ul>
-</li>
-</ul>
-</li>
-<li><a href="#org694d0ab">Lecture 2: Healthcare expenditure</a>
-<ul>
-<li><a href="#orgb648bd7">Learning objectives</a></li>
-<li><a href="#orgf1aba96">Introduction</a></li>
-<li><a href="#org9bd1cad">Apps</a>
-<ul>
-<li><a href="#org91adb24">Healthcare expenditure</a></li>
-</ul>
-</li>
-<li><a href="#org66d4fb2">Python Code Explanation</a>
-<ul>
-<li><a href="#org1c3466a">1. Reading the data</a></li>
-<li><a href="#org4c193ff">2. Plotting the data</a></li>
-<li><a href="#orga9b14bd">3. Defining a linear trend function</a></li>
-<li><a href="#orge93ef5d">4. Fitting and visualizing the trend</a></li>
-<li><a href="#org5bfd571">5. Using optimization to find the best fit</a></li>
-<li><a href="#orgda6182e">6. Visualizing the optimal fit</a></li>
-<li><a href="#org4b45af2">7. Extending the model</a></li>
-<li><a href="#org85cf397">8. Extrapolating the OLS Linear Trend to 2050</a></li>
-<li><a href="#org9718b41">9. Multi-variable Regression: Adding GDP and OOP</a></li>
-<li><a href="#orgc0bc195">10. Using a Numerical Solver (<code>fsolve</code>) to Find Required OOP Levels</a></li>
-<li><a href="#org75f0047">Summary of what the code does</a></li>
-</ul>
-</li>
-<li><a href="#org8c293eb">Summary</a></li>
-<li><a href="#org7f2ccd0">Review Questions</a>
-<ul>
-<li><a href="#org8d35daf">Question 1: Create Your Own Multi-variable Regression</a></li>
-<li><a href="#orgeed031d">Question 2: Use fsolve to Find the GDP Needed to Keep Expenditure Constant</a></li>
-<li><a href="#org1c5e1b4">Question 3: analyze the following three functions</a></li>
+<li><a href="#org1ff2d34">Question 1</a></li>
+<li><a href="#org220d7e5">Question 2</a></li>
+<li><a href="#orgbe26391">Question 3</a></li>
+<li><a href="#org4041ad6">Question 4</a></li>
 </ul>
 </li>
 </ul>
 </li>
-<li><a href="#org1bf8c97">Lecture 3: Modeling Iteration</a>
+<li><a href="#orge7470d9">Lecture 2: Healthcare expenditure</a>
 <ul>
-<li><a href="#orgd61ae87">Learning objectives</a></li>
-<li><a href="#orgaa800a6">Introduction</a></li>
-<li><a href="#org968b157">Apps</a>
+<li><a href="#orga719844">Learning objectives</a></li>
+<li><a href="#org8db80da">Introduction</a></li>
+<li><a href="#org4c32a97">App</a>
 <ul>
-<li><a href="#org3c28f62">Adverse selection dynamics</a></li>
-<li><a href="#org147cf89">Cournot best response dynamics</a></li>
-<li><a href="#org05b1c29">Unemployment dynamics</a></li>
+<li><a href="#org72dcb76">Healthcare expenditure</a></li>
 </ul>
 </li>
-<li><a href="#org32a1db7">Python Code Explanation</a>
+<li><a href="#orgf4d2aa6">Python Code Explanation</a>
 <ul>
-<li><a href="#orgf7087e7">Adverse Selection Model</a></li>
-<li><a href="#orgbf61db5">Cournot Duopoly Model</a></li>
-<li><a href="#orgfa712f3">Labour Market Markov Model</a></li>
+<li><a href="#org44ef9b3">1. Reading the data</a></li>
+<li><a href="#org0156383">2. Plotting the data</a></li>
+<li><a href="#orgb0cbb5d">3. Defining a linear trend function</a></li>
+<li><a href="#orgdd540dc">4. Fitting and visualizing the trend</a></li>
+<li><a href="#org23bd1d3">5. Using optimization to find the best fit</a></li>
+<li><a href="#org7a082d2">6. Visualizing the optimal fit</a></li>
+<li><a href="#orgf160dc0">7. Extending the model</a></li>
+<li><a href="#org8207ea9">8. Extrapolating the OLS Linear Trend to 2050</a></li>
+<li><a href="#orgcf172f7">9. Multi-variable Regression: Adding GDP and OOP</a></li>
+<li><a href="#org72dec76">10. Using a Numerical Solver (<code>fsolve</code>) to Find Required OOP Levels</a></li>
+<li><a href="#orgaa80c73">Summary of what the code does</a></li>
 </ul>
 </li>
-<li><a href="#org7bf8528">Summary</a></li>
-<li><a href="#orgde16f61">Review Questions</a>
+<li><a href="#orgea3231b">Summary</a></li>
+<li><a href="#org45e2615">Review Questions</a>
 <ul>
-<li><a href="#org50a75a8">Question 1</a></li>
-<li><a href="#orge2dd48f">Question 2</a></li>
-<li><a href="#orga2dd36a">Question 3</a></li>
-<li><a href="#org5d16b12">Question 4</a></li>
-<li><a href="#org9041e49">Question 5</a></li>
+<li><a href="#org6cb452c">Question 1: Create Your Own Multi-variable Regression</a></li>
+<li><a href="#org7a8e2ee">Question 2: Use fsolve to Find the GDP Needed to Keep Expenditure Constant</a></li>
+<li><a href="#orgf9a3594">Question 3: analyze the following three functions</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#org82a5eb9">Lecture 3: Modeling Iteration</a>
+<ul>
+<li><a href="#org9c3ca5a">Learning objectives</a></li>
+<li><a href="#org608c777">Introduction</a></li>
+<li><a href="#orgb26efd5">Apps</a>
+<ul>
+<li><a href="#org48cdc28">Adverse selection dynamics</a></li>
+<li><a href="#org5bd1a17">Cournot best response dynamics</a></li>
+<li><a href="#orge15fb60">Unemployment dynamics</a></li>
+</ul>
+</li>
+<li><a href="#orgdf38521">Python Code Explanation</a>
+<ul>
+<li><a href="#orgb2db71b">Adverse Selection Model</a></li>
+<li><a href="#org527aa74">Cournot Duopoly Model</a></li>
+<li><a href="#org3f49e0f">Labour Market Markov Model</a></li>
+</ul>
+</li>
+<li><a href="#orgb861157">Summary</a></li>
+<li><a href="#orgf396b00">Review Questions</a>
+<ul>
+<li><a href="#orgf8d1192">Question 1</a></li>
+<li><a href="#org95136e3">Question 2</a></li>
+<li><a href="#orge93a860">Question 3</a></li>
+<li><a href="#orgf306e56">Question 4</a></li>
+<li><a href="#orgd399410">Question 5</a></li>
 </ul>
 </li>
 </ul>
 </li>
 <li><a href="#lecture_search_matching">Lecture 4: Search and Matching in the Labor Market</a>
 <ul>
-<li><a href="#org095b9e2">Learning objectives</a></li>
-<li><a href="#org822314a">Introduction</a></li>
-<li><a href="#orgb5f660f">Apps</a>
+<li><a href="#org92d2624">Learning objectives</a></li>
+<li><a href="#orgcbc50fe">Introduction</a></li>
+<li><a href="#org531562e">App</a>
 <ul>
-<li><a href="#orgae780b2">Model structure</a></li>
-<li><a href="#orge4a6c17">Wage determination</a></li>
-<li><a href="#org43e2653">Data</a></li>
-<li><a href="#orgd70c213">Immigration shock</a></li>
-<li><a href="#org398eb88">Short-run effect</a></li>
-<li><a href="#org31f5240">Long-run adjustment</a></li>
-<li><a href="#orga69c458">Effect of immigration</a></li>
+<li><a href="#orgf079862">Model structure</a></li>
+<li><a href="#orgcb11c1c">Wage determination</a></li>
+<li><a href="#org20fbd0e">Data</a></li>
+<li><a href="#org6537b49">Immigration shock</a></li>
+<li><a href="#org51d9d92">Short-run effect</a></li>
+<li><a href="#orgd37752e">Long-run adjustment</a></li>
+<li><a href="#org96ce752">Effect of immigration</a></li>
 </ul>
 </li>
-<li><a href="#org8f537e7">Python Code Explanation</a>
+<li><a href="#orgee10bb9">Python Code Explanation</a>
 <ul>
-<li><a href="#orgd8ed3a1">1. Import libraries</a></li>
-<li><a href="#org1a215b3">2. Load the data</a></li>
-<li><a href="#org1b6b3ba">3. Model parameters from the literature</a></li>
-<li><a href="#orgd3bd141">4. Matching function and wage equation</a></li>
-<li><a href="#org61a35ec">5. Estimating model parameters</a></li>
-<li><a href="#org66389cc">6. Run the estimation</a></li>
-<li><a href="#orgb684537">7. Compare model predictions to data</a></li>
-<li><a href="#org6734e24">8. Interactive immigration shock (marimo slider)</a></li>
-<li><a href="#orgfa9cd36">9. Compute short‑run effects</a></li>
-<li><a href="#orgb8c27c5">10. Plot the wage curve</a></li>
+<li><a href="#org9e6b422">1. Import libraries</a></li>
+<li><a href="#orgfea3763">2. Load the data</a></li>
+<li><a href="#org785a5c8">3. Model parameters from the literature</a></li>
+<li><a href="#org7a28571">4. Matching function and wage equation</a></li>
+<li><a href="#org08b6fe7">5. Estimating model parameters</a></li>
+<li><a href="#orgcdd2f3e">6. Run the estimation</a></li>
+<li><a href="#org0219b0e">7. Compare model predictions to data</a></li>
+<li><a href="#org48b67e7">8. Interactive immigration shock</a></li>
+<li><a href="#org0c49037">9. Compute short‑run effects</a></li>
+<li><a href="#org406864a">10. Plot the wage curve</a></li>
 </ul>
 </li>
-<li><a href="#org98e2365">Summary</a></li>
-<li><a href="#orgad37c01">Review Questions</a>
+<li><a href="#org4e12a78">Summary</a></li>
+<li><a href="#org8824e0c">Review Questions</a>
 <ul>
-<li><a href="#org7c5d125">Question 1. Simulating the matching function</a></li>
-<li><a href="#org8a17cda">Question 2. Job-finding probability</a></li>
-<li><a href="#org74bc8f0">Question 3. Wage curve</a></li>
-<li><a href="#orgc92c76a">Question 4. Immigration shock in the short run</a></li>
-<li><a href="#org3e9005d">Question 5. Estimating the matching function</a></li>
+<li><a href="#org8218732">Question 1. Simulating the matching function</a></li>
+<li><a href="#org4a7c7ad">Question 2. Job-finding probability</a></li>
+<li><a href="#orga3b82a9">Question 3. Wage curve</a></li>
+<li><a href="#orgb161734">Question 4. Immigration shock in the short run</a></li>
+<li><a href="#org3c6385f">Question 5. Estimating the matching function</a></li>
 </ul>
 </li>
 </ul>
 </li>
 <li><a href="#lecture_dynamics">Lecture 5: Modeling Dynamics</a>
 <ul>
-<li><a href="#org09c9ba2">Learning objectives</a></li>
-<li><a href="#orgaa03dc9">Introduction</a></li>
-<li><a href="#orgf0ba98f">Solving Dynamic Economic Models</a></li>
-<li><a href="#orgc625ec7">Apps</a>
+<li><a href="#org1b0ff97">Learning objectives</a></li>
+<li><a href="#org01bc356">Introduction</a></li>
+<li><a href="#org8f106c4">Apps</a>
 <ul>
-<li><a href="#org7bec649">Solow model</a></li>
-<li><a href="#orgea3ed9c">Mechanism design</a></li>
-<li><a href="#org822cace">Learning by doing</a></li>
+<li><a href="#orge726314">Solow model</a></li>
+<li><a href="#org7526d72">Mechanism design</a></li>
+<li><a href="#org2b188a5">Learning by doing</a></li>
 </ul>
 </li>
-<li><a href="#org0ae78ee">Python Code Explanation</a>
+<li><a href="#orgf0c5384">Python Code Explanation</a>
 <ul>
-<li><a href="#org3bfd598">Interactivity in Marimo</a></li>
-<li><a href="#org2211140">Solving Differential Equations in SciPy</a></li>
-<li><a href="#org2359fdf">Solow Growth Model</a></li>
-<li><a href="#org7d66ebf">Mechanism Design Model</a></li>
-<li><a href="#org8c18944">Dynamic Pricing with Learning</a></li>
+<li><a href="#org01a7027">Interactivity in Marimo</a></li>
+<li><a href="#orgedd0c95">Solving Differential Equations in SciPy</a></li>
+<li><a href="#org9799d99">Solow Growth Model</a></li>
+<li><a href="#org1003a16">Mechanism Design Model</a></li>
+<li><a href="#orge0fc01e">Dynamic Pricing with Learning</a></li>
 </ul>
 </li>
-<li><a href="#orgf59e071">Summary</a></li>
-<li><a href="#org53e6be4">Review Questions</a>
+<li><a href="#orga60ec6b">Summary</a></li>
+<li><a href="#org6440856">Review Questions</a>
 <ul>
-<li><a href="#orga858296">Solow model</a></li>
-<li><a href="#org7f22219">Mechanism design</a></li>
-<li><a href="#orgf5ecbaf">Learning-by-doing</a></li>
+<li><a href="#org6b2598e">Question 1: Solow model</a></li>
+<li><a href="#orgb999ec2">Question 2: Mechanism design</a></li>
+<li><a href="#orgb95606d">Question 3: Learning-by-doing</a></li>
 </ul>
 </li>
 </ul>
 </li>
-<li><a href="#org24b37e6">Lecture 6: Dynamical Systems</a>
+<li><a href="#org29a061f">Lecture 6: Dynamical Systems</a>
 <ul>
-<li><a href="#org65afcf8">Learning objectives</a></li>
-<li><a href="#org023d7ac">Introduction</a></li>
-<li><a href="#orga095fdf">apps</a>
+<li><a href="#org3fa2ff3">Learning objectives</a></li>
+<li><a href="#org3292479">Introduction</a></li>
+<li><a href="#org7b83ee7">apps</a>
 <ul>
-<li><a href="#orgad8022a">Ramsey model</a></li>
-<li><a href="#org5401354">Predator-prey model</a></li>
+<li><a href="#org48cd5c5">Ramsey model</a></li>
+<li><a href="#orgad44b28">Predator-prey model</a></li>
 </ul>
 </li>
-<li><a href="#org375dd9a">Python Code Explanation</a>
+<li><a href="#org2d10e0e">Python Code Explanation</a>
 <ul>
-<li><a href="#orgfde8482">Ramsey model in Python</a></li>
-<li><a href="#orge4be4b3">predator–prey model</a></li>
+<li><a href="#org8898ba2">Ramsey model in Python</a></li>
+<li><a href="#org0e53d57">predator–prey model</a></li>
 </ul>
 </li>
-<li><a href="#orge2251a2">Summary</a></li>
-<li><a href="#org0de6c59">Review Questions</a>
+<li><a href="#org4a857a3">Summary</a></li>
+<li><a href="#org3cd3de8">Review Questions</a>
 <ul>
-<li><a href="#org1e43922">Question 1</a></li>
-<li><a href="#orgba485e8">Question 2</a></li>
-<li><a href="#org54ea5cb">Question 3</a></li>
-<li><a href="#org8bed045">Question 4</a></li>
-<li><a href="#org6f96552">Question 5</a></li>
-<li><a href="#orge067ebb">Question 6</a></li>
+<li><a href="#orgd6ccfa7">Question 1 Ramsey model: steady state and saddle path</a></li>
+<li><a href="#orgf5f2a06">Question 2 Ramsey dynamics and adjustment paths</a></li>
+<li><a href="#orgff30cec">Question 3 Predator–prey model: steady state and cycles</a></li>
+<li><a href="#org54f48a6">Question 4 Economic interpretation of predator–prey dynamics</a></li>
+<li><a href="#org0c66d16">Question 5 From predator–prey to a second‑order differential equation</a></li>
+<li><a href="#org987437c">Question 6 Conceptual question: Stability and economic dynamics</a></li>
 </ul>
 </li>
 </ul>
 </li>
-<li><a href="#org8f1131a">Bibliography</a></li>
+<li><a href="#org3b59979">Course takeaway: Python as a tool for economic reasoning</a></li>
+<li><a href="#org33f4a9c">Bibliography</a></li>
 </ul>
 </div>
 </div>
 <main>
-<div id="outline-container-org8704165" class="outline-2">
-<h2 id="org8704165">Introduction</h2>
-<div class="outline-text-2" id="text-org8704165">
+<div id="outline-container-orge95ce1c" class="outline-2">
+<h2 id="orge95ce1c">Introduction</h2>
+<div class="outline-text-2" id="text-orge95ce1c">
 <p>
 The idea of these lectures is to combine Python programing with economics. The overall goal is for you to acquire the skills to transfer information/knowledge to others (say, future colleagues) using more instruments than just written text.
 </p>
@@ -317,14 +328,25 @@ The structure of each lecture is the same:
 Our advice is to have this website open to read the information and next to it have your <a href="https://marimo.io/">marimo</a> notebook to make notes and program the interactive elements for the app. Most apps below are programed with <a href="https://streamlit.io/">streamlit</a> which is very similar to <code>marimo</code>.
 </p>
 
+<div style="border-left:4px solid #444;padding:10px;margin:20px 0;background:#f7f7f7;">
+<strong>How to work with these lectures</strong>
+<ul>
+<li>Read the economic explanation to understand the intuition of the model.</li>
+<li>Open your own <code>marimo</code> notebook and type the Python code yourself rather than copying it.</li>
+<li>Experiment with the parameters and modify the code to see how the model behaves.</li>
+<li>Use the review questions to check whether you understand both the economic intuition and the Python implementation.</li>
+<li>If you get stuck, try debugging the code yourself first and then consult documentation, classmates, or an LLM.</li>
+</ul>
+</div>
+
 <div style="overflow-x:auto; margin:20px 0;">
 <table style="border-collapse:collapse; width:100%;">
 <thead>
 <tr style="background:#1f3c88;color:white;">
 <th style="padding:8px;border:1px solid #ddd;">Lecture</th>
-<th style="padding:8px;border:1px solid #ddd;">Economic Topic</th>
-<th style="padding:8px;border:1px solid #ddd;">Core Economic Idea</th>
-<th style="padding:8px;border:1px solid #ddd;">Python / Computational Skills</th>
+<th style="padding:8px;border:1px solid #ddd;">Topic</th>
+<th style="padding:8px;border:1px solid #ddd;">Economics</th>
+<th style="padding:8px;border:1px solid #ddd;">Python</th>
 </tr>
 </thead>
 <tbody>
@@ -339,16 +361,16 @@ Our advice is to have this website open to read the information and next to it h
 </div>
 </div>
 </div>
-<div id="outline-container-orga99cea4" class="outline-2 section">
-<h2 id="orga99cea4">Lecture 1: The Power of Compounded Interest and Employment Dynamics</h2>
-<div class="outline-text-2" id="text-orga99cea4">
+<div id="outline-container-orgac58ff0" class="outline-2 section">
+<h2 id="orgac58ff0">Lecture 1: The Power of Compounded Interest and Employment Dynamics</h2>
+<div class="outline-text-2" id="text-orgac58ff0">
 <p>
 <b>Skills you learn in this lecture:</b> simulation of simple economic processes, Python basics (variables, lists, loops), visualization of dynamic outcomes.
 </p>
 </div>
-<div id="outline-container-org265e641" class="outline-3">
-<h3 id="org265e641">Learning objectives</h3>
-<div class="outline-text-3" id="text-org265e641">
+<div id="outline-container-org218daf3" class="outline-3">
+<h3 id="org218daf3">Learning objectives</h3>
+<div class="outline-text-3" id="text-org218daf3">
 <p>
 After completing this lecture you should be able to:
 </p>
@@ -361,9 +383,9 @@ After completing this lecture you should be able to:
 </ul>
 </div>
 </div>
-<div id="outline-container-org6b738e0" class="outline-3">
-<h3 id="org6b738e0">Introduction</h3>
-<div class="outline-text-3" id="text-org6b738e0">
+<div id="outline-container-org5babfe8" class="outline-3">
+<h3 id="org5babfe8">Introduction</h3>
+<div class="outline-text-3" id="text-org5babfe8">
 <p>
 In this lecture we program two simple economic models. First, we model compounded interest to understand how savings evolve over time when interest accumulates. Second, we simulate employment dynamics in a small labor market where workers may lose or find jobs with certain probabilities.
 </p>
@@ -373,9 +395,9 @@ These examples illustrate how Python can be used to represent economic mechanism
 </p>
 </div>
 </div>
-<div id="outline-container-orgc688eff" class="outline-3">
-<h3 id="orgc688eff">Apps</h3>
-<div class="outline-text-3" id="text-orgc688eff">
+<div id="outline-container-org8212ed5" class="outline-3">
+<h3 id="org8212ed5">Apps</h3>
+<div class="outline-text-3" id="text-org8212ed5">
 <p>
 This lecture introduces Python through two economic models:
 </p>
@@ -389,9 +411,13 @@ This lecture introduces Python through two economic models:
 You can experiment with both models in the interactive demos below.
 </p>
 </div>
-<div id="outline-container-org30fa5d3" class="outline-4 section">
-<h4 id="org30fa5d3">Compounded interest</h4>
-<div class="outline-text-4" id="text-org30fa5d3">
+<div id="outline-container-org70870dd" class="outline-4 section">
+<h4 id="org70870dd">Compounded interest</h4>
+<div class="outline-text-4" id="text-org70870dd">
+<p>
+Most people know that a savings account with a given sum of money in it can grow a lot through yearly interest payments. Hence a low starting capital with high interest rate can outperform a high starting capital with low interest rate. Suppose you want to explain to colleagues or friends that having a high monthly deposit with a low interest rate can similarly be &ldquo;dwarfed&rdquo; by an alternative with low monthly deposit but high interest rate. How can you do this using an interactive app?
+</p>
+
 <p>
 The following app illustrates how a lower monthly deposit can be &ldquo;compensated&rdquo; by a higher interest rate and lead to a higher final balance then a high monthly deposit with lower interest rate. Adjust the sliders by setting a relatively high deposit and low interest rate in scenario 1 and low deposit with high interest rate in scenario 2. Click the &rsquo;Calculate&rsquo; button to see how the balance develops over time in each scenario.
 </p>
@@ -411,15 +437,19 @@ The following app illustrates how a lower monthly deposit can be &ldquo;compensa
 </div>
 </div>
 </div>
-<div id="outline-container-orged8b1e8" class="outline-4 section">
-<h4 id="orged8b1e8">Employment dynamics</h4>
-<div class="outline-text-4" id="text-orged8b1e8">
+<div id="outline-container-org5860563" class="outline-4 section">
+<h4 id="org5860563">Employment dynamics</h4>
+<div class="outline-text-4" id="text-org5860563">
 <p>
-The following app illustrates how employment/unemployment evolves in a small town with 20 inhabitants. We start with full employment. With the sliders you can set the probability that an employee is fired (say, because her firm goes bankrupt) and the probability that an unemployed person is hired. Select the number of periods for which you want to run the simulation and click the &rsquo;Run Simulation&rsquo; button.
+Some people tend to think of unemployment as a static phenomenon. Some people work and other are unemployed all their life. To explain that unemployment is a dynamic and stochastic phenomenon, we create an interactive app starting from intuitive basic principles: workers have a probability of losing their job (e.g. their firm goes bankrupt) and unemployed have a probability of finding a job. We can then follow workers over time, show how many are either employed or unemployed in each time period and thus illustrate that there is a lot of variation. Even when we know what the unemployment rate will be in the long run, there will be a lot of variation around this steady state unemployment rate. Not a static phenomenon at all!  
 </p>
 
 <p>
-The second app illustrates a parameter sweep. This shows how sensitive an outcome is to the parameter value. In this case, we want to analyze the sensitivity of the long run unemployment level to the probability of finding a job. As this is a simple simulation model, we can actually derive the long run unemployment level analytically. The figure compares the simulated long run unemployment level with the analytic solution. For the probability of being fired chosen in the first app, clicking &rsquo;Sweep Parameter&rsquo; shows long run unemployment for different values of \(p_{hired}\).
+The following app illustrates how employment/unemployment evolves in a small town with 20 inhabitants. We start with full employment. With the sliders you can set the probability that an employee is fired and the probability that an unemployed person is hired. Select the number of periods for which you want to run the simulation and click the &rsquo;Run Simulation&rsquo; button.
+</p>
+
+<p>
+The second app illustrates a parameter sweep. This shows how sensitive an outcome is to the parameter value. In this case, we want to analyze the sensitivity of the steady state unemployment level to the probability of finding a job. As this is a simple simulation model, we can actually derive the long run unemployment level analytically. The figure compares the simulated long run unemployment level with the analytic solution. For the probability of being fired chosen in the first app, clicking &rsquo;Sweep Parameter&rsquo; shows long run unemployment for different values of \(p_{hired}\).
 </p>
 
 
@@ -439,16 +469,16 @@ The second app illustrates a parameter sweep. This shows how sensitive an outcom
 </div>
 </div>
 </div>
-<div id="outline-container-orgb54e950" class="outline-3">
-<h3 id="orgb54e950">Python Code Explanation</h3>
-<div class="outline-text-3" id="text-orgb54e950">
+<div id="outline-container-orgb7b10d0" class="outline-3">
+<h3 id="orgb7b10d0">Python Code Explanation</h3>
+<div class="outline-text-3" id="text-orgb7b10d0">
 <p>
 In this section we explain the Python code for the model itself, not yet for the interactive elements. In a next lecture we explain how to create sliders for parameters.
 </p>
 </div>
-<div id="outline-container-org3727141" class="outline-4">
-<h4 id="org3727141">Compounded Interest Model</h4>
-<div class="outline-text-4" id="text-org3727141">
+<div id="outline-container-org81c6192" class="outline-4">
+<h4 id="org81c6192">Compounded Interest Model</h4>
+<div class="outline-text-4" id="text-org81c6192">
 <p>
 Let&rsquo;s see how you can model the growth of a bank account with regular deposits and compounded interest in Python.
 </p>
@@ -458,8 +488,8 @@ If you want to learn to program in Python, our advice is that you type the code 
 </p>
 </div>
 <ul class="org-ul">
-<li><a id="org4377c4f"></a>1. Set the parameters<br />
-<div class="outline-text-5" id="text-org4377c4f">
+<li><a id="org500ed20"></a>1. Set the parameters<br />
+<div class="outline-text-5" id="text-org500ed20">
 <p>
 We start by defining the monthly deposit, the monthly interest rate, and the number of months. Here, we use euros as the currency.
 </p>
@@ -469,15 +499,15 @@ We do this by defining variables, like <code>deposit</code>, and give these a va
 </p>
 
 <div class="org-src-container">
-<pre class="src src-jupyter-python"><code><span style="color: #005e8b;">deposit</span> = 500      <span style="color: #7f0000;"># </span><span style="color: #7f0000;">euros per month
-</span><span style="color: #005e8b;">rate</span> = 0.003        <span style="color: #7f0000;"># </span><span style="color: #7f0000;">monthly interest rate (0.3%)
-</span><span style="color: #005e8b;">months</span> = 20 * 12    <span style="color: #7f0000;"># </span><span style="color: #7f0000;">20 years</span>
+<pre class="src src-jupyter-python"><code><span style="color: #005e8b;">deposit</span> = 500      <span style="color: #7f0000;"># </span><span style="color: #7f0000;">euros per month</span>
+<span style="color: #005e8b;">rate</span> = 0.003        <span style="color: #7f0000;"># </span><span style="color: #7f0000;">monthly interest rate (0.3%)</span>
+<span style="color: #005e8b;">months</span> = 20 * 12    <span style="color: #7f0000;"># </span><span style="color: #7f0000;">20 years</span>
 </code></pre>
 </div>
 </div>
 </li>
-<li><a id="orgc9ce1d2"></a>2. Initialize the balance and create an empty list<br />
-<div class="outline-text-5" id="text-orgc9ce1d2">
+<li><a id="orgefa405a"></a>2. Initialize the balance and create an empty list<br />
+<div class="outline-text-5" id="text-orgefa405a">
 <p>
 We start with a balance of zero. We also create an empty <code>list</code> called <code>balances</code> to store the account balance at each month.
 </p>
@@ -494,8 +524,8 @@ We use a list here so we can keep track of the balance after each month, which i
 </div>
 </div>
 </li>
-<li><a id="orge38eec5"></a>3. Simulate the account growth with a for loop<br />
-<div class="outline-text-5" id="text-orge38eec5">
+<li><a id="org319c9d9"></a>3. Simulate the account growth with a for loop<br />
+<div class="outline-text-5" id="text-org319c9d9">
 <p>
 We use a <code>for</code> loop to repeat the same calculation for each month.
 In each iteration, we first store the current balance in the list, then update the balance by adding the deposit and applying the interest.
@@ -503,9 +533,9 @@ In each iteration, we first store the current balance in the list, then update t
 
 <ul class="org-ul">
 <li><code>for m in range(months + 1):</code>
-This loop runs once for each month, including month 0.</li>
+This loop runs once for each month, including month 0. Note the &ldquo;:&rdquo; (colon) at the end of this statement.</li>
 <li><code>balances.append(balance)</code>
-This adds the current balance to the end of the <code>balances</code> list.</li>
+This adds the current balance to the end of the <code>balances</code> list. Note that the two statements that need to be repeated in the for loop have the same alignment (usually 4 spaces from the left in Python; your editor probably does this for you). This tells Python the lines that belong to the for-loop (without parentheses, or semicolons in the code). The next statement not belonging to the loop is outlined on the left again. If you have a so-called nested for-loop, you go 8 spaces to the right.</li>
 </ul>
 
 <div class="org-src-container">
@@ -516,8 +546,8 @@ This adds the current balance to the end of the <code>balances</code> list.</li>
 </div>
 </div>
 </li>
-<li><a id="org90625cc"></a>4. Plot the results<br />
-<div class="outline-text-5" id="text-org90625cc">
+<li><a id="orgb4b9ccd"></a>4. Plot the results<br />
+<div class="outline-text-5" id="text-orgb4b9ccd">
 <p>
 We use <code>matplotlib</code> to visualize the growth of the account over time.
 </p>
@@ -531,6 +561,7 @@ This creates a list of time points in years, matching the number of balances.</l
 The <code>plot</code> function takes two lists or arrays of equal length:
 the first for the x-axis, years, and the second for the y-axis, balances in euros.</li>
 <li>By looking at the figure, you can probably infer what the functions <code>plt.xlabel, plt.ylabel, plt.title</code> do.</li>
+<li>If you wonder what the semicolon does at the end of <code>plt.title();</code>: delete it and run the code again.</li>
 </ul>
 
 <div class="org-src-container">
@@ -546,7 +577,7 @@ plt.title(<span style="color: #3548cf;">"Compounded Interest Over Time"</span>);
 </div>
 
 
-<div id="org9b79bea" class="figure">
+<div id="org9375dcf" class="figure">
 <p><img src="./figures/compounded_interest.png" alt="compounded_interest.png" />
 </p>
 </div>
@@ -567,31 +598,31 @@ Use an LLM to figure out what the following Python code does:
 </li>
 </ul>
 </div>
-<div id="outline-container-org7210dc8" class="outline-4">
-<h4 id="org7210dc8">Employment Dynamics Model</h4>
-<div class="outline-text-4" id="text-org7210dc8">
+<div id="outline-container-org0b9c223" class="outline-4">
+<h4 id="org0b9c223">Employment Dynamics Model</h4>
+<div class="outline-text-4" id="text-org0b9c223">
 <p>
 Let&rsquo;s break down the Python code for simulating employment and unemployment in a small village.
 </p>
 </div>
 <ul class="org-ul">
-<li><a id="orgf67daea"></a>1. Set the parameters<br />
-<div class="outline-text-5" id="text-orgf67daea">
+<li><a id="org35e415c"></a>1. Set the parameters<br />
+<div class="outline-text-5" id="text-org35e415c">
 <p>
-We define the number of people, the probabilities, and the number of time steps. Copy this into your <code>marimo</code> notebook and see what happens if you change the value of the variable <code>n_people</code> to, say, 1000.
+We define the number of people, the probabilities, and the number of time steps. Type this into your <code>marimo</code> notebook and see what happens if you change the value of the variable <code>n_people</code> to, say, 1000. Interpret the different results you see compared to our case with 20 people.
 </p>
 
 <div class="org-src-container">
 <pre class="src src-jupyter-python"><code><span style="color: #005e8b;">n_people</span> = 20
-<span style="color: #005e8b;">p_fired</span> = 0.05   <span style="color: #7f0000;"># </span><span style="color: #7f0000;">probability an employed person is fired each step
-</span><span style="color: #005e8b;">p_hired</span> = 0.10   <span style="color: #7f0000;"># </span><span style="color: #7f0000;">probability an unemployed person finds a job each step
-</span><span style="color: #005e8b;">n_steps</span> = 100
+<span style="color: #005e8b;">p_fired</span> = 0.05   <span style="color: #7f0000;"># </span><span style="color: #7f0000;">probability an employed person is fired each step</span>
+<span style="color: #005e8b;">p_hired</span> = 0.10   <span style="color: #7f0000;"># </span><span style="color: #7f0000;">probability an unemployed person finds a job each step</span>
+<span style="color: #005e8b;">n_steps</span> = 100
 </code></pre>
 </div>
 </div>
 </li>
-<li><a id="org6c1385c"></a>2. Initialize the state<br />
-<div class="outline-text-5" id="text-org6c1385c">
+<li><a id="org189a04a"></a>2. Initialize the state<br />
+<div class="outline-text-5" id="text-org189a04a">
 <p>
 We start with everyone employed.
 We create lists to store the number of employed and unemployed people at each time step.
@@ -606,8 +637,8 @@ We create lists to store the number of employed and unemployed people at each ti
 </div>
 </div>
 </li>
-<li><a id="org9ad1f2f"></a>3. Simulate the process with a for loop<br />
-<div class="outline-text-5" id="text-org9ad1f2f">
+<li><a id="orgf3d9a3e"></a>3. Simulate the process with a for loop<br />
+<div class="outline-text-5" id="text-orgf3d9a3e">
 <p>
 For each time step:
 </p>
@@ -641,8 +672,8 @@ Above we have already seen the use of <code>append</code> to &ldquo;add&rdquo; a
 </div>
 </div>
 </li>
-<li><a id="org123f2f9"></a>4. Plot the results<br />
-<div class="outline-text-5" id="text-org123f2f9">
+<li><a id="orgc80e403"></a>4. Plot the results<br />
+<div class="outline-text-5" id="text-orgc80e403">
 <p>
 We use <code>matplotlib</code> to plot the number of employed and unemployed people over time.
 </p>
@@ -664,14 +695,14 @@ plt.grid(<span style="color: #0000b0;">True</span>)
 </div>
 
 
-<div id="orgef0056a" class="figure">
+<div id="orgc97cd27" class="figure">
 <p><img src="./figures/employed_unemployed.png" alt="employed_unemployed.png" />
 </p>
 </div>
 </div>
 <ul class="org-ul">
-<li><a id="orgce6b14f"></a>Summary of what the code does<br />
-<div class="outline-text-6" id="text-orgce6b14f">
+<li><a id="orgace1253"></a>Summary of what the code does<br />
+<div class="outline-text-6" id="text-orgace1253">
 <ul class="org-ul">
 <li><b>Step 1:</b> Set the parameters for the simulation.</li>
 <li><b>Step 2:</b> Initialize the state and lists to store the results.</li>
@@ -690,9 +721,9 @@ This model demonstrates how randomness and probabilities can be used to simulate
 </li>
 </ul>
 </div>
-<div id="outline-container-org342cea4" class="outline-4">
-<h4 id="org342cea4">Parameter Sweep: Long-run Unemployment Rate</h4>
-<div class="outline-text-4" id="text-org342cea4">
+<div id="outline-container-org91ccbc9" class="outline-4">
+<h4 id="org91ccbc9">Parameter Sweep: Long-run Unemployment Rate</h4>
+<div class="outline-text-4" id="text-org91ccbc9">
 <p>
 A question when doing simulations is: how sensitive are the simulation results to the parameter values chosen. One way to get an idea of this sensitivity is to run the simulations for a sweep of parameter values. We illustrate this by analyzing long run or steady state unemployment. In the simulations we program long run unemployment as follows:
 </p>
@@ -714,21 +745,22 @@ As the model is quite simple, we can actually derive the steady state unemployme
 </div>
 </div>
 <ul class="org-ul">
-<li><a id="org0e3a1d3"></a>5. Sweep code<br />
-<div class="outline-text-5" id="text-org0e3a1d3">
+<li><a id="orga310742"></a>5. Sweep code<br />
+<div class="outline-text-5" id="text-orga310742">
 <p>
 Two points on the code:
 </p>
 <ul class="org-ul">
 <li>here we use <code>np.linspace</code> instead of <code>np.arange</code>. Both functions achieve the same result with slightly different syntax. Google &ldquo;numpy linspace&rdquo; for details.</li>
-<li>in a later lecture we will look into indexing of lists and arrays. For now: <code>unemployment_hist[-50:]</code> refers to the final 50 entries in list/array <code>unemployment_hist</code>.</li>
+<li>in a later lecture we consider some simple indexing of lists and arrays. For now: <code>unemployment_hist[-50:]</code> refers to the final 50 entries in list/array <code>unemployment_hist</code>. If you want to know more about this google or use an LLM: &ldquo;how does slicing and indexing work in Python&rdquo;</li>
+<li>Note the nested for-loops and 8 spaces from the left in the &ldquo;inner&rdquo; loop.</li>
 </ul>
 
 <div class="org-src-container">
 <pre class="src src-jupyter-python"><code><span style="color: #005e8b;">n_people</span> = 20
 <span style="color: #005e8b;">n_steps</span> = 200
-<span style="color: #005e8b;">p_fired</span> = 0.05  <span style="color: #7f0000;"># </span><span style="color: #7f0000;">fixed probability of being fired
-</span><span style="color: #005e8b;">sweep_p_hired</span> = np.linspace(0.1, 0.9, 30)
+<span style="color: #005e8b;">p_fired</span> = 0.05  <span style="color: #7f0000;"># </span><span style="color: #7f0000;">fixed probability of being fired</span>
+<span style="color: #005e8b;">sweep_p_hired</span> = np.linspace(0.1, 0.9, 30)
 <span style="color: #005e8b;">avg_unemp</span> = []
 <span style="color: #005e8b;">analytic_unemp</span> = []
 
@@ -742,17 +774,17 @@ Two points on the code:
         <span style="color: #005e8b;">employed</span> = employed - fired + hired
         <span style="color: #005e8b;">unemployed</span> = n_people - employed
         unemployed_hist.append(unemployed)
-    <span style="color: #7f0000;"># </span><span style="color: #7f0000;">Average unemployment rate over last 50 steps
-</span>    avg_unemp.append(np.mean(unemployed_hist[-50:]) / n_people)
-    <span style="color: #7f0000;"># </span><span style="color: #7f0000;">Analytic steady-state
-</span>    <span style="color: #005e8b;">u_analytic</span> = p_fired / (p_fired + p_h)
+    <span style="color: #7f0000;"># </span><span style="color: #7f0000;">Average unemployment rate over last 50 steps</span>
+    avg_unemp.append(np.mean(unemployed_hist[-50:]) / n_people)
+    <span style="color: #7f0000;"># </span><span style="color: #7f0000;">Analytic steady-state</span>
+    <span style="color: #005e8b;">u_analytic</span> = p_fired / (p_fired + p_h)
     analytic_unemp.append(u_analytic)
 </code></pre>
 </div>
 </div>
 </li>
-<li><a id="orgcbd9d5e"></a>6. Plotting the sweep results<br />
-<div class="outline-text-5" id="text-orgcbd9d5e">
+<li><a id="orgffca230"></a>6. Plotting the sweep results<br />
+<div class="outline-text-5" id="text-orgffca230">
 <div class="org-src-container">
 <pre class="src src-jupyter-python"><code>plt.plot(sweep_p_hired, avg_unemp, label=<span style="color: #3548cf;">"Simulated (last 50 steps)"</span>)
 plt.plot(sweep_p_hired, analytic_unemp, <span style="color: #3548cf;">'--'</span>, label=<span style="color: #3548cf;">"Analytic steady-state"</span>)
@@ -766,14 +798,14 @@ plt.show()
 </div>
 
 
-<div id="org310085a" class="figure">
+<div id="orgb8c09b4" class="figure">
 <p><img src="./figures/steady_state_unemployment.png" alt="steady_state_unemployment.png" />
 </p>
 </div>
 </div>
 <ul class="org-ul">
-<li><a id="orgb984c76"></a>Summary of what the code does<br />
-<div class="outline-text-6" id="text-orgb984c76">
+<li><a id="orgbf59f7b"></a>Summary of what the code does<br />
+<div class="outline-text-6" id="text-orgbf59f7b">
 <ul class="org-ul">
 <li><b>Step 1-4:</b> Simulate the employment dynamics as before.</li>
 <li><b>Step 5:</b> For a range of probabilities of finding a job, run the simulation and compute the average unemployment rate in the long run. Also compute the analytic steady-state unemployment rate:</li>
@@ -799,9 +831,9 @@ Sweeping parameters is a powerful way to explore how a model behaves as you chan
 </ul>
 </div>
 </div>
-<div id="outline-container-org8f70bd8" class="outline-3">
-<h3 id="org8f70bd8">Summary</h3>
-<div class="outline-text-3" id="text-org8f70bd8">
+<div id="outline-container-org9e9802e" class="outline-3">
+<h3 id="org9e9802e">Summary</h3>
+<div class="outline-text-3" id="text-org9e9802e">
 <p>
 In this lecture we introduced Python by modeling two simple economic processes. The compounded interest model illustrated how repeated calculations over time can generate nonlinear growth. The employment dynamics model showed how stochastic processes can be simulated using probabilities and random draws.
 </p>
@@ -815,14 +847,20 @@ You learned how to use variables, lists, and for-loops to simulate economic mode
 Small economic mechanisms repeated over time—such as interest compounding or job flows—can generate large aggregate outcomes. Simulation helps economists understand these dynamics and explore how policy-relevant parameters affect long-run results.
 </div>
 
+<div style="border-left:4px solid #2c7a7b;padding:10px;margin:15px 0;background:#eef6f6;">
+<strong>Key Python takeaway</strong><br>
+Basic Python structures such as variables, lists, and <code>for</code>-loops allow economists to simulate dynamic processes step by step. Libraries like <code>numpy</code> and <code>matplotlib</code> make it easy to compute and visualize the results of these simulations.
+</div>
+
+
 <p>
 <b>Looking ahead:</b> In the next lecture we move from simple simulations to <b><b>empirical economic analysis</b></b>, using real data to estimate and interpret economic relationships.
 </p>
 </div>
 </div>
-<div id="outline-container-org0283827" class="outline-3">
-<h3 id="org0283827">Review Questions</h3>
-<div class="outline-text-3" id="text-org0283827">
+<div id="outline-container-org4d086a1" class="outline-3">
+<h3 id="org4d086a1">Review Questions</h3>
+<div class="outline-text-3" id="text-org4d086a1">
 <p>
 Test your understanding of the Python concepts and models from this lecture. For each question:
 </p>
@@ -834,13 +872,13 @@ Test your understanding of the Python concepts and models from this lecture. For
 
 <hr />
 </div>
-<div id="outline-container-org8f6ba6e" class="outline-4">
-<h4 id="org8f6ba6e">Question 1</h4>
-<div class="outline-text-4" id="text-org8f6ba6e">
+<div id="outline-container-org1ff2d34" class="outline-4">
+<h4 id="org1ff2d34">Question 1</h4>
+<div class="outline-text-4" id="text-org1ff2d34">
 </div>
 <ul class="org-ul">
-<li><a id="org55b5258"></a>Predicting the Future Value<br />
-<div class="outline-text-5" id="text-org55b5258">
+<li><a id="org57350f2"></a>Predicting the Future Value<br />
+<div class="outline-text-5" id="text-org57350f2">
 <p>
 You want to predict the future value of a savings account after 10 years, but you only know the monthly deposit and the interest rate.
 You are given the following code fragment:
@@ -885,13 +923,13 @@ For this question you need to use an <code>if</code> statement. Google &ldquo;if
 </li>
 </ul>
 </div>
-<div id="outline-container-orga8d5888" class="outline-4">
-<h4 id="orga8d5888">Question 2</h4>
-<div class="outline-text-4" id="text-orga8d5888">
+<div id="outline-container-org220d7e5" class="outline-4">
+<h4 id="org220d7e5">Question 2</h4>
+<div class="outline-text-4" id="text-org220d7e5">
 </div>
 <ul class="org-ul">
-<li><a id="orgf89a83f"></a>Unemployment Fluctuations<br />
-<div class="outline-text-5" id="text-orgf89a83f">
+<li><a id="org0b20ed6"></a>Unemployment Fluctuations<br />
+<div class="outline-text-5" id="text-org0b20ed6">
 <p>
 Suppose you want to simulate unemployment in a village, but you want to track the longest streak of consecutive months where unemployment is above 5 people.
 </p>
@@ -905,8 +943,8 @@ Suppose you want to simulate unemployment in a village, but you want to track th
 <span style="color: #005e8b;">longest_streak</span> = 0
 <span style="color: #005e8b;">current_streak</span> = 0
 <span style="color: #531ab6;">for</span> month <span style="color: #531ab6;">in</span> <span style="color: #8f0075;">range</span>(months):
-    <span style="color: #7f0000;"># </span><span style="color: #7f0000;">update employed and unemployed here
-</span>    <span style="color: #531ab6;">if</span> unemployed &gt; 5:
+    <span style="color: #7f0000;"># </span><span style="color: #7f0000;">update employed and unemployed here</span>
+    <span style="color: #531ab6;">if</span> unemployed &gt; 5:
         <span style="color: #7f0000;"># </span><span style="color: #7f0000;">update streaks here</span>
 </code></pre>
 </div>
@@ -936,13 +974,13 @@ Suppose you want to simulate unemployment in a village, but you want to track th
 </li>
 </ul>
 </div>
-<div id="outline-container-org4c5cfb2" class="outline-4">
-<h4 id="org4c5cfb2">Question 3</h4>
-<div class="outline-text-4" id="text-org4c5cfb2">
+<div id="outline-container-orgbe26391" class="outline-4">
+<h4 id="orgbe26391">Question 3</h4>
+<div class="outline-text-4" id="text-orgbe26391">
 </div>
 <ul class="org-ul">
-<li><a id="org23da5de"></a>Parameter Sweep Analysis<br />
-<div class="outline-text-5" id="text-org23da5de">
+<li><a id="org1210c86"></a>Parameter Sweep Analysis<br />
+<div class="outline-text-5" id="text-org1210c86">
 <p>
 You want to analyze how the average unemployment rate (not steady state unemployment) changes as you sweep the probability of being fired.
 Suppose you run a simulation for each value and store the results in a list called <code>avg_unemp</code>.
@@ -972,13 +1010,13 @@ Suppose you run a simulation for each value and store the results in a list call
 </li>
 </ul>
 </div>
-<div id="outline-container-org4c779a3" class="outline-4">
-<h4 id="org4c779a3">Question 4</h4>
-<div class="outline-text-4" id="text-org4c779a3">
+<div id="outline-container-org4041ad6" class="outline-4">
+<h4 id="org4041ad6">Question 4</h4>
+<div class="outline-text-4" id="text-org4041ad6">
 </div>
 <ul class="org-ul">
-<li><a id="org65b9740"></a>Economic intuition: Compounding and Labor Market Flows<br />
-<div class="outline-text-5" id="text-org65b9740">
+<li><a id="org1d08296"></a>Economic intuition: Compounding and Labor Market Flows<br />
+<div class="outline-text-5" id="text-org1d08296">
 <p>
 Consider the two economic mechanisms in this lecture.
 </p>
@@ -1009,16 +1047,16 @@ Consider the two economic mechanisms in this lecture.
 </div>
 </div>
 </div>
-<div id="outline-container-org694d0ab" class="outline-2 section">
-<h2 id="org694d0ab">Lecture 2: Healthcare expenditure</h2>
-<div class="outline-text-2" id="text-org694d0ab">
+<div id="outline-container-orge7470d9" class="outline-2 section">
+<h2 id="orge7470d9">Lecture 2: Healthcare expenditure</h2>
+<div class="outline-text-2" id="text-orge7470d9">
 <p>
 <b>Skills you learn in this lecture:</b> working with real economic data, regression intuition, numerical optimization, interpreting empirical models.
 </p>
 </div>
-<div id="outline-container-orgb648bd7" class="outline-3">
-<h3 id="orgb648bd7">Learning objectives</h3>
-<div class="outline-text-3" id="text-orgb648bd7">
+<div id="outline-container-orga719844" class="outline-3">
+<h3 id="orga719844">Learning objectives</h3>
+<div class="outline-text-3" id="text-orga719844">
 <p>
 After completing this lecture you should be able to:
 </p>
@@ -1032,9 +1070,13 @@ After completing this lecture you should be able to:
 </ul>
 </div>
 </div>
-<div id="outline-container-orgf1aba96" class="outline-3">
-<h3 id="orgf1aba96">Introduction</h3>
-<div class="outline-text-3" id="text-orgf1aba96">
+<div id="outline-container-org8db80da" class="outline-3">
+<h3 id="org8db80da">Introduction</h3>
+<div class="outline-text-3" id="text-org8db80da">
+<p>
+Newspaper articles argue that healthcare expenditure in Western countries (including the Netherlands) are getting out of control. To see how bad the situation is, we look at Eurostat data and estimate a simple model. We start with a linear trend and then add other variables. If we want to use demand-side cost-sharing to keep expenditure constant, how high should out-of-pocket expenditure be?
+</p>
+
 <p>
 In this lecture we analyze healthcare expenditure using real data for the Netherlands. We start by visualizing how healthcare expenditure per capita has evolved over time. Next, we construct a simple linear trend model and examine how well it fits the data.
 </p>
@@ -1048,13 +1090,26 @@ The goal of this lecture is to demonstrate how Python can be used for empirical 
 </p>
 </div>
 </div>
-<div id="outline-container-org9bd1cad" class="outline-3">
-<h3 id="org9bd1cad">Apps</h3>
-<div class="outline-text-3" id="text-org9bd1cad">
+<div id="outline-container-org4c32a97" class="outline-3">
+<h3 id="org4c32a97">App</h3>
+<div class="outline-text-3" id="text-org4c32a97">
 </div>
-<div id="outline-container-org91adb24" class="outline-4 section">
-<h4 id="org91adb24">Healthcare expenditure</h4>
-<div class="outline-text-4" id="text-org91adb24">
+<div id="outline-container-org72dcb76" class="outline-4 section">
+<h4 id="org72dcb76">Healthcare expenditure</h4>
+<div class="outline-text-4" id="text-org72dcb76">
+<p>
+In the app below, we use data from Eurostat to visualize how healthcare expenditure has developed over time in the Netherlands. To predict how expenditure develops till the year 2050 we estimate a linear trend. First, you can use the sliders to create a trend yourself and then we estimate the trend using ordinary least squares (OLS). OLS minimizes the sum of the squared errors to find the best fitting intercept and slope (time trend). We visualize the errors and the OLS time trend.
+</p>
+
+<p>
+Then we extrapolate the time trend till 2050. According to this model, healthcare expenditure per head will become almost 9000 euro in 2050. This prediction is not necessarily realistic. To illustrate, the government may well change policies to curb expenditure growth. One option is demand-side cost-sharing. In the Netherlands we have a deductible. Our data has information on which percentage of healthcare expenditure is paid for out-of-pocket.
+</p>
+
+<p>
+In order to understand which percentage needs to be paid out-of-pocket to keep expenditure constant, we estimate a model with this variable in it. To solve for this percentage of out-of-pocket expenditure and the OLS regressions we use the <code>optimize</code> library from <code>scipy</code>.
+</p>
+
+
 <iframe
   src="https://lecture2healthcare.streamlit.app/?embed=true"
   allow="fullscreen">
@@ -1071,13 +1126,13 @@ The goal of this lecture is to demonstrate how Python can be used for empirical 
 </div>
 </div>
 </div>
-<div id="outline-container-org66d4fb2" class="outline-3 section">
-<h3 id="org66d4fb2">Python Code Explanation</h3>
-<div class="outline-text-3" id="text-org66d4fb2">
+<div id="outline-container-orgf4d2aa6" class="outline-3 section">
+<h3 id="orgf4d2aa6">Python Code Explanation</h3>
+<div class="outline-text-3" id="text-orgf4d2aa6">
 </div>
-<div id="outline-container-org1c3466a" class="outline-4">
-<h4 id="org1c3466a">1. Reading the data</h4>
-<div class="outline-text-4" id="text-org1c3466a">
+<div id="outline-container-org44ef9b3" class="outline-4">
+<h4 id="org44ef9b3">1. Reading the data</h4>
+<div class="outline-text-4" id="text-org44ef9b3">
 <p>
 We use <code>pandas</code> to read the csv file with healthcare expenditure data for the Netherlands over the years 2000-2024. Here we just use the <code>pd.read_csv=</code> function, but with <code>pandas</code> you can also manipulate, clean data and merge dataframes. In the function call we specify the path where the csv file can be found: <code>'./data/gdp_healthcare_nl.csv'</code>.
 </p>
@@ -1155,15 +1210,15 @@ df.head()
 </div>
 
 <p>
-The columns/variables in this dataframe <code>df</code> are the year of observation, GDP per head, healthcare expenditure per head and the percentage of healthcare expenditure that people pay out-of-pocket (<code>oop</code>).
+The columns/variables in this dataframe <code>df</code> are the year of observation, <a href="https://ec.europa.eu/eurostat/databrowser/view/nama_10_pc/default/table?lang=en&amp;category=na10.nama10.nama_10_ma">GDP per head</a>, <a href="https://ec.europa.eu/eurostat/databrowser/view/hlth_sha11_hf/default/table?lang=en&amp;category=hlth.hlth_care.hlth_sha11.hlth_sha11_sum">healthcare expenditure per head and the percentage of healthcare expenditure that people pay out-of-pocket</a> (<code>oop</code>).
 </p>
 </div>
 </div>
-<div id="outline-container-org4c193ff" class="outline-4">
-<h4 id="org4c193ff">2. Plotting the data</h4>
-<div class="outline-text-4" id="text-org4c193ff">
+<div id="outline-container-org0156383" class="outline-4">
+<h4 id="org0156383">2. Plotting the data</h4>
+<div class="outline-text-4" id="text-org0156383">
 <p>
-We use matplotlib to plot healthcare expenditure per head over time. Use google or an LLM to find out what <code>plt.grid, plt.tight_layout</code> do.
+We use <code>matplotlib</code> to plot healthcare expenditure per head, <code>CHE_per_head</code>, over time. Use google or an LLM to find out what <code>plt.grid, plt.tight_layout</code> do.
 </p>
 
 <div class="org-src-container">
@@ -1180,21 +1235,25 @@ plt.tight_layout()
 </div>
 
 
-<div id="org375afc6" class="figure">
+<div id="org51bcb30" class="figure">
 <p><img src="./figures/healthcare_expenditure.png" alt="healthcare_expenditure.png" />
 </p>
 </div>
+
+<p>
+When you plot data, like the time series on healthcare expenditure above, always think: &ldquo;does this make sense?&rdquo; Can I explain the pattern that I see? Here the two patterns to pay attention to would be: (i) the series is rising over time; is this in line with what I know about his series? (ii) why is there a spike in 2021?
+</p>
 </div>
 </div>
-<div id="outline-container-orga9b14bd" class="outline-4">
-<h4 id="orga9b14bd">3. Defining a linear trend function</h4>
-<div class="outline-text-4" id="text-orga9b14bd">
+<div id="outline-container-orgb0cbb5d" class="outline-4">
+<h4 id="orgb0cbb5d">3. Defining a linear trend function</h4>
+<div class="outline-text-4" id="text-orgb0cbb5d">
 <p>
 Now we define our first function in Python. A function is a reusable block of code. Here, we define a function to compute a linear trend. We start with the keyword <code>def</code> specify the name of the function (which you are free to choose yourself but there are some restrictions on the name you choose) and then between parentheses &rsquo;()&rsquo; you specify the arguments of the function. That is, the variables that the function needs to calculate its results.
 </p>
 
 <p>
-Here, the function has three arguments: <code>years, intercept</code> and <code>slope</code>. The function returns <code>intercept + slope * (years - years.iloc[0])</code>. Although this is not clear from the function definition, <code>intercept</code> and <code>slope</code> will be scalars and <code>years</code> is a vector (actually a <code>pandas</code> series). The syntax <code>iloc[0]</code> chooses the first element of this series. With <code>df.Year</code> as loaded from our data above, <code>df.Year.iloc[0]</code> equals 2000. The intercept equals <code>linear_trend</code> in the year 2000 and the trend <code>slope</code> applies to <code>years</code> \(> 2000\).
+Here, the function has three arguments: <code>years, intercept</code> and <code>slope</code>. The function returns <code>intercept + slope * (years - years.iloc[0])</code>. Although this is not clear from the function definition, <code>intercept</code> and <code>slope</code> will be scalars and <code>years</code> is a vector (actually a <code>pandas</code> series). The syntax <code>iloc[0]</code> chooses the first element of this series (Python starts counting/indexing at 0). With <code>df.Year</code> as loaded from our data above, <code>df.Year.iloc[0]</code> equals 2000. The intercept equals <code>linear_trend</code> in the year 2000 and the trend <code>slope</code> applies to <code>years</code> \(> 2000\).
 </p>
 
 <div class="org-src-container">
@@ -1217,15 +1276,15 @@ plt.plot(range_x,f(range_x));
 </div>
 
 
-<div id="org72493b5" class="figure">
+<div id="org1497e3c" class="figure">
 <p><img src="./figures/quadratic_function.png" alt="quadratic_function.png" />
 </p>
 </div>
 </div>
 </div>
-<div id="outline-container-orge93ef5d" class="outline-4">
-<h4 id="orge93ef5d">4. Fitting and visualizing the trend</h4>
-<div class="outline-text-4" id="text-orge93ef5d">
+<div id="outline-container-orgdd540dc" class="outline-4">
+<h4 id="orgdd540dc">4. Fitting and visualizing the trend</h4>
+<div class="outline-text-4" id="text-orgdd540dc">
 <p>
 We plot the data, the linear trend, and the residuals (shown as vertical differences). Since the variable <code>years</code> is a vector, the function <code>linear_trend</code> returns a vector as well (a value for each year in <code>years</code>).
 </p>
@@ -1235,7 +1294,7 @@ The Python syntax <code>zip(years,che,trend)</code> creates the combinations of 
 </p>
 
 <p>
-Finally, there is a new <code>matplotlib</code> command: <code>plt.vlines</code>: you give it three arguments: the \(x\) coordinate, the low value for \(y\) and high value for \(y\) between which a vertical line is drawn. <code>linestyle=':'</code> creates a dotted line.
+Finally, there is a new <code>matplotlib</code> command: <code>plt.vlines</code>: you give it three arguments: the \(x\) coordinate, the low value for \(y\) and high value for \(y\) between which a vertical line is drawn. <code>linestyle=':'</code> creates a dotted line. Use google or an LLM to figure out what <code>alpha=0.7</code> means.
 </p>
 
 <div class="org-src-container">
@@ -1260,21 +1319,21 @@ plt.tight_layout()
 </div>
 
 
-<div id="org3b8fd09" class="figure">
+<div id="orga46ea6f" class="figure">
 <p><img src="./figures/healthcare_expenditure_linear_trend.png" alt="healthcare_expenditure_linear_trend.png" />
 </p>
 </div>
 </div>
 </div>
-<div id="outline-container-org5bfd571" class="outline-4">
-<h4 id="org5bfd571">5. Using optimization to find the best fit</h4>
-<div class="outline-text-4" id="text-org5bfd571">
+<div id="outline-container-org23bd1d3" class="outline-4">
+<h4 id="org23bd1d3">5. Using optimization to find the best fit</h4>
+<div class="outline-text-4" id="text-org23bd1d3">
 <p>
-Above we just chose some values for <code>intercept</code> and <code>slope</code>. Now we will try to find the values that give the best fit. We follow OLS in defining &ldquo;best&rdquo; as minimizing the sum of squared residuals.
+Above we just chose some values for <code>intercept</code> and <code>slope</code>. Now we will try to find the values that give the best fit. We follow OLS in defining &ldquo;best&rdquo; as minimizing the sum of squared residuals (the vertical lines in the figure above).
 </p>
 
 <p>
-We use <code>scipy.optimize.minimize</code> to find the intercept and slope that minimize the sum of squared residuals. We define the function <code>rss</code> which has as arguments the parameters (intercept and slope), the years (independent variable) and healthcare expenditure <code>che</code> as dependent variable. By specifying <code>y = che</code> (or <code>years=years</code>) in the function definition of <code>rss</code> we give the function default values: if we do not specify <code>y</code> (or <code>years</code>) in our function call, Python will work with the specified default values for these variable.
+We use <code>scipy.optimize.minimize</code> to find the intercept and slope that minimize the sum of squared residuals. We define the function <code>rss</code> which has as arguments the parameters (intercept and slope), the years (independent variable) and healthcare expenditure <code>che</code> (defined in the code block above) as dependent variable. By specifying <code>y = che</code> (or <code>years=years</code>) in the function definition of <code>rss</code> we give the function default values: if we do not specify <code>y</code> (or <code>years</code>) in our function call, Python will work with the specified default values for these variable.
 </p>
 
 <p>
@@ -1309,11 +1368,11 @@ The outcome of the minimization routine is captured in the variable <code>res</c
 </pre>
 </div>
 </div>
-<div id="outline-container-orgda6182e" class="outline-4">
-<h4 id="orgda6182e">6. Visualizing the optimal fit</h4>
-<div class="outline-text-4" id="text-orgda6182e">
+<div id="outline-container-org7a082d2" class="outline-4">
+<h4 id="org7a082d2">6. Visualizing the optimal fit</h4>
+<div class="outline-text-4" id="text-org7a082d2">
 <p>
-Now we can plot our data with the time trend that gives the best fit. To find the OLS regression line, we call our function <code>linear_trend</code> with the years variable and the optimal values <code>opt_intercept, opt_slope</code>.
+Now we can plot our data with the time trend that gives the best fit. To find the OLS regression line, we call our function <code>linear_trend</code> with the years variable and the optimal values <code>opt_intercept, opt_slope</code> defined above.
 </p>
 
 <div class="org-src-container">
@@ -1335,15 +1394,15 @@ plt.show()
 </div>
 
 
-<div id="org53ad618" class="figure">
+<div id="orga4e8483" class="figure">
 <p><img src="./figures/health_expenditure_OLS.png" alt="health_expenditure_OLS.png" />
 </p>
 </div>
 </div>
 </div>
-<div id="outline-container-org4b45af2" class="outline-4">
-<h4 id="org4b45af2">7. Extending the model</h4>
-<div class="outline-text-4" id="text-org4b45af2">
+<div id="outline-container-orgf160dc0" class="outline-4">
+<h4 id="orgf160dc0">7. Extending the model</h4>
+<div class="outline-text-4" id="text-orgf160dc0">
 <p>
 The fit of the OLS estimation is not bad. But we only used time (<code>years</code>) as explanatory variable. As healthcare is most likely a normal good, one would expect citizens to spend more on healthcare if they have higher incomes. On the macro level we can capture this with GDP per capita. Next to income, price is usually a determinant of expenditure on a good. Because the Netherlands has health insurance, people do not pay the full price of healthcare. But the deductible (part of healthcare expenditure that a patient pays her/himself) tends to reduce expenditure. Here we capture demand-side cost-sharing with the percentage that patients pay out-of-pocket (<code>oop</code>) for healthcare.
 </p>
@@ -1353,11 +1412,11 @@ Below we will add these variables to our OLS regression to improve the fit.
 </p>
 </div>
 </div>
-<div id="outline-container-org85cf397" class="outline-4">
-<h4 id="org85cf397">8. Extrapolating the OLS Linear Trend to 2050</h4>
-<div class="outline-text-4" id="text-org85cf397">
+<div id="outline-container-org8207ea9" class="outline-4">
+<h4 id="org8207ea9">8. Extrapolating the OLS Linear Trend to 2050</h4>
+<div class="outline-text-4" id="text-org8207ea9">
 <p>
-We can use the optimal OLS parameters to extrapolate the linear trend far into the future, for example to the year 2050. With the current information/data that we have, how much do we expect Dutch citizens to spend on healthcare (per capita) in 2050?
+We can use the OLS parameters to extrapolate the linear trend far into the future, for example to the year 2050. With the current information/data that we have, how much do we expect Dutch citizens to spend on healthcare (per capita) in 2050?
 </p>
 
 <p>
@@ -1390,7 +1449,7 @@ plt.tight_layout();
 </div>
 
 
-<div id="org20250ac" class="figure">
+<div id="org3ec8d3c" class="figure">
 <p><img src="./figures/healthcare_expenditure_extrapolation.png" alt="healthcare_expenditure_extrapolation.png" />
 </p>
 </div>
@@ -1404,9 +1463,9 @@ Second, the linear trend predicts healthcare expenditure growth that (most likel
 </p>
 </div>
 </div>
-<div id="outline-container-org9718b41" class="outline-4">
-<h4 id="org9718b41">9. Multi-variable Regression: Adding GDP and OOP</h4>
-<div class="outline-text-4" id="text-org9718b41">
+<div id="outline-container-orgcf172f7" class="outline-4">
+<h4 id="orgcf172f7">9. Multi-variable Regression: Adding GDP and OOP</h4>
+<div class="outline-text-4" id="text-orgcf172f7">
 <p>
 We can improve the fit of the model by including additional covariates: GDP per head and the percentage of healthcare expenditure paid out-of-pocket (oop).
 </p>
@@ -1447,7 +1506,7 @@ plt.tight_layout();
 </div>
 
 
-<div id="orgc602fe8" class="figure">
+<div id="orgc1cde9f" class="figure">
 <p><img src="./figures/healthcare_expenditure_multivariate.png" alt="healthcare_expenditure_multivariate.png" />
 </p>
 </div>
@@ -1457,9 +1516,9 @@ The fit is indeed better than the simple OLS linear trend.
 </p>
 </div>
 </div>
-<div id="outline-container-orgc0bc195" class="outline-4">
-<h4 id="orgc0bc195">10. Using a Numerical Solver (<code>fsolve</code>) to Find Required OOP Levels</h4>
-<div class="outline-text-4" id="text-orgc0bc195">
+<div id="outline-container-org72dec76" class="outline-4">
+<h4 id="org72dec76">10. Using a Numerical Solver (<code>fsolve</code>) to Find Required OOP Levels</h4>
+<div class="outline-text-4" id="text-org72dec76">
 <p>
 Suppose the government wants to keep healthcare expenditure constant. How can we find, for each year 2015–2024, the level of oop needed to keep healthcare expenditure per head at the 2014 level.
 </p>
@@ -1530,15 +1589,15 @@ plt.tight_layout();
 </div>
 
 
-<div id="orged9a5d4" class="figure">
+<div id="orgdeac741" class="figure">
 <p><img src="./figures/oop_keep_expenditure_constant.png" alt="oop_keep_expenditure_constant.png" />
 </p>
 </div>
 </div>
 </div>
-<div id="outline-container-org75f0047" class="outline-4">
-<h4 id="org75f0047">Summary of what the code does</h4>
-<div class="outline-text-4" id="text-org75f0047">
+<div id="outline-container-orgaa80c73" class="outline-4">
+<h4 id="orgaa80c73">Summary of what the code does</h4>
+<div class="outline-text-4" id="text-orgaa80c73">
 <ol class="org-ol">
 <li>Reading the data: Load the healthcare expenditure, GDP per head, and out-of-pocket (oop) data into a <code>pandas</code> dataframe.</li>
 <li>Plotting the data: Visualize healthcare expenditure per head over time using <code>matplotlib</code>.</li>
@@ -1546,17 +1605,17 @@ plt.tight_layout();
 <li>Fitting and visualizing the trend: Plot the data, an example linear trend, and show residuals (vertical differences between data and trend).</li>
 <li>Using optimization to find the best fit: Use <code>scipy.optimize.minimize</code> to find the intercept and slope that minimize the sum of squared residuals (OLS fit).</li>
 <li>Visualizing the optimal fit: Plot the data and the resulting OLS regression line with residuals.</li>
-<li>Extending the model: Discuss that only using time is limited and that other variables like income (GDP per head) and patient payments (oop) may matter.</li>
+<li>Extending the model: only using time is limited; other variables like income (GDP per head) and patient payments (oop) may matter.</li>
 <li>Extrapolating the OLS Linear Trend to 2050: Use the OLS results to predict future healthcare expenditure up to 2050 and plot the (possibly unrealistic) extrapolation.</li>
 <li>Multi-variable Regression: Improve the fit by adding GDP per head and oop as covariates in a multi-variable regression, and compare the fitted values to the data and simple trend.</li>
-<li>Using a Numerical Solver (<code>fsolve</code>): For each future year, use <code>fsolve</code> to determine the oop needed to keep expenditure constant at 2014 levels, plot the required vs. actual oop, and discuss the relevance for policy.</li>
+<li>Using a Numerical Solver (<code>fsolve</code>): For each future year, use <code>fsolve</code> to determine the oop needed to keep expenditure constant at 2014 levels, plot the required vs. actual oop.</li>
 </ol>
 </div>
 </div>
 </div>
-<div id="outline-container-org8c293eb" class="outline-3">
-<h3 id="org8c293eb">Summary</h3>
-<div class="outline-text-3" id="text-org8c293eb">
+<div id="outline-container-orgea3231b" class="outline-3">
+<h3 id="orgea3231b">Summary</h3>
+<div class="outline-text-3" id="text-orgea3231b">
 <p>
 In this lecture we used data on healthcare expenditure in the Netherlands to illustrate how economists combine empirical data with simple models. We first explored the data visually and then estimated a linear trend using numerical optimization.
 </p>
@@ -1570,18 +1629,22 @@ We also showed how adding additional explanatory variables such as GDP per capit
 Empirical economic analysis combines theory, data, and statistical estimation. Even simple regression models can provide useful insights into economic trends and help explore the potential effects of policy changes.
 </div>
 
+<div style="border-left:4px solid #2c7a7b;padding:10px;margin:15px 0;background:#eef6f6;">
+<strong>Key Python takeaway</strong><br>
+Working with real economic data requires tools such as <code>pandas</code> for data handling and Python functions for reusable code. Numerical optimization can then be used to estimate economic relationships such as regression models.
+</div>
 <p>
 <b>Looking ahead:</b> In the next lecture we study <b><b>iterative economic models</b></b>, where equilibrium emerges through repeated adjustments of agents over time.
 </p>
 </div>
 </div>
-<div id="outline-container-org7f2ccd0" class="outline-3 section">
-<h3 id="org7f2ccd0">Review Questions</h3>
-<div class="outline-text-3" id="text-org7f2ccd0">
+<div id="outline-container-org45e2615" class="outline-3 section">
+<h3 id="org45e2615">Review Questions</h3>
+<div class="outline-text-3" id="text-org45e2615">
 </div>
-<div id="outline-container-org8d35daf" class="outline-4">
-<h4 id="org8d35daf">Question 1: Create Your Own Multi-variable Regression</h4>
-<div class="outline-text-4" id="text-org8d35daf">
+<div id="outline-container-org6cb452c" class="outline-4">
+<h4 id="org6cb452c">Question 1: Create Your Own Multi-variable Regression</h4>
+<div class="outline-text-4" id="text-org6cb452c">
 <p>
 Fit a new regression model that predicts healthcare expenditure per head using <i>only</i> GDP per head (not year or oop). Plot the predicted values versus the actual data. How does the fit compare to the simple linear trend?
 </p>
@@ -1612,9 +1675,9 @@ Define a function like:
 </p>
 </div>
 </div>
-<div id="outline-container-orgeed031d" class="outline-4">
-<h4 id="orgeed031d">Question 2: Use fsolve to Find the GDP Needed to Keep Expenditure Constant</h4>
-<div class="outline-text-4" id="text-orgeed031d">
+<div id="outline-container-org7a8e2ee" class="outline-4">
+<h4 id="org7a8e2ee">Question 2: Use fsolve to Find the GDP Needed to Keep Expenditure Constant</h4>
+<div class="outline-text-4" id="text-org7a8e2ee">
 <p>
 Suppose you want to know, for a certain year (e.g., 2024), what value of GDP per head would keep healthcare expenditure fixed at its 2014 level, holding all else constant. Write a function and use <code>fsolve</code> to solve for this GDP value using your multi-variable model.
 </p>
@@ -1640,9 +1703,9 @@ Your function for <code>fsolve</code> should look like:
 </details>
 </div>
 </div>
-<div id="outline-container-org1c5e1b4" class="outline-4">
-<h4 id="org1c5e1b4">Question 3: analyze the following three functions</h4>
-<div class="outline-text-4" id="text-org1c5e1b4">
+<div id="outline-container-orgf9a3594" class="outline-4">
+<h4 id="orgf9a3594">Question 3: analyze the following three functions</h4>
+<div class="outline-text-4" id="text-orgf9a3594">
 <p>
 For each of the following functions, do the following:
 </p>
@@ -1667,16 +1730,16 @@ Use google or an LLM to find the relevant Python functions for this. Python has 
 </div>
 </div>
 </div>
-<div id="outline-container-org1bf8c97" class="outline-2">
-<h2 id="org1bf8c97">Lecture 3: Modeling Iteration</h2>
-<div class="outline-text-2" id="text-org1bf8c97">
+<div id="outline-container-org82a5eb9" class="outline-2">
+<h2 id="org82a5eb9">Lecture 3: Modeling Iteration</h2>
+<div class="outline-text-2" id="text-org82a5eb9">
 <p>
 <b>Skills you learn in this lecture:</b> iterative equilibrium computation, interactive apps with sliders, modeling economic dynamics with difference equations.
 </p>
 </div>
-<div id="outline-container-orgd61ae87" class="outline-3">
-<h3 id="orgd61ae87">Learning objectives</h3>
-<div class="outline-text-3" id="text-orgd61ae87">
+<div id="outline-container-org9c3ca5a" class="outline-3">
+<h3 id="org9c3ca5a">Learning objectives</h3>
+<div class="outline-text-3" id="text-org9c3ca5a">
 <p>
 After completing this lecture you should be able to:
 </p>
@@ -1690,15 +1753,15 @@ After completing this lecture you should be able to:
 </ul>
 </div>
 </div>
-<div id="outline-container-orgaa800a6" class="outline-3">
-<h3 id="orgaa800a6">Introduction</h3>
-<div class="outline-text-3" id="text-orgaa800a6">
+<div id="outline-container-org608c777" class="outline-3">
+<h3 id="org608c777">Introduction</h3>
+<div class="outline-text-3" id="text-org608c777">
 <p>
 Many economic models describe processes that evolve step by step over time. In this lecture we study such iterative dynamics using Python. We implement models in which economic variables adjust repeatedly until they converge to an equilibrium.
 </p>
 
 <p>
-The lecture illustrates three examples. First, we analyze an adverse selection market where prices update based on expected quality. Second, we study a Cournot duopoly where firms repeatedly best respond to each other. Third, we simulate a labor market with transitions between unemployment and different job types.
+The lecture uses three examples to illustrate iteration. First, we analyze an adverse selection market where prices update based on expected quality. Second, we study a Cournot duopoly where firms repeatedly best respond to each other. Third, we simulate a labor market with transitions between unemployment and different job types.
 </p>
 
 <p>
@@ -1706,9 +1769,9 @@ These examples demonstrate how Python can be used to simulate dynamic economic s
 </p>
 </div>
 </div>
-<div id="outline-container-org968b157" class="outline-3">
-<h3 id="org968b157">Apps</h3>
-<div class="outline-text-3" id="text-org968b157">
+<div id="outline-container-orgb26efd5" class="outline-3">
+<h3 id="orgb26efd5">Apps</h3>
+<div class="outline-text-3" id="text-orgb26efd5">
 <p>
 In terms of economics, we consider three models:
 </p>
@@ -1718,11 +1781,15 @@ In terms of economics, we consider three models:
 <li>a dynamic labor market model with three states: unemployed, low wage jobs, high wage jobs.</li>
 </ul>
 </div>
-<div id="outline-container-org3c28f62" class="outline-4">
-<h4 id="org3c28f62">Adverse selection dynamics</h4>
-<div class="outline-text-4" id="text-org3c28f62">
+<div id="outline-container-org48cdc28" class="outline-4">
+<h4 id="org48cdc28">Adverse selection dynamics</h4>
+<div class="outline-text-4" id="text-org48cdc28">
 <p>
-The following app models an adverse selection market. Well known examples of such markets are the second-hand car markets (with &ldquo;lemons&rdquo;) and (health) insurance markets. In each of these markets there is asymmetric information. The seller of the car has used the car herself. She knows how (aggressively) she has driven the car, taken care of the car, investments in car maintenance etc. For the buyer this is not so clear. In the health insurance market, the insurer offers contracts to insure healthcare costs. The consumer has more information on his own health than the insurer does. Does he have a (chronic) disease? Does he have a healthy diet, exercise regularly etc.
+People sometimes wonder why health insurance in the Netherlands is mandatory and not a (voluntary) choice by consumers. Think of creating an app which shows how markets with asymmetric information can unravel and lead to inefficient outcomes.
+</p>
+
+<p>
+The following app models an adverse selection market. Well known examples of such markets are the second-hand car markets (with &ldquo;lemons&rdquo;) and (health) insurance markets. In each of these markets there is asymmetric information. The seller of the car has used the car herself. She knows how (aggressively) she has driven the car, taken care of the car, her investments in car maintenance etc. For the buyer this is not so clear. In the health insurance market, the insurer offers contracts to insure healthcare costs. The consumer has more information on his own health than the insurer does. Does he have a (chronic) disease? Does he have a healthy diet, exercise regularly etc.
 </p>
 
 <p>
@@ -1738,8 +1805,11 @@ This process is called the unraveling of the market or a death spiral.
 </p>
 
 <p>
-The context of the app is more like the second-hand car market: sellers value their car at \(q\) and are willing to sell to any buyer who pays a price above \(q\). Each car is worth more to the buyer than to the seller but the buyer cannot observe \(q\). If people are only willing to sell their car if \(q<p\), the buyer&rsquo;s expectation of quality is given by \(E(q|q<p)\). By assumption the car has more value for the buyer than the seller, hence the buyer is willing to pay a markup over \(E(q|q<p)\) to buy the car. Which share of cars are going to be traded in the market?
+The context of the app is more like the second-hand car market: sellers value their car at \(q\) and are willing to sell to any buyer who pays a price above \(q\). Each car is worth more to the buyer than to the seller but the buyer cannot observe \(q\). If people are only willing to sell their car if \(q \leq p\) the buyer&rsquo;s expectation of quality is given by \(E(q|q \leq p)\). By assumption the car has more value for the buyer than the seller, hence the buyer is willing to pay a markup over \(E(q|q \leq p)\) to buy the car. Which share of cars are going to be traded in the market?
 </p>
+
+
+<hr />
 
 <iframe
   src="https://lecture3adverseselection.streamlit.app/?embed=true"
@@ -1749,16 +1819,20 @@ The context of the app is more like the second-hand car market: sellers value th
 <div class="fallback">
   <p>
     If the app does not load,
-    <a href="https://lecture3adverseselection.streamlit.appembed=true" target="_blank">
+    <a href="https://lecture3adverseselection.streamlit.app/?embed=true" target="_blank">
       open it in a new tab
     </a>.
   </p>
 </div>
 </div>
 </div>
-<div id="outline-container-org147cf89" class="outline-4">
-<h4 id="org147cf89">Cournot best response dynamics</h4>
-<div class="outline-text-4" id="text-org147cf89">
+<div id="outline-container-org5bd1a17" class="outline-4">
+<h4 id="org5bd1a17">Cournot best response dynamics</h4>
+<div class="outline-text-4" id="text-org5bd1a17">
+<p>
+Consider two profit maximizing firms in a market. Each firm wants to choose an optimal reaction to the other firm&rsquo;s action, but then the &ldquo;other firm&rdquo; also reacts to the first firm&rsquo;s choice of action. Is this not an infinite loop with no ending? Think of an app that can show this iterated reaction to the other firm and how this converges to (Nash) equilibrium.
+</p>
+
 <p>
 This app considers a Cournot market with two firms producing a homogenous good at constant marginal cost \(c\). Demand is of the form \(p = p(q_1+q_2)\). Hence, firm \(i\) maximizes profits
 </p>
@@ -1793,11 +1867,15 @@ One way to derive the Nash equilibium is to use iterated best responses: start w
 </div>
 </div>
 </div>
-<div id="outline-container-org05b1c29" class="outline-4">
-<h4 id="org05b1c29">Unemployment dynamics</h4>
-<div class="outline-text-4" id="text-org05b1c29">
+<div id="outline-container-orge15fb60" class="outline-4">
+<h4 id="orge15fb60">Unemployment dynamics</h4>
+<div class="outline-text-4" id="text-orge15fb60">
 <p>
-Suppose we have an inelastic labor supply normalized to a mass of 1. Labor can be in one of three states: unemployed, employed in a low wage job and employed in a high wage job.
+Sometimes the state of the labor market is summarized simply by the unemployment rate; but not all employment is equal. People can learn on the job and become more productive in their work. Think of an app that illustrates different employment states. Is it the case that more people in high wage jobs lead to lower unemployment?
+</p>
+
+<p>
+Suppose we have an inelastic labor supply normalized to a mass of 1. Labor can be in one of three states: unemployed, employed in a low wage job and employed in a high wage job. With transition equations we can keep track of the development over time of the fraction of people in each of these three states.
 </p>
 
 <iframe
@@ -1847,16 +1925,16 @@ Using the same visuals as the clip above we show the equivalence of the transiti
 </div>
 </div>
 </div>
-<div id="outline-container-org32a1db7" class="outline-3">
-<h3 id="org32a1db7">Python Code Explanation</h3>
-<div class="outline-text-3" id="text-org32a1db7">
+<div id="outline-container-orgdf38521" class="outline-3">
+<h3 id="orgdf38521">Python Code Explanation</h3>
+<div class="outline-text-3" id="text-orgdf38521">
 <p>
 In this section we explain the Python code used to implement the models behind the interactive applications. The focus is on understanding how the economic mechanisms are translated into algorithms and simulations.
 </p>
 </div>
-<div id="outline-container-orgf7087e7" class="outline-4">
-<h4 id="orgf7087e7">Adverse Selection Model</h4>
-<div class="outline-text-4" id="text-orgf7087e7">
+<div id="outline-container-orgb2db71b" class="outline-4">
+<h4 id="orgb2db71b">Adverse Selection Model</h4>
+<div class="outline-text-4" id="text-orgb2db71b">
 <p>
 In the adverse selection model, sellers have goods of quality \(q\) uniformly distributed on \([v_0, v_1]\). Sellers only offer goods if the market price \(p \geq q\). Buyers value quality at a mark-up:
 </p>
@@ -1875,6 +1953,10 @@ The equilibrium is found by iterating this price update until convergence.
 <b>Python code in Marimo:</b>
 </p>
 
+<p>
+We import the relevant libraries and define some interactive sliders.
+</p>
+
 <div class="org-src-container">
 <pre class="src src-python"><code><span style="color: #531ab6;">import</span> marimo <span style="color: #531ab6;">as</span> mo
 <span style="color: #531ab6;">import</span> numpy <span style="color: #531ab6;">as</span> np
@@ -1887,6 +1969,13 @@ The equilibrium is found by iterating this price update until convergence.
 mo.hstack([v0,v1,markup])
 </code></pre>
 </div>
+
+<p>
+In <code>marimo</code> sliders are defined with <code>mo.ui.slider</code>, then give the starting value, the end value (a step, is the step is not one) and an initial <code>value</code> (the default value if the user does choose a value). Also give the slider a <code>label</code> so that the user knows what it represents. Defining a slider does not imply that it shows up. Calling the slider with, say, <code>v0</code> makes it visible to the user. With <code>mo.hstack</code> you can stack the sliders; here we stack them horizontally.
+</p>
+
+
+
 
 <div class="org-src-container">
 <pre class="src src-python"><code><span style="color: #531ab6;">def</span> <span style="color: #721045;">expected_q_given_p_uniform</span>(p, a, b):
@@ -1917,13 +2006,17 @@ plt.plot(history)
 </div>
 
 <p>
-The code above uses Marimo sliders for the parameters. The function <code>expected_q_given_p_uniform</code> computes the expected quality conditional on \(q < p\). The price update is iterated until convergence.
+The code above uses <code>marimo</code> sliders for the parameter values. If you want to refer to the value of a slider use <code>.value</code> like <code>v0.value</code>. In other words, <code>v0</code> refers to the slider itself and <code>v0.value</code> to the value that is selected with the slider.
+</p>
+
+<p>
+The function <code>expected_q_given_p_uniform</code> computes the expected quality conditional on \(q < p\). With a uniform distribution and \(p \in [a,b]\), this expectation equals \((a+p)/2\). Given <code>expected_q</code>, we can calculate the price that consumers are willing to pay, using the <code>markup</code>. Then we iterate over the prices by adjusting the expectation based on last period&rsquo;s price. The price update is iterated until convergence: the new price is very close to previous period&rsquo;s price and we reach steady state. If you do not understand what <code>1e-6</code> means, use google or an LLM.
 </p>
 </div>
 </div>
-<div id="outline-container-orgbf61db5" class="outline-4">
-<h4 id="orgbf61db5">Cournot Duopoly Model</h4>
-<div class="outline-text-4" id="text-orgbf61db5">
+<div id="outline-container-org527aa74" class="outline-4">
+<h4 id="org527aa74">Cournot Duopoly Model</h4>
+<div class="outline-text-4" id="text-org527aa74">
 <p>
 In the Cournot model, two firms choose quantities \(q_1\) and \(q_2\). The market price is
 </p>
@@ -1952,6 +2045,10 @@ The Nash equilibrium is found by iteratively updating each firm&rsquo;s quantity
 <b>Python code in Marimo:</b>
 </p>
 
+<p>
+We import libraries and define sliders.
+</p>
+
 <div class="org-src-container">
 <pre class="src src-python"><code><span style="color: #531ab6;">import</span> marimo <span style="color: #531ab6;">as</span> mo
 <span style="color: #531ab6;">import</span> numpy <span style="color: #531ab6;">as</span> np
@@ -1963,6 +2060,10 @@ The Nash equilibrium is found by iteratively updating each firm&rsquo;s quantity
 mo.hstack([c,q1_init,n_iter])
 </code></pre>
 </div>
+
+<p>
+In the following code block, the syntax <code>i % 2 == 0</code> is a test whether \(i\) is either an even or odd number.
+</p>
 
 <div class="org-src-container">
 <pre class="src src-python"><code><span style="color: #531ab6;">def</span> <span style="color: #721045;">reaction1</span>(q2, c):
@@ -1993,7 +2094,7 @@ The code above shows how the Cournot best responses are iterated, starting from 
 </p>
 
 <p>
-From <code>scipy.optimize</code> use the <a href="https://docs.scipy.org/doc/scipy/reference/generated/scipy.optimize.root.html">root</a> function to calculate the Cournot equilibrium. You can use an LLM to help you with this.
+From <code>scipy.optimize</code> use either the <a href="https://docs.scipy.org/doc/scipy/reference/generated/scipy.optimize.root.html">root</a> function or <code>fsolve</code> (as above) to calculate the Cournot equilibrium. You can use an LLM to help you with this.
 </p>
 
 <details>
@@ -2006,22 +2107,22 @@ From <code>scipy.optimize</code> use the <a href="https://docs.scipy.org/doc/sci
 <pre class="src src-python"><code><span style="color: #531ab6;">def</span> <span style="color: #721045;">fixed_point</span>(x,c):
     <span style="color: #005e8b;">q1</span>, <span style="color: #005e8b;">q2</span> = x
     <span style="color: #531ab6;">return</span>  [
-        <span style="color: #7f0000;"># </span><span style="color: #7f0000;">q1 minus firm 1's optimal response,
-</span>        <span style="color: #7f0000;"># </span><span style="color: #7f0000;">q2 minus firm 2's optimal response
-</span>    ]
+        <span style="color: #7f0000;"># </span><span style="color: #7f0000;">q1 minus firm 1's optimal response,</span>
+        <span style="color: #7f0000;"># </span><span style="color: #7f0000;">q2 minus firm 2's optimal response</span>
+    ]
 </code></pre>
 </div>
 
 <p>
-The call <code>scipy.optimize.root</code> with the function and a starting point for the algorithm.
+Call <code>scipy.optimize.root</code> with the function and a starting point for the algorithm.
 </p>
 
 </details>
 </div>
 </div>
-<div id="outline-container-orgfa712f3" class="outline-4">
-<h4 id="orgfa712f3">Labour Market Markov Model</h4>
-<div class="outline-text-4" id="text-orgfa712f3">
+<div id="outline-container-org3f49e0f" class="outline-4">
+<h4 id="org3f49e0f">Labour Market Markov Model</h4>
+<div class="outline-text-4" id="text-org3f49e0f">
 <p>
 The labor market model has three states: unemployed (\(u\)), low wage (\(l\)), and high wage (\(h\)). The transitions are:
 </p>
@@ -2047,6 +2148,10 @@ h_{t+1} &= h_t + \lambda l_t - \delta_h h_t
 <b>Python code in Marimo:</b>
 </p>
 
+<p>
+We start by importing libraries and defining some sliders.
+</p>
+
 <div class="org-src-container">
 <pre class="src src-python"><code><span style="color: #531ab6;">import</span> marimo <span style="color: #531ab6;">as</span> mo
 <span style="color: #531ab6;">import</span> numpy <span style="color: #531ab6;">as</span> np
@@ -2061,6 +2166,14 @@ h_{t+1} &= h_t + \lambda l_t - \delta_h h_t
 mo.hstack([mu,lambda_,delta_l,delta_h,u0])
 </code></pre>
 </div>
+
+<p>
+Why do we denote the slider <code>lambda_</code> and not just <code>lambda</code>?
+</p>
+
+<p>
+We create three (empty) lists to keep track of the three fractions: unemployed, low wage and high wage job.
+</p>
 
 <div class="org-src-container">
 <pre class="src src-python"><code><span style="color: #005e8b;">T</span> = 60
@@ -2095,7 +2208,7 @@ plt.ylabel(<span style="color: #3548cf;">"fraction employed/unemployed"</span>)
 </div>
 
 <p>
-This code simulates the labor market Markov process using Marimo sliders for all parameters. 
+This code simulates the labor market Markov process using <code>marimo</code> sliders for all parameters. 
 </p>
 
 
@@ -2158,9 +2271,9 @@ plt.ylabel(<span style="color: #3548cf;">"fraction employed/unemployed"</span>)
 </div>
 </div>
 </div>
-<div id="outline-container-org7bf8528" class="outline-3">
-<h3 id="org7bf8528">Summary</h3>
-<div class="outline-text-3" id="text-org7bf8528">
+<div id="outline-container-orgb861157" class="outline-3">
+<h3 id="orgb861157">Summary</h3>
+<div class="outline-text-3" id="text-orgb861157">
 <p>
 In this lecture we studied how iterative processes can be used to model economic dynamics. We implemented simulations where variables adjust repeatedly until they converge to equilibrium outcomes.
 </p>
@@ -2177,19 +2290,28 @@ These examples illustrate how Python is a powerful tool for exploring dynamic ec
 <strong>Key economic takeaway</strong><br>
 Many economic equilibria can be understood as the result of iterative adjustment processes. Simulating these dynamics helps reveal whether markets converge to stable outcomes or exhibit instability such as market unraveling.
 </div>
+
+<div style="border-left:4px solid #2c7a7b;padding:10px;margin:15px 0;background:#eef6f6;">
+<strong>Key Python takeaway</strong><br>
+Iterative algorithms and matrix operations allow Python to simulate how economic variables adjust over time. Tools from <code>numpy</code> make it straightforward to implement these dynamics efficiently.
+</div>
+
+<p>
+<b>Looking ahead:</b> In the next lecture we apply these computational tools to structural economic models and explore how calibration can connect economic theory with quantitative predictions.
+</p>
 </div>
 </div>
-<div id="outline-container-orgde16f61" class="outline-3">
-<h3 id="orgde16f61">Review Questions</h3>
-<div class="outline-text-3" id="text-orgde16f61">
+<div id="outline-container-orgf396b00" class="outline-3">
+<h3 id="orgf396b00">Review Questions</h3>
+<div class="outline-text-3" id="text-orgf396b00">
 </div>
-<div id="outline-container-org50a75a8" class="outline-4">
-<h4 id="org50a75a8">Question 1</h4>
-<div class="outline-text-4" id="text-org50a75a8">
+<div id="outline-container-orgf8d1192" class="outline-4">
+<h4 id="orgf8d1192">Question 1</h4>
+<div class="outline-text-4" id="text-orgf8d1192">
 </div>
 <ul class="org-ul">
-<li><a id="org5fdc5e3"></a>Adverse Selection: Does Increasing Mark-Up Always Restore Trade?<br />
-<div class="outline-text-5" id="text-org5fdc5e3">
+<li><a id="org082e3b1"></a>Adverse Selection: Does Increasing Mark-Up Always Restore Trade?<br />
+<div class="outline-text-5" id="text-org082e3b1">
 <p>
 Consider the adverse selection model with \(v_0=30\) and \(v_1=90\). Write Marimo code to:
 </p>
@@ -2219,8 +2341,8 @@ Consider the adverse selection model with \(v_0=30\) and \(v_1=90\). Write Marim
         <span style="color: #531ab6;">return</span> (a + p) / 2
 
 <span style="color: #531ab6;">for</span> m <span style="color: #531ab6;">in</span> markups:
-    <span style="color: #005e8b;">p</span> = m*v1  <span style="color: #7f0000;"># </span><span style="color: #7f0000;">start at high price
-</span>    <span style="color: #531ab6;">for</span> _ <span style="color: #531ab6;">in</span> <span style="color: #8f0075;">range</span>(30):
+    <span style="color: #005e8b;">p</span> = m*v1  <span style="color: #7f0000;"># </span><span style="color: #7f0000;">start at high price</span>
+    <span style="color: #531ab6;">for</span> _ <span style="color: #531ab6;">in</span> <span style="color: #8f0075;">range</span>(30):
         <span style="color: #005e8b;">expected_q</span> = expected_q_given_p_uniform(p, v0, v1)
         <span style="color: #531ab6;">if</span> expected_q <span style="color: #531ab6;">is</span> <span style="color: #0000b0;">None</span>:
             <span style="color: #531ab6;">break</span>
@@ -2248,13 +2370,13 @@ plt.legend()
 </li>
 </ul>
 </div>
-<div id="outline-container-orge2dd48f" class="outline-4">
-<h4 id="orge2dd48f">Question 2</h4>
-<div class="outline-text-4" id="text-orge2dd48f">
+<div id="outline-container-org95136e3" class="outline-4">
+<h4 id="org95136e3">Question 2</h4>
+<div class="outline-text-4" id="text-org95136e3">
 </div>
 <ul class="org-ul">
-<li><a id="orgee73f54"></a>Cournot Duopoly: Add a Third Firm<br />
-<div class="outline-text-5" id="text-orgee73f54">
+<li><a id="org044e96f"></a>Cournot Duopoly: Add a Third Firm<br />
+<div class="outline-text-5" id="text-org044e96f">
 <p>
 Modify the Cournot duopoly Python code so there are three firms, each with marginal cost \(c\), facing demand of the form \(p = 1 - q_1 - q_2 - q_3\).  
 </p>
@@ -2268,8 +2390,8 @@ Modify the Cournot duopoly Python code so there are three firms, each with margi
 <summary><strong>Hint / Solution</strong></summary>
 
 <div class="org-src-container">
-<pre class="src src-python"><code><span style="color: #7f0000;"># </span><span style="color: #7f0000;">Reaction for each: maximize (1 - sum(qs) - c)*q_i
-</span><span style="color: #531ab6;">def</span> <span style="color: #721045;">r1</span>(q2, q3, c): <span style="color: #531ab6;">return</span> (1 - q2 - q3 - c)/2
+<pre class="src src-python"><code><span style="color: #7f0000;"># </span><span style="color: #7f0000;">Reaction for each: maximize (1 - sum(qs) - c)*q_i</span>
+<span style="color: #531ab6;">def</span> <span style="color: #721045;">r1</span>(q2, q3, c): <span style="color: #531ab6;">return</span> (1 - q2 - q3 - c)/2
 <span style="color: #531ab6;">def</span> <span style="color: #721045;">r2</span>(q1, q3, c): <span style="color: #531ab6;">return</span> (1 - q1 - q3 - c)/2
 <span style="color: #531ab6;">def</span> <span style="color: #721045;">r3</span>(q1, q2, c): <span style="color: #531ab6;">return</span> (1 - q1 - q2 - c)/2
 <span style="color: #005e8b;">c</span> = 0.2
@@ -2299,13 +2421,13 @@ plt.xlabel(<span style="color: #3548cf;">"Step"</span>)
 </li>
 </ul>
 </div>
-<div id="outline-container-orga2dd36a" class="outline-4">
-<h4 id="orga2dd36a">Question 3</h4>
-<div class="outline-text-4" id="text-orga2dd36a">
+<div id="outline-container-orge93a860" class="outline-4">
+<h4 id="orge93a860">Question 3</h4>
+<div class="outline-text-4" id="text-orge93a860">
 </div>
 <ul class="org-ul">
-<li><a id="org2d86ccd"></a>Labor Market: Steady State Without Iteration<br />
-<div class="outline-text-5" id="text-org2d86ccd">
+<li><a id="org692efcd"></a>Labor Market: Steady State Without Iteration<br />
+<div class="outline-text-5" id="text-org692efcd">
 <p>
 Derive and plot the steady-state unemployment \(u^*\) as a function of the job-finding rate \(\mu\) (other parameters fixed at \(\lambda=0.1\), \(\delta_l=0.05\), \(\delta_h=0.03\)).  
 </p>
@@ -2358,13 +2480,13 @@ plt.ylabel(<span style="color: #3548cf;">'Steady state $u^*$'</span>)
 </li>
 </ul>
 </div>
-<div id="outline-container-org5d16b12" class="outline-4">
-<h4 id="org5d16b12">Question 4</h4>
-<div class="outline-text-4" id="text-org5d16b12">
+<div id="outline-container-orgf306e56" class="outline-4">
+<h4 id="orgf306e56">Question 4</h4>
+<div class="outline-text-4" id="text-orgf306e56">
 </div>
 <ul class="org-ul">
-<li><a id="org3bf20c0"></a>Matrix Notation: Simulation With Numpy Only<br />
-<div class="outline-text-5" id="text-org3bf20c0">
+<li><a id="org7e91f90"></a>Matrix Notation: Simulation With Numpy Only<br />
+<div class="outline-text-5" id="text-org7e91f90">
 <p>
 In the labor market model, implement the time path simulation <b>using only Numpy arrays and matrix multiplication</b> (not manually updating variables).  
 </p>
@@ -2387,8 +2509,8 @@ In the labor market model, implement the time path simulation <b>using only Nump
 <span style="color: #005e8b;">history</span> = [S.flatten()]
 <span style="color: #531ab6;">for</span> _ <span style="color: #531ab6;">in</span> <span style="color: #8f0075;">range</span>(60):
     <span style="color: #005e8b;">S</span> = np.dot(A, S)
-    <span style="color: #005e8b;">S</span> = S / np.<span style="color: #8f0075;">sum</span>(S)   <span style="color: #7f0000;"># </span><span style="color: #7f0000;">(optional: renormalize so they sum to 1)
-</span>    history.append(S.flatten())
+    <span style="color: #005e8b;">S</span> = S / np.<span style="color: #8f0075;">sum</span>(S)   <span style="color: #7f0000;"># </span><span style="color: #7f0000;">(optional: renormalize so they sum to 1)</span>
+    history.append(S.flatten())
 <span style="color: #005e8b;">history</span> = np.array(history)
 plt.plot(history[:,0], label=<span style="color: #3548cf;">"Unemployed"</span>)
 plt.plot(history[:,1], label=<span style="color: #3548cf;">"Low wage"</span>)
@@ -2407,13 +2529,13 @@ plt.show()
 </li>
 </ul>
 </div>
-<div id="outline-container-org9041e49" class="outline-4">
-<h4 id="org9041e49">Question 5</h4>
-<div class="outline-text-4" id="text-org9041e49">
+<div id="outline-container-orgd399410" class="outline-4">
+<h4 id="orgd399410">Question 5</h4>
+<div class="outline-text-4" id="text-orgd399410">
 </div>
 <ul class="org-ul">
-<li><a id="orgb707718"></a>Extending the Labor Model: Add a Direct High Wage Offer Channel<br />
-<div class="outline-text-5" id="text-orgb707718">
+<li><a id="orga6f165d"></a>Extending the Labor Model: Add a Direct High Wage Offer Channel<br />
+<div class="outline-text-5" id="text-orga6f165d">
 <p>
 Suppose a fraction \(\alpha\) of unemployed directly get a high wage job each period. The equations become:
 </p>
@@ -2494,9 +2616,9 @@ As \(\alpha\) increases, the fraction in high wage employment rises and steady-s
 <b>Skills you learn in this lecture:</b> calibrating structural economic models, combining theory and data, simulating labor‑market policy scenarios.
 </p>
 </div>
-<div id="outline-container-org095b9e2" class="outline-3">
-<h3 id="org095b9e2">Learning objectives</h3>
-<div class="outline-text-3" id="text-org095b9e2">
+<div id="outline-container-org92d2624" class="outline-3">
+<h3 id="org92d2624">Learning objectives</h3>
+<div class="outline-text-3" id="text-org92d2624">
 <p>
 After completing this lecture you should be able to:
 </p>
@@ -2508,9 +2630,9 @@ After completing this lecture you should be able to:
 </ul>
 </div>
 </div>
-<div id="outline-container-org822314a" class="outline-3">
-<h3 id="org822314a">Introduction</h3>
-<div class="outline-text-3" id="text-org822314a">
+<div id="outline-container-orgcbc50fe" class="outline-3">
+<h3 id="orgcbc50fe">Introduction</h3>
+<div class="outline-text-3" id="text-orgcbc50fe">
 <p>
 Search and matching models are widely used in labor economics to study unemployment, vacancies, and wage determination. Instead of focusing only on the total number of workers and jobs, these models emphasize <b>flows</b> in the labor market: workers search for jobs and firms post vacancies, and matches occur when these two sides meet.
 </p>
@@ -2520,9 +2642,9 @@ In this lecture we build a simplified search and matching model using Dutch labo
 </p>
 </div>
 </div>
-<div id="outline-container-orgb5f660f" class="outline-3">
-<h3 id="orgb5f660f">Apps</h3>
-<div class="outline-text-3" id="text-orgb5f660f">
+<div id="outline-container-org531562e" class="outline-3">
+<h3 id="org531562e">App</h3>
+<div class="outline-text-3" id="text-org531562e">
 <p>
 Suppose after graduating you are hired by the Dutch Ministry of Social Affairs. In parliament there have been recurring discussions about immigration. The minister asks you to give her an idea of the potential effects of immigration on unemployment and wages in the Netherlands. Suppose immigration increases by 50%, or even doubles. What would happen to unemployment and wages?
 </p>
@@ -2532,7 +2654,7 @@ To answer this question we need two ingredients: data and an economic model. Bef
 </p>
 
 <p>
-The goal is not to obtain a precise prediction. Rather, we want to give the minister a sense of the <b>order of magnitude</b> of the effects. To build intuition, we construct an interactive model where immigration can increase by anywhere between 0% and 100%.
+As said, the goal is not to obtain a precise prediction. Rather, we want to give the minister a sense of the <b>order of magnitude</b> of the effects. To build intuition, we construct an interactive model where immigration can increase by anywhere between 0% and 100%.
 </p>
 
 <p>
@@ -2561,9 +2683,9 @@ The key elements of the framework are:
 <li>Firms respond to a larger labor supply by posting more vacancies.</li>
 </ul>
 </div>
-<div id="outline-container-orgae780b2" class="outline-4">
-<h4 id="orgae780b2">Model structure</h4>
-<div class="outline-text-4" id="text-orgae780b2">
+<div id="outline-container-orgf079862" class="outline-4">
+<h4 id="orgf079862">Model structure</h4>
+<div class="outline-text-4" id="text-orgf079862">
 <p>
 Notation:
 </p>
@@ -2603,15 +2725,15 @@ This expression shows that job finding increases when the labor market becomes t
 </p>
 </div>
 </div>
-<div id="outline-container-orge4a6c17" class="outline-4">
-<h4 id="orge4a6c17">Wage determination</h4>
-<div class="outline-text-4" id="text-orge4a6c17">
+<div id="outline-container-orgcb11c1c" class="outline-4">
+<h4 id="orgcb11c1c">Wage determination</h4>
+<div class="outline-text-4" id="text-orgcb11c1c">
 <p>
-Wages are determined through Nash bargaining between the worker and the firm. The wage splits the surplus of the match.
+Wages are determined through Nash bargaining between worker and firm. The wage splits the surplus of the match.
 </p>
 
 <p>
-In our simplified framework, the outside option of the worker depends on how easily a job can be found. When the labor market is tight and jobs are easy to find, the value of remaining unemployed is higher.
+In our simplified framework, the outside option of the worker depends on how easily a job can be found. When the labor market is tight and jobs are easy to find, the value of being unemployed is higher; because finding a job in the next period is (more) likely. To simplify our model, we will not model the dynamics explicitly here.
 </p>
 
 <p>
@@ -2644,7 +2766,7 @@ where
 
 <ul class="org-ul">
 <li>\(w\): wage</li>
-<li>\(a\): worker productivity</li>
+<li>\(a\): worker production/productivity</li>
 <li>\(\beta\): worker bargaining power</li>
 </ul>
 
@@ -2667,9 +2789,9 @@ The remaining parameters \(m\), \(a\), and \(b\) will be estimated using Dutch d
 </p>
 </div>
 </div>
-<div id="outline-container-org43e2653" class="outline-4">
-<h4 id="org43e2653">Data</h4>
-<div class="outline-text-4" id="text-org43e2653">
+<div id="outline-container-org20fbd0e" class="outline-4">
+<h4 id="org20fbd0e">Data</h4>
+<div class="outline-text-4" id="text-org20fbd0e">
 <p>
 To estimate the model for the Netherlands we use data from CBS:
 </p>
@@ -2684,7 +2806,7 @@ To estimate the model for the Netherlands we use data from CBS:
 The relevant variables are:
 </p>
 <ul class="org-ul">
-<li>\(U\): &ldquo;Unemployed labour force / seasonally adjusted (x 1,000)&rdquo;</li>
+<li>\(U\): &ldquo;Unemployed labour force seasonally adjusted (x 1,000)&rdquo;</li>
 <li>\(V\): &ldquo;Vacancies seasonally adjusted, unfilled (x 1,000)&rdquo;</li>
 <li>\(M\): &ldquo;Vacancies seasonally adjusted, filled (x 1,000)&rdquo;</li>
 </ul>
@@ -2702,9 +2824,9 @@ We estimate the parameters \(m\), \(a\), and \(b\) by minimizing the sum of squa
 </p>
 </div>
 </div>
-<div id="outline-container-orgd70c213" class="outline-4">
-<h4 id="orgd70c213">Immigration shock</h4>
-<div class="outline-text-4" id="text-orgd70c213">
+<div id="outline-container-org6537b49" class="outline-4">
+<h4 id="org6537b49">Immigration shock</h4>
+<div class="outline-text-4" id="text-org6537b49">
 <p>
 Our research question is: what happens when immigration increases?
 </p>
@@ -2737,9 +2859,9 @@ We interpret these migrants as entering the labor market as job seekers. In othe
 </p>
 </div>
 </div>
-<div id="outline-container-org398eb88" class="outline-4">
-<h4 id="org398eb88">Short-run effect</h4>
-<div class="outline-text-4" id="text-org398eb88">
+<div id="outline-container-org51d9d92" class="outline-4">
+<h4 id="org51d9d92">Short-run effect</h4>
+<div class="outline-text-4" id="text-org51d9d92">
 <p>
 In the short run we assume that the number of vacancies is fixed. Firms cannot immediately adjust their vacancy postings.
 </p>
@@ -2763,9 +2885,9 @@ Lower tightness reduces the job-finding probability and lowers the worker&rsquo;
 </p>
 </div>
 </div>
-<div id="outline-container-org31f5240" class="outline-4">
-<h4 id="org31f5240">Long-run adjustment</h4>
-<div class="outline-text-4" id="text-org31f5240">
+<div id="outline-container-orgd37752e" class="outline-4">
+<h4 id="orgd37752e">Long-run adjustment</h4>
+<div class="outline-text-4" id="text-orgd37752e">
 <p>
 In the longer run firms can respond by creating additional vacancies. Firms post vacancies until the expected profit from a vacancy equals the cost of posting it.
 </p>
@@ -2807,9 +2929,9 @@ After an immigration shock, firms gradually create additional vacancies until th
 </p>
 </div>
 </div>
-<div id="outline-container-orga69c458" class="outline-4">
-<h4 id="orga69c458">Effect of immigration</h4>
-<div class="outline-text-4" id="text-orga69c458">
+<div id="outline-container-org96ce752" class="outline-4">
+<h4 id="org96ce752">Effect of immigration</h4>
+<div class="outline-text-4" id="text-org96ce752">
 <p>
 The Streamlit app below allows you to explore these mechanisms. You can simulate increases in immigration between 0% and 100% and observe how unemployment, vacancies, labor market tightness, and wages respond in both the short run and the long run.
 </p>
@@ -2830,13 +2952,13 @@ The Streamlit app below allows you to explore these mechanisms. You can simulate
 </div>
 </div>
 </div>
-<div id="outline-container-org8f537e7" class="outline-3">
-<h3 id="org8f537e7">Python Code Explanation</h3>
-<div class="outline-text-3" id="text-org8f537e7">
+<div id="outline-container-orgee10bb9" class="outline-3">
+<h3 id="orgee10bb9">Python Code Explanation</h3>
+<div class="outline-text-3" id="text-orgee10bb9">
 </div>
-<div id="outline-container-orgd8ed3a1" class="outline-4">
-<h4 id="orgd8ed3a1">1. Import libraries</h4>
-<div class="outline-text-4" id="text-orgd8ed3a1">
+<div id="outline-container-org9e6b422" class="outline-4">
+<h4 id="org9e6b422">1. Import libraries</h4>
+<div class="outline-text-4" id="text-org9e6b422">
 <p>
 We first import the Python packages used for data handling, estimation, and plotting.
 </p>
@@ -2855,9 +2977,9 @@ We first import the Python packages used for data handling, estimation, and plot
 </p>
 </div>
 </div>
-<div id="outline-container-org1a215b3" class="outline-4">
-<h4 id="org1a215b3">2. Load the data</h4>
-<div class="outline-text-4" id="text-org1a215b3">
+<div id="outline-container-orgfea3763" class="outline-4">
+<h4 id="orgfea3763">2. Load the data</h4>
+<div class="outline-text-4" id="text-orgfea3763">
 <p>
 We load the CBS dataset containing unemployment, vacancies, matches, and a wage index.
 </p>
@@ -2884,9 +3006,9 @@ Important columns in the dataset:
 </p>
 </div>
 </div>
-<div id="outline-container-org1b6b3ba" class="outline-4">
-<h4 id="org1b6b3ba">3. Model parameters from the literature</h4>
-<div class="outline-text-4" id="text-org1b6b3ba">
+<div id="outline-container-org785a5c8" class="outline-4">
+<h4 id="org785a5c8">3. Model parameters from the literature</h4>
+<div class="outline-text-4" id="text-org785a5c8">
 <p>
 The search-and-matching literature suggests that we can calibrate \(\alpha\) and \(\beta\) at 0.5 (<a href="#citeproc_bib_item_1">Mortensen and Nagypál 2007</a>; <a href="#citeproc_bib_item_2">Petrongolo and Pissarides 2001</a>).
 </p>
@@ -2911,9 +3033,9 @@ These values imply:
 </p>
 </div>
 </div>
-<div id="outline-container-orgd3bd141" class="outline-4">
-<h4 id="orgd3bd141">4. Matching function and wage equation</h4>
-<div class="outline-text-4" id="text-orgd3bd141">
+<div id="outline-container-org7a28571" class="outline-4">
+<h4 id="org7a28571">4. Matching function and wage equation</h4>
+<div class="outline-text-4" id="text-org7a28571">
 <p>
 We now write a function that predicts <b>matches and wages</b> for a given observation.
 </p>
@@ -2924,14 +3046,14 @@ We now write a function that predicts <b>matches and wages</b> for a given obser
     <span style="color: #005e8b;">U</span> = row[<span style="color: #3548cf;">'Unemployed labour force/Seasonally adjusted (x 1,000)'</span>] + counterfactual_immigration
     <span style="color: #005e8b;">V</span> = row[<span style="color: #3548cf;">'Vacancies seasonally adjusted, unfilled (x 1000)'</span>]
 
-    <span style="color: #7f0000;"># </span><span style="color: #7f0000;">Matching function
-</span>    <span style="color: #005e8b;">M_pred</span> = m * (U**alpha) * (V**(1-alpha))
+    <span style="color: #7f0000;"># </span><span style="color: #7f0000;">Matching function</span>
+    <span style="color: #005e8b;">M_pred</span> = m * (U**alpha) * (V**(1-alpha))
 
-    <span style="color: #7f0000;"># </span><span style="color: #7f0000;">Labor market tightness
-</span>    <span style="color: #005e8b;">theta</span> = V / U
+    <span style="color: #7f0000;"># </span><span style="color: #7f0000;">Labor market tightness</span>
+    <span style="color: #005e8b;">theta</span> = V / U
 
-    <span style="color: #7f0000;"># </span><span style="color: #7f0000;">Wage equation (Nash bargaining)
-</span>    <span style="color: #005e8b;">wage_pred</span> = beta * a + (1 - beta) * b * (theta ** (1 - alpha))
+    <span style="color: #7f0000;"># </span><span style="color: #7f0000;">Wage equation (Nash bargaining)</span>
+    <span style="color: #005e8b;">wage_pred</span> = beta * a + (1 - beta) * b * (theta ** (1 - alpha))
 
     <span style="color: #531ab6;">return</span> M_pred, wage_pred
 </code></pre>
@@ -2950,9 +3072,9 @@ This function implements two key model equations:
 </p>
 </div>
 </div>
-<div id="outline-container-org61a35ec" class="outline-4">
-<h4 id="org61a35ec">5. Estimating model parameters</h4>
-<div class="outline-text-4" id="text-org61a35ec">
+<div id="outline-container-org08b6fe7" class="outline-4">
+<h4 id="org08b6fe7">5. Estimating model parameters</h4>
+<div class="outline-text-4" id="text-org08b6fe7">
 <p>
 We estimate the unknown parameters:
 </p>
@@ -2995,9 +3117,9 @@ This function computes how far the model predictions are from the data.
 </p>
 </div>
 </div>
-<div id="outline-container-org66389cc" class="outline-4">
-<h4 id="org66389cc">6. Run the estimation</h4>
-<div class="outline-text-4" id="text-org66389cc">
+<div id="outline-container-orgcdd2f3e" class="outline-4">
+<h4 id="orgcdd2f3e">6. Run the estimation</h4>
+<div class="outline-text-4" id="text-orgcdd2f3e">
 <p>
 We now use a numerical optimizer to estimate the parameters.
 </p>
@@ -3022,9 +3144,9 @@ The optimizer searches for parameter values that make the model fit the observed
 </p>
 </div>
 </div>
-<div id="outline-container-orgb684537" class="outline-4">
-<h4 id="orgb684537">7. Compare model predictions to data</h4>
-<div class="outline-text-4" id="text-orgb684537">
+<div id="outline-container-org0219b0e" class="outline-4">
+<h4 id="org0219b0e">7. Compare model predictions to data</h4>
+<div class="outline-text-4" id="text-org0219b0e">
 <p>
 Using the estimated parameters, we compute predicted matches and wages.
 </p>
@@ -3075,12 +3197,11 @@ The purpose of this step is simply to check whether the model roughly reproduces
 </p>
 </div>
 </div>
-<div id="outline-container-org6734e24" class="outline-4">
-<h4 id="org6734e24">8. Interactive immigration shock (marimo slider)</h4>
-<div class="outline-text-4" id="text-org6734e24">
+<div id="outline-container-org48b67e7" class="outline-4">
+<h4 id="org48b67e7">8. Interactive immigration shock</h4>
+<div class="outline-text-4" id="text-org48b67e7">
 <p>
-In the app, immigration is controlled with a slider.  
-In <code>marimo</code> we create the same interaction using a widget.
+In <code>marimo</code> we create the slider with <code>mo.ui.slider</code> as before.
 </p>
 
 <div class="org-src-container">
@@ -3103,9 +3224,9 @@ The slider allows the user to simulate immigration increases between <b>0% and 1
 </p>
 </div>
 </div>
-<div id="outline-container-orgfa9cd36" class="outline-4">
-<h4 id="orgfa9cd36">9. Compute short‑run effects</h4>
-<div class="outline-text-4" id="text-orgfa9cd36">
+<div id="outline-container-org0c49037" class="outline-4">
+<h4 id="org0c49037">9. Compute short‑run effects</h4>
+<div class="outline-text-4" id="text-org0c49037">
 <p>
 We use the latest observation as the baseline and simulate additional immigrants entering unemployment.
 </p>
@@ -3148,9 +3269,9 @@ This reduces labor market tightness \(θ = V/U\) and lowers wages.
 </p>
 </div>
 </div>
-<div id="outline-container-orgb8c27c5" class="outline-4">
-<h4 id="orgb8c27c5">10. Plot the wage curve</h4>
-<div class="outline-text-4" id="text-orgb8c27c5">
+<div id="outline-container-org406864a" class="outline-4">
+<h4 id="org406864a">10. Plot the wage curve</h4>
+<div class="outline-text-4" id="text-org406864a">
 <p>
 Finally we visualize how immigration moves the economy along the wage curve.
 </p>
@@ -3187,9 +3308,9 @@ Interpretation:
 </div>
 </div>
 </div>
-<div id="outline-container-org98e2365" class="outline-3">
-<h3 id="org98e2365">Summary</h3>
-<div class="outline-text-3" id="text-org98e2365">
+<div id="outline-container-org4e12a78" class="outline-3">
+<h3 id="org4e12a78">Summary</h3>
+<div class="outline-text-3" id="text-org4e12a78">
 <p>
 In this lecture we developed a simple <b><b>search and matching model</b></b> to study how workers and firms interact in the labor market. The model focuses on flows in the labor market: unemployed workers search for jobs while firms post vacancies, and matches occur through a matching function.
 </p>
@@ -3206,15 +3327,24 @@ This illustrates how economists combine <b><b>economic theory, data, and numeric
 <strong>Key economic takeaway</strong><br>
 Search and matching models emphasize that unemployment and wages are determined by the interaction between workers and firms. Shocks such as immigration affect labor market outcomes by changing labor market tightness, which influences job‑finding probabilities and wages.
 </div>
+
+<div style="border-left:4px solid #2c7a7b;padding:10px;margin:15px 0;background:#eef6f6;">
+<strong>Key Python takeaway</strong><br>
+Python can be used to calibrate structural economic models by combining theory with data. Numerical simulation then allows economists to explore how policy shocks affect model outcomes.
+</div>
+
+<p>
+<b>Looking ahead:</b> In the next lecture we move from discrete‑time simulations to continuous‑time models and learn how differential equations can describe economic dynamics.
+</p>
 </div>
 </div>
-<div id="outline-container-orgad37c01" class="outline-3">
-<h3 id="orgad37c01">Review Questions</h3>
-<div class="outline-text-3" id="text-orgad37c01">
+<div id="outline-container-org8824e0c" class="outline-3">
+<h3 id="org8824e0c">Review Questions</h3>
+<div class="outline-text-3" id="text-org8824e0c">
 </div>
-<div id="outline-container-org7c5d125" class="outline-4">
-<h4 id="org7c5d125">Question 1. Simulating the matching function</h4>
-<div class="outline-text-4" id="text-org7c5d125">
+<div id="outline-container-org8218732" class="outline-4">
+<h4 id="org8218732">Question 1. Simulating the matching function</h4>
+<div class="outline-text-4" id="text-org8218732">
 <p>
 Write a Python function that computes the number of matches \(M\) using the matching function
 </p>
@@ -3255,9 +3385,9 @@ plt.show()
 </details>
 </div>
 </div>
-<div id="outline-container-org8a17cda" class="outline-4">
-<h4 id="org8a17cda">Question 2. Job-finding probability</h4>
-<div class="outline-text-4" id="text-org8a17cda">
+<div id="outline-container-org4a7c7ad" class="outline-4">
+<h4 id="org4a7c7ad">Question 2. Job-finding probability</h4>
+<div class="outline-text-4" id="text-org4a7c7ad">
 <p>
 The probability that an unemployed worker finds a job is
 </p>
@@ -3299,9 +3429,9 @@ plt.show()
 </details>
 </div>
 </div>
-<div id="outline-container-org74bc8f0" class="outline-4">
-<h4 id="org74bc8f0">Question 3. Wage curve</h4>
-<div class="outline-text-4" id="text-org74bc8f0">
+<div id="outline-container-orga3b82a9" class="outline-4">
+<h4 id="orga3b82a9">Question 3. Wage curve</h4>
+<div class="outline-text-4" id="text-orga3b82a9">
 <p>
 The wage equation in the lecture is
 </p>
@@ -3346,9 +3476,9 @@ plt.show()
 </details>
 </div>
 </div>
-<div id="outline-container-orgc92c76a" class="outline-4">
-<h4 id="orgc92c76a">Question 4. Immigration shock in the short run</h4>
-<div class="outline-text-4" id="text-orgc92c76a">
+<div id="outline-container-orgb161734" class="outline-4">
+<h4 id="orgb161734">Question 4. Immigration shock in the short run</h4>
+<div class="outline-text-4" id="text-orgb161734">
 <p>
 Suppose the labor market initially has
 </p>
@@ -3449,9 +3579,9 @@ Good prompting practice:
 </details>
 </div>
 </div>
-<div id="outline-container-org3e9005d" class="outline-4">
-<h4 id="org3e9005d">Question 5. Estimating the matching function</h4>
-<div class="outline-text-4" id="text-org3e9005d">
+<div id="outline-container-org3c6385f" class="outline-4">
+<h4 id="org3c6385f">Question 5. Estimating the matching function</h4>
+<div class="outline-text-4" id="text-org3c6385f">
 <p>
 Using the matching function
 </p>
@@ -3512,9 +3642,9 @@ Now define a matching function as a function of \(m,\alpha\), derive the residua
 <b>Skills you learn in this lecture:</b> continuous‑time economic modeling, solving differential equations numerically, analyzing transition paths in dynamic models.
 </p>
 </div>
-<div id="outline-container-org09c9ba2" class="outline-3">
-<h3 id="org09c9ba2">Learning objectives</h3>
-<div class="outline-text-3" id="text-org09c9ba2">
+<div id="outline-container-org1b0ff97" class="outline-3">
+<h3 id="org1b0ff97">Learning objectives</h3>
+<div class="outline-text-3" id="text-org1b0ff97">
 <p>
 After completing this lecture you should be able to:
 </p>
@@ -3527,21 +3657,9 @@ After completing this lecture you should be able to:
 </ul>
 </div>
 </div>
-<div id="outline-container-orgaa03dc9" class="outline-3">
-<h3 id="orgaa03dc9">Introduction</h3>
-<div class="outline-text-3" id="text-orgaa03dc9">
-<p>
-Many economic problems involve decisions and adjustments that unfold over time. Investment today affects future production, firms learn from past experience, and strategic decisions often depend on expectations about future outcomes. To analyze such situations economists use dynamic models.
-</p>
-
-<p>
-Dynamic models are frequently expressed using differential equations that describe how economic variables evolve as a function of their current values. Although these models can sometimes be solved analytically, numerical methods are often needed to compute their behavior and visualize their implications.
-</p>
-</div>
-</div>
-<div id="outline-container-orgf0ba98f" class="outline-3">
-<h3 id="orgf0ba98f">Solving Dynamic Economic Models</h3>
-<div class="outline-text-3" id="text-orgf0ba98f">
+<div id="outline-container-org01bc356" class="outline-3">
+<h3 id="org01bc356">Introduction</h3>
+<div class="outline-text-3" id="text-org01bc356">
 <p>
 Much of economics is about understanding how things change over time. Capital accumulates gradually, firms learn from experience, and contracts must account for incentives that evolve across different types of consumers. These processes are inherently dynamic: what happens today influences what happens tomorrow.
 </p>
@@ -3555,13 +3673,13 @@ The following three apps introduce three economic environments in which dynamics
 </p>
 </div>
 </div>
-<div id="outline-container-orgc625ec7" class="outline-3">
-<h3 id="orgc625ec7">Apps</h3>
-<div class="outline-text-3" id="text-orgc625ec7">
+<div id="outline-container-org8f106c4" class="outline-3">
+<h3 id="org8f106c4">Apps</h3>
+<div class="outline-text-3" id="text-org8f106c4">
 </div>
-<div id="outline-container-org7bec649" class="outline-4">
-<h4 id="org7bec649">Solow model</h4>
-<div class="outline-text-4" id="text-org7bec649">
+<div id="outline-container-orge726314" class="outline-4">
+<h4 id="orge726314">Solow model</h4>
+<div class="outline-text-4" id="text-orge726314">
 <p>
 One of the most fundamental questions in macroeconomics is why some countries are richer than others and how economies grow over time. A key mechanism behind long‑run growth is capital accumulation: societies invest part of their income in machines, infrastructure, and technology that increase future production.
 </p>
@@ -3583,7 +3701,7 @@ This dynamic adjustment leads to a steady state: a level of capital per worker a
 </p>
 
 <p>
-An important question is how the steady state depends on economic parameters. For example, how would the long‑run level of capital change if households saved a larger fraction of their income? What happens if population growth increases? How does the productivity of capital affect the outcome?
+An important question is how the steady state depends on economic parameters. For example, how would the long‑run level of capital change if households saved a larger fraction of their income? What happens if population growth increases? How does the productivity of capital affect the outcome? An interactive app where these parameters can be easily adjusted with sliders helps to answer these questions.
 </p>
 
 <p>
@@ -3605,9 +3723,9 @@ Thinking through these questions helps build intuition for the forces that deter
 </div>
 </div>
 </div>
-<div id="outline-container-orgea3ed9c" class="outline-4">
-<h4 id="orgea3ed9c">Mechanism design</h4>
-<div class="outline-text-4" id="text-orgea3ed9c">
+<div id="outline-container-org7526d72" class="outline-4">
+<h4 id="org7526d72">Mechanism design</h4>
+<div class="outline-text-4" id="text-org7526d72">
 <p>
 Many markets involve asymmetric information. Firms often do not know exactly how much each consumer values their product. Some customers are willing to pay a lot, while others are much more price sensitive.
 </p>
@@ -3715,9 +3833,9 @@ because \(\frac{\partial f}{\partial y'} = 0\).
 </div>
 </div>
 </div>
-<div id="outline-container-org822cace" class="outline-4">
-<h4 id="org822cace">Learning by doing</h4>
-<div class="outline-text-4" id="text-org822cace">
+<div id="outline-container-org2b188a5" class="outline-4">
+<h4 id="org2b188a5">Learning by doing</h4>
+<div class="outline-text-4" id="text-org2b188a5">
 <p>
 Firms often become more efficient as they gain experience with a production process. This phenomenon, known as learning by doing, has been documented in many industries such as semiconductor manufacturing, aircraft production, and renewable energy technologies.
 </p>
@@ -3735,7 +3853,7 @@ This introduces an investment motive in production decisions. Output today not o
 </p>
 
 <p>
-Several interesting questions arise in this environment. Should firms produce more or less early in the life of a product? How does the importance of the future &ndash;captured by the discount rate&ndash; affect production choices? And how does the value of accumulated experience change over time?
+Several interesting questions arise in this environment. Should firms produce more output early or late in the life of a product (early because they want to invest in learning or late as their costs fall with accumulated production)? How does the importance of the future &ndash;captured by the discount rate&ndash; affect production choices? And how does the value of accumulated experience change over time?
 </p>
 
 <p>
@@ -3758,13 +3876,13 @@ Analyzing these questions helps illustrate how dynamic optimization differs from
 </div>
 </div>
 </div>
-<div id="outline-container-org0ae78ee" class="outline-3">
-<h3 id="org0ae78ee">Python Code Explanation</h3>
-<div class="outline-text-3" id="text-org0ae78ee">
+<div id="outline-container-orgf0c5384" class="outline-3">
+<h3 id="orgf0c5384">Python Code Explanation</h3>
+<div class="outline-text-3" id="text-orgf0c5384">
 </div>
-<div id="outline-container-org3bfd598" class="outline-4">
-<h4 id="org3bfd598">Interactivity in Marimo</h4>
-<div class="outline-text-4" id="text-org3bfd598">
+<div id="outline-container-org01a7027" class="outline-4">
+<h4 id="org01a7027">Interactivity in Marimo</h4>
+<div class="outline-text-4" id="text-org01a7027">
 <p>
 In <b>marimo</b>, interactive elements are created with <code>mo.ui</code> widgets.
 </p>
@@ -3810,16 +3928,16 @@ So if a plot depends on <code>alpha.value</code>, it updates automatically when 
 </p>
 </div>
 </div>
-<div id="outline-container-org2211140" class="outline-4">
-<h4 id="org2211140">Solving Differential Equations in SciPy</h4>
-<div class="outline-text-4" id="text-org2211140">
+<div id="outline-container-orgedd0c95" class="outline-4">
+<h4 id="orgedd0c95">Solving Differential Equations in SciPy</h4>
+<div class="outline-text-4" id="text-orgedd0c95">
 <p>
 Two numerical solvers are used in the apps.
 </p>
 </div>
 <ul class="org-ul">
-<li><a id="orgf0bdf40"></a>Initial Value Problems (IVP)<br />
-<div class="outline-text-5" id="text-orgf0bdf40">
+<li><a id="orgee09c55"></a>Initial Value Problems (IVP)<br />
+<div class="outline-text-5" id="text-orgee09c55">
 <p>
 Used in <b>App 1</b>.
 </p>
@@ -3891,8 +4009,8 @@ sol.y     solution values
 </p>
 </div>
 </li>
-<li><a id="org3c51b5e"></a>Boundary Value Problems (BVP)<br />
-<div class="outline-text-5" id="text-org3c51b5e">
+<li><a id="orgc308149"></a>Boundary Value Problems (BVP)<br />
+<div class="outline-text-5" id="text-orgc308149">
 <p>
 Used in <b>App 2 and App 3</b>.
 </p>
@@ -3962,13 +4080,13 @@ sol.yp    derivatives
 </li>
 </ul>
 </div>
-<div id="outline-container-org2359fdf" class="outline-4">
-<h4 id="org2359fdf">Solow Growth Model</h4>
-<div class="outline-text-4" id="text-org2359fdf">
+<div id="outline-container-org9799d99" class="outline-4">
+<h4 id="org9799d99">Solow Growth Model</h4>
+<div class="outline-text-4" id="text-org9799d99">
 </div>
 <ul class="org-ul">
-<li><a id="org09a9040"></a>Model equation<br />
-<div class="outline-text-5" id="text-org09a9040">
+<li><a id="org3b509c9"></a>Model equation<br />
+<div class="outline-text-5" id="text-org3b509c9">
 <p>
 Capital evolves according to
 </p>
@@ -3987,10 +4105,11 @@ This is a <b>single differential equation</b>. And we have a given capital stock
 </p>
 </div>
 </li>
-<li><a id="orgb3ed521"></a>Step 1: Import libraries<br />
-<div class="outline-text-5" id="text-orgb3ed521">
+<li><a id="orgfca2487"></a>Step 1: Import libraries<br />
+<div class="outline-text-5" id="text-orgfca2487">
 <div class="org-src-container">
-<pre class="src src-nil"><code>import numpy as np
+<pre class="src src-nil"><code>import marimo as mo
+import numpy as np
 import matplotlib.pyplot as plt
 from scipy.integrate import solve_ivp
 </code></pre>
@@ -4001,6 +4120,7 @@ Roles:
 </p>
 
 <ul class="org-ul">
+<li><code>marimo</code> → interactive elements</li>
 <li><code>numpy</code> → numerical operations</li>
 <li><code>matplotlib</code> → plotting</li>
 <li><code>solve_ivp</code> → differential equation solver</li>
@@ -4011,14 +4131,14 @@ Roles:
 </p>
 </div>
 </li>
-<li><a id="org97f2b65"></a>Step 2: Define parameters (interactive)<br />
-<div class="outline-text-5" id="text-org97f2b65">
+<li><a id="org036c1cc"></a>Step 2: Define parameters (interactive)<br />
+<div class="outline-text-5" id="text-org036c1cc">
 <p>
 In marimo:
 </p>
 
 <div class="org-src-container">
-<pre class="src src-python"><code><span style="color: #005e8b;">alpha</span> = mo.ui.slider(0.1,0.9,value=0.3)
+<pre class="src src-python"><code><span style="color: #005e8b;">alpha</span> = mo.ui.slider(0.1,0.9,value=0.3,step=0.1)
 <span style="color: #005e8b;">s</span> = mo.ui.slider(0.01,0.6,value=0.2)
 <span style="color: #005e8b;">n</span> = mo.ui.slider(0.0,0.05,value=0.01)
 <span style="color: #005e8b;">delta</span> = mo.ui.slider(0.0,0.1,value=0.05)
@@ -4027,7 +4147,21 @@ In marimo:
 </div>
 
 <p>
-Use them in calculations as
+Adjust the definitions of the sliders; e.g. specifying <code>step</code> for each parameter or changing the default value.
+</p>
+
+
+<p>
+If you want to place a slider somewhere in your marimo notebook, use
+</p>
+
+<div class="org-src-container">
+<pre class="src src-python"><code>alpha
+</code></pre>
+</div>
+
+<p>
+or use a slider value in a calculation:
 </p>
 
 <div class="org-src-container">
@@ -4040,8 +4174,8 @@ Use them in calculations as
 </p>
 </div>
 </li>
-<li><a id="orgaf2ec6c"></a>Step 3: Define the differential equation<br />
-<div class="outline-text-5" id="text-orgaf2ec6c">
+<li><a id="org36f667d"></a>Step 3: Define the differential equation<br />
+<div class="outline-text-5" id="text-org36f667d">
 <div class="org-src-container">
 <pre class="src src-nil"><code>def solow(t,k):
     return s.value*k**alpha.value - (n.value+delta.value)*k
@@ -4062,7 +4196,7 @@ SciPy expects the function signature
 </div>
 
 <p>
-even if the equation does not depend on <code>t</code>.
+even if the equation does not depend on <code>t</code>, like the function <code>solow</code> actually does not depend on <code>t</code>.
 </p>
 
 <p>
@@ -4070,8 +4204,8 @@ even if the equation does not depend on <code>t</code>.
 </p>
 </div>
 </li>
-<li><a id="org08fbfe4"></a>Step 4: Compute steady state<br />
-<div class="outline-text-5" id="text-org08fbfe4">
+<li><a id="org83d77d0"></a>Step 4: Compute steady state<br />
+<div class="outline-text-5" id="text-org83d77d0">
 <p>
 The steady state solves
 </p>
@@ -4095,8 +4229,8 @@ which gives
 </p>
 </div>
 </li>
-<li><a id="orgd12c452"></a>Step 5: Time grid<br />
-<div class="outline-text-5" id="text-orgd12c452">
+<li><a id="orge435b27"></a>Step 5: Time grid<br />
+<div class="outline-text-5" id="text-orge435b27">
 <div class="org-src-container">
 <pre class="src src-nil"><code>t_span = (0,50)
 t_eval = np.linspace(0,50,200)
@@ -4112,8 +4246,8 @@ This means we simulate the model from time 0 to 50 and evaluate at 200 points.
 </p>
 </div>
 </li>
-<li><a id="orgf1b93bf"></a>Step 6: Solve the IVP<br />
-<div class="outline-text-5" id="text-orgf1b93bf">
+<li><a id="org6904f30"></a>Step 6: Solve the IVP<br />
+<div class="outline-text-5" id="text-org6904f30">
 <div class="org-src-container">
 <pre class="src src-nil"><code>sol = solve_ivp(solow, t_span, [k0.value], t_eval=t_eval)
 </code></pre>
@@ -4142,8 +4276,8 @@ sol.y[0]
 </p>
 </div>
 </li>
-<li><a id="orgda800c1"></a>Step 7: Plot transition dynamics<br />
-<div class="outline-text-5" id="text-orgda800c1">
+<li><a id="org9ddb448"></a>Step 7: Plot transition dynamics<br />
+<div class="outline-text-5" id="text-org9ddb448">
 <div class="org-src-container">
 <pre class="src src-nil"><code>plt.plot(sol.t, sol.y[0])
 plt.axhline(k_ss)
@@ -4163,8 +4297,8 @@ Interpretation:
 </p>
 </div>
 </li>
-<li><a id="org0fe27b4"></a>Step 8: Solow diagram<br />
-<div class="outline-text-5" id="text-org0fe27b4">
+<li><a id="org1a73942"></a>Step 8: Solow diagram<br />
+<div class="outline-text-5" id="text-org1a73942">
 <p>
 Create a grid of capital levels:
 </p>
@@ -4199,9 +4333,9 @@ Their intersection is the steady state.
 </li>
 </ul>
 </div>
-<div id="outline-container-org7d66ebf" class="outline-4">
-<h4 id="org7d66ebf">Mechanism Design Model</h4>
-<div class="outline-text-4" id="text-org7d66ebf">
+<div id="outline-container-org1003a16" class="outline-4">
+<h4 id="org1003a16">Mechanism Design Model</h4>
+<div class="outline-text-4" id="text-org1003a16">
 <p>
 This problem involves <b>two differential equations</b>:
 </p>
@@ -4231,11 +4365,11 @@ So this is a boundary value problem.
 </p>
 </div>
 <ul class="org-ul">
-<li><a id="org7aaf92f"></a>Step 1: Define density<br />
-<div class="outline-text-5" id="text-org7aaf92f">
+<li><a id="orgfe40977"></a>Step 1: Define density<br />
+<div class="outline-text-5" id="text-orgfe40977">
 <div class="org-src-container">
 <pre class="src src-nil"><code>def f(t):
-    return 1/(b-a)*np.ones_like(t)
+    return 1/(θ_max-θ_min)*np.ones_like(t)
 </code></pre>
 </div>
 
@@ -4252,8 +4386,8 @@ This corresponds to a <b>uniform distribution</b>.
 </p>
 </div>
 </li>
-<li><a id="org389d613"></a>Step 2: Define system of ODEs<br />
-<div class="outline-text-5" id="text-org389d613">
+<li><a id="orgf74e011"></a>Step 2: Define system of ODEs<br />
+<div class="outline-text-5" id="text-orgf74e011">
 <div class="org-src-container">
 <pre class="src src-nil"><code>def design(t,y):
     return np.vstack([
@@ -4286,8 +4420,8 @@ y[1] = λ(θ)
 </p>
 </div>
 </li>
-<li><a id="orgd18ac6b"></a>Step 3: Boundary conditions<br />
-<div class="outline-text-5" id="text-orgd18ac6b">
+<li><a id="org70f601e"></a>Step 3: Boundary conditions<br />
+<div class="outline-text-5" id="text-org70f601e">
 <div class="org-src-container">
 <pre class="src src-nil"><code>def bc(ya,yb):
     return np.array([ya[0], yb[1]])
@@ -4319,8 +4453,8 @@ So the function enforces
 </p>
 </div>
 </li>
-<li><a id="org394242e"></a>Step 4: Initial grid<br />
-<div class="outline-text-5" id="text-org394242e">
+<li><a id="org05e17d9"></a>Step 4: Initial grid<br />
+<div class="outline-text-5" id="text-org05e17d9">
 <div class="org-src-container">
 <pre class="src src-nil"><code>t_eval = np.linspace(a,b,100)
 </code></pre>
@@ -4331,8 +4465,8 @@ So the function enforces
 </p>
 </div>
 </li>
-<li><a id="orge76dcca"></a>Step 5: Initial guess<br />
-<div class="outline-text-5" id="text-orge76dcca">
+<li><a id="org289449a"></a>Step 5: Initial guess<br />
+<div class="outline-text-5" id="text-org289449a">
 <div class="org-src-container">
 <pre class="src src-nil"><code>np.zeros((2, t_eval.shape[0]))
 </code></pre>
@@ -4352,8 +4486,8 @@ Explanation:
 </p>
 </div>
 </li>
-<li><a id="orga29e7a4"></a>Step 6: Solve BVP<br />
-<div class="outline-text-5" id="text-orga29e7a4">
+<li><a id="org434f2a1"></a>Step 6: Solve BVP<br />
+<div class="outline-text-5" id="text-org434f2a1">
 <div class="org-src-container">
 <pre class="src src-nil"><code>sol = solve_bvp(design, bc, t_eval, guess)
 </code></pre>
@@ -4374,8 +4508,8 @@ sol.y[1] = λ(θ)
 </p>
 </div>
 </li>
-<li><a id="org04f9d78"></a>Step 7: Recover quantities and prices<br />
-<div class="outline-text-5" id="text-org04f9d78">
+<li><a id="org07a3e04"></a>Step 7: Recover quantities and prices<br />
+<div class="outline-text-5" id="text-org07a3e04">
 <p>
 The optimal quantity:
 </p>
@@ -4423,9 +4557,9 @@ so
 </li>
 </ul>
 </div>
-<div id="outline-container-org8c18944" class="outline-4">
-<h4 id="org8c18944">Dynamic Pricing with Learning</h4>
-<div class="outline-text-4" id="text-org8c18944">
+<div id="outline-container-orge0fc01e" class="outline-4">
+<h4 id="orge0fc01e">Dynamic Pricing with Learning</h4>
+<div class="outline-text-4" id="text-orge0fc01e">
 <p>
 This model also forms a <b>BVP</b>, but with <b>time as the state variable</b>.
 </p>
@@ -4465,8 +4599,8 @@ Boundary conditions:
 </p>
 </div>
 <ul class="org-ul">
-<li><a id="org00ca579"></a>Step 1: Define system<br />
-<div class="outline-text-5" id="text-org00ca579">
+<li><a id="org9b64346"></a>Step 1: Define system<br />
+<div class="outline-text-5" id="text-org9b64346">
 <div class="org-src-container">
 <pre class="src src-nil"><code>def learning(t,y):
 </code></pre>
@@ -4500,8 +4634,8 @@ Then return derivatives.
 </p>
 </div>
 </li>
-<li><a id="org957a833"></a>Step 2: Boundary conditions<br />
-<div class="outline-text-5" id="text-org957a833">
+<li><a id="org233b209"></a>Step 2: Boundary conditions<br />
+<div class="outline-text-5" id="text-org233b209">
 <div class="org-src-container">
 <pre class="src src-nil"><code>def bc(ya,yb):
     return np.array([ya[0], yb[1]])
@@ -4523,8 +4657,8 @@ Meaning
 </p>
 </div>
 </li>
-<li><a id="org49537f8"></a>Step 3: Solve BVP<br />
-<div class="outline-text-5" id="text-org49537f8">
+<li><a id="org72e8ba5"></a>Step 3: Solve BVP<br />
+<div class="outline-text-5" id="text-org72e8ba5">
 <div class="org-src-container">
 <pre class="src src-nil"><code>sol = solve_bvp(learning, bc, t_eval, guess)
 </code></pre>
@@ -4555,8 +4689,8 @@ Since
 </p>
 </div>
 </li>
-<li><a id="orgb3c0799"></a>Step 4: Static benchmark<br />
-<div class="outline-text-5" id="text-orgb3c0799">
+<li><a id="org24d645d"></a>Step 4: Static benchmark<br />
+<div class="outline-text-5" id="text-org24d645d">
 <p>
 The static monopoly solution is
 </p>
@@ -4584,9 +4718,9 @@ static q(t)
 </ul>
 </div>
 </div>
-<div id="outline-container-orgf59e071" class="outline-3">
-<h3 id="orgf59e071">Summary</h3>
-<div class="outline-text-3" id="text-orgf59e071">
+<div id="outline-container-orga60ec6b" class="outline-3">
+<h3 id="orga60ec6b">Summary</h3>
+<div class="outline-text-3" id="text-orga60ec6b">
 <p>
 In this lecture we studied how dynamic economic models can be analyzed using numerical tools in Python. We explored several examples in which economic decisions and outcomes evolve over time, including capital accumulation, mechanism design with asymmetric information, and learning-by-doing dynamics.
 </p>
@@ -4599,15 +4733,24 @@ These examples illustrated how differential equations and dynamic optimization p
 <strong>Key economic takeaway</strong><br>
 Dynamic economic models describe how decisions and incentives today affect outcomes in the future. Numerical methods allow economists to analyze these dynamics even when analytical solutions are difficult or impossible to obtain.
 </div>
+
+<div style="border-left:4px solid #2c7a7b;padding:10px;margin:15px 0;background:#eef6f6;">
+<strong>Key Python takeaway</strong><br>
+Dynamic economic models expressed as differential equations can be solved numerically in Python using tools such as <code>scipy.integrate</code>. This allows economists to compute transition paths and visualize how economies evolve over time.
+</div>
+
+<p>
+<b>Looking ahead:</b> In the next lecture we extend the analysis of dynamic models to systems with multiple interacting variables and learn how phase diagrams help analyze stability.
+</p>
 </div>
 </div>
-<div id="outline-container-org53e6be4" class="outline-3">
-<h3 id="org53e6be4">Review Questions</h3>
-<div class="outline-text-3" id="text-org53e6be4">
+<div id="outline-container-org6440856" class="outline-3">
+<h3 id="org6440856">Review Questions</h3>
+<div class="outline-text-3" id="text-org6440856">
 </div>
-<div id="outline-container-orga858296" class="outline-4">
-<h4 id="orga858296">Solow model</h4>
-<div class="outline-text-4" id="text-orga858296">
+<div id="outline-container-org6b2598e" class="outline-4">
+<h4 id="org6b2598e">Question 1: Solow model</h4>
+<div class="outline-text-4" id="text-org6b2598e">
 <p>
 Create the Solow model in a marimo notebook and analyze the following:
 </p>
@@ -4617,9 +4760,9 @@ Create the Solow model in a marimo notebook and analyze the following:
 </ul>
 </div>
 </div>
-<div id="outline-container-org7f22219" class="outline-4">
-<h4 id="org7f22219">Mechanism design</h4>
-<div class="outline-text-4" id="text-org7f22219">
+<div id="outline-container-orgb999ec2" class="outline-4">
+<h4 id="orgb999ec2">Question 2: Mechanism design</h4>
+<div class="outline-text-4" id="text-orgb999ec2">
 <p>
 In your marimo notebook:
 </p>
@@ -4629,9 +4772,9 @@ In your marimo notebook:
 </ul>
 </div>
 </div>
-<div id="outline-container-orgf5ecbaf" class="outline-4">
-<h4 id="orgf5ecbaf">Learning-by-doing</h4>
-<div class="outline-text-4" id="text-orgf5ecbaf">
+<div id="outline-container-orgb95606d" class="outline-4">
+<h4 id="orgb95606d">Question 3: Learning-by-doing</h4>
+<div class="outline-text-4" id="text-orgb95606d">
 <p>
 In your marimo notebook:
 </p>
@@ -4674,9 +4817,9 @@ Helpful prompting strategies:
 </div>
 </div>
 </div>
-<div id="outline-container-org24b37e6" class="outline-2">
-<h2 id="org24b37e6">Lecture 6: Dynamical Systems</h2>
-<div class="outline-text-2" id="text-org24b37e6">
+<div id="outline-container-org29a061f" class="outline-2">
+<h2 id="org29a061f">Lecture 6: Dynamical Systems</h2>
+<div class="outline-text-2" id="text-org29a061f">
 <p>
 <b>Skills you learn in this lecture:</b> analyzing two‑dimensional dynamical systems, phase diagrams, and stability of economic equilibria.
 </p>
@@ -4685,9 +4828,9 @@ Helpful prompting strategies:
 In this lecture we program two dynamic models that are often used in Economics: the Ramsey model of consumption and investment and the predator-prey model to analyze business cycles.
 </p>
 </div>
-<div id="outline-container-org65afcf8" class="outline-3">
-<h3 id="org65afcf8">Learning objectives</h3>
-<div class="outline-text-3" id="text-org65afcf8">
+<div id="outline-container-org3fa2ff3" class="outline-3">
+<h3 id="org3fa2ff3">Learning objectives</h3>
+<div class="outline-text-3" id="text-org3fa2ff3">
 <p>
 This lecture introduces dynamic models that describe how economic variables evolve over time. Instead of studying static equilibrium, we analyze systems where variables continuously interact and adjust.
 </p>
@@ -4696,8 +4839,6 @@ This lecture introduces dynamic models that describe how economic variables evol
 In this lecture you will learn:
 </p>
 <ul class="org-ul">
-<li>how economists represent dynamic processes using differential equations</li>
-<li>how to simulate dynamic systems numerically using Python</li>
 <li>how to interpret trajectories and phase diagrams in two‑dimensional systems</li>
 <li>how the Ramsey model describes optimal consumption and capital accumulation over time</li>
 <li>why the Ramsey model produces a saddle‑path equilibrium</li>
@@ -4710,9 +4851,29 @@ By the end of the lecture you will have implemented both models in Python and ex
 </p>
 </div>
 </div>
-<div id="outline-container-org023d7ac" class="outline-3">
-<h3 id="org023d7ac">Introduction</h3>
-<div class="outline-text-3" id="text-org023d7ac">
+<div id="outline-container-org3292479" class="outline-3">
+<h3 id="org3292479">Introduction</h3>
+<div class="outline-text-3" id="text-org3292479">
+<p>
+In this lecture we extend our knowledge (from the previous lecture) on differential equations in economics.
+</p>
+
+<p>
+The Ramsey model analyses savings and investment like the Solow model, but &ndash;unlike the Solow model&ndash; the saving decision is endogenized. A consumer maximizing utility decides how much she wants to save each period.
+</p>
+
+<p>
+We also consider an example of a system of differential equations: the predator-prey model. In the exercises you will see how second order differential equations (i.e. equations with a second derivative in them, like \(y''(t)\)) can be solved in the same way as a system of equations.
+</p>
+</div>
+</div>
+<div id="outline-container-org7b83ee7" class="outline-3">
+<h3 id="org7b83ee7">apps</h3>
+<div class="outline-text-3" id="text-org7b83ee7">
+</div>
+<div id="outline-container-org48cd5c5" class="outline-4">
+<h4 id="org48cd5c5">Ramsey model</h4>
+<div class="outline-text-4" id="text-org48cd5c5">
 <p>
 The <b>Ramsey model</b> studies how an economy chooses <b>consumption and saving over time</b> when households are forward‑looking. Unlike the Solow model, the saving rate is not imposed from outside the model. Instead, a representative household decides how much to consume and how much to save in order to maximize lifetime utility.
 </p>
@@ -4766,7 +4927,7 @@ A key insight of the Ramsey model is that the steady state is <b>saddle‑path s
 </p>
 
 <p>
-The app above allows you to explore these dynamics interactively.
+The app below allows you to explore these dynamics interactively.
 </p>
 
 <p>
@@ -4790,14 +4951,31 @@ The figures show two important objects:
 </ol>
 
 <p>
-The phase diagram shows the loci where \( \dot{k}=0 \) and \( \dot{c}=0 \), as well as the trajectory implied by the initial conditions. The app also computes the <b>saddle path</b>, which is the unique trajectory that leads to the steady state.
+The phase diagram shows the combinations \((k,c)\) where \( \dot{k}=0 \) and \( \dot{c}=0 \), as well as the trajectory implied by the initial conditions. The app also computes the <b>saddle path</b>, which is the unique trajectory that leads to the steady state.
 </p>
 
 <p>
 Use the sliders to explore how parameters affect the steady state and how the economy adjusts when it starts away from equilibrium.
 </p>
 
+<iframe
+  src="https://ramseymodel.streamlit.app/?embed=true"
+  allow="fullscreen">
+</iframe>
 
+<div class="fallback">
+  <p>
+    If the app does not load,
+    <a href="https://ramseymodel.streamlit.app/?embed=true" target="_blank">
+      open it in a new tab
+    </a>.
+  </p>
+</div>
+</div>
+</div>
+<div id="outline-container-orgad44b28" class="outline-4">
+<h4 id="orgad44b28">Predator-prey model</h4>
+<div class="outline-text-4" id="text-orgad44b28">
 <p>
 The predator–prey model is one of the simplest and most influential examples of a <b>dynamic system with interacting variables</b>. It was originally developed by <b>Alfred Lotka and Vito Volterra</b> in the 1920s to describe how two biological populations evolve over time.
 </p>
@@ -4867,39 +5045,19 @@ When employment is high, workers have stronger bargaining power and wages rise. 
 </p>
 
 <p>
-The app above allows you to experiment with these dynamics. You can interpret the variables either as predator–prey populations or as employment and wage share in the Goodwin model. By adjusting the parameters and initial values, you can see how cycles emerge and how their size and speed depend on the underlying economic mechanisms.
+The app below allows you to experiment with these dynamics. You can interpret the variables either as predator–prey populations or as employment and wage share in the Goodwin model. By adjusting the parameters and initial values, you can see how cycles emerge and how their size and speed depend on the underlying economic mechanisms.
 </p>
 
 <p>
 Pay particular attention to the <b>phase diagram</b>. It shows the trajectory of the system in the \((x,y)\) plane and illustrates how the interaction between the two variables produces cyclical motion.
 </p>
-</div>
-</div>
-<div id="outline-container-orga095fdf" class="outline-3">
-<h3 id="orga095fdf">apps</h3>
-<div class="outline-text-3" id="text-orga095fdf">
-</div>
-<div id="outline-container-orgad8022a" class="outline-4">
-<h4 id="orgad8022a">Ramsey model</h4>
-<div class="outline-text-4" id="text-orgad8022a">
-<iframe
-  src="https://ramseymodel.streamlit.app/?embed=true"
-  allow="fullscreen">
-</iframe>
 
-<div class="fallback">
-  <p>
-    If the app does not load,
-    <a href="https://ramseymodel.streamlit.app/?embed=true" target="_blank">
-      open it in a new tab
-    </a>.
-  </p>
-</div>
-</div>
-</div>
-<div id="outline-container-org5401354" class="outline-4">
-<h4 id="org5401354">Predator-prey model</h4>
-<div class="outline-text-4" id="text-org5401354">
+
+
+
+
+
+
 <iframe
   src="https://predatorprey.streamlit.app/?embed=true"
   allow="fullscreen">
@@ -4916,20 +5074,20 @@ Pay particular attention to the <b>phase diagram</b>. It shows the trajectory of
 </div>
 </div>
 </div>
-<div id="outline-container-org375dd9a" class="outline-3">
-<h3 id="org375dd9a">Python Code Explanation</h3>
-<div class="outline-text-3" id="text-org375dd9a">
+<div id="outline-container-org2d10e0e" class="outline-3">
+<h3 id="org2d10e0e">Python Code Explanation</h3>
+<div class="outline-text-3" id="text-org2d10e0e">
 </div>
-<div id="outline-container-orgfde8482" class="outline-4">
-<h4 id="orgfde8482">Ramsey model in Python</h4>
-<div class="outline-text-4" id="text-orgfde8482">
+<div id="outline-container-org8898ba2" class="outline-4">
+<h4 id="org8898ba2">Ramsey model in Python</h4>
+<div class="outline-text-4" id="text-org8898ba2">
 <p>
 Below we reproduce the main elements of the app using standard Python code that can be run inside a <b>marimo notebook</b>. The goal is to understand how a dynamical system can be implemented and simulated.
 </p>
 </div>
 <ul class="org-ul">
-<li><a id="org937bf90"></a>Importing libraries<br />
-<div class="outline-text-5" id="text-org937bf90">
+<li><a id="org6ef4e90"></a>Importing libraries<br />
+<div class="outline-text-5" id="text-org6ef4e90">
 <div class="org-src-container">
 <pre class="src src-python"><code><span style="color: #531ab6;">import</span> marimo <span style="color: #531ab6;">as</span> mo
 <span style="color: #531ab6;">import</span> numpy <span style="color: #531ab6;">as</span> np
@@ -4954,8 +5112,8 @@ Explanation:
 </p>
 </div>
 </li>
-<li><a id="org991c448"></a>Choosing parameters with sliders<br />
-<div class="outline-text-5" id="text-org991c448">
+<li><a id="org26578d4"></a>Choosing parameters with sliders<br />
+<div class="outline-text-5" id="text-org26578d4">
 <div class="org-src-container">
 <pre class="src src-python"><code><span style="color: #005e8b;">rho</span> = mo.ui.slider(0.01, 0.06, value=0.03, step=0.005, label=<span style="color: #3548cf;">"Discount rate &#961;"</span>)
 <span style="color: #005e8b;">delta</span> = mo.ui.slider(0.02, 0.08, value=0.05, step=0.005, label=<span style="color: #3548cf;">"Depreciation &#948;"</span>)
@@ -4986,8 +5144,8 @@ The sliders return numerical values that can be used in later calculations.
 </p>
 </div>
 </li>
-<li><a id="org943f29a"></a>Initial conditions<br />
-<div class="outline-text-5" id="text-org943f29a">
+<li><a id="orgdc00982"></a>Initial conditions<br />
+<div class="outline-text-5" id="text-orgdc00982">
 <div class="org-src-container">
 <pre class="src src-python"><code><span style="color: #005e8b;">k0</span> = mo.ui.slider(5.0, 50.0, value=20.0, label=<span style="color: #3548cf;">"Initial capital k0"</span>)
 <span style="color: #005e8b;">c0</span> = mo.ui.slider(0.5, 4.0, value=2.0, label=<span style="color: #3548cf;">"Initial consumption c0"</span>)
@@ -5013,8 +5171,8 @@ Different initial values will produce different trajectories.
 </p>
 </div>
 </li>
-<li><a id="orgd33ebbd"></a>Computing the steady state<br />
-<div class="outline-text-5" id="text-orgd33ebbd">
+<li><a id="org2006e08"></a>Computing the steady state<br />
+<div class="outline-text-5" id="text-org2006e08">
 <p>
 From the Euler equation, the steady state satisfies
 </p>
@@ -5031,8 +5189,12 @@ With \(f(k)=k^{0.5}\), we have \(f'(k)=0.5k^{-0.5}\). Solving this gives
 
 <p>
 \[
-k^/ = \left(\frac{0.5}{\rho+\delta}\right)^2
+k^{*} = \left(\frac{0.5}{\rho+\delta}\right)^2
 \]
+</p>
+
+<p>
+Then \(\dot{k} = 0\) implies \(c^* = \sqrt{k^{*}}-\delta k^*\):
 </p>
 
 <div class="org-src-container">
@@ -5057,8 +5219,8 @@ Explanation:
 </p>
 </div>
 </li>
-<li><a id="org2736aea"></a>Defining the dynamical system<br />
-<div class="outline-text-5" id="text-org2736aea">
+<li><a id="org5ee1b1e"></a>Defining the dynamical system<br />
+<div class="outline-text-5" id="text-org5ee1b1e">
 <p>
 We now translate the economic model into a Python function.
 </p>
@@ -5109,8 +5271,8 @@ The function therefore encodes the Ramsey model&rsquo;s dynamics.
 </p>
 </div>
 </li>
-<li><a id="orgb423553"></a>Simulating the dynamics<br />
-<div class="outline-text-5" id="text-orgb423553">
+<li><a id="orgdd90237"></a>Simulating the dynamics<br />
+<div class="outline-text-5" id="text-orgdd90237">
 <p>
 We can now solve the system numerically.
 </p>
@@ -5156,8 +5318,8 @@ The output <code>sol</code> contains the full simulated path of the economy.
 </p>
 </div>
 </li>
-<li><a id="orgc2f68b8"></a>Plotting the time paths<br />
-<div class="outline-text-5" id="text-orgc2f68b8">
+<li><a id="org0ed8179"></a>Plotting the time paths<br />
+<div class="outline-text-5" id="text-org0ed8179">
 <div class="org-src-container">
 <pre class="src src-python"><code><span style="color: #005e8b;">fig</span>, <span style="color: #005e8b;">ax</span> = plt.subplots()
 
@@ -5191,8 +5353,8 @@ The dashed lines indicate the steady state. If the system converges, both variab
 </p>
 </div>
 </li>
-<li><a id="orgd6cf0dc"></a>Plotting the phase diagram<br />
-<div class="outline-text-5" id="text-orgd6cf0dc">
+<li><a id="orgd22aa01"></a>Plotting the phase diagram<br />
+<div class="outline-text-5" id="text-orgd22aa01">
 <p>
 The phase diagram helps visualize the joint dynamics of \(k\) and \(c\).
 </p>
@@ -5260,9 +5422,9 @@ Running these cells in a marimo notebook allows you to experiment with parameter
 </li>
 </ul>
 </div>
-<div id="outline-container-orge4be4b3" class="outline-4">
-<h4 id="orge4be4b3">predator–prey model</h4>
-<div class="outline-text-4" id="text-orge4be4b3">
+<div id="outline-container-org0e53d57" class="outline-4">
+<h4 id="org0e53d57">predator–prey model</h4>
+<div class="outline-text-4" id="text-org0e53d57">
 <p>
 We now reproduce the core elements of the simulation using Python code that can be run in a <b>marimo notebook</b>. The goal is to show how a system of differential equations can be translated into code and solved numerically.
 </p>
@@ -5272,8 +5434,8 @@ We now reproduce the core elements of the simulation using Python code that can 
 </p>
 </div>
 <ul class="org-ul">
-<li><a id="org81602b5"></a>Importing the required libraries<br />
-<div class="outline-text-5" id="text-org81602b5">
+<li><a id="orgcecfc47"></a>Importing the required libraries<br />
+<div class="outline-text-5" id="text-orgcecfc47">
 <div class="org-src-container">
 <pre class="src src-python"><code><span style="color: #531ab6;">import</span> marimo <span style="color: #531ab6;">as</span> mo
 <span style="color: #531ab6;">import</span> numpy <span style="color: #531ab6;">as</span> np
@@ -5290,20 +5452,13 @@ Explanation:
 This cell imports the main libraries used in the simulation.
 </p>
 
-<ul class="org-ul">
-<li><code>numpy</code> provides numerical tools and array operations.</li>
-<li><code>matplotlib</code> is used to create graphs.</li>
-<li><code>solve_ivp</code> from <code>scipy.integrate</code> numerically solves systems of differential equations.</li>
-<li><code>marimo</code> provides interactive widgets such as sliders.</li>
-</ul>
-
 <p>
 &mdash;
 </p>
 </div>
 </li>
-<li><a id="org0509001"></a>Choosing parameter values<br />
-<div class="outline-text-5" id="text-org0509001">
+<li><a id="orgba3ac5f"></a>Choosing parameter values<br />
+<div class="outline-text-5" id="text-orgba3ac5f">
 <div class="org-src-container">
 <pre class="src src-python"><code><span style="color: #005e8b;">a</span> = mo.ui.slider(0.1, 3.0, value=1.0, label=<span style="color: #3548cf;">"a: prey growth rate"</span>)
 <span style="color: #005e8b;">b</span> = mo.ui.slider(0.1, 2.0, value=0.5, label=<span style="color: #3548cf;">"b: predation intensity"</span>)
@@ -5342,8 +5497,8 @@ Changing these parameters alters the speed and size of the cycles.
 </p>
 </div>
 </li>
-<li><a id="orgd934ef7"></a>Setting initial values<br />
-<div class="outline-text-5" id="text-orgd934ef7">
+<li><a id="orge86402c"></a>Setting initial values<br />
+<div class="outline-text-5" id="text-orge86402c">
 <div class="org-src-container">
 <pre class="src src-python"><code><span style="color: #005e8b;">x0</span> = mo.ui.slider(0.5, 10.0, value=4.0, label=<span style="color: #3548cf;">"initial x"</span>)
 <span style="color: #005e8b;">y0</span> = mo.ui.slider(0.5, 10.0, value=2.0, label=<span style="color: #3548cf;">"initial y"</span>)
@@ -5374,8 +5529,8 @@ Different initial values can lead to different trajectories, even with the same 
 </p>
 </div>
 </li>
-<li><a id="org9509d7d"></a>Writing the differential equations<br />
-<div class="outline-text-5" id="text-org9509d7d">
+<li><a id="org7e6dec5"></a>Writing the differential equations<br />
+<div class="outline-text-5" id="text-org7e6dec5">
 <div class="org-src-container">
 <pre class="src src-python"><code><span style="color: #531ab6;">def</span> <span style="color: #721045;">lotka_volterra</span>(t, z):
     <span style="color: #005e8b;">x</span>, <span style="color: #005e8b;">y</span> = z
@@ -5422,8 +5577,8 @@ The function therefore translates the mathematical model directly into Python.
 </p>
 </div>
 </li>
-<li><a id="org862e8cd"></a>Solving the system numerically<br />
-<div class="outline-text-5" id="text-org862e8cd">
+<li><a id="org313d35d"></a>Solving the system numerically<br />
+<div class="outline-text-5" id="text-org313d35d">
 <div class="org-src-container">
 <pre class="src src-python"><code><span style="color: #005e8b;">T</span> = 40
 
@@ -5445,7 +5600,7 @@ Explanation:
 </p>
 
 <p>
-=solve_ivp` numerically integrates the system of differential equations.
+<code>solve_ivp</code> numerically integrates the system of differential equations.
 </p>
 
 <p>
@@ -5453,13 +5608,13 @@ Key elements:
 </p>
 
 <ul class="org-ul">
-<li>`(0, T)` defines the time interval.</li>
-<li>`[x0, y0]` provides the initial conditions.</li>
-<li>`t_eval` specifies the time grid where the solution should be recorded.</li>
+<li><code>(0, T)</code> defines the time interval.</li>
+<li><code>[x0, y0]</code> provides the initial conditions.</li>
+<li><code>t_eval</code> specifies the time grid where the solution should be recorded.</li>
 </ul>
 
 <p>
-The result `sol` contains the simulated paths of both variables.
+The result <code>sol</code> contains the simulated paths of both variables.
 </p>
 
 <p>
@@ -5467,8 +5622,8 @@ The result `sol` contains the simulated paths of both variables.
 </p>
 </div>
 <ul class="org-ul">
-<li><a id="orgcdb4c3a"></a>Plotting the time paths<br />
-<div class="outline-text-6" id="text-orgcdb4c3a">
+<li><a id="org8f02cfa"></a>Plotting the time paths<br />
+<div class="outline-text-6" id="text-org8f02cfa">
 <div class="org-src-container">
 <pre class="src src-python"><code><span style="color: #005e8b;">fig</span>, <span style="color: #005e8b;">ax</span> = plt.subplots()
 
@@ -5510,8 +5665,8 @@ This delayed interaction generates cyclical dynamics.
 </p>
 </div>
 </li>
-<li><a id="org80a6c4b"></a>Plotting the phase diagram<br />
-<div class="outline-text-6" id="text-org80a6c4b">
+<li><a id="orgebe093f"></a>Plotting the phase diagram<br />
+<div class="outline-text-6" id="text-orgebe093f">
 <div class="org-src-container">
 <pre class="src src-python"><code><span style="color: #005e8b;">fig</span>, <span style="color: #005e8b;">ax</span> = plt.subplots()
 
@@ -5552,9 +5707,9 @@ In the Goodwin interpretation, this orbit represents a recurring cycle between
 </ul>
 </div>
 </div>
-<div id="outline-container-orge2251a2" class="outline-3">
-<h3 id="orge2251a2">Summary</h3>
-<div class="outline-text-3" id="text-orge2251a2">
+<div id="outline-container-org4a857a3" class="outline-3">
+<h3 id="org4a857a3">Summary</h3>
+<div class="outline-text-3" id="text-org4a857a3">
 <p>
 In this lecture you explored how dynamic systems can be used to study economic behavior over time.
 </p>
@@ -5564,7 +5719,7 @@ You have learned:
 </p>
 <ul class="org-ul">
 <li>how to translate an economic model into a system of differential equations</li>
-<li>how to simulate these equations numerically using Python and =solve_ivp =</li>
+<li>how to simulate these equations numerically using Python and <code>solve_ivp</code></li>
 <li>how to interpret time paths showing how variables evolve over time</li>
 <li>how to use phase diagrams to visualize the interaction between state variables</li>
 <li>how the Ramsey model determines optimal consumption and capital accumulation and leads to a saddle‑path equilibrium</li>
@@ -5575,11 +5730,25 @@ You have learned:
 <p>
 These examples illustrate an important idea in economics: once we understand the structure of a dynamic system, the same mathematical tools can be applied to many different economic problems.
 </p>
+
+<div style="border-left:4px solid #1f3c88;padding:10px;margin:15px 0;background:#f5f7fa;">
+<strong>Key economic takeaway</strong><br>
+Many economic models involve multiple variables that interact dynamically. Phase diagrams and numerical simulations help economists understand how these interactions determine stability, adjustment paths, and long‑run equilibria.
+</div>
+
+<div style="border-left:4px solid #2c7a7b;padding:10px;margin:15px 0;background:#eef6f6;">
+<strong>Key Python takeaway</strong><br>
+Two‑dimensional dynamical systems can be simulated in Python and visualized using time paths and phase diagrams. These computational tools help economists study stability, saddle paths, and cyclical dynamics.
+</div>
+
+<p>
+<b>Looking back:</b> In this final lecture we combined the computational tools developed throughout the course with dynamic economic models to analyze stability, adjustment paths, and long‑run behavior.
+</p>
 </div>
 </div>
-<div id="outline-container-org0de6c59" class="outline-3">
-<h3 id="org0de6c59">Review Questions</h3>
-<div class="outline-text-3" id="text-org0de6c59">
+<div id="outline-container-org3cd3de8" class="outline-3">
+<h3 id="org3cd3de8">Review Questions</h3>
+<div class="outline-text-3" id="text-org3cd3de8">
 <p>
 Test your understanding of the dynamic systems introduced in this lecture.
 For each question:
@@ -5591,13 +5760,9 @@ For each question:
 
 <hr />
 </div>
-<div id="outline-container-org1e43922" class="outline-4">
-<h4 id="org1e43922">Question 1</h4>
-<div class="outline-text-4" id="text-org1e43922">
-</div>
-<ul class="org-ul">
-<li><a id="org1adcc2e"></a>Ramsey model: steady state and saddle path<br />
-<div class="outline-text-5" id="text-org1adcc2e">
+<div id="outline-container-orgd6ccfa7" class="outline-4">
+<h4 id="orgd6ccfa7">Question 1 Ramsey model: steady state and saddle path</h4>
+<div class="outline-text-4" id="text-orgd6ccfa7">
 <p>
 Using the Ramsey model implemented in the app:
 </p>
@@ -5639,16 +5804,10 @@ Solve this equation for \(k^*\) and then substitute into
 
 <hr />
 </div>
-</li>
-</ul>
 </div>
-<div id="outline-container-orgba485e8" class="outline-4">
-<h4 id="orgba485e8">Question 2</h4>
-<div class="outline-text-4" id="text-orgba485e8">
-</div>
-<ul class="org-ul">
-<li><a id="org9b4ebbd"></a>Ramsey dynamics and adjustment paths<br />
-<div class="outline-text-5" id="text-org9b4ebbd">
+<div id="outline-container-orgf5f2a06" class="outline-4">
+<h4 id="orgf5f2a06">Question 2 Ramsey dynamics and adjustment paths</h4>
+<div class="outline-text-4" id="text-orgf5f2a06">
 <p>
 Use the Ramsey model app and vary the initial capital stock \(k_0\).
 </p>
@@ -5674,16 +5833,10 @@ If \(k_0\) is <b><b>above</b></b> the steady state, the economy initially consum
 
 <hr />
 </div>
-</li>
-</ul>
 </div>
-<div id="outline-container-org54ea5cb" class="outline-4">
-<h4 id="org54ea5cb">Question 3</h4>
-<div class="outline-text-4" id="text-org54ea5cb">
-</div>
-<ul class="org-ul">
-<li><a id="org449dd6d"></a>Predator–prey model: steady state and cycles<br />
-<div class="outline-text-5" id="text-org449dd6d">
+<div id="outline-container-orgff30cec" class="outline-4">
+<h4 id="orgff30cec">Question 3 Predator–prey model: steady state and cycles</h4>
+<div class="outline-text-4" id="text-orgff30cec">
 <p>
 Consider the Lotka–Volterra system
 </p>
@@ -5729,16 +5882,10 @@ The nonlinear interaction terms create a feedback loop that causes the system to
 
 <hr />
 </div>
-</li>
-</ul>
 </div>
-<div id="outline-container-org8bed045" class="outline-4">
-<h4 id="org8bed045">Question 4</h4>
-<div class="outline-text-4" id="text-org8bed045">
-</div>
-<ul class="org-ul">
-<li><a id="org4e53288"></a>Economic interpretation of predator–prey dynamics<br />
-<div class="outline-text-5" id="text-org4e53288">
+<div id="outline-container-org54f48a6" class="outline-4">
+<h4 id="org54f48a6">Question 4 Economic interpretation of predator–prey dynamics</h4>
+<div class="outline-text-4" id="text-org54f48a6">
 <p>
 Interpret the predator–prey model as the <b>Goodwin growth cycle model</b>.
 </p>
@@ -5769,16 +5916,10 @@ High employment increases worker bargaining power and raises wages. Higher wages
 
 <hr />
 </div>
-</li>
-</ul>
 </div>
-<div id="outline-container-org6f96552" class="outline-4">
-<h4 id="org6f96552">Question 5</h4>
-<div class="outline-text-4" id="text-org6f96552">
-</div>
-<ul class="org-ul">
-<li><a id="org67e14b9"></a>From predator–prey to a second‑order differential equation<br />
-<div class="outline-text-5" id="text-org67e14b9">
+<div id="outline-container-org0c66d16" class="outline-4">
+<h4 id="org0c66d16">Question 5 From predator–prey to a second‑order differential equation</h4>
+<div class="outline-text-4" id="text-org0c66d16">
 <p>
 The predator–prey system can be rewritten as a single second‑order equation.
 </p>
@@ -5863,16 +6004,10 @@ Prompting tips:
 
 <hr />
 </div>
-</li>
-</ul>
 </div>
-<div id="outline-container-orge067ebb" class="outline-4">
-<h4 id="orge067ebb">Question 6</h4>
-<div class="outline-text-4" id="text-orge067ebb">
-</div>
-<ul class="org-ul">
-<li><a id="org49d5545"></a>Conceptual question: Stability and economic dynamics<br />
-<div class="outline-text-5" id="text-org49d5545">
+<div id="outline-container-org987437c" class="outline-4">
+<h4 id="org987437c">Question 6 Conceptual question: Stability and economic dynamics</h4>
+<div class="outline-text-4" id="text-org987437c">
 <p>
 Dynamic economic models often exhibit very different types of behavior: convergence to a steady state, divergence, or cyclical motion.
 </p>
@@ -5900,18 +6035,46 @@ Economically, this illustrates that some systems stabilize around equilibrium wh
 
 </details>
 </div>
-</li>
+</div>
+</div>
+</div>
+<div id="outline-container-org3b59979" class="outline-2">
+<h2 id="org3b59979">Course takeaway: Python as a tool for economic reasoning</h2>
+<div class="outline-text-2" id="text-org3b59979">
+<p>
+Throughout these lectures you have seen how Python can be used as a practical tool for economic analysis. Even relatively simple pieces of code allow economists to simulate models, visualize economic mechanisms, and explore how outcomes change when parameters vary.
+</p>
+
+<p>
+Across the six lectures we used Python in several complementary ways:
+</p>
+
+<ul class="org-ul">
+<li>to <b><b>simulate economic processes</b></b>, such as job flows or capital accumulation</li>
+<li>to <b><b>analyze empirical data</b></b>, estimate trends, and interpret residuals</li>
+<li>to <b><b>compute equilibria and transition paths</b></b> in economic models</li>
+<li>to <b><b>solve differential equations</b></b> describing dynamic economic systems</li>
+<li>to <b><b>communicate intuition</b></b> through interactive apps</li>
 </ul>
+
+<p>
+Modern economic research and policy analysis increasingly rely on computational tools. Being able to translate economic ideas into code allows economists to explore models more deeply and to communicate their insights more clearly.
+</p>
 </div>
 </div>
-</div>
-<div id="outline-container-org8f1131a" class="outline-2">
-<h2 id="org8f1131a">Bibliography</h2>
-<div class="outline-text-2" id="text-org8f1131a">
-<style>.csl-entry{text-indent: -1.5em; margin-left: 1.5em;}</style><div class="csl-bib-body">
+<div id="outline-container-org33f4a9c" class="outline-2">
+<h2 id="org33f4a9c">Bibliography</h2>
+<div class="outline-text-2" id="text-org33f4a9c">
+<div class="csl-bib-body">
   <div class="csl-entry"><a id="citeproc_bib_item_1"></a>Mortensen, Dale T., and Éva Nagypál. 2007. “More on Unemployment and Vacancy Fluctuations.” <i>Review of Economic Dynamics</i> 10 (3): 327–47. <a href="https://doi.org/10.1016/j.red.2007.01.004">https://doi.org/10.1016/j.red.2007.01.004</a>.</div>
   <div class="csl-entry"><a id="citeproc_bib_item_2"></a>Petrongolo, Barbara, and Christopher A Pissarides. 2001. “Looking into the Black Box: A Survey of the Matching Function.” <i>Journal of Economic Literature</i> 39 (2): 390–431. <a href="https://doi.org/10.1257/jel.39.2.390">https://doi.org/10.1257/jel.39.2.390</a>.</div>
 </div>
+
+
+
+
+
+</main>
 </div>
 </div>
 </div>
