@@ -2593,6 +2593,8 @@ Consider the adverse selection model with $v_0=30$ and $v_1=90$. Write Marimo co
 <summary><strong>Hint / Solution</strong></summary>
 #+END_EXPORT
 
+Finish the code below:
+
 #+begin_src python
 import numpy as np
 import matplotlib.pyplot as plt
@@ -2611,18 +2613,10 @@ def expected_q_given_p_uniform(p, a, b):
         return (a + p) / 2
 
 for m in markups:
-    p = m*v1  # start at high price
+    p = m*v1
     for _ in range(30):
         expected_q = expected_q_given_p_uniform(p, v0, v1)
-        if expected_q is None:
-            break
-        new_p = m * expected_q
-        if abs(new_p - p) < 1e-6:
-            break
-        p = new_p
-    eq_prices.append(p)
-    frac = max(0, min(1, (p-v0)/(v1-v0)))
-    fractions.append(frac)
+        #finish the code of this block
 
 plt.plot(markups, eq_prices, label="Equilibrium price")
 plt.plot(markups, fractions, label="Fraction traded")
@@ -2640,28 +2634,29 @@ plt.legend()
 Modify the Cournot duopoly Python code so there are three firms, each with marginal cost $c$, facing demand of the form $p = 1 - q_1 - q_2 - q_3$.  
 - Define best-response functions for each firm.
 - Write a for loop to iterate best responses starting with initial quantities $q_1=0.3, q_2=0.3, q_3=0.3$.
-- Write a function =fixed_point= and use this function to solve for the equilibrium.
 
 #+BEGIN_EXPORT html
 <details>
 <summary><strong>Hint / Solution</strong></summary>
 #+END_EXPORT
 
+Finish the code below:
+
 #+begin_src python
-# Reaction for each: maximize (1 - sum(qs) - c)*q_i
-def r1(q2, q3, c): return (1 - q2 - q3 - c)/2
-def r2(q1, q3, c): return (1 - q1 - q3 - c)/2
-def r3(q1, q2, c): return (1 - q1 - q2 - c)/2
+def r1(q2, q3, c):
+    return (1 - q2 - q3 - c)/2
+def r2(q1, q3, c):
+    return (1 - q1 - q3 - c)/2
+def r3(q1, q2, c):
+    return (1 - q1 - q2 - c)/2
 c = 0.2
 qs = [0.3, 0.3, 0.3]
 history = [qs.copy()]
 for i in range(15):
     qs[0] = r1(qs[1], qs[2], c)
-    history.append(qs.copy())
-    qs[1] = r2(qs[0], qs[2], c)
-    history.append(qs.copy())
-    qs[2] = r3(qs[0], qs[1], c)
-    history.append(qs.copy())
+    # finish the code
+
+
 plt.plot([row[0] for row in history], label='$q_1$')
 plt.plot([row[1] for row in history], label='$q_2$')
 plt.plot([row[2] for row in history], label='$q_3$')
@@ -2684,7 +2679,7 @@ Derive and plot the steady-state unemployment $u^*$ as a function of the job-fin
 <summary><strong>Hint / Solution</strong></summary>
 #+END_EXPORT
 
-Use google or an LLM to figure out what 'broyden1' means. Why do we use =x[0]= below and not just =x=?
+Use google or an LLM to figure out what 'broyden1' means. Why do we use =x[0]= after =optimize.root()= and not just =x=?
 
 #+begin_src jupyter-python 
 import numpy as np
@@ -2706,11 +2701,8 @@ def fixed_point(x,mu):
 
 u_star = []
 for mu in mus:
-    x = optimize.root(lambda x: fixed_point(x,mu), [1/3.0, 1/3.0, 1/3.0], method='broyden1', tol=1e-14).x
-    u_star.append(x[0])
-plt.plot(mus,u_star)
-plt.xlabel(r'$\mu$ (job finding rate)')
-plt.ylabel('Steady state $u^*$')
+    x = optimize.root(lambda x: fixed_point(x,mu), [1/3.0, 1/3.0, 1/3.0], method='broyden1', tol=1e-14).x[0]
+    # finish the code
 #+end_src
 
 
@@ -2731,24 +2723,19 @@ In the labor market model, implement the time path simulation *using only Numpy 
 #+END_EXPORT
 
 #+begin_src python
-mu, lmbd, dl, dh = 0.12, 0.09, 0.04, 0.03
+M, lmbd, dl, dh = 0.12, 0.09, 0.04, 0.03
 A = np.array([
-    [1 - mu, dl, dh],
-    [mu, 1 - lmbd - dl, 0],
+    [1 - M, dl, dh],
+    [M, 1 - lmbd - dl, 0],
     [0, lmbd, 1 - dh]
 ])
 S = np.array([0.8, 0.2, 0]).reshape(3,1)
-history = [S.flatten()]
+hist = [S]
 for _ in range(60):
     S = np.dot(A, S)
-    S = S / np.sum(S)   # (optional: renormalize so they sum to 1)
-    history.append(S.flatten())
-history = np.array(history)
-plt.plot(history[:,0], label="Unemployed")
-plt.plot(history[:,1], label="Low wage")
-plt.plot(history[:,2], label="High wage")
-plt.legend()
-plt.show()
+    hist.append(S)
+
+# finish the code
 #+end_src
 
 #+BEGIN_EXPORT html
@@ -2774,17 +2761,16 @@ h_{t+1} &= h_t + \lambda l_t + \alpha u_t - \delta_h h_t
 #+END_EXPORT
 
 #+begin_src python
-mu = mo.ui.slider(0.01, 0.5, value=0.1, label="Job finding rate")
-lambda_ = mo.ui.slider(0.01, 0.5, value=0.15, label="Learning rate")
-delta_l = mo.ui.slider(0.01, 0.5, value=0.05, label="Low wage sep.")
-delta_h = mo.ui.slider(0.01, 0.5, value=0.02, label="High wage sep.")
-alpha = mo.ui.slider(0.0, 0.2, value=0.0, step=0.01, label="Direct high wage $\alpha$")
+Mu = mo.ui.slider(0.01, 0.5, value=0.1, step=0.01, label="Job finding rate")
+Lambda = mo.ui.slider(0.01, 0.5, value=0.15, step=0.01, label="Learning rate")
+d_l = mo.ui.slider(0.01, 0.5, value=0.05, step=0.01, label="Low wage sep.")
+d_h = mo.ui.slider(0.01, 0.5, value=0.02, step=0.01, label="High wage sep.")
+alpha = mo.ui.slider(0.0, 0.2, value=0.0, step=0.01, label="Direct high wage $\\alpha$")
 u0 = mo.ui.slider(0.0, 1.0, value=1.0, step=0.01, label="Initial unemployment")
-mo.hstack([mu,lambda_,delta_l,delta_h,alpha,u0])
+mo.vstack([Mu,Lambda,d_l,d_h,alpha,u0])
 #+end_src
 
 #+begin_src python
-
 T = 60
 u_hist, l_hist, h_hist = [], [], []
 u, l, h = u0.value, 1-u0.value, 0.0
@@ -2793,11 +2779,11 @@ for t in range(T):
     u_hist.append(u)
     l_hist.append(l)
     h_hist.append(h)
-    to_l = mu.value * u
+    to_l = Mu.value * u
     to_h = alpha.value * u
-    l_to_h = lambda_.value * l
-    l_to_u = delta_l.value * l
-    h_to_u = delta_h.value * h
+    l_to_h = Lambda.value * l
+    l_to_u = d_l.value * l
+    h_to_u = d_h.value * h
 
     next_u = u + l_to_u + h_to_u - to_l - to_h
     next_l = l + to_l - l_to_h - l_to_u
@@ -2808,10 +2794,7 @@ for t in range(T):
 
     u, l, h = next_u, next_l, next_h
 
-plt.plot(u_hist,label="unemployment")
-plt.plot(l_hist,label="low wage")
-plt.plot(h_hist,label="high wage")
-plt.legend()
+# Finish the code
 #+end_src
 
 As $\alpha$ increases, the fraction in high wage employment rises and steady-state unemployment falls.
@@ -3542,36 +3525,9 @@ Write a Python function that computes the number of matches \(M\) using the matc
 
 Choose parameter values \(m = 0.8\) and \(\alpha = 0.5\).  
 Simulate how matches change when unemployment \(U\) increases from 50 to 200 while vacancies \(V = 100\) remain fixed.  
-Plot matches as a function of unemployment.
+Plot matches as a function of unemployment. In the same figure also plot the number of matches for \(\alpha = 0.8\).
 
-#+BEGIN_EXPORT html
-<details>
-<summary><strong>Hint / Solution</strong></summary>
-#+END_EXPORT
-
-#+begin_src python
-import numpy as np
-import matplotlib.pyplot as plt
-
-m = 0.8
-alpha = 0.5
-V = 100
-
-U = np.linspace(50, 200, 100)
-
-M = m * (U**alpha) * (V**(1-alpha))
-
-plt.plot(U, M)
-plt.xlabel("Unemployment U")
-plt.ylabel("Matches M")
-plt.title("Matching Function")
-plt.show()
-#+end_src
-
-#+BEGIN_EXPORT html
-</details>
-#+END_EXPORT
-
+For which value of \(U\) do these lines intersect? Why is this the case?
 
 *** Question 2. Job-finding probability
 
@@ -3581,34 +3537,7 @@ The probability that an unemployed worker finds a job is
 
 where \(\theta = V/U\).
 
-Write Python code that computes and plots the job-finding probability for \(\theta\) values between 0.2 and 2.
-
-#+BEGIN_EXPORT html
-<details>
-<summary><strong>Hint / Solution</strong></summary>
-#+END_EXPORT
-
-#+begin_src python
-import numpy as np
-import matplotlib.pyplot as plt
-
-m = 0.8
-alpha = 0.5
-
-theta = np.linspace(0.2, 2, 100)
-
-p = m * theta**(1-alpha)
-
-plt.plot(theta, p)
-plt.xlabel("Labor market tightness θ")
-plt.ylabel("Job-finding probability")
-plt.title("Job-finding probability")
-plt.show()
-#+end_src
-
-#+BEGIN_EXPORT html
-</details>
-#+END_EXPORT
+Write Python code that computes and plots the job-finding probability for \(\theta\) values between 0.2 and 2; again, as above, choosing parameter values \(m = 0.8\) and \(\alpha = 0.5\).  
 
 
 *** Question 3. Wage curve
@@ -3618,38 +3547,9 @@ The wage equation in the lecture is
 \(w = \beta a + (1-\beta)b\theta^{1-\alpha}\)
 
 Assume  
-\(a = 200\), \(b = 50\), \(\alpha = 0.5\), \(\beta = 0.5\).
+\(a = 200\), \(b = 50\), \(\beta = 0.5\) and, as above, \(\alpha = 0.5\)
 
-Write Python code that plots the wage curve for \(\theta\) between 0.2 and 2.
-
-#+BEGIN_EXPORT html
-<details>
-<summary><strong>Hint / Solution</strong></summary>
-#+END_EXPORT
-
-#+begin_src python
-import numpy as np
-import matplotlib.pyplot as plt
-
-a = 200
-b = 50
-alpha = 0.5
-beta = 0.5
-
-theta = np.linspace(0.2, 2, 100)
-
-w = beta * a + (1-beta) * b * theta**(1-alpha)
-
-plt.plot(theta, w)
-plt.xlabel("Labor market tightness θ")
-plt.ylabel("Wage")
-plt.title("Wage curve")
-plt.show()
-#+end_src
-
-#+BEGIN_EXPORT html
-</details>
-#+END_EXPORT
+Write Python code that plots the wage curve for \(\theta\) between 0.2 and 2. Also, plot the wage curve for \(\alpha = 0.8\). For which value of \(\theta\) do the curves intersect?
 
 
 *** Question 4. Immigration shock in the short run
@@ -3663,41 +3563,9 @@ Immigration increases unemployment by 20%.
 
 Write Python code that
 
-• computes the initial tightness \(θ_0\)  
-• computes the new tightness after immigration  
-• computes the corresponding wages using the wage equation.
-
-#+BEGIN_EXPORT html
-<details>
-<summary><strong>Hint / Solution</strong></summary>
-#+END_EXPORT
-
-#+begin_src python
-import numpy as np
-
-a = 200
-b = 50
-alpha = 0.5
-beta = 0.5
-
-U0 = 200
-V = 150
-
-theta0 = V / U0
-
-U1 = U0 * 1.2
-theta1 = V / U1
-
-w0 = beta * a + (1-beta) * b * theta0**(1-alpha)
-w1 = beta * a + (1-beta) * b * theta1**(1-alpha)
-
-print(theta0, theta1)
-print(w0, w1)
-#+end_src
-
-#+BEGIN_EXPORT html
-</details>
-#+END_EXPORT
+- computes the initial tightness \(θ_0\)  
+- computes the new tightness after immigration  
+- computes the corresponding wages using the wage equation.
 
 #+BEGIN_EXPORT html
 <details>
@@ -3737,38 +3605,10 @@ Using the matching function
 
 \(M = m U^\alpha V^{1-\alpha}\)
 
-generate simulated data for \(U\) and \(V\), compute \(M\), and then estimate the parameters \(m,\alpha\) using least squares.
+generate simulated data for \(U\) and \(V\), compute \(M\), add some noise to \(M\) and then estimate the parameters \(m,\alpha\) using least squares.
 
-Hint: rearrange the equation as
+Hint: you can use the function \(\ln(x)\) to make it look more like a linear regression.
 
-\(m = M / (U^\alpha V^{1-\alpha})\)
-
-Compute the average value of \(m\) from your simulated observations.
-
-#+BEGIN_EXPORT html
-<details>
-<summary><strong>Hint / Solution</strong></summary>
-#+END_EXPORT
-
-#+begin_src jupyter-python
-import numpy as np
-
-alpha = 0.5
-m_true = 0.8
-
-np.random.seed(0)
-
-U = np.random.uniform(50, 200, 100)
-V = np.random.uniform(50, 200, 100)
-
-M = m_true * (U**alpha) * (V**(1-alpha)) + np.random.normal(0,10,100)
-
-#+end_src
-
-Now define a matching function as a function of $m,\alpha$, derive the residuals between the matching function and the observed values for $M$. Minimize the sum of squared residuals. 
-#+BEGIN_EXPORT html
-</details>
-#+END_EXPORT
 
 -----------
 
