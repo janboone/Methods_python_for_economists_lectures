@@ -1,25 +1,28 @@
 #+SETUPFILE: ./org-html-themes/org/theme-readtheorg.setup
 #+TITLE: Lectures Methods: Python programming for economists
 #+AUTHOR: Jan Boone
-#+property: header-args  :session lectures :kernel python3 :async yes
-#+OPTIONS: toc:nil num:nil html-style:nil
+#+DATE: June 2026
+#+PROPERTY: header-args  :session lectures :async t  :results raw drawer
+#+PANDOC_OPTIONS: template:~/.local/share/pandoc/templates/eisvogel
+#+PANDOC_VARIABLES: titlepage=true
+#+PANDOC_OPTIONS: resource-path:.:figures
+#+PANDOC_OPTIONS: highlight-style:tango
+#+PANDOC_OPTIONS: pdf-engine:xelatex
+#+OPTIONS: toc:nil num:nil H:6 html-style:nil
 #+auto_tangle: nil
 
 #+LANGUAGE: en
 #+INFOJS_OPT: view:showall toc:t ltoc:t mouse:underline path:http://orgmode.org/org-info.js
-#+LaTeX_CLASS: article-12
 #+LATEX_HEADER: \renewcommand{\floatpagefraction}{.8} %% avoids figures getting their own page
 #+latex_header: \input{author.tex}
 #+latex_engraved_theme: t
 #+EXPORT_SELECT_TAGS: export
 #+EXPORT_EXCLUDE_TAGS: noexport
 #+OPTIONS: toc:nil timestamp:nil num:2 ':t \n:nil @:t ::t |:t ^:{} _:{} *:t TeX:t LaTeX:t
+
 #+HTML_HEAD: <link rel="stylesheet" href="./css/Latex.css">
 #+HTML_HEAD: <link rel="stylesheet" href="https://latex.now.sh/prism/prism.css">
 #+HTML_HEAD: <script src="https://cdn.jsdelivr.net/npm/prismjs/prism.min.js"></script>
-
-
-
 #+HTML_HEAD: <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 #+HTML_HEAD: <style>
 #+HTML_HEAD: body { font-family: Arial, sans-serif; margin: 0; background-color: #f5f7fa; line-height: 1.7; }
@@ -48,6 +51,25 @@
 <main>
 #+END_EXPORT
 
+* Preamble
+:PROPERTIES:
+:UNNUMBERED: t
+:END:
+
+- These lectures are (loosely) based on [cite/text/c:@downey-2023-model-simul-python] which is a great introduction into Python. The book can be found [[https://greenteapress.com/wp/modsimpy/][here]] and the associated notebooks [[https://allendowney.github.io/ModSimPy/][here]].
+
+A main difference is that the lectures here meant for economics students, not engineers. It is actually a good idea to use the book next to these lectures; they are complementary, not substitutes ("economics speak"). Allen has some great discussions on why models are (actually) useful.
+
+There are two versions of this document:
+- the interactive [[https://janboone.github.io/Methods_python_for_economists_lectures/][html version]] which contains the streamlit apps
+- and the static [[https://janboone.github.io/Methods_python_for_economists_lectures/index.pdf][pdf version]] which does not contain interactive apps
+
+The html version uses the [[https://github.com/fniessen/org-html-themes][ReadTheOrg]] theme and the pdf version the [[https://github.com/Wandmalfarbe/pandoc-latex-template][Eisvogel latex template]].
+
+#+BEGIN_EXPORT latex
+\newpage
+#+END_EXPORT
+
 * Introduction
 :PROPERTIES:
 :UNNUMBERED: t
@@ -65,7 +87,7 @@ The structure of each lecture is the same:
 - explain the python code that creates the app
 - have some review questions
 
-Our advice is to have this website open to read the information and next to it have your [[https://marimo.io/][marimo]] notebook to make notes and program the interactive elements for the app. Most apps below are programed with [[https://streamlit.io/][streamlit]] which is very similar to =marimo=.
+Our advice is to have the website or pdf open to read the information and next to it have your [[https://marimo.io/][marimo]] notebook to make notes and program the interactive elements for the app. Most apps below are programmed with [[https://streamlit.io/][streamlit]] which is very similar to =marimo= (but easier to use in [[https://www.gnu.org/software/emacs/][Emacs]] in which this document is written).
 
 #+BEGIN_EXPORT html
 <div style="border-left:4px solid #444;padding:10px;margin:20px 0;background:#f7f7f7;">
@@ -105,6 +127,11 @@ Our advice is to have this website open to read the information and next to it h
 </div>
 #+END_EXPORT
 
+--------------
+
+#+BEGIN_EXPORT latex
+\newpage
+#+END_EXPORT
 
 * Lecture 1: The Power of Compounded Interest and Employment Dynamics
 :PROPERTIES:
@@ -135,7 +162,7 @@ This lecture introduces Python through two economic models:
 1. The Power of Compounded Interest: We model the growth of a bank account with regular deposits and compounded interest. This is analogous to the "falling coin" example in physics, but here we use an economic scenario.
 2. Modeling Employment and Unemployment: We model the employment status of 20 people in a village. Each person can be either employed or unemployed. At each time step, an employed person can lose their job (become unemployed) with a certain probability, and an unemployed person can find a job (become employed) with another probability.
 
-You can experiment with both models in the interactive demos below.
+You can experiment with both models in the interactive apps below.
 
 *** Compounded interest
 :PROPERTIES:
@@ -145,6 +172,11 @@ You can experiment with both models in the interactive demos below.
 Most people know that a savings account with a given sum of money in it can grow a lot through yearly interest payments. Hence a low starting capital with high interest rate can outperform a high starting capital with low interest rate. Suppose you want to explain to colleagues or friends that having a high monthly deposit with a low interest rate can similarly be "dwarfed" by an alternative with low monthly deposit but high interest rate. How can you do this using an interactive app?
 
 The following app illustrates how a lower monthly deposit can be "compensated" by a higher interest rate and lead to a higher final balance then a high monthly deposit with lower interest rate. Adjust the sliders by setting a relatively high deposit and low interest rate in scenario 1 and low deposit with high interest rate in scenario 2. Click the 'Calculate' button to see how the balance develops over time in each scenario.
+
+#+BEGIN_EXPORT latex
+\url{https://lecture1compoundinterest.streamlit.app/}
+#+END_EXPORT
+
 
 #+BEGIN_EXPORT html
 <iframe
@@ -167,12 +199,15 @@ The following app illustrates how a lower monthly deposit can be "compensated" b
 :HTML_CONTAINER_CLASS: section
 :END:
 
-Some people tend to think of unemployment as a static phenomenon. Some people work and other are unemployed all their life. To explain that unemployment is a dynamic and stochastic phenomenon, we create an interactive app starting from intuitive basic principles: workers have a probability of losing their job (e.g. their firm goes bankrupt) and unemployed have a probability of finding a job. We can then follow workers over time, show how many are either employed or unemployed in each time period and thus illustrate that there is a lot of variation. Even when we know what the unemployment rate will be in the long run, there will be a lot of variation around this steady state unemployment rate. Not a static phenomenon at all!  
+Some people tend to think of unemployment as a static phenomenon. Many people work and others are unemployed all their life. To explain that unemployment is a dynamic and stochastic phenomenon, we create an interactive app starting from intuitive basic principles: workers have a probability of losing their job (e.g. their firm goes bankrupt) and unemployed have a probability of finding a job. Although at the macro level there are --more of less-- stable levels of employment and unemployment, at the micro level there is a lot of change. We can follow workers over time, show how many are either employed or unemployed in each time period and thus illustrate that there is a lot of variation. Further, even when we know what the unemployment rate will be in the long run, there will be a lot of variation around this steady state unemployment rate. Not a static phenomenon at all!  
 
 The following app illustrates how employment/unemployment evolves in a small town with 20 inhabitants. We start with full employment. With the sliders you can set the probability that an employee is fired and the probability that an unemployed person is hired. Select the number of periods for which you want to run the simulation and click the 'Run Simulation' button.
 
-The second app illustrates a parameter sweep. This shows how sensitive an outcome is to the parameter value. In this case, we want to analyze the sensitivity of the steady state unemployment level to the probability of finding a job. As this is a simple simulation model, we can actually derive the long run unemployment level analytically. The figure compares the simulated long run unemployment level with the analytic solution. For the probability of being fired chosen in the first app, clicking 'Sweep Parameter' shows long run unemployment for different values of $p_{hired}$.
+The second part of the app illustrates a parameter sweep. This shows how sensitive an outcome is to the parameter value. In this case, we want to analyze the sensitivity of the steady state unemployment level to the probability of finding a job. As this is a simple simulation model, we can actually derive the long run unemployment level analytically. The figure compares the simulated long run unemployment level with the analytic solution. For the probability of being fired chosen in the first app, clicking 'Sweep Parameter' shows long run unemployment for different values of $p_{hired}$.
 
+#+BEGIN_EXPORT latex
+\url{https://lecture1employmentdynamics.streamlit.app}
+#+END_EXPORT
 
 #+BEGIN_EXPORT html
 <iframe
@@ -200,7 +235,9 @@ In this section we explain the Python code for the model itself, not yet for the
 
 Let's see how you can model the growth of a bank account with regular deposits and compounded interest in Python.
 
-If you want to learn to program in Python, our advice is that you type the code below in your =marimo= notebook and run it. Then start to "play with it": change things, experiment with the code. You cannot break anything and (mis)typing code, getting errors, using google or an LLM to understand the errors and change the code: this is how you learn to program. Just glancing over the code below and thinking you "understand things" is a waste of your time. 
+If you want to learn to program in Python, our advice is that you type the code below in your =marimo= notebook and run it. That is, type the code; not copy/paste. The frustrating process of typos and errors is all part of deal when learning to program. 
+
+Then start to "play with" code: change things, experiment with the code. You cannot break anything and getting errors, seeing unexpected results and then using google or an LLM to understand the errors and change the code: this is how you learn to program. Just glancing over the code below and thinking you "understand things" is a waste of your time. 
 
 **** 1. Set the parameters
 
@@ -208,27 +245,34 @@ We start by defining the monthly deposit, the monthly interest rate, and the num
 
 We do this by defining variables, like ~deposit~, and give these a value:
 
-#+begin_src jupyter-python
+#+begin_src python
 deposit = 500      # euros per month
 rate = 0.003        # monthly interest rate (0.3%)
 months = 20 * 12    # 20 years
 #+end_src
 
 #+RESULTS:
+:results:
+None
+:end:
 
 **** 2. Initialize the balance and create an empty list
 
-We start with a balance of zero. We also create an empty =list= called ~balances~ to store the account balance at each month.
+We start with a balance of zero. We also create an empty =list= called ~balances~ to store the account balance at the end of each month.
 
-In Python, a =list= is a data structure that can hold an ordered collection of items. In Python a list is denoted by brackets ~[]~. "Ordered" in the sense that the first element refers to the start balance, the second element to the balance one month after that etc.
+In Python, a =list= is a data structure that can hold an ordered collection of items. In Python a list is denoted by brackets ~[]~. "Ordered" in the sense that the first element refers to the start balance, the second element to the balance one month after that etc. Later we will encounter the data structure =dictionary= which is unordered.
+
 We use a list here so we can keep track of the balance after each month, which is useful for plotting the results later.
 
-#+begin_src jupyter-python
+#+begin_src python
 balance = 0
 balances = []
 #+end_src
 
 #+RESULTS:
+:results:
+None
+:end:
 
 **** 3. Simulate the account growth with a for loop
 
@@ -240,13 +284,18 @@ In each iteration, we first store the current balance in the list, then update t
 - ~balances.append(balance)~
   This adds the current balance to the end of the ~balances~ list. Note that the two statements that need to be repeated in the for loop have the same alignment (usually 4 spaces from the left in Python; your editor probably does this for you). This tells Python the lines that belong to the for-loop (without parentheses, or semicolons in the code). The next statement not belonging to the loop is outlined on the left again. If you have a so-called nested for-loop, you go 8 spaces to the right.
 
-#+begin_src jupyter-python
+#+begin_src python
 for m in range(months + 1):
     balances.append(balance)
     balance = balance * (1 + rate) + deposit
 #+end_src
 
 #+RESULTS:
+:results:
+None
+:end:
+
+*Note* we use the =for= loop here for pedagogical reasons. In Python =for= loops are discouraged; it is better (faster and more readable) to use vector operations in =numpy=.
 
 **** 4. Plot the results
 
@@ -260,9 +309,8 @@ We use =matplotlib= to visualize the growth of the account over time.
   The ~plot~ function takes two lists or arrays of equal length:
   the first for the x-axis, years, and the second for the y-axis, balances in euros.
 - By looking at the figure, you can probably infer what the functions ~plt.xlabel, plt.ylabel, plt.title~ do.
-- If you wonder what the semicolon does at the end of ~plt.title();~: delete it and run the code again.
 
-#+begin_src jupyter-python :file ./figures/compounded_interest.png
+#+begin_src python :results graphics file output :file ./figures/compounded_interest.png
 import matplotlib.pyplot as plt
 import numpy as np
 
@@ -270,22 +318,30 @@ years = np.arange(months + 1) / 12
 plt.plot(years, balances)
 plt.xlabel("Years")
 plt.ylabel("Account Balance (€)")
-plt.title("Compounded Interest Over Time");
+plt.title("Compounded Interest Over Time")
 #+end_src
 
-#+RESULTS:
+
+#+caption: Our first Python figure!
+#+attr_latex: :height 7cm
+#+name: fig:compoundedinterest
 [[file:./figures/compounded_interest.png]]
+
 
 Use an LLM to figure out what the following Python code does:
 
-#+begin_src jupyter-python
+#+begin_src python
 periods = months + 1
 factors = np.power(1 + rate, np.arange(periods))
 balances = deposit * np.cumsum(factors)
 #+end_src
 
 #+RESULTS:
+:results:
+None
+:end:
 
+This is how you can avoid =for= loops.
 
 -----
 
@@ -297,7 +353,7 @@ Let's break down the Python code for simulating employment and unemployment in a
 
 We define the number of people, the probabilities, and the number of time steps. Type this into your =marimo= notebook and see what happens if you change the value of the variable ~n_people~ to, say, 1000. Interpret the different results you see compared to our case with 20 people.
 
-#+begin_src jupyter-python
+#+begin_src python
 n_people = 20
 p_fired = 0.05   # probability an employed person is fired each step
 p_hired = 0.10   # probability an unemployed person finds a job each step
@@ -305,20 +361,26 @@ n_steps = 100
 #+end_src
 
 #+RESULTS:
+:results:
+None
+:end:
 
 **** 2. Initialize the state
 
-We start with everyone employed.
-We create lists to store the number of employed and unemployed people at each time step.
+We start with everyone employed. We create lists to store the number of employed, unemployed and fired people at each time step.
 
-#+begin_src jupyter-python
+#+begin_src python
 employed = n_people
 unemployed = 0
 employed_hist = [employed]
 unemployed_hist = [unemployed]
+fired_hist = []
 #+end_src
 
 #+RESULTS:
+:results:
+None
+:end:
 
 **** 3. Simulate the process with a for loop
 
@@ -333,7 +395,7 @@ We use ~np.random.binomial(n, p)~ to draw the number of successes, fired or hire
 
 Above we have already seen the use of ~append~ to "add" a value to a list or an array.
 
-#+begin_src jupyter-python
+#+begin_src python
 for t in range(n_steps):
     fired = np.random.binomial(employed, p_fired)
     hired = np.random.binomial(unemployed, p_hired)
@@ -341,21 +403,31 @@ for t in range(n_steps):
     unemployed = n_people - employed
     employed_hist.append(employed)
     unemployed_hist.append(unemployed)
+    fired_hist.append(fired)
 #+end_src
 
 #+RESULTS:
+:results:
+None
+:end:
 
 
 **** 4. Plot the results
 
-We use =matplotlib= to plot the number of employed and unemployed people over time.
+We use =matplotlib= to plot the number of employed and unemployed people over time and the number of people that are fired in each period. People fired is a flow variable: the people "flowing" from the stock of employed people to the stock of unemployed people. People hired is a flow from unemployment to employment but we are not plotting this to avoid crowding the figure.
 
 When you add a label to a ~plt.plot~ or ~plt.scatter~ command with ~label="Employed"~, you need to specify ~plt.legend()~ to add the legend to the figure. With the latter function you can also determine where the legend will be added in the figure. Google or use an LLM to find out how that works. If you do not specify a position, =matplotlib= will try to find the best placement itself.
 
-#+begin_src jupyter-python :file ./figures/employed_unemployed.png
+As people fired is a flow variable, we have one observation less in =fired_hist= than in =employed_hist= or in =steps=. Hence we use indexing =steps[1:]= to select the /second/ value in =steps=. Index 1 refers to the second value as Python starts counting from 0. Hence =steps[0]= refers to the first element in array =steps=. Further the colon ":" in =steps[1:]= refers to all elements after the second one.
+
+We will come back to indexing and slicing later on, but you can already experiment with =steps[0:],steps[:7], steps[-1]= etc.
+
+#+begin_src python :results graphics file output :file ./figures/employed_unemployed.png
+import matplotlib.pyplot as plt
 steps = np.arange(n_steps + 1)
 plt.plot(steps, employed_hist, label="Employed")
 plt.plot(steps, unemployed_hist, label="Unemployed")
+plt.plot(steps[1:], fired_hist, '--', label="People fired")
 plt.xlabel("Time step")
 plt.ylabel("Number of people")
 plt.title("Employment and Unemployment Over Time")
@@ -363,8 +435,14 @@ plt.legend()
 plt.grid(True)
 #+end_src
 
-#+RESULTS:
+
+#+caption: Variation in the number of people employed, unemployed and fired over time
+#+attr_latex: scale=0.3
+#+name: fig:employedunemployed
 [[file:./figures/employed_unemployed.png]]
+
+
+
 
 ***** Summary of what the code does
 
@@ -385,7 +463,11 @@ A question when doing simulations is: how sensitive are the simulation results t
 - and we take the average unemployment level over these 50 periods; because hiring and firing are stochastic processes, the outcome in one particular period is random. By taking the average over 50 periods, we average out these per period stochastic outcomes.
 
 
-As the model is quite simple, we can actually derive the steady state unemployment level analytically. If you do not quite see how we got this expression, you can watch the following derivation:
+As the model is quite simple, we can actually derive the steady state unemployment level analytically. If you do not quite see how we get the expression for steady state unemployment, you can watch the following derivation:
+
+#+BEGIN_EXPORT latex
+\url{https://janboone.github.io/Methods_python_for_economists_lectures/manim/media/videos/steady_state_unemployment/2160p60/DerivationScene.mp4}
+#+END_EXPORT
 
 #+BEGIN_EXPORT html
 <div style="text-align:center;">
@@ -403,7 +485,7 @@ Two points on the code:
 - in a later lecture we consider some simple indexing of lists and arrays. For now: ~unemployment_hist[-50:]~ refers to the final 50 entries in list/array ~unemployment_hist~. If you want to know more about this google or use an LLM: "how does slicing and indexing work in Python"
 - Note the nested for-loops and 8 spaces from the left in the "inner" loop.
 
-#+begin_src jupyter-python
+#+begin_src python
 n_people = 20
 n_steps = 200
 p_fired = 0.05  # fixed probability of being fired
@@ -429,10 +511,13 @@ for p_h in sweep_p_hired:
 #+end_src
 
 #+RESULTS:
+:results:
+None
+:end:
 
 **** 6. Plotting the sweep results
 
-#+begin_src jupyter-python :file ./figures/steady_state_unemployment.png
+#+begin_src python :results graphics file output :file ./figures/steady_state_unemployment.png
 plt.plot(sweep_p_hired, avg_unemp, label="Simulated (last 50 steps)")
 plt.plot(sweep_p_hired, analytic_unemp, '--', label="Analytic steady-state")
 plt.xlabel("Probability of finding a job")
@@ -440,15 +525,16 @@ plt.ylabel("Unemployment rate")
 plt.title("Long-run Unemployment Rate vs. Probability of Finding a Job")
 plt.legend()
 plt.grid(True)
-plt.show()
 #+end_src
 
-#+RESULTS:
+
+#+caption: Steady state unemployment levels as a function of $p_{hired}$
+#+attr_latex: scale=0.3
+#+name: fig:steadystateunemploymentsweep
 [[file:./figures/steady_state_unemployment.png]]
 
 ***** Summary of what the code does
 
-- *Step 1-4:* Simulate the employment dynamics as before.
 - *Step 5:* For a range of probabilities of finding a job, run the simulation and compute the average unemployment rate in the long run. Also compute the analytic steady-state unemployment rate:
 
 $$
@@ -461,225 +547,6 @@ Sweeping parameters is a powerful way to explore how a model behaves as you chan
 
 
 
-
-
-*** streamlit :noexport:
-
-#+begin_src python 
-import streamlit as st
-import numpy as np
-import matplotlib.pyplot as plt
-
-st.set_page_config(page_title="Lecture 1", layout="wide")
-
-st.title("Compounded Interest")
-
-st.header("Interactive: Compounded Interest Scenarios")
-st.markdown("#### Scenario 1: High deposit, lower interest rate")
-deposit1 = st.slider("Monthly deposit (Scenario 1)", min_value=50, max_value=2000, value=500, step=50, key="deposit1")
-rate1 = st.slider("Monthly interest rate (%) (Scenario 1)", min_value=0.0, max_value=2.0, value=0.3, step=0.01, key="rate1") / 100
-
-st.markdown("#### Scenario 2: Low deposit, higher interest rate")
-deposit2 = st.slider("Monthly deposit (Scenario 2)", min_value=10, max_value=1000, value=100, step=10, key="deposit2")
-rate2 = st.slider("Monthly interest rate (%) (Scenario 2)", min_value=0.0, max_value=2.0, value=1.0, step=0.01, key="rate2") / 100
-
-calculate = st.button("Calculate", key="calculate_button")
-
-if calculate: 
-    months = 20 * 12  # 20 years
-    balances1 = []
-    balances2 = []
-    b1 = 0
-    b2 = 0
-    for m in range(months + 1):
-        balances1.append(b1)
-        balances2.append(b2)
-        b1 = b1 * (1 + rate1) + deposit1
-        b2 = b2 * (1 + rate2) + deposit2
-
-    years = np.arange(months + 1) / 12
-
-    fig, ax = plt.subplots()
-    ax.plot(years, balances1, label=f"Scenario 1: €{deposit1}/mo, {rate1*100:.2f}%/mo")
-    ax.plot(years, balances2, label=f"Scenario 2: €{deposit2}/mo, {rate2*100:.2f}%/mo")
-    ax.set_xlabel("Years")
-    ax.set_ylabel("Account Balance (€)")
-    ax.set_title("Compounded Interest: Two Scenarios")
-    ax.legend()
-    ax.grid(True)
-    st.pyplot(fig)
-
-    st.markdown("""
-**Try adjusting the sliders above and press "Calculate"!**  
-Notice how even a small increase in the interest rate can have a dramatic effect on the final balance, especially over long periods. This is the "power of compounded interest."
-""")
-else:
-    st.info('Adjust the sliders and press "Calculate" to see the results.')
-#+end_src
-
-
-#+begin_src python
-import streamlit as st
-import numpy as np
-import matplotlib.pyplot as plt
-
-st.set_page_config(page_title="Lecture 1", layout="wide")
-
-st.header("Interactive: Employment Dynamics Simulation")
-st.markdown("Set the probabilities and run the simulation:")
-
-p_fired = st.slider("Probability of being fired (per employed person, per step)", min_value=0.0, max_value=0.5, value=0.05, step=0.01)
-p_hired = st.slider("Probability of finding a job (per unemployed person, per step)", min_value=0.0, max_value=0.5, value=0.10, step=0.01)
-n_people = 20
-n_steps = st.slider("Number of time steps", min_value=20, max_value=200, value=100, step=10)
-
-run_sim = st.button("Run Simulation", key="run_employment_sim")
-
-if run_sim:
-    employed = n_people
-    unemployed = 0
-    employed_hist = [employed]
-    unemployed_hist = [unemployed]
-
-    for t in range(n_steps):
-        fired = np.random.binomial(employed, p_fired)
-        hired = np.random.binomial(unemployed, p_hired)
-        employed = employed - fired + hired
-        unemployed = n_people - employed
-        employed_hist.append(employed)
-        unemployed_hist.append(unemployed)
-
-    steps = np.arange(n_steps + 1)
-
-    fig, ax = plt.subplots()
-    ax.plot(steps, employed_hist, label="Employed")
-    ax.plot(steps, unemployed_hist, label="Unemployed")
-    ax.set_xlabel("Time step")
-    ax.set_ylabel("Number of people")
-    ax.set_title("Employment and Unemployment Over Time")
-    ax.legend()
-    ax.grid(True)
-    st.pyplot(fig)
-
-    st.markdown("""
-**Try changing the probabilities and rerun the simulation!**  
-Notice how the number of employed and unemployed people fluctuates over time, depending on the probabilities.
-""")
-else:
-    st.info('Set the probabilities and press "Run Simulation" to see the results.')
-
-st.divider()
-
-st.header("Parameter Sweep: Long-run Unemployment Rate")
-st.markdown(
-        """
-Explore how the long-run unemployment rate depends on the probability of finding a job.
-
-- The probability of being fired is set by the slider above.
-- The probability of finding a job is swept from 0.1 to 0.9.
-- For each value, we simulate the process and compute the average unemployment rate in the long run (last 50 steps).
-- The analytic steady-state unemployment rate $u$ solves:  
-  $$
-  p_{\\text{fired}} \\cdot (1-u) = p_{\\text{hired}} \\cdot u
-  $$
-  so
-  $$
-  u = \\frac{p_{\\text{fired}}}{p_{\\text{fired}} + p_{\\text{hired}}}
-  $$
-"""
-    )
-
-sweep_btn = st.button("Sweep Parameter", key="sweep_button")
-if sweep_btn:
-    n_people = 20
-    n_steps = 200
-    sweep_p_hired = np.linspace(0.1, 0.9, 30)
-    avg_unemp = []
-    analytic_unemp = []
-    for p_h in sweep_p_hired:
-        employed = n_people
-        unemployed = 0
-        unemployed_hist = [unemployed]
-        for t in range(n_steps):
-            fired = np.random.binomial(employed, p_fired)
-            hired = np.random.binomial(unemployed, p_h)
-            employed = employed - fired + hired
-            unemployed = n_people - employed
-            unemployed_hist.append(unemployed)
-        # Average unemployment rate over last 50 steps
-        avg_unemp.append(np.mean(unemployed_hist[-50:]) / n_people)
-        # Analytic steady-state
-        u_analytic = p_fired / (p_fired + p_h)
-        analytic_unemp.append(u_analytic)
-
-    fig, ax = plt.subplots()
-    ax.plot(sweep_p_hired, avg_unemp, label="Simulated (last 50 steps)")
-    ax.plot(sweep_p_hired, analytic_unemp, '--', label="Analytic steady-state")
-    ax.set_xlabel("Probability of finding a job")
-    ax.set_ylabel("Unemployment rate")
-    ax.set_title("Long-run Unemployment Rate vs. Probability of Finding a Job")
-    ax.legend()
-    ax.grid(True)
-    st.pyplot(fig)
-
-    st.markdown(
-            """
-The plot shows the average unemployment rate (from simulation) and the analytic steady-state value as a function of the probability of finding a job.
-
-- The analytic solution matches the simulation well, especially for larger populations and longer runs.
-- Try changing the probability of being fired and rerun the sweep!
-"""
-        )
-else:
-    st.info('Press "Sweep Parameter" to run the parameter sweep and see the results.')
-#+end_src
-
-*** manim :noexport:
-
-In the terminal run =manim -pqk steady_state_unemployment.py DerivationScene=:
-- in the folder ./manim
-- after =conda activate manim_env=
-
-#+begin_src jupyter-python
-from manim import *
-from manim_voiceover import VoiceoverScene
-from manim_voiceover.services.gtts import GTTSService
-
-class DerivationScene(VoiceoverScene):
-    def construct(self):
-        self.set_speech_service(GTTSService(lang="en", tld="com"))
-        font_size = 20
-        # 1. Define Equations
-        eq1 = MathTex(r'employed_{t+1} &= employed_{t} + hired_{t} - fired_{t}\\ hired_t &= p_{hired} \cdot unemployed_t \\ fired_t &= p_{fired} \cdot employed_t', font_size=font_size)
-        eq2 = MathTex(r"employed_t + unemployed_t = 1", font_size=font_size)
-        eq3 = MathTex(
-            r"employed &= employed + p_{hired}(1 - employed)\\ &- p_{fired}employed",
-            font_size=font_size)
-        eq4 = MathTex(
-            r"employed = \frac{p_{hired}}{p_{hired} + p_{fired}}",
-            font_size=font_size)
-        eq5 = MathTex(
-            r"unemployed &= 1 - \frac{p_{hired}}{p_{hired} + p_{fired}}\\ &= \frac{p_{fired}}{p_{hired} + p_{fired}}",
-            font_size=font_size)
-        # 2. Animate
-        with self.voiceover(text="We know the following three equations from our model"):
-            self.play(Write(eq1))
-            self.wait(2)
-        # Transform eq1 into eq2 smoothly
-        with self.voiceover(text="And we know that people are either employed or unemployed"):
-            self.play(ReplacementTransform(eq1, eq2))
-            self.wait(1)
-
-        with self.voiceover(text="Combining these equations and noting that in steady state time t does not matter, we can write the following"):
-            self.play(ReplacementTransform(eq2, eq3))
-            self.wait(1)
-        with self.voiceover(text="Finally, we solve this equation for employed which equals"):
-            self.play(ReplacementTransform(eq3, eq4))
-            self.wait(1)
-        with self.voiceover(text="Or equivalently, steady state unemployment equals the following expression"):
-            self.play(ReplacementTransform(eq4, eq5))
-            self.wait(1)
-#+end_src
 
 ** Summary
 
@@ -718,7 +585,7 @@ Test your understanding of the Python concepts and models from this lecture. For
 You want to predict the future value of a savings account after 10 years, but you only know the monthly deposit and the interest rate.
 You are given the following code fragment:
 
-#+begin_src jupyter-python
+#+begin_src python
 deposit = 100
 rate = 0.004
 months = 10 * 12
@@ -728,26 +595,24 @@ for m in range(months):
 #+end_src
 
 - a. Without running the code, explain how the balance will grow over time.  
-- b. Write code to print the balance every year (not every month).
+- b. Write code to print the balance every year (not every month). Hint: find a Python operator to figure out whether a number can be divided by 12.
 - c. How would you modify the code to allow for a one-time bonus deposit in month 24?
 
 
 For this question you need to use an ~if~ statement. Google "if statements in python" or get help from an LLM to solve this.
 
+*** Hint
 #+BEGIN_EXPORT html
 <details>
-<summary><strong>Hint / Solution</strong></summary>
+<summary><strong>click here</strong></summary>
 #+END_EXPORT
-
-- The balance grows faster and faster due to compounding: each month, interest is earned on the previous balance.
-- To print the balance every year, use an ~if~ statement inside the loop:  
-  ~if m % 12 == 0: print(m//12, balance)~
-- To add a bonus in month 24:  
-  ~if m == 24: balance += bonus~
-
+- To print the balance every year, use an ~if~ statement inside the loop: ~if m % 12 == 0: print(m//12, balance)~
+- To add a bonus in month 24: ~if m == 24: balance += bonus~
 #+BEGIN_EXPORT html
 </details>
 #+END_EXPORT
+
+
 
 -----
 
@@ -755,7 +620,7 @@ For this question you need to use an ~if~ statement. Google "if statements in py
 
 Suppose you want to simulate unemployment in a village, but you want to track the longest streak of consecutive months where unemployment is above 5 people.
 
-#+begin_src jupyter-python
+#+begin_src python
 n_people = 20
 employed = n_people
 unemployed = 0
@@ -772,12 +637,12 @@ for month in range(months):
 - a. Explain how you would update ~employed~ and ~unemployed~ each month.  
 - b. Complete the code to track the longest streak of high unemployment.
 
+*** Hint
 #+BEGIN_EXPORT html
 <details>
-<summary><strong>Hint / Solution</strong></summary>
+<summary><strong>click here</strong></summary>
 #+END_EXPORT
 
-- Use random draws as before to update employment status.
 - For streaks:
   - If ~unemployed > 5~, increment ~current_streak~.
   - If not, reset ~current_streak~ to 0.
@@ -797,15 +662,13 @@ Suppose you run a simulation for each value and store the results in a list call
 - a. How would you plot the results so that the x-axis shows the probability of being fired and the y-axis shows the average unemployment rate?  
 - b. Suppose the analytic solution does not match the simulation for very high or very low probabilities. List two possible reasons why.
 
+*** Hint
 #+BEGIN_EXPORT html
 <details>
-<summary><strong>Hint / Solution</strong></summary>
+<summary><strong>click here</strong></summary>
 #+END_EXPORT
 
 - Use ~plt.plot(p_fired_values, avg_unemp)~ where ~p_fired_values~ is the list of probabilities you swept.
-- Possible reasons for mismatch:
-  1. The simulation is too short to reach steady state for extreme probabilities.
-  2. Random fluctuations are large in small populations, so the analytic solution (which assumes infinite population) is less accurate.
 
 #+BEGIN_EXPORT html
 </details>
@@ -818,32 +681,22 @@ Suppose you run a simulation for each value and store the results in a list call
 Consider the two economic mechanisms in this lecture.
 
 - a. Why does compounded interest lead to faster growth over time even if the interest rate stays constant?
-- b. In the employment model, what economic factors in reality might correspond to the probabilities of being fired and being hired?
+- b. In the employment model, what economic factors in reality might affect the probabilities of being fired and being hired?
 - c. Which policy measures could reduce the steady-state unemployment level in this type of model?
 
-#+BEGIN_EXPORT html
-<details>
-<summary><strong>Hint / Solution</strong></summary>
-#+END_EXPORT
-
-- Compounding means that interest is earned not only on deposits but also on previously earned interest.
-- Hiring probabilities reflect labor demand and job matching efficiency; firing probabilities reflect firm shocks or separations.
-- Policies that increase hiring probabilities (e.g. training, job matching services) or reduce separations can reduce steady-state unemployment.
-
-#+BEGIN_EXPORT html
-</details>
-#+END_EXPORT
 
 -----------
+#+BEGIN_EXPORT latex
+\newpage
+#+END_EXPORT
 
------------
 
 * Lecture 2: Healthcare expenditure
 :PROPERTIES:
 :HTML_CONTAINER_CLASS: section
 :END:
 
-*Skills you learn in this lecture:* working with real economic data, regression intuition, numerical optimization, interpreting empirical models.
+*Skills you learn in this lecture:* working with real economic data, numerical optimization, interpreting empirical models.
 
 ** Learning objectives
 
@@ -853,7 +706,6 @@ After completing this lecture you should be able to:
 - define and use Python functions
 - estimate model parameters using numerical optimization
 - interpret regression results and residuals in an economic context
-- explain the economic meaning of trends and covariates in healthcare expenditure
 
 ** Introduction
 
@@ -878,6 +730,9 @@ Then we extrapolate the time trend till 2050. According to this model, healthcar
 
 In order to understand which percentage needs to be paid out-of-pocket to keep expenditure constant, we estimate a model with this variable in it. To solve for this percentage of out-of-pocket expenditure and the OLS regressions we use the =optimize= library from =scipy=.
 
+#+BEGIN_EXPORT latex
+\url{https://lecture2healthcare.streamlit.app/}
+#+END_EXPORT
 
 #+BEGIN_EXPORT html
 <iframe
@@ -896,216 +751,6 @@ In order to understand which percentage needs to be paid out-of-pocket to keep e
 #+END_EXPORT
 
 
-*** streamlit :noexport:
-
-#+begin_src jupyter-python
-import streamlit as st
-import numpy as np
-import matplotlib.pyplot as plt
-import pandas as pd
-from scipy.optimize import minimize
-from scipy.optimize import fsolve
-
-st.set_page_config(page_title="Lecture 2", layout="wide")
-
-st.title("Healthcare")
-st.header("Interactive: Healthcare Expenditure Modeling")
-
-# Load data
-df = pd.read_csv('./data/gdp_healthcare_nl.csv')
-
-st.markdown("#### Healthcare Expenditure per Head in the Netherlands")
-st.line_chart(
-    df.set_index("Year")["CHE_per_head"],
-    use_container_width=True,
-    height=350
-)
-
-st.markdown("""
-Adjust the sliders below to fit a linear trend to the healthcare expenditure data.  
-You can also see the effect of changing the intercept and slope on the fit and the residuals.
-""")
-
-# Default values: fit first and last point
-intercept_default = float(df.CHE_per_head.iloc[0])
-slope_default = (df.CHE_per_head.iloc[-1] - df.CHE_per_head.iloc[0]) / (df.Year.iloc[-1] - df.Year.iloc[0])
-
-intercept = st.slider(
-    "Intercept (CHE per head at first year)", 
-    min_value=intercept_default-1000, 
-    max_value=intercept_default+1000, 
-    value=float(np.round(intercept_default, 2)), 
-    step=10.0
-)
-slope = st.slider(
-    "Slope (change per year)", 
-    min_value=-100.0, 
-    max_value=200.0, 
-    value=float(np.round(slope_default, 2)), 
-    step=1.0
-)
-
-calc = st.button("Calculate Linear Fit", key="health_linear_fit")
-
-def linear_trend(years, intercept, slope):
-    return intercept + slope * (years - years.iloc[0])
-
-
-if calc:
-    years = df.Year
-    che = df.CHE_per_head
-    trend = linear_trend(years, intercept, slope)
-
-    fig, ax = plt.subplots(figsize=(8,5))
-    ax.plot(years, che, marker='o', label='Data', color='tab:orange')
-    ax.plot(years, trend, label='Linear Trend (slider)', color='tab:blue')
-    for x, y, yhat in zip(years, che, trend):
-        ax.vlines(x, min(y, yhat), max(y, yhat), color='gray', linestyle=':', alpha=0.7)
-    ax.set_xlabel('Year')
-    ax.set_ylabel('Healthcare Expenditure per head (Euros)')
-    ax.set_title('Data, Linear Trend, and Residuals')
-    ax.legend()
-    ax.grid(True)
-    st.pyplot(fig)
-    st.markdown("""
-The blue line is your linear trend (from sliders). The gray vertical lines show the difference (residual) between the data and your trend for each year.
-""")
-
-    # OLS fit and visualization
-    def rss(params, years, y):
-        intercept, slope = params
-        yhat = intercept + slope * (years - years.iloc[0])
-        return np.sum((y - yhat) ** 2)
-
-    res = minimize(rss, x0=[che.iloc[0], 0], args=(years, che))
-    opt_intercept, opt_slope = res.x
-    opt_trend = linear_trend(years, opt_intercept, opt_slope)
-
-    fig2, ax2 = plt.subplots(figsize=(8,5))
-    ax2.plot(years, che, marker='o', label='Data', color='tab:orange')
-    ax2.plot(years, opt_trend, label='OLS Linear Fit', color='tab:green')
-    for x, y, yhat in zip(years, che, opt_trend):
-        ax2.vlines(x, min(y, yhat), max(y, yhat), color='gray', linestyle=':', alpha=0.7)
-    ax2.set_xlabel('Year')
-    ax2.set_ylabel('Healthcare Expenditure per head (Euros)')
-    ax2.set_title('OLS Linear Fit and Residuals')
-    ax2.legend()
-    ax2.grid(True)
-    st.pyplot(fig2)
-    st.markdown(f"""
-,**OLS Linear Fit (green line):**  
-Intercept: {opt_intercept:.2f}  
-Slope: {opt_slope:.2f}  
-
-The green line shows the optimal linear fit (using OLS). The gray vertical lines show the residuals for each year.
-""")
-
-    # 1. Extrapolation to 2050
-    future_years = np.arange(df.Year.min(), 2051)
-    future_years_df = pd.Series(future_years)
-    future_trend = linear_trend(future_years_df, opt_intercept, opt_slope)
-
-    fig3, ax3 = plt.subplots(figsize=(10,5))
-    ax3.plot(df.Year, df.CHE_per_head, marker='o', label='Observed Data', color='tab:orange')
-    ax3.plot(future_years, future_trend, label='OLS Linear Extrapolation (to 2050)', color='tab:blue')
-    ax3.set_xlabel('Year')
-    ax3.set_ylabel('Healthcare Expenditure per head (Euros)')
-    ax3.set_title('OLS Linear Extrapolation of Healthcare Expenditure per Head (to 2050)')
-    ax3.legend()
-    ax3.grid(True)
-    st.pyplot(fig3)
-    st.markdown("""
-,**Extrapolation to 2050:**  
-The blue line shows the OLS linear trend extrapolated to 2050.  
-Notice that this extrapolation does not look realistic for such a long time period!
-""")
-
-    # 2. Multi-variable regression (GDP, OOP)
-    def rss_multi(params, years, gdp, oop, y):
-        intercept, slope_year, slope_gdp, slope_oop = params
-        year_base = years - years.iloc[0]
-        yhat = intercept + slope_year * year_base + slope_gdp * gdp + slope_oop * oop
-        return np.sum((y - yhat) ** 2)
- 
-    init_params = [che.iloc[0], 0, 0, 0]
-    res_multi = minimize(
-        rss_multi,
-        x0=init_params,
-        args=(df.Year, df.GDP_per_head, df.oop, df.CHE_per_head)
-    )
-    opt_intercept_m, opt_slope_year, opt_slope_gdp, opt_slope_oop = res_multi.x
- 
-    year_base = df.Year - df.Year.iloc[0]
-    che_hat_multi = (
-        opt_intercept_m
-        + opt_slope_year * year_base
-        + opt_slope_gdp * df.GDP_per_head
-        + opt_slope_oop * df.oop
-    )
- 
-    fig4, ax4 = plt.subplots(figsize=(10,5))
-    ax4.plot(df.Year, df.CHE_per_head, marker='o', label='Observed Data', color='tab:orange')
-    ax4.plot(df.Year, che_hat_multi, marker='s', label='Multi-variable Prediction', color='tab:green')
-    ax4.plot(df.Year, opt_trend, marker='x', label='OLS Linear Fit', color='tab:blue', linestyle='--')
-    ax4.set_xlabel('Year')
-    ax4.set_ylabel('Healthcare Expenditure per head (Euros)')
-    ax4.set_title('Observed vs Multi-variable Model Prediction')
-    ax4.legend()
-    ax4.grid(True)
-    st.pyplot(fig4)
-    st.markdown("""
-,**Multi-variable regression:**  
-The green squares show the prediction from a model using year, GDP per head, and out-of-pocket (OOP) as covariates.  
-This model fits the data much better than the simple OLS linear trend (blue crosses).
-""")
-
-    # 3. Use fsolve to find required OOP to hold CHE fixed at 2014 level
-
-    che_2014 = df.loc[df.Year == 2014, 'CHE_per_head'].values[0]
-    years_proj = np.arange(2015, 2025)
-    idx_proj = df.Year.isin(years_proj)
-    gdp_proj = df.loc[idx_proj, 'GDP_per_head'].values
-    year_base_proj = df.loc[idx_proj, 'Year'].values - df.Year.iloc[0]
-
-    def oop_to_hold_che(oop_guess, idx):
-        yhat = (
-            opt_intercept_m
-            + opt_slope_year * year_base_proj[idx]
-            + opt_slope_gdp * gdp_proj[idx]
-            + opt_slope_oop * oop_guess
-        )
-        return yhat - che_2014
-
-    oop_needed = []
-    for i in range(len(years_proj)):
-        oop_init = df.loc[df.Year == years_proj[i], 'oop'].values[0]
-        required_oop = fsolve(oop_to_hold_che, oop_init, args=(i,))
-        oop_needed.append(required_oop[0])
-
-    oop_data = df.loc[idx_proj, 'oop'].values
-
-    fig5, ax5 = plt.subplots(figsize=(8,5))
-    ax5.plot(years_proj, oop_data, marker='o', label='Actual OOP')
-    ax5.plot(years_proj, oop_needed, marker='s', label='Required OOP to hold CHE fixed\n(at 2014 level)')
-    ax5.set_xlabel('Year')
-    ax5.set_ylabel('Out-of-pocket (% of CHE)')
-    ax5.set_title('OOP Levels Needed to Hold Healthcare Expenditure per Head Constant (2015-2024)')
-    ax5.legend()
-    ax5.grid(True)
-    st.pyplot(fig5)
-    st.markdown("""
-,**Required OOP to hold CHE fixed:**  
-The green squares show the level of out-of-pocket payments (OOP) needed in each year to keep healthcare expenditure per head at the 2014 level, according to the multi-variable model.  
-The actual OOP values are shown as orange circles.
-
-A numerical solver (`fsolve`) is used to find the required OOP for each year.  
-This demonstrates how you can use numerical methods to solve for policy variables in a model.
-""")
-else:
-    st.info("Set the intercept and slope, then press 'Calculate Linear Fit'.")
-#+end_src
-
-
 ** Python Code Explanation
 :PROPERTIES:
 :HTML_CONTAINER_CLASS: section
@@ -1115,90 +760,36 @@ else:
 
 *** 1. Reading the data
 
-We use =pandas= to read the csv file with healthcare expenditure data for the Netherlands over the years 2000-2024. Here we just use the ~pd.read_csv=~ function, but with =pandas= you can also manipulate, clean data and merge dataframes. In the function call we specify the path where the csv file can be found: ~'./data/gdp_healthcare_nl.csv'~.
+We use =pandas= to read the csv file with healthcare expenditure data for the Netherlands over the years 2000-2024. Here we just use the ~pd.read_csv=~ function, but with =pandas= you can also manipulate, clean data and merge dataframes. In the function call we specify the path where the csv file can be found in our repository: ~'./data/gdp_healthcare_nl.csv'~.
 
-#+BEGIN_SRC jupyter-python
+#+BEGIN_SRC python
 import pandas as pd
 
 df = pd.read_csv('./data/gdp_healthcare_nl.csv')
 df.head()
 #+END_SRC
 
-#+RESULTS:
-#+begin_export html
-<div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
 
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
 
-    .dataframe thead th {
-        text-align: right;
-    }
-</style>
-<table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>Year</th>
-      <th>GDP_per_head</th>
-      <th>CHE_per_head</th>
-      <th>oop</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>0</th>
-      <td>2000</td>
-      <td>48561.827540</td>
-      <td>3660.652613</td>
-      <td>11.031692</td>
-    </tr>
-    <tr>
-      <th>1</th>
-      <td>2001</td>
-      <td>50301.690772</td>
-      <td>3879.911114</td>
-      <td>10.466823</td>
-    </tr>
-    <tr>
-      <th>2</th>
-      <td>2002</td>
-      <td>53515.311837</td>
-      <td>4137.932375</td>
-      <td>9.812201</td>
-    </tr>
-    <tr>
-      <th>3</th>
-      <td>2003</td>
-      <td>55703.272834</td>
-      <td>4311.324170</td>
-      <td>9.605323</td>
-    </tr>
-    <tr>
-      <th>4</th>
-      <td>2004</td>
-      <td>55797.445718</td>
-      <td>4405.689931</td>
-      <td>9.960184</td>
-    </tr>
-  </tbody>
-</table>
-</div>
-#+end_export
+| Year | GDP_per_head | CHE_per_head |       oop |
+|------+--------------+--------------+-----------|
+| 2000 | 48561.827540 |  3660.652613 | 11.031692 |
+| 2001 | 50301.690772 |  3879.911114 | 10.466823 |
+| 2002 | 53515.311837 |  4137.932375 |  9.812201 |
+| 2003 | 55703.272834 |  4311.324170 |  9.605323 |
+| 2004 | 55797.445718 |  4405.689931 |  9.960184 |
 
-The columns/variables in this dataframe ~df~ are the year of observation, [[https://ec.europa.eu/eurostat/databrowser/view/nama_10_pc/default/table?lang=en&category=na10.nama10.nama_10_ma][GDP per head]], [[https://ec.europa.eu/eurostat/databrowser/view/hlth_sha11_hf/default/table?lang=en&category=hlth.hlth_care.hlth_sha11.hlth_sha11_sum][healthcare expenditure per head and the percentage of healthcare expenditure that people pay out-of-pocket]] (~oop~).
+
+The columns/variables in this dataframe ~df~ are the year of observation, [[https://ec.europa.eu/eurostat/databrowser/view/nama_10_pc/default/table?lang=en&category=na10.nama10.nama_10_ma][GDP per head]], [[https://ec.europa.eu/eurostat/databrowser/view/hlth_sha11_hf/default/table?lang=en&category=hlth.hlth_care.hlth_sha11.hlth_sha11_sum][healthcare expenditure per head and the percentage of healthcare expenditure that people pay out-of-pocket]]: ~CHE~ refers to current health expenditure and ~oop~ the percentage of ~CHE~ paid out-of-pocket.
 
 
 *** 2. Plotting the data
 
 We use =matplotlib= to plot healthcare expenditure per head, ~CHE_per_head~, over time. Use google or an LLM to find out what ~plt.grid, plt.tight_layout~ do.
 
-#+BEGIN_SRC jupyter-python :file ./figures/healthcare_expenditure.png
+
+
+#+BEGIN_SRC python  :results graphics file output :file ./figures/healthcare_expenditure.png
 import matplotlib.pyplot as plt
 
 plt.figure(figsize=(8,5))
@@ -1210,28 +801,35 @@ plt.grid(True)
 plt.tight_layout()
 #+END_SRC
 
-#+RESULTS:
+
+
+#+caption: Dutch healthcare expenditure per head over time
+#+attr_latex: scale=0.3
+#+name: fig:DutchHealthcareExpenditure
 [[file:./figures/healthcare_expenditure.png]]
 
-When you plot data, like the time series on healthcare expenditure above, always think: "does this make sense?" Can I explain the pattern that I see? Here the two patterns to pay attention to would be: (i) the series is rising over time; is this in line with what I know about his series? (ii) why is there a spike in 2021?
+When you plot data, like the time series on healthcare expenditure above, always think: "does this make sense?" Can I explain the pattern that I see? Here the two patterns to pay attention to would be: (i) the series is increasing over time; is this in line with what I know about his series? (ii) why is there a spike in 2021?
 
 
 *** 3. Defining a linear trend function
 
-Now we define our first function in Python. A function is a reusable block of code. Here, we define a function to compute a linear trend. We start with the keyword ~def~ specify the name of the function (which you are free to choose yourself but there are some restrictions on the name you choose) and then between parentheses '()' you specify the arguments of the function. That is, the variables that the function needs to calculate its results.
+Now we define our first function in Python. A function is a reusable block of code. Here, we define a function to compute a linear trend. We start with the keyword ~def~ to specify the name of the function (which you are free to choose yourself but there are some restrictions on the name you choose) and then between parentheses '()' you specify the arguments of the function. That is, the variables that the function needs to calculate its results.
 
-Here, the function has three arguments: ~years, intercept~ and ~slope~. The function returns ~intercept + slope * (years - years.iloc[0])~. Although this is not clear from the function definition, ~intercept~ and ~slope~ will be scalars and ~years~ is a vector (actually a =pandas= series). The syntax ~iloc[0]~ chooses the first element of this series (Python starts counting/indexing at 0). With ~df.Year~ as loaded from our data above, ~df.Year.iloc[0]~ equals 2000. The intercept equals ~linear_trend~ in the year 2000 and the trend ~slope~ applies to ~years~ $> 2000$.
+Here, the function has three arguments: ~years, intercept~ and ~slope~. The function returns ~intercept + slope * (years - years.iloc[0])~. Although this is not clear from the function definition, ~intercept~ and ~slope~ will be scalars and ~years~ is a vector (actually a =pandas= series). The syntax ~iloc[0]~ chooses the first element of this series (remember Python starts counting/indexing at 0). With ~df.Year~ as loaded from our data above, ~df.Year.iloc[0]~ equals 2000. The intercept equals ~linear_trend~ in the year 2000 and the trend ~slope~ applies to ~years~ $> 2000$.
 
-#+BEGIN_SRC jupyter-python
+#+BEGIN_SRC python
 def linear_trend(years, intercept, slope):
     return intercept + slope * (years - years.iloc[0])
 #+END_SRC
 
 #+RESULTS:
+:results:
+None
+:end:
 
 If you want to practice with defining (simpler) functions, do something like the following in your =marimo= notebook. Note that ~x**2~ is Python syntax for $x^2$.
 
-#+begin_src jupyter-python :file ./figures/quadratic_function.png
+#+begin_src python  :results graphics file output :file ./figures/quadratic_function.png
 def f(x):
     return x**2
 
@@ -1239,7 +837,10 @@ range_x = np.linspace(-1,1,50)
 plt.plot(range_x,f(range_x));
 #+end_src
 
-#+RESULTS:
+
+#+caption: A simple parabola
+#+attr_latex: scale=0.3
+#+name: fig:parabola
 [[file:./figures/quadratic_function.png]]
 
 *** 4. Fitting and visualizing the trend
@@ -1248,9 +849,9 @@ We plot the data, the linear trend, and the residuals (shown as vertical differe
 
 The Python syntax ~zip(years,che,trend)~ creates the combinations of the variables ~years,che,trend~. After running the code block below in your =marimo= notebook (to make sure the variables are defined) you can evaluate ~for x, y, yhat in zip(years, che, trend): print(x, y, yhat)~ to see what ~zip~ does.
 
-Finally, there is a new =matplotlib= command: ~plt.vlines~: you give it three arguments: the $x$ coordinate, the low value for $y$ and high value for $y$ between which a vertical line is drawn. ~linestyle=':'~ creates a dotted line. Use google or an LLM to figure out what ~alpha=0.7~ means.
+Finally, there is a new =matplotlib= command: ~plt.vlines~: you give it three arguments: the $x$ coordinate, the low value and high value for the $y$ coordinate between which a vertical line is drawn. ~linestyle=':'~ creates a dotted line. Use google or an LLM to figure out what ~alpha=0.7~ means.
 
-#+BEGIN_SRC jupyter-python :file ./figures/healthcare_expenditure_linear_trend.png
+#+BEGIN_SRC python  :results graphics file output :file ./figures/healthcare_expenditure_linear_trend.png
 years = df.Year
 che = df.CHE_per_head
 intercept = 3660.0
@@ -1270,14 +871,16 @@ plt.grid(True)
 plt.tight_layout()
 #+END_SRC
 
-#+RESULTS:
+#+caption: Graphical illustration of residuals: difference between the data and the prediction of the linear model
+#+attr_latex: scale=0.3
+#+name: fig:Residuals
 [[file:./figures/healthcare_expenditure_linear_trend.png]]
 
 *** 5. Using optimization to find the best fit
 
 Above we just chose some values for ~intercept~ and ~slope~. Now we will try to find the values that give the best fit. We follow OLS in defining "best" as minimizing the sum of squared residuals (the vertical lines in the figure above).
 
-We use ~scipy.optimize.minimize~ to find the intercept and slope that minimize the sum of squared residuals. We define the function ~rss~ which has as arguments the parameters (intercept and slope), the years (independent variable) and healthcare expenditure ~che~ (defined in the code block above) as dependent variable. By specifying ~y = che~ (or ~years=years~) in the function definition of ~rss~ we give the function default values: if we do not specify ~y~ (or ~years~) in our function call, Python will work with the specified default values for these variable.
+We use ~scipy.optimize.minimize~ to find the intercept and slope that minimize the sum of squared residuals. We define the function ~rss~ which has as arguments the parameters (intercept and slope), the years (independent variable) and current healthcare expenditure ~che~ (defined in the code block above) as dependent variable. By specifying ~y = che~ (or ~years=years~) in the function definition of ~rss~ we give the function default values: if we do not specify ~y~ (or ~years~) in our function call, Python will work with the specified default values for these variable.
 
 Within the function definition of ~rss~ we call the function ~linear_trend~ that we defined above. The function ~np.sum~ sums the vector in its argument. To see how this works, run the code ~np.sum(np.arange(4))~ in your =marimo= notebook.
 
@@ -1285,7 +888,7 @@ The function ~minimize~ from =scipy= expects (at least) two arguments: the funct
 
 The outcome of the minimization routine is captured in the variable ~res~. After running the following code block in your notebook, you can evaluate ~res~. This variable ~res~ has the Python type =dictionary= and one of the keys is ~x~: the ~x~ value where the function ~rss~ is minimized. It contains the optimal intercept and optimal slope.
 
-#+BEGIN_SRC jupyter-python
+#+BEGIN_SRC python :results output
 from scipy.optimize import minimize
 import numpy as np
 
@@ -1299,14 +902,14 @@ opt_intercept, opt_slope = res.x
 print(res.x)
 #+END_SRC
 
-#+RESULTS:
-: [4038.28659643   95.0425062 ]
+=[4038.28744808   95.04245392]=
 
 *** 6. Visualizing the optimal fit
 
 Now we can plot our data with the time trend that gives the best fit. To find the OLS regression line, we call our function ~linear_trend~ with the years variable and the optimal values ~opt_intercept, opt_slope~ defined above.
 
-#+BEGIN_SRC jupyter-python :file ./figures/health_expenditure_OLS.png
+
+#+BEGIN_SRC python  :results graphics file output :file ./figures/health_expenditure_OLS.png
 opt_trend = linear_trend(years, opt_intercept, opt_slope)
 
 plt.figure(figsize=(8,5))
@@ -1320,10 +923,11 @@ plt.title('OLS fit: Linear Trend and Residuals')
 plt.legend()
 plt.grid(True)
 plt.tight_layout()
-plt.show()
 #+END_SRC
 
-#+RESULTS:
+#+caption: The residuals of the OLS fit
+#+attr_latex: scale=0.3
+#+name: fig:OLSresiduals
 [[file:./figures/health_expenditure_OLS.png]]
 
 *** 7. Extending the model
@@ -1342,7 +946,7 @@ We define a new variable ~future_years~ starting from the first year (selecting 
 
 Because we used the method ~iloc~ in our definition of ~linear_trend~, we need to transform ~future_years~ into a =pandas= series.
 
-#+BEGIN_SRC jupyter-python :file ./figures/healthcare_expenditure_extrapolation.png
+#+BEGIN_SRC python :results graphics file output :file ./figures/healthcare_expenditure_extrapolation.png
 future_years = np.arange(df.Year[0], 2051)
 future_years_df = pd.Series(future_years)
 future_trend = linear_trend(future_years_df, opt_intercept, opt_slope)
@@ -1358,10 +962,12 @@ plt.grid(True)
 plt.tight_layout();
 #+END_SRC
 
-#+RESULTS:
+#+caption: Extrapolating the linear model till the year 2050
+#+attr_latex: scale=0.3
+#+name: fig:ExtrapolatingOLS
 [[file:./figures/healthcare_expenditure_extrapolation.png]]
 
-The model predicts that healthcare expenditure will be almost 9000 euros per capita in 2050. This is not necessarily a convincing prediction. First, it is not obvious that the trend should be linear. Perhaps the relation over time is concave (like $\ln(x)$) and grows more slowly than a linear function would suggest. If the relation is convex (like exponential growth) the situation will be (far) worse in 2050 in terms of public financing.
+The model predicts that healthcare expenditure will be almost 9000 euros per capita in 2050. This is not necessarily a convincing prediction. First, it is not obvious that the trend should be linear. Perhaps the relation over time is concave (like $\ln(x)$) and grows more slowly than a linear function would suggest. If the relation is convex (like exponential growth) the situation will be (far) worse in 2050 in terms of public finance.
 
 Second, the linear trend predicts healthcare expenditure growth that (most likely) exceeds GDP growth. This cannot be sustained by an economy and the government is likely to adopt measures to slowdown the growth in healthcare expenditure. One option is to increase demand-side cost-sharing. As people have to pay more out-of-pocket for healthcare treatments, they will tend to consume less.
 
@@ -1370,7 +976,9 @@ Second, the linear trend predicts healthcare expenditure growth that (most likel
 
 We can improve the fit of the model by including additional covariates: GDP per head and the percentage of healthcare expenditure paid out-of-pocket (oop).
 
-#+BEGIN_SRC jupyter-python :file ./figures/healthcare_expenditure_multivariate.png
+We define a new function for the sum of squared residuals, =rss_multi=, including the two new variables and the slopes for these variables.
+
+#+BEGIN_SRC python  :results graphics file output :file ./figures/healthcare_expenditure_multivariate.png
 def rss_multi(params, years=df.Year, gdp=df.GDP_per_head, oop=df.oop, y=df.CHE_per_head):
     intercept, slope_year, slope_gdp, slope_oop = params
     year_base = years - years.iloc[0]
@@ -1404,10 +1012,14 @@ plt.grid(True)
 plt.tight_layout();
 #+END_SRC
 
-#+RESULTS:
+#+caption: Predictions of the multi-variable OLS model
+#+attr_latex: scale=0.3
+#+name: fig:MultiVariableOLS
 [[file:./figures/healthcare_expenditure_multivariate.png]]
 
-The fit is indeed better than the simple OLS linear trend.
+The fit is indeed better than the simple OLS linear trend: the multi-variable predictions are closer to the data than the predictions of the linear model.
+
+The multi-variable model is also linear, why do its predictions not form a straight line in Figure [[fig:MultiVariableOLS]]?
 
 *** 10. Using a Numerical Solver (~fsolve~) to Find Required OOP Levels
 
@@ -1423,11 +1035,13 @@ We define a function ~oop_to_hold_che~ which returns the difference between our 
 
 Finally, the function ~fsolve~ needs as inputs: the function ~oop_to_hold_che~ that we want to set equal to zero and an initial guess for the solution. The function ~oop_to_hold_che~ has two arguments: ~oop~ and the year ~y~ that we are considering. We are not trying to choose ~y~ to set the function equal to zero. Hence, we need to tell Python explicitly that it should think of ~oop_to_hold_che~ as a function of oop only (for each year ~y~).
 
-One way to do this would be to have different function names for ~oop_to_hold_che~ for each year, like ~oop_to_hold_che_2017~. But this would be tedious. A better way is to use Python's "anonymous" functions. These are functions without a name. You can define an anonymous function using the ~lambda~ keyword. As a silly example you can evaluate ~(lambda x: x + 5)(8)~ to get an idea what a lambda function does.
+One way to do this would be to have different function names for ~oop_to_hold_che~ for each year, like ~oop_to_hold_che_2017~. But this would be tedious. A better way is to use Python's "anonymous" functions. These are functions without a name. You can define an anonymous function using the ~lambda~ keyword. As a silly example you can evaluate in your notebook is ~(lambda x: x + 5)(8)~; this gives an idea what a lambda function does.
 
-We set ~oop_to_hold_che~ equal to zero for the years 2015-2024 and add these values of oop to the list ~oop_needed~. Then we plot this list together with the observed values of oop in our data.
+We set ~oop_to_hold_che~ equal to zero for the years 2015-2024 and add these values of oop to the list ~oop_needed~. As above, we first define the empty list ~oop_needed~ and append to this list in the =for= loop.
 
-#+BEGIN_SRC jupyter-python :file ./figures/oop_keep_expenditure_constant.png
+Then we plot this list together with the observed values of oop in our data.
+
+#+BEGIN_SRC python  :results graphics file output :file ./figures/oop_keep_expenditure_constant.png
 from scipy.optimize import fsolve
 
 che_2014 = df[df.Year == 2014]['CHE_per_head']
@@ -1463,9 +1077,12 @@ plt.grid(True)
 plt.tight_layout();
 #+END_SRC
 
-#+RESULTS:
+#+caption: Percentage of healthcare expenditure that needs to be paid out-of-pocket to keep expenditure per capita at its 2014 level.
+#+attr_latex: scale=0.3
+#+name: fig:OOPneeded
 [[file:./figures/oop_keep_expenditure_constant.png]]
 
+Can you explain the shape of the required OOP line in Figure [[fig:OOPneeded]]?
 
 *** Summary of what the code does
 1. Reading the data: Load the healthcare expenditure, GDP per head, and out-of-pocket (oop) data into a =pandas= dataframe.
@@ -1510,46 +1127,42 @@ Working with real economic data requires tools such as <code>pandas</code> for d
 
 Fit a new regression model that predicts healthcare expenditure per head using /only/ GDP per head (not year or oop). Plot the predicted values versus the actual data. How does the fit compare to the simple linear trend?
 
+*** Hint
 #+BEGIN_EXPORT html
 <details>
-<summary><strong>Hint / Solution</strong></summary>
+<summary><strong>click here</strong></summary>
 #+END_EXPORT
 
 - Define a function like: 
   #+begin_src 
   def rss_gdp(params, gdp=df.GDP_per_head, y=df.CHE_per_head):
-      intercept, slope_gdp = params
-      yhat = intercept + slope_gdp * gdp
+      # complete the code
       return np.sum((y - yhat) ** 2)
   #+end_src
-- Use =minimize()= to find the optimal coefficients.
-- Plot observed data and predicted values from this GDP-only model.
-- Compare visually to the linear time trend fit.
   
 #+BEGIN_EXPORT html
 </details>
 #+END_EXPORT
 
----
+-----
 
 *** Question 2: Use fsolve to Find the GDP Needed to Keep Expenditure Constant
 
 Suppose you want to know, for a certain year (e.g., 2024), what value of GDP per head would keep healthcare expenditure fixed at its 2014 level, holding all else constant. Write a function and use =fsolve= to solve for this GDP value using your multi-variable model.
 
+*** Hint
 #+BEGIN_EXPORT html
 <details>
-<summary><strong>Hint / Solution</strong></summary>
+<summary><strong>click here</strong></summary>
 #+END_EXPORT
 
-- Use your multi-variable coefficients from the previous regression (e.g., with GDP, OOP and year).
-- For the selected year, plug in all other variables (year and oop) as they are in the data; solve for the value of GDP that sets the model prediction equal to the 2014 expenditure level.
-- Your function for =fsolve= should look like:  
+- Use your multi-variable coefficients from a previous regression.
+- Your function for =fsolve= could look like:  
   #+begin_src 
   def gdp_to_hold_che(gdp_guess):
-      yhat = intercept + slope_year * (year - base_year) + slope_gdp * gdp_guess + slope_oop * oop
+      yhat = # complete the code
       return yhat - che_2014
   #+end_src
-- Try different initial guesses and run =fsolve(gdp_to_hold_che, gdp_init)=.
 
 #+BEGIN_EXPORT html
 </details>
@@ -1571,9 +1184,13 @@ Use google or an LLM to find the relevant Python functions for this. Python has 
 
 -----------
 
+#+BEGIN_EXPORT latex
+\newpage
+#+END_EXPORT
+
 * Lecture 3: Modeling Iteration
 
-*Skills you learn in this lecture:* iterative equilibrium computation, interactive apps with sliders, modeling economic dynamics with difference equations.
+*Skills you learn in this lecture:* iterative equilibrium computation, fixed point equilibrium calculation, interactive apps with sliders, modeling economic dynamics with difference equations.
 
 ** Learning objectives
 
@@ -1583,6 +1200,7 @@ After completing this lecture you should be able to:
 - implement conditional logic using ~if~, ~elif~, and ~else~ statements
 - simulate iterative economic processes using =for= loops
 - explain how iterative adjustment processes lead to economic equilibria
+- calculate equilibria with solving fixed point equations
 - represent dynamic economic systems using difference equations and matrix notation
 
 ** Introduction
@@ -1591,7 +1209,7 @@ Many economic models describe processes that evolve step by step over time. In t
 
 The lecture uses three examples to illustrate iteration. First, we analyze an adverse selection market where prices update based on expected quality. Second, we study a Cournot duopoly where firms repeatedly best respond to each other. Third, we simulate a labor market with transitions between unemployment and different job types.
 
-These examples demonstrate how Python can be used to simulate dynamic economic systems and visualize how equilibria emerge through iteration.
+These examples demonstrate how Python can be used to simulate dynamic economic systems and visualize how equilibria emerge through iteration. This visualization helps to gain intuition on the particular equilibrium outcome, it is not the best way to derive the equilibrium. For this we solve a fixed point equation.
 
 ** Apps
 
@@ -1607,16 +1225,18 @@ People sometimes wonder why health insurance in the Netherlands is mandatory and
 
 The following app models an adverse selection market. Well known examples of such markets are the second-hand car markets (with "lemons") and (health) insurance markets. In each of these markets there is asymmetric information. The seller of the car has used the car herself. She knows how (aggressively) she has driven the car, taken care of the car, her investments in car maintenance etc. For the buyer this is not so clear. In the health insurance market, the insurer offers contracts to insure healthcare costs. The consumer has more information on his own health than the insurer does. Does he have a (chronic) disease? Does he have a healthy diet, exercise regularly etc.
 
-The equilibrium in these markets tend to be inefficient: there is less trade than would be optimal from a welfare point of view. With the next app you can see how this inefficiency is affected by parameter values.
+The equilibrium in these markets tends to be inefficient: there is less trade than would be optimal from a welfare point of view. With the next app you can see how this inefficiency is affected by parameter values.
 
-One interpretation of the iteration in the app is that agents react to what they saw in the previous period. In a health insurance context this would be: an insurer sells a health insurance contract, some consumers buy the contract and the price of the contract in the next period is the average costs of the contract in this period. If this price is rather high, some healthy people will decide not to buy health insurance because it is too expensive. This increases the average cost of the contract for the insurer (conditional on buying the contract, the customers have lower health and higher healthcare expenditure). So in period 3 the insurance premium increases again, perhaps inducing some of the healthier customers to forego insurance etc.
+One interpretation of the iteration in the app is that agents react to what they saw in the previous period. In a health insurance context this would be: an insurer sells a health insurance contract, some consumers buy the contract and the price of the contract in the next period is the average costs of the contract in this period. If this price is rather high, some healthy people will decide not to buy health insurance because it is too expensive. This increases the average cost of the contract for the insurer (conditional on buying the contract, the customers have lower health status and higher healthcare expenditure). So in period 3 the insurance premium increases again, perhaps inducing some of the healthier customers to forego insurance etc.
 
 This process is called the unraveling of the market or a death spiral.
 
 The context of the app is more like the second-hand car market: sellers value their car at $q$ and are willing to sell to any buyer who pays a price above $q$. Each car is worth more to the buyer than to the seller but the buyer cannot observe $q$. If people are only willing to sell their car if $q \leq p$ the buyer's expectation of quality is given by $E(q|q \leq p)$. By assumption the car has more value for the buyer than the seller, hence the buyer is willing to pay a markup over $E(q|q \leq p)$ to buy the car. Which share of cars are going to be traded in the market?
 
+#+BEGIN_EXPORT latex
+\url{https://lecture3adverseselection.streamlit.app/}
+#+END_EXPORT
 
----------
 
 #+BEGIN_EXPORT html
 <iframe
@@ -1648,6 +1268,9 @@ Assume that demand is linear: $p(q_1+q_2)=1-q_1-q_2$. Take the first order condi
 
 One way to derive the Nash equilibium is to use iterated best responses: start with an initial guess for $q_1$ denoted by $q_1^0$. Calculate firm 2's optimal reaction: $q_2^1=r_2(q_1^0)$. Then find 1's optimal reaction to this: $q_1^2 = r_1(q_2^1)$ etc. The figure shows you this process. In this case, these iterations converge to the Nash equilibrium.
 
+#+BEGIN_EXPORT latex
+\url{https://lecture3cournot.streamlit.app/}
+#+END_EXPORT
 
 #+BEGIN_EXPORT html
 <iframe
@@ -1668,9 +1291,14 @@ One way to derive the Nash equilibium is to use iterated best responses: start w
 
 *** Unemployment dynamics
 
-Sometimes the state of the labor market is summarized simply by the unemployment rate; but not all employment is equal. People can learn on the job and become more productive in their work. Think of an app that illustrates different employment states. Is it the case that more people in high wage jobs lead to lower unemployment?
+Sometimes the state of the labor market is summarized simply by the unemployment rate; but not all employment is equal. People can learn on the job and become more productive in their work. Think of an app that illustrates different employment states. Is it the case that more people in high wage jobs lead to lower unemployment than when these people are in low wage jobs?
 
 Suppose we have an inelastic labor supply normalized to a mass of 1. Labor can be in one of three states: unemployed, employed in a low wage job and employed in a high wage job. With transition equations we can keep track of the development over time of the fraction of people in each of these three states.
+
+#+BEGIN_EXPORT latex
+\url{https://lecture3employment.streamlit.app/}
+#+END_EXPORT
+
 
 #+BEGIN_EXPORT html
 <iframe
@@ -1698,6 +1326,11 @@ Matrix notation is nothing more than that: notation. However, it turns out to be
 
 First we give a simple example of matrix multiplication with numbers so you can check the calculations easily.
 
+
+#+BEGIN_EXPORT latex
+\url{https://janboone.github.io/Methods_python_for_economists_lectures/manim/media/videos/matrix/480p15/MatrixMultiplicationIntro.mp4}
+#+END_EXPORT
+
 #+BEGIN_EXPORT html
 <div style="text-align:center;">
   <video style="width:600px;" controls>
@@ -1707,6 +1340,11 @@ First we give a simple example of matrix multiplication with numbers so you can 
 #+END_EXPORT
 
 Using the same visuals as the clip above we show the equivalence of the transition equations in the app above.
+
+
+#+BEGIN_EXPORT latex
+\url{https://janboone.github.io/Methods_python_for_economists_lectures/manim/media/videos/matrix/480p15/DynamicSystemMatrixForm.mp4}
+#+END_EXPORT
 
 #+BEGIN_EXPORT html
 <div style="text-align:center;">
@@ -1722,568 +1360,6 @@ Using the same visuals as the clip above we show the equivalence of the transiti
 #+END_EXPORT
 
 
-
-
-
-
-
-** Streamlit :noexport:
-
-#+begin_src jupyter-python
-import streamlit as st
-import numpy as np
-import matplotlib.pyplot as plt
-import pandas as pd
-
-st.set_page_config(page_title="Lecture 3", layout="wide")
-st.title("Modeling Iteration")
-st.header("Interactive: Adverse Selection Dynamics")
-
-st.markdown(
-    """
-    This interactive demo illustrates the *adverse selection* equilibrium in a market where quality is unobservable.
-
-    - Quality $q$ is uniformly distributed on $[v_0, v_1]$.
-    - Sellers only offer goods if the market price exceeds quality (their valuation of the good) $p > q$.
-    - Buyers value quality at a *mark-up* over quality: $\\text{markup} \\times q$.
-    - Buyers know only goods with $q < p$ are offered, so their expected quality equals $E(q|q < p)$.
-    - The market moves towards equilibrium where $p = \\text{markup} \\times E(q|q < p)$.
-    - If the equilibrium price falls to $v_0$, the market unravels (no trade).
-    """
-)
-
-st.subheader("Set Model Parameters")
-
-col1, col2, col3 = st.columns(3)
-with col1:
-    v0 = st.slider("Lowest quality $v_0$", min_value=0.0, max_value=100.0, value=50.0, step=1.0)
-with col2:
-    v1 = st.slider("Highest quality $v_1$", min_value=1.0, max_value=200.0, value=100.0, step=1.0)
-with col3:
-    markup = st.slider("Consumer mark-up", min_value=1.01, max_value=2.0, value=1.2, step=0.01)
-
-if v1 <= v0:
-    st.error("Highest quality $v_1$ must be greater than lowest quality $v_0$.")
-else:
-    def expected_q_given_p_uniform(p, a, b):
-        # For q ~ Uniform(a, b), and only qualities q < p are offered
-        if p < a:
-            # Price below support, no goods offered
-            return None
-        elif p >= b:
-            # All qualities are offered, expectation is mean
-            return (a + b) / 2
-        else:
-            # Conditional mean on [a, p]
-            return (a + p) / 2
-
-    def update_price_uniform(p, a, b, markup):
-        expected_q = expected_q_given_p_uniform(p, a, b)
-        if expected_q is None:
-            return 0
-        return markup * expected_q
-
-    p_history = []
-    p = markup * v1  # Start from above the highest possible buyer willingness
-
-    for step in range(50):
-        p_history.append(p)
-        new_p = update_price_uniform(p, v0, v1, markup)
-        if abs(new_p - p) < 1e-6:
-            break
-        p = new_p
-
-    # Determine if there is trade
-    if p <= v0 + 1e-6:
-        st.warning(
-            f"**Market disappears (death spiral):** Equilibrium price is at the lowest quality (${v0:.2f}$). No trade occurs."
-        )
-    else:
-        st.success(
-            f"**Market equilibrium:** Price converges to $p^* = {p:.2f}$ after {step+1} steps."
-        )
-
-    # Compute fraction of products traded at each step
-    fraction_traded = [(max(0, min(1, (p_i - v0) / (v1 - v0))) if v1 > v0 else 0) for p_i in p_history]
-    df_plot = pd.DataFrame({
-        "Price": p_history,
-        "Fraction traded": fraction_traded
-    })
-
-    # --- Stack the two figures in a row using Streamlit columns ---
-    col_fig1, col_fig2 = st.columns(2)
-
-    # --- Shared y-axis for both figures, y-axis starts at 0 ---
-    y_max = max(max(p_history), v1) * 1.05 if len(p_history) > 0 else v1 * 1.05
-
-    with col_fig1:
-        st.write("**Price convergence history and fraction of products traded:**")
-        fig, ax1 = plt.subplots()
-        color1 = "tab:blue"
-        ax1.set_xlabel("Step")
-        ax1.set_ylabel("Price", color=color1)
-        ax1.plot(df_plot.index, df_plot["Price"], color=color1, label="Price")
-        ax1.tick_params(axis="y", labelcolor=color1)
-        ax1.set_ylim(0, y_max)
-
-        ax2 = ax1.twinx()
-        color2 = "tab:green"
-        ax2.set_ylabel("Fraction traded", color=color2)
-        ax2.plot(df_plot.index, df_plot["Fraction traded"], color=color2, linestyle="--", label="Fraction traded")
-        ax2.tick_params(axis="y", labelcolor=color2)
-        ax2.set_ylim(-0.05, 1.05)
-
-        fig.tight_layout()
-        st.pyplot(fig)
-
-    with col_fig2:
-        st.write("**Equilibrium as intersection of price update and 45-degree line:**")
-        q_max_values = np.linspace(v0, v1, 300)
-        price_update_curve = []
-        for q_max in q_max_values:
-            eq = expected_q_given_p_uniform(q_max, v0, v1)
-            price_update_curve.append(markup * eq if eq is not None else np.nan)
-        fig2, ax = plt.subplots()
-        ax.plot(q_max_values, price_update_curve, label=r"$p = \mathrm{markup} \times E(q|q<p)$", color="tab:blue")
-        ax.plot(q_max_values, q_max_values, label="45-degree line ($p = q_{max}$)", color="tab:orange", linestyle="--")
-        ax.set_xlabel(r"Max quality traded $q_{max}$")
-        ax.set_ylabel("Price")
-        # Removed the title for better alignment
-        ax.set_ylim(0, y_max)
-        ax.legend()
-        st.pyplot(fig2)
-
-    st.markdown(
-        """
-        **How to use this demo:**
-        - Adjust the sliders for $v_0$, $v_1$, and the mark-up.
-        - Observe how the equilibrium price changes.
-        - For some parameter values, the market unravels (no trade).
-        - For others, trade occurs at a positive equilibrium price.
-        - The second figure shows the intersection of the price update curve and the 45-degree line, which is the equilibrium.
-        - Because of the markup it is efficient that all qualities are traded (buyer values the good more than the seller)
-        - Using the sliders find an efficient equilibrium: which factors are important here?
-        - Also find an equilibrium where the market unravels: which factors determine this outcome?
-        
-        **How does the interation work?**
-        - We start with a high price $p_0$
-        - We calculate which qualities will be on the market at this price $p_0$
-        - Then we derive the expected quality given that $q < p_0$
-        - We apply the mark-up to $E(q|q<p_0)$ and see whether this equals $p_0$
-          - if it is equal: $p_0$ is the equilibrium price
-          - if not: go through the steps above again with $p_1 =  \mathrm{markup} \\times E(q|q<p_0)$
-        """
-    )
-
-#+end_src
-
-
-
-#+begin_src jupyter-python
-import streamlit as st
-import numpy as np
-import matplotlib.pyplot as plt
-import pandas as pd
-
-st.set_page_config(page_title="Lecture 3", layout="wide")
-st.title("Modeling Iteration")
-st.header("Cournot Reaction Function Dynamics")
-
-st.markdown(
-    """
-    This interactive demo illustrates the *Cournot duopoly* equilibrium using iterative best-response dynamics.
-
-    - Two firms choose quantities $q_1$ and $q_2$.
-    - Market price: $p(q_1, q_2) = 1 - q_1 - q_2$
-    - Marginal cost: $c < 1$
-    - Firm 1's reaction: $r_1(q_2) = \\frac{1 - q_2 - c}{2}$
-    - Firm 2's reaction: $r_2(q_1) = \\frac{1 - q_1 - c}{2}$
-
-    The process:
-    1. Start at an initial $q_1$.
-    2. Alternate best responses: $q_2=r_2(q_1)$ reacts to $q_1$, then $q_1=r_1(q_2)$ reacts to $q_2$, etc.
-    3. Observe the path to equilibrium in $(q_1, q_2)$ space.
-    """
-)
-
-st.subheader("Set Cournot Model Parameters")
-colA, colB, colC = st.columns(3)
-with colA:
-    c_cournot = st.slider("Marginal cost $c$", min_value=0.0, max_value=0.99, value=0.2, step=0.01)
-with colB:
-    q1_init = st.slider("Initial $q_1$", min_value=0.0, max_value=0.99, value=0.45, step=0.01)
-with colC:
-    n_iter = st.slider("Number of iterations", min_value=2, max_value=30, value=14, step=1)
-
-def reaction1(q2, c):
-    return (1 - q2 - c) / 2
-
-def reaction2(q1, c):
-    return (1 - q1 - c) / 2
-
-q1 = q1_init
-points = []
-for i in range(n_iter):
-    if i % 2 == 0:
-        q2 = reaction2(q1, c_cournot)
-        points.append((q1, q2))
-    else:
-        q1 = reaction1(q2, c_cournot)
-        points.append((q1, q2))
-
-qs = np.linspace(0, 0.6, 200)
-rf1 = [reaction1(q2, c_cournot) for q2 in qs]
-rf2 = [reaction2(q1, c_cournot) for q1 in qs]
-
-fig_cournot, ax = plt.subplots(figsize=(5, 5))
-ax.plot(qs, rf1, label="Firm 1's reaction ($q_1=r_1(q_2)$)", color='blue')
-ax.plot(rf2, qs, label="Firm 2's reaction ($q_2=r_2(q_1)$)", color='red')
-points_arr = np.array(points)
-ax.plot(points_arr[:,0], points_arr[:,1], 'ko-', label='Iterative path', markersize=7)
-# Removed iteration numbering for clarity
-ax.set_xlabel('$q_1$')
-ax.set_ylabel('$q_2$')
-ax.set_title('Nash Equilibrium Path for Cournot via Alternating Best Response')
-ax.legend()
-ax.grid(True)
-ax.set_xlim(0, 0.6)
-ax.set_ylim(0, 0.6)
-plt.tight_layout()
-st.pyplot(fig_cournot)
-
-st.markdown(
-    """
-    **How to use this demo:**
-    - Adjust the marginal cost $c$, initial $q_1$, and number of iterations.
-    - The plot shows the reaction functions and the iterative path to equilibrium.
-    - The Nash equilibrium $(q_1^*,q_2^*)$ is where the two reaction functions cross:
-      - firm 1 plays its optimal reaction to firm 2: $q_1^* = r_1(q_2^*)$
-      - and firm 2 plays its optimal reaction to firm 1: $q_2^* = r_2(q_1^*)$.
-    """
-)
-#+end_src
-
-
-
-#+begin_src jupyter-python
-import streamlit as st
-import numpy as np
-import matplotlib.pyplot as plt
-import pandas as pd
-
-st.set_page_config(page_title="Lecture 3", layout="wide")
-st.title("Modeling Iteration")
-st.header("Labour Market Dynamics")
-
-st.markdown(
-    r"""
-    This interactive demo simulates a labor market with three states:
-    - Unemployed ($u$)
-    - Low wage job ($l$)
-    - High wage job ($h$)
-
-    **Transitions:**
-    - $\mu$: probability an unemployed finds a low wage job
-    - $\lambda$: probability a low wage worker becomes high wage
-    - $\delta_l$: probability a low wage worker loses job
-    - $\delta_h$: probability a high wage worker loses job
-
-    The model uses difference equations to update the shares in each state over time.
-
-    **Transition equations:**
-    $$
-    \begin{align*}
-    u_{t+1} &= u_t + \delta_l l_t + \delta_h h_t - \mu u_t \\
-    l_{t+1} &= l_t + \mu u_t - \lambda l_t - \delta_l l_t \\
-    h_{t+1} &= h_t + \lambda l_t - \delta_h h_t
-    \end{align*}
-    $$
-
-    **Matrix notation:**
-    $$
-    \begin{bmatrix}
-    u_{t+1} \\
-    l_{t+1} \\
-    h_{t+1}
-    \end{bmatrix}
-    =
-    \begin{bmatrix}
-    1 - \mu & \delta_l & \delta_h \\
-    \mu & 1 - \lambda - \delta_l & 0 \\
-    0 & \lambda & 1 - \delta_h
-    \end{bmatrix}
-    \begin{bmatrix}
-    u_t \\
-    l_t \\
-    h_t
-    \end{bmatrix}
-    $$
-    """
-)
-
-st.subheader("Set Labour Market Parameters")
-col1, col2, col3, col4, col5 = st.columns(5)
-with col1:
-    mu = st.slider(r"Job finding rate $\mu$", min_value=0.01, max_value=0.5, value=0.1, step=0.01)
-with col2:
-    lambda_ = st.slider(r"Learning rate $\lambda$", min_value=0.01, max_value=0.5, value=0.15, step=0.01)
-with col3:
-    delta_l = st.slider(r"Low wage sep. $\delta_l$", min_value=0.01, max_value=0.5, value=0.05, step=0.01)
-with col4:
-    delta_h = st.slider(r"High wage sep. $\delta_h$", min_value=0.01, max_value=0.5, value=0.02, step=0.01)
-with col5:
-    u0 = st.slider(r"Initial unemployment $u_0$", min_value=0.0, max_value=1.0, value=1.0, step=0.01)
-
-T = 60
-u_hist, l_hist, h_hist = [], [], []
-u, l, h = u0, 1-u0, 0.0
-
-for t in range(T):
-    u_hist.append(u)
-    l_hist.append(l)
-    h_hist.append(h)
-    new_l = mu * u
-    l_to_h = lambda_ * l
-    l_to_u = delta_l * l
-    h_to_u = delta_h * h
-
-    next_u = u + l_to_u + h_to_u - new_l
-    next_l = l + new_l - l_to_h - l_to_u
-    next_h = h + l_to_h - h_to_u
-
-    total = next_u + next_l + next_h
-    next_u, next_l, next_h = next_u/total, next_l/total, next_h/total
-
-    u, l, h = next_u, next_l, next_h
-
-fig_labour, ax = plt.subplots(figsize=(7, 4))
-ax.plot(u_hist, label="Unemployed $u$")
-ax.plot(l_hist, label="Low wage $l$")
-ax.plot(h_hist, label="High wage $h$")
-ax.axhline(y=u_hist[-1], color='gray', linestyle='--', label="Steady state $u^*$")
-ax.set_title("Labor Market Markov Process Dynamics")
-ax.set_xlabel("Time step")
-ax.set_ylabel("Share of workers")
-ax.legend()
-ax.grid(True)
-plt.tight_layout()
-st.pyplot(fig_labour)
-
-st.markdown(
-    r"""
-    **How to use this demo:**
-    - Adjust the transition rates and initial unemployment.
-    - The plot shows the evolution of unemployment, low wage, and high wage shares.
-    - The dashed line shows the steady state unemployment.
-    - Which sliders affect the evolution but not the steady state level of unemployment?
-    """
-)
-#+end_src
-
-** manim :noexport:
-
-In the terminal: =manim -pql matrix.py MatrixMultiplicationIntro= and =manim -pql matrix.py DynamicSystemMatrixForm=
-- in the folder ./manim
-- after =conda activate manim_env=
-
-
-
-
-
-#+begin_src jupyter-python
-from manim import *
-from manim_voiceover import VoiceoverScene
-from manim_voiceover.services.gtts import GTTSService
-
-class MatrixMultiplicationIntro(VoiceoverScene):
-    def construct(self):
-        self.set_speech_service(GTTSService(lang="en"))
-
-        title = Text("Matrix–Vector Multiplication", font_size=28)
-        with self.voiceover(text="Let's see how matrix vector multiplication works."):
-            self.play(Write(title))
-            self.wait(1)
-        self.remove(title)
-
-        A = Matrix([
-            [1, 2, 3],
-            [0, 1, 4],
-            [2, 0, 1]
-        ])
-
-        x = Matrix([
-            [11],
-            [12],
-            [13]
-        ])
-
-        matrices = VGroup(A, x).arrange(RIGHT, buff=0.4)
-        matrices.scale(0.5)
-
-        with self.voiceover(text="We start with a three by three matrix and a three dimensional vector."):
-            self.play(Create(matrices))
-            self.wait(1)
-
-        # Highlight column of x
-        col_rect = SurroundingRectangle(x.get_columns()[0], color=BLUE)
-        with self.voiceover(text="To compute the product, we take a row of the matrix and multiply it with the vector."):
-            self.play(Create(col_rect))
-
-        # ----- Row 1 -----
-        row_rect = SurroundingRectangle(A.get_rows()[0], color=YELLOW)
-        expr1 = MathTex(r"1 \cdot 11 + 2 \cdot 12 + 3 \cdot 13 = 74")
-        expr1.scale(0.6)
-        expr1.next_to(matrices, DOWN)
-
-        with self.voiceover(text="For the first row we multiply each entry with the corresponding element of the vector and add them up."):
-            self.play(Create(row_rect))
-            self.play(Write(expr1))
-            self.wait(1)
-
-        # ----- Row 2 -----
-        row2_rect = SurroundingRectangle(A.get_rows()[1], color=YELLOW)
-        expr2 = MathTex(r"0 \cdot 11 + 1 \cdot 12 + 4 \cdot 13 = 64")
-        expr2.scale(0.6)
-        expr2.next_to(matrices, DOWN)
-
-        with self.voiceover(text="We repeat the same procedure for the second row."):
-            self.play(ReplacementTransform(row_rect, row2_rect), ReplacementTransform(expr1, expr2))
-            self.wait(1)
-
-        # ----- Row 3 -----
-        row3_rect = SurroundingRectangle(A.get_rows()[2], color=YELLOW)
-        expr3 = MathTex(r"2 \cdot 11 + 0 \cdot 12 + 1 \cdot 13 = 35")
-        expr3.scale(0.6)
-        expr3.next_to(matrices, DOWN)
-
-        with self.voiceover(text="And again for the third row."):
-            self.play(ReplacementTransform(row2_rect, row3_rect), ReplacementTransform(expr2, expr3))
-            self.wait(1)
-
-        # Final result Ax = b
-        equals = MathTex("=")
-        b = Matrix([
-            [74],
-            [64],
-            [35]
-        ])
-        b.scale(0.5)
-
-        # Remove explanation but keep matrices, then shift left
-        self.play(FadeOut(expr3), FadeOut(row3_rect), FadeOut(col_rect))
-        self.play(matrices.animate.shift(LEFT*0.8))
-
-        equals.next_to(x, RIGHT, buff=0.2)
-        b.next_to(equals, RIGHT, buff=0.2)
-
-        self.play(Write(equals), Create(b))
-
-        self.wait(2)
-
-
-class DynamicSystemMatrixForm(Scene):
-    def construct(self):
-        title = Text("Dynamic System\n as Matrix Multiplication", font_size=28)
-        self.play(Write(title))
-        self.wait(1)
-        self.remove(title)
-
-
-        # Transition equations
-        eq1 = MathTex(r"u_{t+1} = u_t + \delta_l l_t + \delta_h h_t - \mu u_t")
-        eq2 = MathTex(r"l_{t+1} = l_t + \mu u_t - \lambda l_t - \delta_l l_t")
-        eq3 = MathTex(r"h_{t+1} = h_t + \lambda l_t - \delta_h h_t")
-
-        equations = VGroup(eq1, eq2, eq3).arrange(DOWN, aligned_edge=LEFT, buff=0.4)
-        equations.scale(0.6)
-        equations.to_edge(LEFT)
-
-        # Arrange equations but do not show them yet
-        equations.set_opacity(0)
-
-        # Matrix representation
-        A = Matrix([
-            ["1-\\mu", "\\delta_l", "\\delta_h"],
-            ["\\mu", "1-\\lambda-\\delta_l", "0"],
-            ["0", "\\lambda", "1-\\delta_h"]
-        ], h_buff=2.0, v_buff=1.0, element_alignment_corner=ORIGIN)
-
-        x = Matrix([
-            ["u_t"],
-            ["l_t"],
-            ["h_t"]
-        ])
-
-        y = Matrix([
-            ["u_{t+1}"],
-            ["l_{t+1}"],
-            ["h_{t+1}"]
-        ])
-
-        equals = MathTex("=")
-
-        system = VGroup(y, equals, A, x).arrange(buff=0.4)
-        system.scale(0.3)
-        system.to_edge(LEFT)
-        
-
-        self.play(Create(system))
-        self.wait(1)
-
-        # Highlight row of A and column of x
-        row_box = SurroundingRectangle(A.get_rows()[0], color=YELLOW)
-        col_box = SurroundingRectangle(x.get_columns()[0], color=BLUE)
-        self.play(Create(row_box), Create(col_box))
-        self.wait(1)
-        equations.set_opacity(1)
-        eq1.next_to(system, DOWN)
-        self.play(Write(eq1))
-        # Fade out the blue column highlight at the end
-        self.play(FadeOut(row_box))
-        self.wait(1)
-        self.play(FadeOut(eq1))
-
-        # equation 2
-        
-        row_box = SurroundingRectangle(A.get_rows()[1], color=YELLOW)
-        self.play(Create(row_box))
-        self.wait(1)
-        eq2.next_to(system, DOWN)
-        self.play(Write(eq2))
-        # Fade out the blue column highlight at the end
-        self.play(FadeOut(row_box))
-        self.wait(1)
-        self.play(FadeOut(eq2))
-
-        # equation 3
-        
-        row_box = SurroundingRectangle(A.get_rows()[2], color=YELLOW)
-        self.play(Create(row_box))
-        self.wait(1)
-        eq3.next_to(system, DOWN)
-        self.play(Write(eq3))
-        # Fade out the blue column highlight at the end
-        # self.play(FadeOut(row_box))
-        self.wait(1)
-        self.play(FadeOut(eq3))
-
-        # Fade out matrix system
-        self.play(FadeOut(system), FadeOut(row_box), FadeOut(col_box))
-
-        # Show full system of equations
-        equations.scale(0.9)
-        equations.move_to(UP)
-        # equations.move_to(ORIGIN)
-        self.play(Write(eq1))
-        eq2.next_to(eq1,DOWN)
-        self.play(Write(eq2))
-        eq3.next_to(eq2,DOWN)
-        self.play(Write(eq3))
-
-
-        self.wait(2)
-
-#+end_src
 
 ** Python Code Explanation
 
@@ -2315,9 +1391,8 @@ markup = mo.ui.slider(1.01, 2.0, value=1.2, step=0.01, label="Consumer mark-up")
 mo.hstack([v0,v1,markup])
 #+END_SRC
 
+
 In =marimo= sliders are defined with ~mo.ui.slider~, then give the starting value, the end value (a step, is the step is not one) and an initial =value= (the default value if the user does choose a value). Also give the slider a =label= so that the user knows what it represents. Defining a slider does not imply that it shows up. Calling the slider with, say, =v0= makes it visible to the user. With ~mo.hstack~ you can stack the sliders; here we stack them horizontally.
-
-
 
 
 #+BEGIN_SRC python
@@ -2347,9 +1422,80 @@ plt.plot(history)
 
 #+END_SRC
 
+#+caption: Development of price in an adverse selection market with $v0=50,v1=100,markup=1.2$.
+#+attr_latex: scale=0.3
+#+name: fig:LemonsMarketPriceDevelopment
+[[file:./figures/lemonsmarket.png]]
+
 The code above uses =marimo= sliders for the parameter values. If you want to refer to the value of a slider use ~.value~ like ~v0.value~. In other words, ~v0~ refers to the slider itself and ~v0.value~ to the value that is selected with the slider.
 
 The function ~expected_q_given_p_uniform~ computes the expected quality conditional on $q < p$. With a uniform distribution and $p \in [a,b]$, this expectation equals $(a+p)/2$. Given =expected_q=, we can calculate the price that consumers are willing to pay, using the =markup=. Then we iterate over the prices by adjusting the expectation based on last period's price. The price update is iterated until convergence: the new price is very close to previous period's price and we reach steady state. If you do not understand what =1e-6= means, use google or an LLM.
+
+We leave it to you to add labels to the axes, a title etc. and to create the second plot in the app: the function $markup \times E(q|q<p)$ together with the 45 degree line.
+
+**** calculate the equilibrium
+
+The iterative process above explains why adverse selection markets (partially) unravel. Although every trade between a buyer and seller is valuable from a social point of view (each buyer values the product more than the seller), not all trades are realized in equilibrium.
+
+But the iterative process is not the best way to calculate the equilibrium outcome: (i) it is not very efficient/fast and (ii) it is hard to understand for someone reading your code.
+
+When you need to calculate an equilibrium, solve a fixed point equation; in this case a fixed point in the equilibrium price $p$.
+
+A fixed point of the function $f(p)$ is a value of $p$ that satisfies $p = f(p)$. When $p$ is a scalar, this is the value of $p$ where $f(p)$ crosses the 45 degree line. In other words, the function $f$ maps $p$ into itself: a fixed point.
+
+In our application $f(p) = markup * E(q|q<p)$. For $p$ satisfying $p = markup * E(q|q<p)$ we have an equilibrium price.
+
+To program this, we choose values for the parameters (or substitute the sliders' values), use the function =expected_q_given_p_uniform= from above to define the fixed point function and then use =fsolve= from =scipy='s optimize library to find the equilibrium price.
+
+#+begin_src python
+import scipy as sc
+v0 = 50
+v1 = 100
+markup = 1.2
+
+def fixed_point_lemons(p):
+    return p - markup * expected_q_given_p_uniform(p,v0,v1)
+
+sc.optimize.fsolve(fixed_point_lemons,[v1])
+
+#+end_src
+
+=array([75.])=
+
+**** code :noexport:
+
+
+#+begin_src python :results graphics file output :file ./figures/lemonsmarket.png
+import numpy as np
+import matplotlib.pyplot as plt
+v0 = 50
+v1 = 100
+markup = 1.2
+
+def expected_q_given_p_uniform(p, a, b):
+    if p < a:
+        return None
+    elif p >= b:
+        return (a + b) / 2
+    else:
+        return (a + p) / 2
+
+def update_price_uniform(p, a, b, markup):
+    expected_q = expected_q_given_p_uniform(p, a, b)
+    if expected_q is None:
+        return 0
+    return markup * expected_q
+
+p = markup * v1
+history = []
+for _ in range(50):
+    history.append(p)
+    new_p = update_price_uniform(p, v0, v1, markup)
+    if abs(new_p - p) < 1e-6:
+        break
+    p = new_p
+plt.plot(history)
+#+end_src
 
 *** Cournot Duopoly Model
 
@@ -2365,7 +1511,10 @@ $$
 q_1 = \frac{1 - q_2 - c}{2}, \qquad q_2 = \frac{1 - q_1 - c}{2}
 $$
 
-The Nash equilibrium is found by iteratively updating each firm's quantity.
+To get an intuition for the Nash equilibrium, let's think of the firms as sequentially reacting to the other's choice of output. We can plot their reactions and see convergence to the Nash equilibrium.
+
+However, to calculate the Nash equilibrium we solve a fixed point equation.
+
 
 *Python code in Marimo:*
 
@@ -2407,13 +1556,23 @@ plt.xlabel('$q_1$')
 plt.ylabel('$q_2$')
 #+end_src
 
-The code above shows how the Cournot best responses are iterated, starting from an initial $q_1$.
 
-From =scipy.optimize= use either the [[https://docs.scipy.org/doc/scipy/reference/generated/scipy.optimize.root.html][root]] function or =fsolve= (as above) to calculate the Cournot equilibrium. You can use an LLM to help you with this.
+#+caption: Cournot sequential optimal reactions
+#+attr_latex: scale=0.3
+#+name: fig:CournotSequentialReactions
+[[file:./figures/CournotEquilibriumIteration.png]]
 
+
+The code above shows how the Cournot best responses are iterated, starting from an initial $q_1 = 0.45$. We leave it to you to add the reaction functions themselves into the graph (as we did in the app above).
+
+From =scipy.optimize= use either the [[https://docs.scipy.org/doc/scipy/reference/generated/scipy.optimize.root.html][root]] function or =fsolve= (as above) to calculate the Cournot equilibrium. In the lemons example above we had a fixed point $p = f(p)$ where $p$ is a scalar. Here we have $q = g(q)$ where $q$ is a vector $q = [q1, q2]$ and $g$ is a vector function: $g(q) = [R_1(q),R_2(q)]$ where $R_i$ is firm $i$'s reaction function.
+
+You can use an LLM to help you derive the Cournot Nash equilibrium.
+
+**** Hint
 #+BEGIN_EXPORT html
 <details>
-<summary><strong>Hint</strong></summary>
+<summary><strong>Click here</strong></summary>
 #+END_EXPORT
 
 - Define a function like: 
@@ -2431,6 +1590,37 @@ Call =scipy.optimize.root= with the function and a starting point for the algori
 #+BEGIN_EXPORT html
 </details>
 #+END_EXPORT
+
+**** code :noexport:
+#+begin_src python :results graphics file output :file ./figures/CournotEquilibriumIteration.png
+import numpy as np
+import matplotlib.pyplot as plt
+
+c = 0.2
+q1_init = 0.45
+n_iter = 14
+
+def reaction1(q2, c):
+    return (1 - q2 - c) / 2
+
+def reaction2(q1, c):
+    return (1 - q1 - c) / 2
+
+q1 = q1_init
+points = []
+for i in range(n_iter):
+    if i % 2 == 0:
+        q2 = reaction2(q1, c)
+        points.append((q1, q2))
+    else:
+        q1 = reaction1(q2, c)
+        points.append((q1, q2))
+plt.plot(np.array(points)[:,0],np.array(points)[:,1])
+plt.scatter(*points[0],label="initial $q_1$")
+plt.legend()
+plt.xlabel('$q_1$')
+plt.ylabel('$q_2$')
+#+end_src
 
 
 *** Labour Market Markov Model
@@ -2470,6 +1660,8 @@ mo.hstack([mu,lambda_,delta_l,delta_h,u0])
 
 Why do we denote the slider =lambda_= and not just =lambda=?
 
+First, we solve this model with appending lists with the per period solution as we have done above. Then we use matrix algebra to solve for the equilibrium paths.
+
 We create three (empty) lists to keep track of the three fractions: unemployed, low wage and high wage job.
 
 #+BEGIN_SRC python
@@ -2503,8 +1695,10 @@ plt.xlabel("time")
 plt.ylabel("fraction employed/unemployed")
 #+END_SRC
 
-This code simulates the labor market Markov process using =marimo= sliders for all parameters. 
-
+#+caption: Employment Dynamics with high and low wage jobs
+#+attr_latex: scale=0.3
+#+name: fig:EmploymentDynamicsDifferenceEquation
+[[file:./figures/EmploymentDynamics.png]]
 
 
 We can also derive the labor market dynamics using matrix notation in Python. We can rewrite the above difference equations as follows:
@@ -2529,7 +1723,6 @@ h_t
 \end{equation}
 
 
-
 We can define the transition matrix as follows:
 #+begin_src python
 A = np.array([
@@ -2540,10 +1733,85 @@ A = np.array([
 
 #+end_src
 
-And then derive the employment dynamics in the following way. Although this may look less intuitive at the start, note how much shorter the code is when we use matrix notation. Matrix multiplication is done by the =np.dot()= statement.
+And then derive the employment dynamics in the following way. Although this may look less intuitive at the start, note how much shorter the code is when we use matrix notation. Matrix multiplication is done by the =np.dot()= statement: $A \cdot x$ is coded as =np.dot(A,x)=. Note that for matrix multiplication to be well defined we need that the number of columns in $A$ equals the number of rows in $x$.
+
+In the code below, $A$ has 3 columns and 3 rows and $S$ has 1 column and 3 rows.
 
 #+begin_src python
 S = np.array([u0.value, 1 - u0.value, 0.0]).reshape(3, 1)
+for _ in range(T):
+    S = np.hstack((S,np.dot(A,S[:,-1].reshape(3,1))))
+
+plt.plot(S[0],label="unemployment")
+plt.plot(S[1],label="low wage employment")
+plt.plot(S[2],label="high wage employment")
+plt.legend()
+plt.xlabel("time")
+plt.ylabel("fraction employed/unemployed")
+#+end_src
+
+#+caption: The same employment dynamics, now derived with matrix multiplication
+#+attr_latex: scale=0.3
+#+name: fig:EmploymentDynamicsMatrixMultiplication
+[[file:./figures/EmploymentDynamicsMatrix.png]]
+
+In the code above, what does =S[:,-1]= mean? Evaluate the expression in your notebook or use an LLM to find out.
+
+**** code :noexport:
+#+begin_src python :results graphics file output :file ./figures/EmploymentDynamics.png
+import numpy as np
+import matplotlib.pyplot as plt
+mu = 0.1
+lambda_ = 0.15
+delta_l = 0.05
+delta_h = 0.02
+u0 = 1.0
+T = 60
+u_hist, l_hist, h_hist = [], [], []
+u, l, h = u0, 1 - u0, 0.0
+
+for t in range(T):
+    u_hist.append(u)
+    l_hist.append(l)
+    h_hist.append(h)
+    new_l = mu * u
+    l_to_h = lambda_ * l
+    l_to_u = delta_l * l
+    h_to_u = delta_h * h
+
+    next_u = u + l_to_u + h_to_u - new_l
+    next_l = l + new_l - l_to_h - l_to_u
+    next_h = h + l_to_h - h_to_u
+
+    total = next_u + next_l + next_h
+    next_u, next_l, next_h = next_u / total, next_l / total, next_h / total
+
+    u, l, h = next_u, next_l, next_h
+
+plt.plot(u_hist,label="unemployment")
+plt.plot(l_hist,label="low wage employment")
+plt.plot(h_hist,label="high wage employment")
+plt.legend()
+plt.xlabel("time")
+plt.ylabel("fraction employed/unemployed")
+#+END_SRC
+
+
+
+
+
+#+begin_src python
+A = np.array([
+    [1-mu, delta_l, delta_h],
+    [mu, 1-lambda_-delta_l,0],
+    [0, lambda_,1-delta_h]
+])
+
+#+end_src
+
+
+#+begin_src python :results graphics file output :file ./figures/EmploymentDynamicsMatrix.png
+S = np.array([u0, 1 - u0, 0.0]).reshape(3, 1)
 for _ in range(T):
     S = np.hstack((S,np.dot(A,S[:,-1].reshape(3,1))))
 
@@ -2559,11 +1827,12 @@ plt.ylabel("fraction employed/unemployed")
 
 ** Summary
 
-In this lecture we studied how iterative processes can be used to model economic dynamics. We implemented simulations where variables adjust repeatedly until they converge to equilibrium outcomes.
+In this lecture we studied how iterative processes can be used to model economic dynamics. We implemented simulations where variables adjust repeatedly until they converge to equilibrium outcomes. We solved for equilibrium using a fixed point equation.
 
 The adverse selection example illustrated how markets with asymmetric information may unravel through iterative price updates. The Cournot model showed how repeated best responses can lead firms toward the Nash equilibrium. Finally, the labor market example demonstrated how difference equations and transition matrices can be used to model dynamic systems.
 
-These examples illustrate how Python is a powerful tool for exploring dynamic economic models and visualizing the paths through which equilibria emerge.
+These examples illustrate how Python is a powerful tool for solving for equilibria, exploring dynamic economic models and visualizing the paths through which equilibria emerge.
+ 
 
 #+BEGIN_EXPORT html
 <div style="border-left:4px solid #1f3c88;padding:10px;margin:15px 0;background:#f5f7fa;">
@@ -2575,7 +1844,7 @@ Many economic equilibria can be understood as the result of iterative adjustment
 #+BEGIN_EXPORT html
 <div style="border-left:4px solid #2c7a7b;padding:10px;margin:15px 0;background:#eef6f6;">
 <strong>Key Python takeaway</strong><br>
-Iterative algorithms and matrix operations allow Python to simulate how economic variables adjust over time. Tools from <code>numpy</code> make it straightforward to implement these dynamics efficiently.
+Iterative algorithms and matrix operations allow Python to simulate how economic variables adjust over time. Tools from <code>numpy</code> make it straightforward to implement these dynamics efficiently. Optimizing functions from <code>scipy</code> help to solve for equilibrium using fixed point equations.
 </div>
 #+END_EXPORT
 
@@ -2588,9 +1857,10 @@ Consider the adverse selection model with $v_0=30$ and $v_1=90$. Write Marimo co
 - Plot the equilibrium price and fraction traded as the mark-up varies from 1.01 to 2.0.
 - Is there always trade (fraction traded > 0) for any mark-up $>1$?
 
+*** Hint
 #+BEGIN_EXPORT html
 <details>
-<summary><strong>Hint / Solution</strong></summary>
+<summary><strong>click here</strong></summary>
 #+END_EXPORT
 
 Finish the code below:
@@ -2628,16 +1898,18 @@ plt.legend()
 </details>
 #+END_EXPORT
 
----
+-------
 
 *** Question 2 Cournot Duopoly: Add a Third Firm
 Modify the Cournot duopoly Python code so there are three firms, each with marginal cost $c$, facing demand of the form $p = 1 - q_1 - q_2 - q_3$.  
 - Define best-response functions for each firm.
 - Write a for loop to iterate best responses starting with initial quantities $q_1=0.3, q_2=0.3, q_3=0.3$.
+- Define a fixed point function and solve for the Cournot Nash equilibrium.
 
+*** Hint
 #+BEGIN_EXPORT html
 <details>
-<summary><strong>Hint / Solution</strong></summary>
+<summary><strong>click here</strong></summary>
 #+END_EXPORT
 
 Finish the code below:
@@ -2668,20 +1940,21 @@ plt.xlabel("Step")
 </details>
 #+END_EXPORT
 
----
+-------
 
-*** Question 3 Labor Market: Steady State Without Iteration
+*** Question 3 Labor Market: Steady State with Fixed Point
 Derive and plot the steady-state unemployment $u^*$ as a function of the job-finding rate $\mu$ (other parameters fixed at $\lambda=0.1$, $\delta_l=0.05$, $\delta_h=0.03$).  
 - Use the fact that in steady state, all variables don’t change over time.
 
+*** Hint
 #+BEGIN_EXPORT html
 <details>
-<summary><strong>Hint / Solution</strong></summary>
+<summary><strong>click here</strong></summary>
 #+END_EXPORT
 
 Use google or an LLM to figure out what 'broyden1' means. Why do we use =x[0]= after =optimize.root()= and not just =x=?
 
-#+begin_src jupyter-python 
+#+begin_src python 
 import numpy as np
 from scipy import optimize
 import matplotlib.pyplot as plt
@@ -2710,100 +1983,82 @@ for mu in mus:
 </details>
 #+END_EXPORT
 
----
+--------
 
-*** Question 4 Matrix Notation: Simulation With Numpy Only
-In the labor market model, implement the time path simulation *using only Numpy arrays and matrix multiplication* (not manually updating variables).  
-- Set up the transition matrix for $\mu=0.12$, $\lambda=0.09$, $\delta_l=0.04$, $\delta_h=0.03$, $u_0=0.8$.
-- Plot the evolution of all three states.
+*** Question 4 Demand and Supply
 
-#+BEGIN_EXPORT html
-<details>
-<summary><strong>Hint / Solution</strong></summary>
-#+END_EXPORT
+Consider a market where there is one type of product and there is an exogenous endowment of this product (supply) equal to =number_of_goods=. Further, in this economy there are =number_of_agents= agents who have a valuation for this good which is randomly drawn from a normal distribution. An agent can at max. consume one unit of the product and her utility is then given by her valuation. The value of consuming zero units and the additional value of consuming more than one unit both equal 0.
+
+The vector =valuations= contains for each agent her valuation. This we can code as follows:
 
 #+begin_src python
-M, lmbd, dl, dh = 0.12, 0.09, 0.04, 0.03
-A = np.array([
-    [1 - M, dl, dh],
-    [M, 1 - lmbd - dl, 0],
-    [0, lmbd, 1 - dh]
-])
-S = np.array([0.8, 0.2, 0]).reshape(3,1)
-hist = [S]
-for _ in range(60):
-    S = np.dot(A, S)
-    hist.append(S)
-
-# finish the code
+number_of_agents = 1000
+number_of_goods = 100
+valuations = np.random.normal(100,20,size=number_of_agents)
 #+end_src
 
-#+BEGIN_EXPORT html
-</details>
-#+END_EXPORT
+- Define the function =demand(p)= which gives the number of goods demanded at price $p$. [which agents buy the good at price $p$?]
+- Solve for the equilibrium price.
 
----
 
-*** Question 5 Extending the Labor Model: Add a Direct High Wage Offer Channel
-Suppose a fraction $\alpha$ of unemployed directly get a high wage job each period. The equations become:
-\begin{align*}
-u_{t+1} &= u_t + \delta_l l_t + \delta_h h_t - \mu u_t - \alpha u_t \\
-l_{t+1} &= l_t + \mu u_t - \lambda l_t - \delta_l l_t \\
-h_{t+1} &= h_t + \lambda l_t + \alpha u_t - \delta_h h_t
-\end{align*}
-- Write Marimo code to simulate the process, using sliders for $\mu, \lambda, \delta_l, \delta_h, u_0, \alpha$.
-- Plot over time.
-- What happens as $\alpha$ increases?
+--------
 
-#+BEGIN_EXPORT html
-<details>
-<summary><strong>Hint / Solution</strong></summary>
-#+END_EXPORT
+*** Question 5 Welfare and External Effects
 
-#+begin_src python
-Mu = mo.ui.slider(0.01, 0.5, value=0.1, step=0.01, label="Job finding rate")
-Lambda = mo.ui.slider(0.01, 0.5, value=0.15, step=0.01, label="Learning rate")
-d_l = mo.ui.slider(0.01, 0.5, value=0.05, step=0.01, label="Low wage sep.")
-d_h = mo.ui.slider(0.01, 0.5, value=0.02, step=0.01, label="High wage sep.")
-alpha = mo.ui.slider(0.0, 0.2, value=0.0, step=0.01, label="Direct high wage $\\alpha$")
-u0 = mo.ui.slider(0.0, 1.0, value=1.0, step=0.01, label="Initial unemployment")
-mo.vstack([Mu,Lambda,d_l,d_h,alpha,u0])
-#+end_src
+Consider a Cournot duopoly market with a homogeneous good. Consumers have utility function $u(x) = x - 0.5x^2$ and solve $\max_x u(x) - px$. Firms produce at constant marginal costs normalized to zero: $c=0$. But the production of $x$ creates pollution at social cost $ex$ with $e \geq 0$.
 
-#+begin_src python
-T = 60
-u_hist, l_hist, h_hist = [], [], []
-u, l, h = u0.value, 1-u0.value, 0.0
+- Derive analytically the demand function for this market.
+- Define the reaction functions for the firms and the fixed point function; solve for the Cournot Nash equilibrium.
+- Define a Python function for welfare, $W$, for this market as a function of $x$ and $e$.
+- Let $W^*$ denote welfare as maximized by the social planner and $W^{C}$ as the level of welfare in Cournot equilibrium. Give the Python code to replicate Figure [[fig:CournotWelfareExternality]].
+- Given an economic interpretation of this figure.
 
-for t in range(T):
-    u_hist.append(u)
-    l_hist.append(l)
-    h_hist.append(h)
-    to_l = Mu.value * u
-    to_h = alpha.value * u
-    l_to_h = Lambda.value * l
-    l_to_u = d_l.value * l
-    h_to_u = d_h.value * h
 
-    next_u = u + l_to_u + h_to_u - to_l - to_h
-    next_l = l + to_l - l_to_h - l_to_u
-    next_h = h + l_to_h + to_h - h_to_u
+#+caption: Cournot welfare as a fraction of socially optimal welfare $W^*$
+#+attr_latex: scale=0.3
+#+name: fig:CournotWelfareExternality
+[[file:./figures/WelfareExternalityCournot.png]]
 
-    total = next_u + next_l + next_h
-    next_u, next_l, next_h = next_u/total, next_l/total, next_h/total
-
-    u, l, h = next_u, next_l, next_h
-
-# Finish the code
-#+end_src
-
-As $\alpha$ increases, the fraction in high wage employment rises and steady-state unemployment falls.
-
-#+BEGIN_EXPORT html
-</details>
-#+END_EXPORT
 
 -----------
+#+BEGIN_EXPORT latex
+\newpage
+#+END_EXPORT
+
+**** code :noexport:
+
+#+begin_src python
+
+def fixed_point(x):
+    q1, q2 = x
+    return  [
+        q1 - (1-q2)/2,
+        q2 - (1-q1)/2
+    ]
+
+QC = optimize.fsolve(fixed_point,[0,0])
+
+def W(x,e):
+    return x - 0.5*x**2 - e*x
+
+def WC(e):
+    return W(QC.sum(),e)
+
+def W_star(e):
+    return -optimize.minimize(lambda x: -W(x,e),[0.3]).fun
+
+#+end_src
+
+
+#+begin_src python :results graphics file output :file ./figures/WelfareExternalityCournot.png
+range_e = np.arange(0,0.6,0.01)
+
+plt.plot(range_e,[WC(e)/W_star(e) for e in range_e])
+plt.xlabel('$e$')
+plt.ylabel('$W^C/W^*$')
+plt.title('Relative welfare $W^C/W^*$ as a function of the externality $e$')
+#+end_src
+
 
 * Lecture 4: Search and Matching in the Labor Market
 :PROPERTIES:
@@ -2830,7 +2085,7 @@ In this lecture we build a simplified search and matching model using Dutch labo
 
 Suppose after graduating you are hired by the Dutch Ministry of Social Affairs. In parliament there have been recurring discussions about immigration. The minister asks you to give her an idea of the potential effects of immigration on unemployment and wages in the Netherlands. Suppose immigration increases by 50%, or even doubles. What would happen to unemployment and wages?
 
-To answer this question we need two ingredients: data and an economic model. Before reading on, it may be useful to think about how you would approach this question yourself. There are many ways to model the effects of immigration. Below we develop one example using data from Statistics Netherlands (CBS) and a search and matching framework. We then use this model to build a small simulation in Python.
+To answer this question we need two ingredients: data and an economic model. Before reading on, it may be useful to think about how you would approach this question yourself. There are many ways to model the effects of immigration. Below we develop one example using data from Statistics Netherlands (CBS) and a search and matching framework. We then use this model for a (small) simulation in Python.
 
 As said, the goal is not to obtain a precise prediction. Rather, we want to give the minister a sense of the *order of magnitude* of the effects. To build intuition, we construct an interactive model where immigration can increase by anywhere between 0% and 100%.
 
@@ -2840,7 +2095,7 @@ A key advantage of the search and matching framework is that it focuses on *flow
 
 Asylum migration can also affect the labor market, but these effects are more indirect and occur with a lag. For example, asylum procedures can take several years before individuals are allowed to participate in the labor market. For simplicity, we abstract from these effects here.
 
-In the search framework, an increase in immigration initially increases the number of job seekers. However, the number of vacancies is not fixed in the long run. Firms respond to changes in labor market conditions by posting more vacancies. The interaction between workers and firms determines unemployment, vacancies, and wages.
+In the search framework, an increase in immigration initially increases the number of job seekers. However, the number of vacancies is not fixed in the long run. Firms respond to changes in labor market conditions by adjusting their vacancies. The interaction between workers and firms determines unemployment, vacancies, and wages.
 
 The key elements of the framework are:
 - Workers and firms meet via a matching function.
@@ -2884,7 +2139,7 @@ We capture this idea in reduced form by specifying the worker's outside option a
 b \theta^{1-\alpha}
 \]
 
-where \(b\) summarizes factors such as welfare benefits and institutions that affect the value of unemployment.
+where \(b\) summarizes factors such as welfare benefits and institutions that affect the value of unemployment and $\theta^{1-\alpha}$ captures the probability of finding a job in a future period.
 
 Given Nash bargaining with worker bargaining power \(\beta\), the wage becomes
 
@@ -2897,6 +2152,8 @@ where
 - \(w\): wage  
 - \(a\): worker production/productivity  
 - \(\beta\): worker bargaining power  
+
+In words, a workers always gets her outside option and she gets a share $\beta$ of the value added of the match: production $a$ minus her outside option.
 
 This equation shows that wages increase with productivity and with labor market tightness.
 
@@ -2942,7 +2199,7 @@ with the following selections:
 - all countries of birth
 - migration motive: joining the labour force
 
-we obtain approximately 14,000 migrants per year in the early 2000s.
+We obtain approximately 14,000 migrants per year in the early 2000s.
 
 We interpret these migrants as entering the labor market as job seekers. In other words, they initially increase unemployment \(U\).
 
@@ -2988,6 +2245,12 @@ After an immigration shock, firms gradually create additional vacancies until th
 
 The Streamlit app below allows you to explore these mechanisms. You can simulate increases in immigration between 0% and 100% and observe how unemployment, vacancies, labor market tightness, and wages respond in both the short run and the long run.
 
+#+BEGIN_EXPORT latex
+\url{https://lecture4searchmatching.streamlit.app/}
+#+END_EXPORT
+
+
+
 #+BEGIN_EXPORT html
 <iframe
   src="https://lecture4searchmatching.streamlit.app/?embed=true"
@@ -3008,240 +2271,6 @@ The Streamlit app below allows you to explore these mechanisms. You can simulate
 
 
 
-** streamlit :noexport:
-
-#+begin_src python
-import streamlit as st
-import numpy as np
-import pandas as pd
-import matplotlib.pyplot as plt
-from scipy.optimize import minimize
-from scipy.optimize import fsolve
-
-st.title("Lecture 4: Search and Matching Model in Labor Economics")
-
-st.header("Interactive Demo: Search and Matching Model")
-
-st.markdown(r"""
-### Search and Matching Model
-
-The search and matching model describes how unemployed workers find jobs and how firms fill vacancies. The key equations are:
-
-$$
-M = m \cdot U^\alpha \cdot V^{1-\alpha}
-$$
-
-where:
-- $M$ is the number of matches,
-- $m$ is the matching efficiency,
-- $U$ is the number of unemployed,
-- $V$ is the number of vacancies,
-- $\alpha$ is the elasticity parameter.
-
-The wage is determined by Nash bargaining. In this version of the model the worker's outside option depends on how easily a job can be found.
-
-The probability that an unemployed worker finds a job is
-
-$$
-\frac{M}{U} = m\theta^{1-\alpha}
-$$
-
-where $\theta = V/U$ is labor market tightness.
-
-We assume that the outside option of the worker is proportional to this job‑finding probability. In the original Mortensen-Pissarides models the outside option of the worker is determined by the expected discounted value of being unemployed. For our simple application here, we will not introduce the dynamic (Bellman) equations of these models. We will model the outside option in a reduced form way capturing that the value of being unemployed is higher if you are more likely to find a job in the next period. We specify the outside option as follows, where we estimate the parameter $b$:
-
-$$
-b \cdot \theta^{1-\alpha}
-$$
-
-Intuitively, $b$ captures a combination of the matching efficiency $m$ and the generosity of welfare benefits when you are unemployed.
-
-Using Nash bargaining, the wage splits the surplus of a match between the worker and the firm. This gives the wage equation
-
-$$
-w = b \theta^{1-\alpha} + \beta (a - b \theta^{1-\alpha})
-$$
-
-where:
-- $w$ is the wage
-- $a$ is productivity
-- $\beta$ is the bargaining power of the worker
-
-This equation implies that a worker always gets her outside option plus a share ($\beta$) of the total surplus generated by the job (production $a$ minus the worker's outside option). This share of the surplus is higher, if a worker has more bargaining power. In other words, wages increase with productivity and with labor market tightness. When the labor market is tight, workers find jobs more easily, which increases their outside option and therefore their bargaining position.
-
-From the literature, we calibrate $\alpha = \beta = 0.5$. The other parameters, $m, a, b$, we estimate by minimizing the sum of squared residuals.
-
-### Data Source
-
-The data comes from CBS and is saved in the file `./data/labour_data.csv`. 
-
-""")
-
-# Load data
-df = pd.read_csv("./data/labour_data.csv")
-alpha = 0.5    # elasticity (example from notes)
-beta = 0.5     # bargaining power (example from notes)
-
-
-def predict_row(row, m, a, b, counterfactual_immigration=0):
-    U = row['Unemployed labour force/Seasonally adjusted (x 1,000)'] + counterfactual_immigration
-    V = row['Vacancies seasonally adjusted, unfilled (x 1000)']
-    # Matching
-    M_pred = m * (U**alpha) * (V**(1-alpha))
-    # Wage with outside option depending on job finding probability
-    theta = V / U
-    wage_pred = beta * a + (1 - beta) * b * (theta ** (1 - alpha))
-    return M_pred, wage_pred
-
-def sum_squared_errors(params, df):
-    m, a, b = params
-    errors = []
-    for _, row in df.iterrows():
-        M_pred, wage_pred = predict_row(row, m, a, b)
-        e_M = (row['Vacancies seasonally adjusted, filled (x 1000)'] - M_pred)**2
-        e_wage = (row['Average_monthly_wage_index'] - wage_pred)**2
-        errors.append(e_M + e_wage)
-    return np.sum(errors)
-
-init_params = [0.8, 200, 50]
-result = minimize(sum_squared_errors, init_params, args=(df,)) 
-
-m_hat, a_hat, b_hat = result.x
-
-
-
-# Compute predictions using estimated parameters over all quarters
-M_pred, wage_pred = [], []
-for _, row in df.iterrows():
-    mp, wp = predict_row(row, m_hat, a_hat, b_hat)
-    M_pred.append(mp)
-    wage_pred.append(wp)
-
-periods = df['PeriodQ'].astype(str)
-
-fig, axs = plt.subplots(1, 2, figsize=(13, 4), sharex=False)
-
-# 1. Filled Vacancies (M): observed vs predicted
-axs[0].plot(periods, df['Vacancies seasonally adjusted, filled (x 1000)'], label='Observed', color='blue')
-axs[0].plot(periods, M_pred, label='Predicted', color='orange', linestyle='--')
-axs[0].set_title("Matches: Filled Vacancies (M)")
-axs[0].set_ylabel("1000 persons")
-axs[0].set_xticks(periods[::4]) # Every fourth quarter
-axs[0].tick_params(axis='x', rotation=45)
-axs[0].legend()
-
-# 2. Wage index
-axs[1].plot(periods, df['Average_monthly_wage_index'], label='Observed', color='black')
-axs[1].plot(periods, wage_pred, label='Predicted', color='red', linestyle='--')
-axs[1].set_title("Wage Index (2020=100)")
-axs[1].set_ylabel("Index")
-axs[1].set_xticks(periods[::4])
-axs[1].tick_params(axis='x', rotation=45)
-axs[1].legend()
-
-plt.tight_layout()
-st.pyplot(fig)
-
-st.markdown(r"""
-For such a simple model, the fit seems reasonable enough. Remember our goal is to get a sense of the order of the effect; not an exact prediction.
-""")
-
-
-st.markdown(r"""
-### Interactive Model
-
-Use the slider below to simulate the effect of a 0–100% increase in immigration (14k per year as the baseline) on unemployment and wage.
-
-""")
-
-
-# Immigration and wage curve (2024 baseline)
-st.markdown("### Immigration and Wages in the Search Model (2024 baseline)")
-
-immigration_increase = st.slider("Immigration increase (%)", 0, 100, 0)
-
-# # Use most recent row (2024Q4)
-latest = df.iloc[-1]
-U0 = latest["Unemployed labour force/Seasonally adjusted (x 1,000)"] * 1000
-V0 = latest["Vacancies seasonally adjusted, unfilled (x 1000)"] * 1000
-
-immigrants_per_year = 14000
-additional = immigrants_per_year * immigration_increase / 100
-U = U0 + additional
-theta = V0 / U
-w = beta * a_hat + (1 - beta) * b_hat * theta**(1 - alpha)
-
-# Fix curve independent of slider so scales stay constant
-theta0 = V0 / U0
-theta_grid = np.linspace(0.5*theta0, 1.5*theta0, 200)
-w_grid = beta * a_hat + (1 - beta) * b_hat * theta_grid**(1 - alpha)
-
-fig, ax = plt.subplots(figsize=(7,4))
-ax.plot(theta_grid, w_grid, label="Wage curve w(θ)")
-ax.scatter(theta, w, color="red", s=80, label="Current equilibrium")
-
-# Fix axis limits
-ax.set_xlim(theta_grid.min(), theta_grid.max())
-ax.set_ylim(w_grid.min(), w_grid.max())
-
-ax.set_xlabel("Labor market tightness θ = V/U")
-ax.set_ylabel("Wage index")
-ax.set_title("Immigration moves the economy along the wage curve")
-ax.legend()
-
-st.pyplot(fig)
-
-st.markdown("""
-Immigration increases the number of job seekers. With vacancies fixed in the short run at $V_0$, unemployment rises, which lowers labor market tightness (θ = V_0/U). This moves the economy leftward along the Nash bargaining wage curve and reduces wages.
-""")
-
-# --- Long run adjustment ---
-st.markdown("### Long Run Adjustment (Free Entry of Vacancies)")
-st.markdown("In the long run firms can create vacancies. Vacancies increase until the **expected profit of posting a vacancy equals the cost of posting a vacancy** (free entry condition). The cost of posting a vacancy is denoted by $c$, the expected benefit of posting a vacancy equals the probability of a match, $M/V$, times the profit of the match, $a-w$. Hence, in the long run --when $V$ is endogenous-- we have: $c = (a-w) m \\theta^{-\\alpha}$.")
-
-# 1. Calibrate vacancy cost so that 2024 is long‑run equilibrium
-theta0 = V0 / U0
-w0 = beta * a_hat + (1 - beta) * b_hat * theta0**(1 - alpha)
-c_hat = m_hat * theta0**(-alpha) * (a_hat - w0)
-
-# Immigration from slider
-immigrants_per_year = 14000
-additional = immigrants_per_year * immigration_increase / 100
-U1 = U0 + additional
-
-# 2. Short run (vacancies fixed)
-theta_sr = V0 / U1
-w_sr = beta * a_hat + (1 - beta) * b_hat * theta_sr**(1 - alpha)
-V_sr = V0
-
-# 3. Long run (free entry)
-
-def free_entry(theta):
-    w = beta * a_hat + (1 - beta) * b_hat * theta**(1 - alpha)
-    q = m_hat * theta**(-alpha)
-    return q * (a_hat - w) - c_hat
-
-theta_lr = float(fsolve(free_entry, theta0)[0])
-w_lr = beta * a_hat + (1 - beta) * b_hat * theta_lr**(1 - alpha)
-V_lr = theta_lr * U1
-
-# Table comparison
-comparison = pd.DataFrame({
-    "Short run (V fixed)": [theta_sr, w_sr, V_sr],
-    "Long run (free entry)": [theta_lr, w_lr, V_lr]
-}, index=["Tightness θ", "Wage", "Vacancies V"])
-
-st.table(comparison)
-
-st.markdown("""
-,*Short run: immigration increases the number of job seekers while vacancies are fixed. This lowers labor market tightness and wages.*
-
-,*Long run: firms create vacancies until the free‑entry condition holds again. As a result labor market tightness and wages return close to their equilibrium levels, while the number of vacancies increases.*
-""")
-
-#+end_src
-
-
 ** Python Code Explanation
 
 
@@ -3249,7 +2278,7 @@ st.markdown("""
 
 We first import the Python packages used for data handling, estimation, and plotting.
 
-#+begin_src jupyter-python
+#+begin_src python
 import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt
@@ -3257,16 +2286,27 @@ from scipy.optimize import minimize, fsolve
 import marimo as mo
 #+end_src
 
----
 
 *** 2. Load the data
 
 We load the CBS dataset containing unemployment, vacancies, matches, and a wage index.
 
-#+begin_src jupyter-python
+#+begin_src python :results value
 df = pd.read_csv("./data/labour_data.csv")
-df.head()
+df[['Unemployed labour force/Seasonally adjusted (x 1,000)',
+       'Vacancies seasonally adjusted, unfilled (x 1000)',
+       'Vacancies seasonally adjusted, filled (x 1000)',
+       'Average_monthly_wage_index']].head()
 #+end_src
+
+|       Unemployed labour force |        Vacancies seasonally |      Vacancies seasonally | Average_monthly_wage_index |
+| Seasonally adjusted (x 1,000) | adjusted, unfilled (x 1000) | adjusted, filled (x 1000) |                            |
+|-------------------------------+-----------------------------+---------------------------+----------------------------|
+|                           456 |                       117.9 |                     182.2 |                       74.2 |
+|                           493 |                       112.1 |                     159.0 |                       74.2 |
+|                           513 |                        94.0 |                     170.0 |                       74.2 |
+|                           538 |                       102.4 |                     161.1 |                       74.2 |
+|                           559 |                       115.8 |                     159.4 |                       75.1 |
 
 Important columns in the dataset:
 
@@ -3275,29 +2315,28 @@ Important columns in the dataset:
 - =Vacancies seasonally adjusted, filled (x 1000)= → matches \(M\)  
 - =Average_monthly_wage_index= → wage index
 
----
 
 *** 3. Model parameters from the literature
 
 The search-and-matching literature suggests that we can calibrate $\alpha$ and $\beta$ at 0.5 [cite:@mortensen-2007-more-unemp;@petrongolo-2001-lookin-into].
 
-#+begin_src jupyter-python
+#+begin_src python
 alpha = 0.5
 beta = 0.5
 #+end_src
+
 
 These values imply:
 
 - unemployment and vacancies contribute symmetrically to matching
 - workers and firms split the surplus equally.
 
----
 
 *** 4. Matching function and wage equation
 
 We now write a function that predicts *matches and wages* for a given observation.
 
-#+begin_src jupyter-python
+#+begin_src python
 def predict_row(row, m, a, b, counterfactual_immigration=0):
     
     U = row['Unemployed labour force/Seasonally adjusted (x 1,000)'] + counterfactual_immigration
@@ -3315,11 +2354,11 @@ def predict_row(row, m, a, b, counterfactual_immigration=0):
     return M_pred, wage_pred
 #+end_src
 
-This function implements two key model equations:
-- Matching: $M = m U^α V^{1−α}$
-- Wage: $w = βa + (1−β)b θ^{1−α}$
 
----
+This function implements two key model equations:
+- Matching: $M = m U^{\alpha} V^{1-\alpha}$ 
+- Wage: $w = \beta a + (1-\beta) b \theta^{1-\alpha}$ 
+
 
 *** 5. Estimating model parameters
 
@@ -3331,7 +2370,7 @@ We estimate the unknown parameters:
 
 We do this by minimizing the *sum of squared errors* between the model and the data.
 
-#+begin_src jupyter-python
+#+begin_src python
 def sum_squared_errors(params, df):
 
     m, a, b = params
@@ -3349,15 +2388,15 @@ def sum_squared_errors(params, df):
     return np.sum(errors)
 #+end_src
 
+
 This function computes how far the model predictions are from the data.
 
----
 
 *** 6. Run the estimation
 
 We now use a numerical optimizer to estimate the parameters.
 
-#+begin_src jupyter-python
+#+begin_src python
 init_params = [0.8, 200, 50]
 
 result = minimize(sum_squared_errors, init_params, args=(df,))
@@ -3367,15 +2406,16 @@ m_hat, a_hat, b_hat = result.x
 m_hat, a_hat, b_hat
 #+end_src
 
+=0.7856231159485444,133.25663277176238,73.47000968601081=
+
 The optimizer searches for parameter values that make the model fit the observed data as closely as possible.
 
----
 
 *** 7. Compare model predictions to data
 
 Using the estimated parameters, we compute predicted matches and wages.
 
-#+begin_src jupyter-python
+#+begin_src python
 M_pred = []
 wage_pred = []
 
@@ -3385,9 +2425,10 @@ for _, row in df.iterrows():
     wage_pred.append(wp)
 #+end_src
 
+
 Now we plot *observed vs predicted values*.
 
-#+begin_src jupyter-python
+#+begin_src python :results graphics file output :file ./figures/ObservedPredictedMatchingModel.png
 periods = df['PeriodQ'].astype(str)
 fig, axs = plt.subplots(1,2, figsize=(12,4))
 
@@ -3408,15 +2449,20 @@ plt.tight_layout()
 fig
 #+end_src
 
+
+#+caption: Observed and predicted number of matches and wage index
+#+attr_latex: scale=0.3
+#+name: fig:ObservedPredictedmatchingmodel
+[[file:./figures/ObservedPredictedMatchingModel.png]]
+
 The purpose of this step is simply to check whether the model roughly reproduces the data.
 
----
 
 *** 8. Interactive immigration shock
 
 In =marimo= we create the slider with ~mo.ui.slider~ as before.
 
-#+begin_src jupyter-python
+#+begin_src python
 immigration_slider = mo.ui.slider(
     start=0,
     stop=100,
@@ -3428,13 +2474,12 @@ immigration_slider = mo.ui.slider(
 
 The slider allows the user to simulate immigration increases between *0% and 100%*.
 
----
 
 *** 9. Compute short‑run effects
 
-We use the latest observation as the baseline and simulate additional immigrants entering unemployment.
+We use the latest observation as the baseline and simulate additional immigrants entering unemployment. We evaluate this code for the default value of 0 immigration.
 
-#+begin_src jupyter-python
+#+begin_src python
 immigration_slider
 latest = df.iloc[-1]
 
@@ -3453,20 +2498,21 @@ w = beta * a_hat + (1 - beta) * b_hat * theta**(1 - alpha)
 theta, w
 #+end_src
 
+=1.074331550802139, 104.70413651538085=
+
 Short run assumption:
 
 - immigration increases unemployment  
 - vacancies remain fixed
 
-This reduces labor market tightness \(θ = V/U\) and lowers wages.
+This reduces labor market tightness \(\theta = V/U\) and lowers wages.
 
----
 
 *** 10. Plot the wage curve
 
 Finally we visualize how immigration moves the economy along the wage curve.
 
-#+begin_src jupyter-python
+#+begin_src python
 theta0 = V0 / U0
 
 theta_grid = np.linspace(0.5*theta0, 1.5*theta0, 200)
@@ -3478,18 +2524,66 @@ fig, ax = plt.subplots()
 ax.plot(theta_grid, w_grid)
 ax.scatter(theta, w)
 
-ax.set_xlabel("Labor market tightness θ")
+ax.set_xlabel("Labor market tightness $\theta$")
 ax.set_ylabel("Wage index")
 
-plt.show()
 #+end_src
+
+#+caption: Wage curve: wage as a function of $\theta$
+#+attr_latex: scale=0.3
+#+name: fig:Wagecurvematchingmodel
+[[file:./figures/WageCurveMatchingModel.png]]
+
 
 Interpretation:
 
 - the curve shows wages implied by Nash bargaining  
 - immigration increases unemployment  
-- this lowers tightness \(θ\)  
+- this lowers tightness \(\theta\)  
 - the economy moves *left along the wage curve*, reducing wages.
+
+
+**** code :noexport:
+
+
+#+begin_src python
+immigration = 0
+latest = df.iloc[-1]
+
+U0 = latest["Unemployed labour force/Seasonally adjusted (x 1,000)"] * 1000
+V0 = latest["Vacancies seasonally adjusted, unfilled (x 1000)"] * 1000
+
+immigrants_per_year = 14000
+
+additional = immigrants_per_year * immigration / 100
+
+U = U0 + additional
+theta = V0 / U
+
+w = beta * a_hat + (1 - beta) * b_hat * theta**(1 - alpha)
+
+theta, w
+#+end_src
+
+
+
+#+begin_src python :results graphics file output :file ./figures/WageCurveMatchingModel.png
+theta0 = V0 / U0
+
+theta_grid = np.linspace(0.5*theta0, 1.5*theta0, 200)
+
+w_grid = beta * a_hat + (1 - beta) * b_hat * theta_grid**(1 - alpha)
+
+fig, ax = plt.subplots()
+
+ax.plot(theta_grid, w_grid)
+ax.scatter(theta, w)
+
+ax.set_xlabel("Labor market tightness $\\theta$")
+ax.set_ylabel("Wage index")
+
+#+end_src
+
 
 ** Summary
 
@@ -3563,10 +2657,12 @@ Immigration increases unemployment by 20%.
 
 Write Python code that
 
-- computes the initial tightness \(θ_0\)  
+- computes the initial tightness \(\theta_0\)  
 - computes the new tightness after immigration  
 - computes the corresponding wages using the wage equation.
 
+
+**** Hint
 #+BEGIN_EXPORT html
 <details>
 <summary><strong>LLM Hint (how to prompt an LLM)</strong></summary>
@@ -3578,9 +2674,9 @@ A useful prompt could be:
 
 "I am solving an exercise from a graduate economics course on search and matching models. The wage equation is
 
-w = βa + (1−β)bθ^(1−α)
+$w = \beta a + (1-\beta) b \theta^{1-\alpha}$
 
-and labor market tightness is θ = V / U.
+and labor market tightness is $\theta=V/U$.
 
 Initially U = 200 and V = 150. Immigration increases unemployment by 20%.
 
@@ -3607,10 +2703,14 @@ Using the matching function
 
 generate simulated data for \(U\) and \(V\), compute \(M\), add some noise to \(M\) and then estimate the parameters \(m,\alpha\) using least squares.
 
-Hint: you can use the function \(\ln(x)\) to make it look more like a linear regression.
+Hint: you can use the function \(\ln(x)\) to make it look more like a linear regression if you find this useful for your intuition.
 
 
 -----------
+#+BEGIN_EXPORT latex
+\newpage
+#+END_EXPORT
+
 
 * Lecture 5: Modeling Dynamics
 :PROPERTIES:
@@ -3643,7 +2743,7 @@ The following three apps introduce three economic environments in which dynamics
 
 One of the most fundamental questions in macroeconomics is why some countries are richer than others and how economies grow over time. A key mechanism behind long‑run growth is capital accumulation: societies invest part of their income in machines, infrastructure, and technology that increase future production.
 
-However, capital does not grow automatically. Investment increases the capital stock, but depreciation and population growth work in the opposite direction. New workers require additional capital to maintain capital per worker and productivity, and existing capital gradually wears out.
+However, capital (per worker) does not grow automatically. Investment increases the capital stock, but depreciation and population growth work in the opposite direction. New workers require additional capital to maintain capital per worker and productivity, and existing capital gradually wears out.
 
 The Solow growth model captures this tension between investment and dilution. In this framework, the economy produces output using capital and labor. A constant fraction of output is saved and invested, which increases the capital stock. At the same time, depreciation and population growth reduce the amount of capital available per worker.
 
@@ -3654,6 +2754,12 @@ This dynamic adjustment leads to a steady state: a level of capital per worker a
 An important question is how the steady state depends on economic parameters. For example, how would the long‑run level of capital change if households saved a larger fraction of their income? What happens if population growth increases? How does the productivity of capital affect the outcome? An interactive app where these parameters can be easily adjusted with sliders helps to answer these questions.
 
 Thinking through these questions helps build intuition for the forces that determine long‑run economic development.
+
+#+BEGIN_EXPORT latex
+\url{https://solowmodel.streamlit.app/}
+#+END_EXPORT
+
+
 
 #+BEGIN_EXPORT html
 <iframe
@@ -3696,6 +2802,12 @@ Understanding these distortions is central to many areas of economics, including
 
 The envelope theorem is a property of optimization problems that economists tend to use a lot. The following clip explains what it is and illustrates the envelope theorem with a simple example.
 
+#+BEGIN_EXPORT latex
+\url{https://janboone.github.io/Methods_python_for_economists_lectures/manim/media/videos/envelopetheorem/480p15/EnvelopeTheorem.mp4}
+#+END_EXPORT
+
+
+
 #+BEGIN_EXPORT html
 <div style="text-align:center;">
   <video style="width:600px;" controls>
@@ -3711,6 +2823,11 @@ The envelope theorem is a property of optimization problems that economists tend
 #+END_EXPORT
 
 The Euler equation is used in dynamic optimization problems.
+
+#+BEGIN_EXPORT latex
+\url{https://janboone.github.io/Methods_python_for_economists_lectures/manim/media/videos/euler/480p15/EulerEquationIntro.mp4}
+#+END_EXPORT
+
 
 #+BEGIN_EXPORT html
 <div style="text-align:center;">
@@ -3740,6 +2857,12 @@ $$
 $$
 
 because $\frac{\partial f}{\partial y'} = 0$.
+
+
+
+#+BEGIN_EXPORT latex
+\url{https://mechanismdesign.streamlit.app/}
+#+END_EXPORT
 
 
 #+BEGIN_EXPORT html
@@ -3773,6 +2896,12 @@ Several interesting questions arise in this environment. Should firms produce mo
 
 Analyzing these questions helps illustrate how dynamic optimization differs from static decision making. When future benefits are important, firms may deliberately deviate from short‑run profit maximization in order to improve long‑run outcomes.
 
+#+BEGIN_EXPORT latex
+\url{https://qqprotxxjhvhujcplsebfh.streamlit.app/}
+#+END_EXPORT
+
+
+
 #+BEGIN_EXPORT html
 <iframe
   src="https://qqprotxxjhvhujcplsebfh.streamlit.app/?embed=true"
@@ -3791,496 +2920,19 @@ Analyzing these questions helps illustrate how dynamic optimization differs from
 
 
 
-** streamlit :noexport:
-
-*** app 1
-
-#+begin_src python
-import streamlit as st
-import numpy as np
-import matplotlib.pyplot as plt
-from scipy.integrate import solve_ivp
-
-st.title("Modeling dynamics: differential equations")
-
-st.header("Capital Accumulation and Economic Growth")
-
-st.markdown(r"""
-### The Solow Model
-
-The Solow model is one of the fundamental models in macroeconomics. It explains how
-**capital accumulation, population growth, and savings determine long‑run income per worker**.
-
-The key dynamic equation describes how capital per worker evolves over time:
-
-$$
-\dot{k}(t) = s f(k(t)) - (n + \delta)k(t)
-$$
-
-where
-
-- $k$ : capital per worker
-- $\dot{k}$ : derivative of $k$ with respect to time
-- $s$ : (exogenous) savings rate
-- $f(k)$ : production function, usually $f(k) = k^{\alpha}$
-- $n$ : population growth
-- $\delta$ : depreciation rate
-
-The term $s f(k)$ represents **investment**, while $(n+\delta)k$ represents the amount of
-capital that must be devoted to **maintaining the capital stock**.
-
-This is a differential equation with starting point $k_0$: capital level at $t=0$. This is called an initial value problem `ivp`.
-
-The steady state occurs when
-
-$$
-\dot{k}=0
-$$
-
-meaning investment exactly offsets depreciation and population growth.
-
-Below we solve the differential equation numerically using `scipy.integrate.solve_ivp` and
-plot the transition of the economy over time.
-""")
-
-st.markdown("### Choose Parameters")
-
-alpha = st.slider("Capital share (α)",0.1,0.9,0.3)
-s = st.slider("Savings rate (s)",0.01,0.6,0.2)
-n = st.slider("Population growth (n)",0.0,0.05,0.01)
-delta = st.slider("Depreciation rate (δ)",0.0,0.1,0.05)
-k0 = st.slider("Initial capital per worker (k₀)",0.01,5.0,0.5)
-
-st.markdown("### Capital Dynamics")
-
-
-def solow(t,k):
-    return s*k**alpha - (n+delta)*k
-
-
-k_ss=(s/(n+delta))**(1/(1-alpha))
-t_span=(0,50)
-t_eval=np.linspace(*t_span,200)
-sol=solve_ivp(solow,t_span,[k0],t_eval=t_eval)
-
-
-col1,col2=st.columns(2)
-
-fig,ax=plt.subplots(figsize=(6,4))
-ax.plot(sol.t,sol.y[0],label="Capital path k(t)")
-ax.axhline(k_ss,linestyle="--",label="Steady state")
-# ax.scatter([sol.t[-1]],[sol.y[0][-1]],color="red",zorder=3)
-ax.set_xlabel("Time")
-ax.set_ylabel("Capital per worker")
-ax.set_title("Transition Dynamics")
-ax.legend()
-
-k_grid=np.linspace(0.01,max(5,k_ss+1),200)
-invest=s*k_grid**alpha
-break_even=(n+delta)*k_grid
-
-fig2,ax2=plt.subplots(figsize=(6,4))
-ax2.plot(k_grid,invest,label="s f(k)")
-ax2.plot(k_grid,break_even,label="(n+δ)k")
-ax2.scatter([k_ss],[s*k_ss**alpha],color="red",zorder=3,label="steady state")
-ax2.set_xlabel("Capital k")
-ax2.set_ylabel("Investment")
-ax2.set_title("Solow Diagram")
-ax2.legend()
-ax2.grid()
-
-with col1:
-    st.pyplot(fig)
-
-with col2:
-    st.pyplot(fig2)
-
-st.markdown(r"""
-### Interpretation
-
-- If $k_0$ is **below the steady state** capital level, investment exceeds depreciation
-  and capital grows.
-
-- If $k_0$ is **above the steady state** captal level, depreciation dominates and
-  capital falls.
-
-### Exercises
-
-- Move the **savings rate slider** upward and observe how the steady state moves in
-both graphs. Similarly, do this for $\alpha$ and $\delta$. Interpret the results.
-
-- Solve analytically for the steady state capital level where $\dot{k}=0$.
-""")
-#+end_src
-
-*** app 2
-
-#+begin_src python
-import streamlit as st
-import numpy as np
-import matplotlib.pyplot as plt
-from scipy.integrate import solve_bvp
-
-
-
-st.title("Modeling dynamics: differential equations")
-st.header("Mechanism Design and Price Discrimination")
-
-
-st.markdown(r"""
-### Economic Environment
-
-Consumers differ in their **type** $\theta$, which measures how much they value a good.
-The utility of a consumer buying the good with quality (or quantity) $x$ and paying price $p$ is
-
-$$
-u = \theta x - p
-$$
-
-The monopoly firm **cannot observe the consumer's type** but knows that type $\theta$ is distributed on interval
-$[\underline{\theta}, \bar{\theta}]$ with density function $f(\theta)$.
-
-To deal with this asymmetric information, the firm offers a **menu of contracts** for each $\theta$:
-
-$$
-(x(\theta), p(\theta))
-$$
-
-Each consumer $\theta$ chooses the option that maximizes utility:
-
-$$
-u(\theta) = \max_t \theta x(t) - p(t)
-$$
-
-In words, the consumer chooses option $(x(t),p(t))$ out of the menu to maximize $u$. In the language of mechanism design, type $\theta$ mimics type $t$.
-
-What we want here is that consumer $\theta$ chooses the option that is meant for her: $t = \theta$. This is called "truthful revelation" of types.
-
-Using the **envelope theorem**, truthful revelation implies:
-
-$$
-u'(\theta) = x(\theta)
-$$
-
-which links the consumers' utility or information rent to the quality/quantity they receive. The idea of "information rent" is that (all) consumers would have zero utility if the monopolist can observe their type and makes take-it-or-leave-it offers. In the latter case with perfect information, the monopolist would set $p(\theta) = \theta x(\theta)$ and leave no rents for consumers.
-
-
-We can write the firm's profits on consumer type $\theta$ as:
-
-$$
-\pi(\theta) = p(\theta) - c(x(\theta)) = \theta x - u(\theta) - c(x(\theta))
-$$
-
-where $c(x)$ denotes the costs of producing quality (or quantity) $x$.
-
-
-The optimization for the firm can be written as:
-
-$$
-\max \int_{\underline{\theta}}^{\bar \theta} f(\theta) (\theta x(\theta) - u(\theta) - c(x(\theta))) + \lambda(\theta) (u'(\theta)-x(\theta))d \theta
-$$
-
-On a "fraction" $f(\theta)$ of consumers, the firm makes $\pi(\theta)$ profits. We integrate $f(\theta) \pi(\theta)$ across all consumer types to find total (expected) profits. We add the truthful revelation constraint $u'(\theta) - x(\theta) = 0$ to the optimization problem with Lagrange multiplier $\lambda(\theta)$. For each type $\theta$ we add this constraint.
-
-The first order (Euler) equations can be written as:
-
-$$
-(\theta - c'(x(\theta)))f(\theta) - \lambda(\theta) = 0
-$$
-
-and
-
-$$
-\lambda'(\theta) = -f(\theta)
-$$
-
-Further, the so called transversality condition implies $\lambda(\bar \theta) = 0$. Further, the firm has no interest in leaving rents to the lowest type: $u(\underline{\theta})=0$.
-
-It is possible to solve this problem analytically, but here we solve it numerically using `scipy`.
-
-Assume $c(x) = 0.5*cx^2$. Then the first order condition for $x$ can be written as $x = (\theta - \lambda(\theta)/f(\theta))/c$. This leads to two differential equations:
-
-$$
-u'(\theta) = \frac{1}{c}  (\theta - \lambda(\theta)/f(\theta))
-$$
-
-and
-
-$$
-\lambda'(\theta) = -f(\theta)
-$$
-
-with boundary conditions $u(\underline{\theta})=0$ and $\lambda(\bar \theta) = 0$.
-
-This is called a boundary value problem `bvp` and we solve it numerically with the `scipy` function `solve_bvp`.
-
-
-""")
-
-st.markdown("### Model Parameters")
-
-c = st.slider("Cost parameter (c)",0.1,3.0,1.0)
-a=1
-b=2
-
-st.markdown("### Numerical Solution")
-
-
-def f(t):
-    return 1/(b-a)*np.ones_like(t)
-
-
-def design(t,y):
-    # t: Type
-    # y[0]: u(t)
-    # y[1]: lambda(t)
-    return np.vstack([(t-y[1]/f(t))/c,-f(t)])
-
-
-def bc(ya,yb):
-    # ya[0]: u(\underline \theta) = 0
-    # yb[1]: \lambda(\bar \theta) = 0
-    return np.array([ya[0],yb[1]])
-
-# type span
-t_eval=np.linspace(a,b,100)
-
-sol=solve_bvp(design,bc,t_eval,np.zeros((2,t_eval.shape[0])))
-x=sol.yp[0]
-p=t_eval*x-sol.y[0]
-
-col1,col2=st.columns(2)
-
-fig,ax=plt.subplots(figsize=(6,4))
-ax.plot(t_eval,x,label="Quantity x(θ)")
-ax.plot(t_eval,p,label="Price p(θ)")
-ax.plot(t_eval,x*t_eval,'--',label="Value θx(θ)")
-# ax.scatter(t_eval[-1],x[-1],color="red")
-ax.set_xlabel("Type θ")
-ax.set_ylabel("Contract")
-ax.set_title("Optimal Contract")
-ax.legend()
-ax.grid()
-
-u=sol.y[0]
-
-fig2,ax2=plt.subplots(figsize=(6,4))
-ax2.plot(t_eval,u,label="Information rent u(θ)")
-# ax2.scatter(t_eval[-1],u[-1],color="red")
-ax2.set_xlabel("Type θ")
-ax2.set_ylabel("Utility")
-ax2.set_title("Information Rents")
-ax2.legend()
-ax2.grid()
-
-with col1:
-    st.pyplot(fig)
-
-with col2:
-    st.pyplot(fig2)
-
-st.markdown(r"""
-### Interpretation
-
-Several important features appear in the optimal contract:
-
-- **Higher types receive higher quality/quantity.** Consumers who value the product more
-  are offered better quality or larger volume.
-
-- **Prices increase with type.** High‑valuation consumers pay more because they get "more" (higher quality or higher quantity)
-
-- Higher types obtain **positive information rents** because the firm must leave
-  them enough surplus so they reveal their type truthfully.
-
-### Exercises
-
-- What is the relation between the left and right panel in the figure above? How can we see $u(\theta)$ in the left panel? And (this is a bit more subtle) how can we see $x(\theta)$ in the right panel of the figure?
-
-- If we interpret $x$ as quantity, does the solution feature quantity discounts (price per unit descreases with more units bought)? Why (not)?
-
-- Show that the welfare maximizing quality/quanity is given by $x^*(\theta) = \theta/c$. Is this the output schedule $x(\theta)$ that the monopolist offers in the solution above? Why (not)?
-""")
-
-#+end_src
-
-
-
-*** app3
-
-#+begin_src python
-import streamlit as st
-import numpy as np
-import matplotlib.pyplot as plt
-from scipy.integrate import solve_bvp
-
-st.title("Modeling dynamics: differential equations")
-
-st.header("Pricing Dynamics with Learning by Doing")
-
-st.markdown(r"""
-### Economic Idea
-
-In many industries firms become more efficient as they produce more. This is known as
-**learning by doing**.
-
-Cumulative production lowers costs because firms gain experience with the technology.
-
-We model this by assuming that constant marginal costs depend on cumulative output $Q$:
-
-$$
-c(Q) = \frac{c}{1 + Q}
-$$
-
-In words, producing $q$ units today --with cumulative output $Q$ from previous periods-- costs $c q/(1+Q)$.
-
-The relation between $Q_t$ and $q_t$ is given by $Q'_t = q_t$: the change in cumulative $Q$ at time $t$ is given by $q_t$.
-
-Demand is given by
-
-$$
-p(q) = 1 - q
-$$
-
-Firms therefore decide **how much to produce today** knowing that producing more
-now reduces costs in the future.
-
-This creates a **dynamic optimization problem** over the period $[0,T]$:
-
-$$
-\max \int_0^T e^{-\rho t} (p(q_{t})-c(Q_t))q_{t} - \lambda_t (Q'_t - q_{t}) dt
-$$
-where $\rho$ denotes the discount factor and $\lambda_t$ the Lagrange multiplier on the constraint $Q'_t = q_t$.
-
-For this problem the first order (Euler) equations can be written as:
-
-$$
-e^{-\rho t}(p(q_t)-c(Q_t) + p'(q_t) q_t) + \lambda_t = 0
-$$
-
-and
-
-$$
--\lambda'_t = -e^{-\rho t} q_t C'(Q_t)
-$$
-
-Further we have the initial condition $Q_0 = 0$ (when the firm starts there is no cumulative output from previous periods) and end (transversality) condition $\lambda_T = 0$.
-
-
-Verify that with $p = 1-q, c(Q) = c/(1+Q)$, we can solve the first order condition for $q$ as
-
-$$
-q_t = 0.5*(1-c(Q_t)+e^{\rho t} \lambda_t)
-$$
-
-Then our system of differential equations becomes:
-
-$$
-Q'_t = 0.5(1-c(Q_t) + e^{\rho t} \lambda_t)
-$$
-
-and
-
-$$
--\lambda'_t = -e^{-\rho t} c'(Q_t) Q'_t = 0.5*e^{-\rho t} \frac{c}{(1+Q_t)^2} (1-c(Q_t) + e^{\rho t} \lambda_t)
-$$
-
-with $Q_0 = \lambda_T = 0$.
-
-This is a boundary value problem that we solve numerically with `solve_bvp`.
-
-
-""")
-
-st.markdown("### Model Parameters")
-
-rho = st.slider("Discount rate (ρ)",0.0,1.0,0.1)
-# c = st.slider("Cost parameter (c)",0.1,1.0,0.5)
-c = 0.1
-
-st.markdown("### Solving the Dynamic System")
-
-
-def learning(x,y):
-    # x is time t
-    # y = Q, lambda
-    return np.vstack((
-        0.5*(1-c/(1+y[0])+np.exp(rho*x)*y[1]),
-        -np.exp(-rho*x)*c/(1+y[0])**2*0.5*(1-c/(1+y[0])+np.exp(rho*x)*y[1])
-    ))
-
-
-def bc(ya,yb):
-    # ya[0] = Q_0
-    # yb[1] = lambda_T; note that the end point is indexed by 1 not T here
-    return np.array([ya[0],yb[1]])
-
-
-t_span=(0,10)
-t_eval=np.linspace(*t_span,400)
-sol=solve_bvp(learning,bc,t_eval,np.zeros((2,t_eval.shape[0])))
-
-q=sol.yp[0]
-Q=sol.y[0]
-l = sol.y[1]
-t=sol.x
-
-col1,col2=st.columns(2)
-
-fig,ax=plt.subplots(figsize=(6,4))
-ax.plot(t,q,label="Dynamic q(t)")
-ax.plot(t,(1-c/(1+Q))/2,':',label="Static optimum")
-ax.set_xlabel("Time")
-ax.set_ylabel("Output")
-ax.set_title("Optimal Output Path")
-ax.legend()
-ax.grid()
-
-fig2,ax2=plt.subplots(figsize=(6,4))
-ax2.plot(t,l,label="$\\lambda_t$")
-# ax2.plot(t,Q,label="Optimal cumulative Q(t)")
-ax2.set_xlabel("Time")
-ax2.set_ylabel("Shadow Price")
-ax2.set_title("Value of Learning Over Time")
-ax2.legend()
-ax2.grid()
-
-with col1:
-    st.pyplot(fig)
-
-with col2:
-    st.pyplot(fig2)
-
-st.markdown(r"""
-### Interpretation
-
-- We define the static optimum as the monopoly output level with given marginal costs $c/(1+Q)$ where $Q$ follows the optimal path derived above. Conditional on $Q$, the left panel of the figure shows the difference between a static profit maximizer and a firm taking the future value of learning into account.
-
-- At the beginning of the time horizon the firm produces **more than the static monopoly output**. The reason is that producing more increases cumulative experience $Q$ and therefore reduces future costs.
-
-- This extra production is an **investment in learning**. The right panel shows the marginal value of this learning.
-
-
-### Exercises
-
-- Increase the **discount rate**. What happens to output $q$ and why?
-
-- Why do the dynamic and static solutions coincide at $T=10$?
-""")
-#+end_src
-
 ** Python Code Explanation
 
 
 *** Interactivity in Marimo
 
-In *marimo*, interactive elements are created with =mo.ui= widgets.
+Recall that in *marimo*, interactive elements are created with =mo.ui= widgets.
 
 Example:
 
 #+begin_src python
 import marimo as mo
 
-alpha = mo.ui.slider(0.1, 0.9, value=0.3, step=0.01, label="Capital share (α)")
+alpha = mo.ui.slider(0.1, 0.9, value=0.3, step=0.01, label="Capital share ($\alpha$)")
 s = mo.ui.slider(0.01, 0.6, value=0.2, step=0.01, label="Savings rate")
 #+end_src
 
@@ -4300,7 +2952,6 @@ s.value
 Marimo automatically *re-runs dependent cells* when a widget value changes.  
 So if a plot depends on =alpha.value=, it updates automatically when the =alpha= slider moves.
 
----
 
 *** Solving Differential Equations in SciPy
 
@@ -4324,13 +2975,13 @@ Meaning:
 
 SciPy function:
 
-#+begin_src 
+#+begin_src python
 scipy.integrate.solve_ivp
 #+end_src
 
 Basic syntax:
 
-#+begin_src 
+#+begin_src python
 solve_ivp(function, t_span, y0, t_eval=grid)
 #+end_src
 
@@ -4350,13 +3001,12 @@ sol.t     time grid
 sol.y     solution values
 #+end_src
 
----
 
 **** Boundary Value Problems (BVP)
 
 Used in *App 2 and App 3*.
 
-A BVP specifies conditions at *different points*, e.g.
+A BVP specifies conditions at *different points* $a$ and $b$, e.g.
 
 #+begin_src 
 y(a) = value1
@@ -4367,13 +3017,13 @@ Instead of simulating forward from a known starting value, the algorithm must *s
 
 SciPy function:
 
-#+begin_src 
+#+begin_src python
 scipy.integrate.solve_bvp
 #+end_src
 
 Basic structure:
 
-#+begin_src 
+#+begin_src python
 solve_bvp(system, boundary_conditions, x_grid, initial_guess)
 #+end_src
 
@@ -4394,39 +3044,25 @@ sol.y     solution
 sol.yp    derivatives
 #+end_src
 
----
 
 *** Solow Growth Model
 
 **** Model equation
 
-Capital evolves according to
-
-#+begin_src 
-k'(t) = s k^α − (n + δ) k
-#+end_src
+Capital evolves according to $k'(t) = s k^{\alpha} - (n+\delta) k$
 
 This is a *single differential equation*. And we have a given capital stock $k(0)=k_0$ at the start of time: initial value problem.
 
----
 
 **** Step 1: Import libraries
 
-#+begin_src 
+#+begin_src python
 import marimo as mo
 import numpy as np
 import matplotlib.pyplot as plt
 from scipy.integrate import solve_ivp
 #+end_src
 
-Roles:
-
-- =marimo= → interactive elements
-- =numpy= → numerical operations
-- =matplotlib= → plotting
-- =solve_ivp= → differential equation solver
-
----
 
 **** Step 2: Define parameters (interactive)
 
@@ -4451,15 +3087,14 @@ alpha
 
 or use a slider value in a calculation:
 
-#+begin_src 
+#+begin_src  python
 alpha.value
 #+end_src
 
----
 
 **** Step 3: Define the differential equation
 
-#+begin_src 
+#+begin_src python 
 def solow(t,k):
     return s.value*k**alpha.value - (n.value+delta.value)*k
 #+end_src
@@ -4468,46 +3103,67 @@ Important detail:
 
 SciPy expects the function signature
 
-#+begin_src 
+#+begin_src python 
 f(t,y)
 #+end_src
 
 even if the equation does not depend on =t=, like the function =solow= actually does not depend on =t=.
 
----
+***** code :noexport:
+
+#+begin_src python 
+alpha = 0.3
+s = 0.2
+n = 0.01
+delta = 0.05
+k0 = 0.5
+def solow(t,k):
+    return s*k**alpha - (n+delta)*k
+#+end_src
+
+#+RESULTS:
+:results:
+None
+:end:
 
 **** Step 4: Compute steady state
 
-The steady state solves
-
-#+begin_src 
-0 = s k^α − (n+δ)k
-#+end_src
+The steady state solves $0 = s k^{\alpha}-(n+\delta)k$
 
 which gives
 
-#+begin_src 
+#+begin_src python 
 k_ss = (s.value/(n.value+delta.value))**(1/(1-alpha.value))
 #+end_src
 
----
+***** code :noexport:
+
+#+begin_src python 
+k_ss = (s/(n+delta))**(1/(1-alpha))
+#+end_src
+
+#+RESULTS:
+:results:
+None
+:end:
 
 **** Step 5: Time grid
 
-#+begin_src 
+#+begin_src python 
 t_span = (0,50)
 t_eval = np.linspace(0,50,200)
 #+end_src
 
+
 This means we simulate the model from time 0 to 50 and evaluate at 200 points.
 
----
 
 **** Step 6: Solve the IVP
 
-#+begin_src 
+#+begin_src python 
 sol = solve_ivp(solow, t_span, [k0.value], t_eval=t_eval)
 #+end_src
+
 
 Note:
 
@@ -4515,37 +3171,50 @@ Note:
 
 Solution:
 
-#+begin_src 
+#+begin_src python 
 sol.t
 sol.y[0]
 #+end_src
 
----
+
+***** code :noexport:
+
+
+#+begin_src python 
+sol = solve_ivp(solow, t_span, [k0], t_eval=t_eval)
+#+end_src
+
+#+RESULTS:
+:results:
+None
+:end:
 
 **** Step 7: Plot transition dynamics
 
-#+begin_src 
+#+begin_src python :results graphics file output :file ./figures/SolowTransitionDynamics.png
 plt.plot(sol.t, sol.y[0])
 plt.axhline(k_ss)
 #+end_src
 
-Interpretation:
 
-- the path converges toward the steady state.
+#+caption: Capital levels converge to the steady state level over time
+#+attr_latex: scale=0.3
+#+name: fig:Solowtransitiondynamics
+[[file:./figures/SolowTransitionDynamics.png]]
 
----
+We leave it to you to add labels on the axes, a title, legend etc.
 
 **** Step 8: Solow diagram
 
 Create a grid of capital levels:
 
-#+begin_src 
+#+begin_src python 
 k_grid = np.linspace(0.01,5,200)
 #+end_src
 
 Compute
 
-#+begin_src 
+#+begin_src python 
 investment = s.value*k_grid**alpha.value
 break_even = (n.value+delta.value)*k_grid
 #+end_src
@@ -4554,44 +3223,41 @@ Plot both curves.
 
 Their intersection is the steady state.
 
----
 
 *** Mechanism Design Model
 
 This problem involves *two differential equations*:
 
-#+begin_src 
-u'(θ) = (θ − λ/f(θ))/c
-λ'(θ) = −f(θ)
-#+end_src
+$$u'(\theta) = (\theta - \lambda/f(\theta))/c$$
 
-Boundary conditions:
+and
 
-#+begin_src 
-u(θ_min) = 0
-λ(θ_max) = 0
-#+end_src
+$$\lambda'(\theta) = -f(\theta)$$
+
+Boundary conditions: $u(\theta_{min}) = 0, \lambda(\theta_{max}) = 0$
 
 So this is a boundary value problem.
 
----
 
 **** Step 1: Define density
 
-#+begin_src 
+#+begin_src python
+from scipy.integrate import solve_bvp
+
 def f(t):
-    return 1/(θ_max-θ_min)*np.ones_like(t)
+    return 1/(theta_max-theta_min)*np.ones_like(t)
 #+end_src
+
+
 
 This corresponds to a *uniform distribution*.
 
 =np.ones_like(t)= ensures the function works for vector inputs needed in the =scipy= functions below.
 
----
 
 **** Step 2: Define system of ODEs
 
-#+begin_src 
+#+begin_src python 
 def design(t,y):
     return np.vstack([
         (t - y[1]/f(t))/c,
@@ -4599,219 +3265,176 @@ def design(t,y):
     ])
 #+end_src
 
+
 Interpretation:
 
-=y= is a vector:
-
-#+begin_src 
-y[0] = u(θ)
-y[1] = λ(θ)
-#+end_src
+=y= is a vector: $y[0] = u(\theta), y[1] = \lambda(\theta)$
 
 =np.vstack= stacks derivatives into a matrix required by =solve_bvp=.
 
----
 
 **** Step 3: Boundary conditions
 
-#+begin_src 
+#+begin_src python 
 def bc(ya,yb):
     return np.array([ya[0], yb[1]])
 #+end_src
 
+
 where
 
-#+begin_src 
-ya = solution at θ_min
-yb = solution at θ_max
+#+begin_src
+ya = solution at theta_min
+yb = solution at theta_max
 #+end_src
 
 So the function enforces
 
 #+begin_src 
-u(θ_min)=0 # because index [0] in ya refers to u(θ): y[0]
-λ(θ_max)=0 # because index [1] in yb refers to λ(θ): y[1]
+u(theta_min)=0 # because index [0] in ya refers to u(theta): y[0]
+lambda(theta_max)=0 # because index [1] in yb refers to lambda(theta): y[1]
 #+end_src
 
----
 
 **** Step 4: Initial grid
 
-#+begin_src 
-t_eval = np.linspace(a,b,100)
+#+begin_src python
+theta_min = 1
+theta_max = 2
+t_eval = np.linspace(theta_min,theta_max,100)
 #+end_src
 
----
+
 
 **** Step 5: Initial guess
 
-#+begin_src 
-np.zeros((2, t_eval.shape[0]))
+#+begin_src python 
+guess = np.zeros((2, t_eval.shape[0]))
 #+end_src
+
+
 
 Explanation:
 
-- 2 equations
-- guess values along the grid
+- 2 variables $u$ and $\lambda$
+- guess values along the grid for each equation
 
----
 
 **** Step 6: Solve BVP
 
-#+begin_src 
+#+begin_src python 
 sol = solve_bvp(design, bc, t_eval, guess)
 #+end_src
+
 
 After solving:
 
 #+begin_src 
-sol.y[0] = u(θ)
-sol.y[1] = λ(θ)
+sol.y[0] = u(theta)
+sol.y[1] = lambda(theta)
 #+end_src
 
----
 
 **** Step 7: Recover quantities and prices
 
 The optimal quantity:
 
-#+begin_src 
+#+begin_src python 
 x = sol.yp[0]
 #+end_src
 
-Because
 
-#+begin_src 
-u'(θ) = x(θ)
-#+end_src
+Because $u'(\theta) = x(\theta)$ and =yp[0]= refers to the derivative ("y prime") of the first element in =y= which is $u$.
 
-and =yp[0]= refers to the derivative ("y prime") of the first element in =y= which is $u$.
+Price is derived from $p = \theta x - p$, so
 
-Price is derived from
-
-#+begin_src 
-p = θx − u
-#+end_src
-
-so
-
-#+begin_src 
+#+begin_src python 
 p = t_eval*x - sol.y[0]
 #+end_src
 
----
+And then we can plot the solution for output/quality $x$ and the price $p$ as a function of consumer type $\theta$.
+
+#+begin_src python :results graphics file output :file ./figures/MechanismDesignXandP.png
+plt.plot(t_eval,x,label='$x$')
+plt.plot(t_eval,p,label='$p$')
+plt.legend()
+plt.xlabel('$\\theta$')
+#+end_src
+
+#+caption: Output/quality and price as a function of consumer type $\theta$
+#+attr_latex: scale=0.3
+#+name: fig:Mechanismdesignxandp
+[[file:./figures/MechanismDesignXandP.png]]
+
+
 
 *** Dynamic Pricing with Learning
 
 This model also forms a *BVP*, but with *time as the state variable*.
 
-State variables:
-
-#+begin_src 
-Q(t)      cumulative production
-λ(t)      shadow value
-#+end_src
+State variables: $Q(t)$, cumulative production, $\lambda(t)$, shadow value
 
 Differential equations:
+- $Q'(t) = q(t)$
+- $\lambda'(t) = e^{-\rho t} q(t) c'(Q(t))$
 
-#+begin_src 
-Q'(t)
-λ'(t)
-#+end_src
+Boundary conditions: $Q(0) = 0, \lambda(T) = 0$
 
-Boundary conditions:
-
-#+begin_src 
-Q(0) = 0
-λ(T) = 0
-#+end_src
-
----
+Here we only give you the steps for you to reproduce the solutions and figures in the app above.
 
 **** Step 1: Define system
 
-#+begin_src 
+#+begin_src python 
 def learning(t,y):
+    return #complete the code
 #+end_src
 
-State variables stored as
-
-#+begin_src 
-y[0] = Q
-y[1] = λ
-#+end_src
-
-Then return derivatives.
+State variables stored as $y[0] = Q, y[1] = \lambda$, then return derivatives $Q'(t), \lambda'(t)$.
 
 =scipy= expects the result stacked:
 
-#+begin_src 
+#+begin_src python 
 np.vstack((dQdt, dlambdadt))
 #+end_src
 
----
 
 **** Step 2: Boundary conditions
 
-#+begin_src 
+#+begin_src python 
 def bc(ya,yb):
     return np.array([ya[0], yb[1]])
 #+end_src
 
-Meaning
+Meaning $Q(0) = 0, \lambda(T) = 0$
 
-#+begin_src 
-Q(0)=0
-λ(T)=0
-#+end_src
-
----
 
 **** Step 3: Solve BVP
 
-#+begin_src 
+#+begin_src python 
 sol = solve_bvp(learning, bc, t_eval, guess)
 #+end_src
 
-Extract solution:
+Extract solution: $Q = sol.y[0]$, $\lambda = sol.y[1]$, $q = sol.yp[0]$
 
-#+begin_src 
-Q = sol.y[0]
-λ = sol.y[1]
-q = sol.yp[0]
-#+end_src
+Since $Q'(t) = q(t)$
 
-Since
-
-#+begin_src 
-Q'(t) = q(t)
-#+end_src
-
----
 
 **** Step 4: Static benchmark
 
 The static monopoly solution is
 
-#+begin_src 
+#+begin_src python 
 q_static = (1 - c/(1+Q)) / 2
 #+end_src
 
-Plot both:
-
-#+begin_src 
-dynamic q(t)
-static q(t)
-#+end_src
-
----
+Plot both: dynamic and static $q(t)$ in one figure.
 
 
 ** Summary
 
 In this lecture we studied how dynamic economic models can be analyzed using numerical tools in Python. We explored several examples in which economic decisions and outcomes evolve over time, including capital accumulation, mechanism design with asymmetric information, and learning-by-doing dynamics.
 
-These examples illustrated how differential equations and dynamic optimization problems can be translated into numerical algorithms. By solving these models computationally we can visualize adjustment paths, understand steady states, and explore how economic outcomes respond to parameter changes.
+These examples illustrate how differential equations and dynamic optimization problems can be translated into numerical algorithms. By solving these models computationally we can visualize adjustment paths, understand steady states, and explore how economic outcomes respond to parameter changes.
 
 #+BEGIN_EXPORT html
 <div style="border-left:4px solid #1f3c88;padding:10px;margin:15px 0;background:#f5f7fa;">
@@ -4832,21 +3455,23 @@ Dynamic economic models expressed as differential equations can be solved numeri
 ** Review Questions
 
 *** Question 1: Solow model
-Create the Solow model in a marimo notebook and analyze the following:
+Create the Solow model from above in a marimo notebook and analyze the following:
 - add *technological growth*
-- plot the growth in output $f(k)$ over time. How is this figure affected by the initial capital stock $k_0$ and the saving rate $s$?
-
+- plot output $f(k)$ over time. How is this figure affected by the initial capital stock $k_0$ and the saving rate $s$? Create sliders for $k_0$ and $s$ to analyze this.
+-----------------
 *** Question 2: Mechanism design
-In your marimo notebook:
-- change the distribution =f(θ)=
+Create the mechanism design model in your marimo notebook:
+- change the distribution $f(\theta)$; e.g. create a dropdowm menu for the user to choose from uniform, exponential and (perhaps) another distribution
 - compare the information rent in the optimal solution with the information rent in the *first-best allocation*.
-
+-----------
 *** Question 3: Learning-by-doing
-In your marimo notebook:
-- vary time horizon =T=
+Create the learning-by-doing model in your marimo notebook:
+- vary time horizon =T= using a slider
 - introduce *capacity constraints*
 - in competition policy cases there is a suspicion that firms that price below marginal costs ($p < c$) are trying to remove their competitors from the market to enjoy monopoly profits in the future. Discuss this suspicion in the light of this model.
 
+
+**** Hint
 #+BEGIN_EXPORT html
 <details>
 <summary><strong>LLM Hint (how to prompt an LLM)</strong></summary>
@@ -4870,6 +3495,10 @@ Helpful prompting strategies:
 
 
 -----------
+#+BEGIN_EXPORT latex
+\newpage
+#+END_EXPORT
+
 
 * Lecture 6: Dynamical Systems
 
@@ -5538,8 +4167,8 @@ Explanation:
 **** Choosing parameters with sliders
 
 #+begin_src python
-rho = mo.ui.slider(0.01, 0.06, value=0.03, step=0.005, label="Discount rate ρ")
-delta = mo.ui.slider(0.02, 0.08, value=0.05, step=0.005, label="Depreciation δ")
+rho = mo.ui.slider(0.01, 0.06, value=0.03, step=0.005, label="Discount rate $\rho$")
+delta = mo.ui.slider(0.02, 0.08, value=0.05, step=0.005, label="Depreciation $\delta$")
 
 rho, delta
 #+end_src
@@ -5972,27 +4601,6 @@ Using the Ramsey model implemented in the app:
 - b. Verify numerically that the values in the app correspond to this steady state.
 - c. Explain why the steady state of the Ramsey model is *saddle‑path stable*.
 
-#+BEGIN_EXPORT html
-<details>
-<summary><strong>Hint / Solution</strong></summary>
-#+END_EXPORT
-
-From the Euler equation the steady state requires
-
-$f'(k^*) = \delta + \rho$.
-
-With $f(k)=k^{0.5}$ we have
-
-$0.5 k^{-0.5} = \delta + \rho$.
-
-Solve this equation for $k^*$ and then substitute into
-
-$c^* = f(k^*) - \delta k^*$.
-
-#+BEGIN_EXPORT html
-</details>
-#+END_EXPORT
-
 -----
 
 *** Question 2 Ramsey dynamics and adjustment paths
@@ -6001,20 +4609,8 @@ Use the Ramsey model app and vary the initial capital stock $k_0$.
 
 - a. Find a value of $k_0$ for which the economy initially **reduces consumption** before converging to the steady state.
 - b. Find a value of $k_0$ for which the economy initially **increases consumption**.
-- c. Explain your answers using the *phase diagram* and the *saddle path*.
 
-#+BEGIN_EXPORT html
-<details>
-<summary><strong>Hint / Solution</strong></summary>
-#+END_EXPORT
 
-If $k_0$ is **below** the steady state, capital is scarce and the optimal path typically requires temporarily lowering consumption to allow faster capital accumulation.
-
-If $k_0$ is **above** the steady state, the economy initially consumes more while capital declines toward its long‑run level.
-
-#+BEGIN_EXPORT html
-</details>
-#+END_EXPORT
 
 -----
 
@@ -6030,24 +4626,6 @@ $\dot{y}=-cy+dxy$.
 - b. Plot this steady state in the phase diagram of the app.
 - c. Explain why the trajectories of the system typically form *closed cycles* around this point.
 
-#+BEGIN_EXPORT html
-<details>
-<summary><strong>Hint / Solution</strong></summary>
-#+END_EXPORT
-
-Set both derivatives equal to zero.
-
-The steady state satisfies
-
-$x^* = c/d$
-
-$y^* = a/b$.
-
-The nonlinear interaction terms create a feedback loop that causes the system to rotate around this steady state.
-
-#+BEGIN_EXPORT html
-</details>
-#+END_EXPORT
 
 -----
 
@@ -6059,106 +4637,33 @@ Interpret the predator–prey model as the *Goodwin growth cycle model*.
 - b. Explain why the interaction between these variables generates cyclical dynamics.
 - c. Which parameters would make the cycles faster or slower?
 
-#+BEGIN_EXPORT html
-<details>
-<summary><strong>Hint / Solution</strong></summary>
-#+END_EXPORT
-
-In the Goodwin interpretation:
-
-- $x$ can represent the **employment rate**
-- $y$ can represent the **wage share**.
-
-High employment increases worker bargaining power and raises wages. Higher wages reduce profits and hiring, which lowers employment again. This feedback generates cycles.
-
-#+BEGIN_EXPORT html
-</details>
-#+END_EXPORT
 
 -----
 
 *** Question 5 From predator–prey to a second‑order differential equation
 
-The predator–prey system can be rewritten as a single second‑order equation.
+*Warning* This question is rather difficult and we expect you to need an LLM to solve it! This exercise is more about practicing using LLMs than it is about math. We do *not* assume that you to know the math behind the question; although you may/will understand it once you solved the exercise.
 
-- a. Solve the prey equation for $y$ and substitute it into the predator equation.
-- b. Show that the model can be written as a second‑order differential equation for $x$.
-- c. Rewrite this second‑order equation as a system of two first‑order equations by defining
+Consider the following second order differential equation:
 
-$v = \dot{x}$.
+$$
+u''=(c-de^u)(a-u')
+$$
 
-Implement this alternative representation numerically and verify that it generates the same trajectories as the original system.
+with $a=c=d=1$ and initial conditions $u(0) = u'(0) = 0.5$.
 
-#+BEGIN_EXPORT html
-<details>
-<summary><strong>Hint / Solution</strong></summary>
-#+END_EXPORT
+First hint: we kept the parameters $a,c,d$ in the differential equation to give you a clue.
 
-A second‑order ODE can always be rewritten as a system of two first‑order equations by introducing
+We want you solve this differential equation with =solve_ivp= (which can *not* solve second order differential equations) and use one of the apps in this lecture to verify your solution.
 
-$v = \dot{x}$.
+Second hint: define a new variable $v = u'$.
 
-Then
-
-$\dot{x}=v$
-
-$\dot{v}=f(x,v)$.
-
-You can solve this system using the same numerical solver (e.g. =solve_ivp=).
-
-#+BEGIN_EXPORT html
-</details>
-#+END_EXPORT
-
-#+BEGIN_EXPORT html
-<details>
-<summary><strong>LLM Hint (how to prompt an LLM)</strong></summary>
-#+END_EXPORT
-
-For derivations in dynamic systems, LLMs work best if you clearly state the **system of equations** and the **goal of the derivation**.
-
-Example prompt:
-
-"I am solving an exercise about the Lotka–Volterra predator–prey model used in economics (Goodwin growth cycles). The system is
-
- dx/dt = ax − bxy
- dy/dt = −cy + dxy
-
-I want to rewrite this system as a single second‑order differential equation for x(t). First solve the prey equation for y and substitute it into the predator equation. Then rewrite the second‑order equation as a system of two first‑order equations using v = dx/dt. Can you derive the equations step by step and explain the logic?"
-
-Prompting tips:
-- Always include the **full system of equations**.
-- Clearly state the **mathematical goal** (for example: derive a second‑order equation).
-- Ask for **step‑by‑step reasoning**, not just the final formula.
-
-#+BEGIN_EXPORT html
-</details>
-#+END_EXPORT
 
 -----
-
-*** Question 6 Conceptual question: Stability and economic dynamics
-
-Dynamic economic models often exhibit very different types of behavior: convergence to a steady state, divergence, or cyclical motion.
-
-- a. Explain what economists mean by a *saddle‑path stable equilibrium*.
-- b. Why does the Ramsey model require the economy to start on a specific saddle path in order to converge to the steady state?
-- c. Compare this behavior to the predator–prey (Lotka–Volterra) system. Why do trajectories typically form cycles rather than converge to a single point?
-
-#+BEGIN_EXPORT html
-<details>
-<summary><strong>Hint / Solution</strong></summary>
+#+BEGIN_EXPORT latex
+\newpage
 #+END_EXPORT
 
-In the Ramsey model the steady state is saddle‑path stable: only one trajectory leads to the steady state for a given initial capital stock. If consumption starts above or below this path, the economy diverges from the steady state.
-
-In contrast, the Lotka–Volterra system has a different structure: the interaction between the two variables creates a feedback loop that generates closed orbits. Instead of converging to the steady state, the system cycles around it.
-
-Economically, this illustrates that some systems stabilize around equilibrium while others generate persistent fluctuations.
-
-#+BEGIN_EXPORT html
-</details>
-#+END_EXPORT
 
 * Course takeaway: Python as a tool for economic reasoning
 
@@ -6173,6 +4678,12 @@ Across the six lectures we used Python in several complementary ways:
 - to **communicate intuition** through interactive apps
 
 Modern economic research and policy analysis increasingly rely on computational tools. Being able to translate economic ideas into code allows economists to explore models more deeply and to communicate their insights more clearly.
+
+--------------------
+
+#+BEGIN_EXPORT latex
+\newpage
+#+END_EXPORT
 
 
 * Bibliography
